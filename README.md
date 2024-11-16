@@ -1,5 +1,5 @@
-# Friday Night Funkin' - Psych Engine
-Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
+# Friday Night Funkin' - Torch Engine, Psych Port
+This engine is a port of [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine), I plan on adding several QoL things to this engine as well as adding several Vanilla features.
 
 ## Installation:
 
@@ -15,7 +15,10 @@ to start you off, disabling Videos should be simple, simply Delete the line `"VI
 
 same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
 
-## Credits:
+## Torch Engin Credits:
+* TorchTheDragon - Head of Development for this port, Programmer.
+
+## Psych Engine Credits:
 * Shadow Mario - Head Developer, Programmer.
 * Riveren - Main Artist.
 
@@ -72,7 +75,7 @@ _____________________________________
   * Also there's the Background girls being spooky during the "Hey!" parts of the Instrumental
 
 ## Cool new Chart Editor changes and countless bug fixes
-![](https://github.com/ShadowMario/FNF-PsychEngine/blob/main/docs/img/chart.png?raw=true)
+![](https://github.com/TorchTheDragon/Torchs-FNF-Engine/blob/main/docs/img/chart.png?raw=true)
 * You can now chart "Event" notes, which are bookmarks that trigger specific actions that usually were hardcoded on the vanilla version of the game.
 * Your song's BPM can now have decimal values
 * You can manually adjust a Note's strum time if you're really going for milisecond precision
