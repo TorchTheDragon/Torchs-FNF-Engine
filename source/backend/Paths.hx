@@ -556,7 +556,7 @@ class Paths
 	#end
 
 	public static function getDirectory(key:String, subFolder:String = 'images', ?library:String = 'shared') {
-		if (subFolder == null) subFolder = ''; else subFolder = '/' + subfolder; // I hope this doesn't fuck this up
+		if (subFolder == null) subFolder = ''; else subFolder = '/' + subFolder; // I hope this doesn't fuck this up
         if (FileSystem.exists('assets/$library$subFolder/$key')) {
             return 'assets/$library$subFolder/$key';
 		} else {

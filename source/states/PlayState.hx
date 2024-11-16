@@ -52,6 +52,7 @@ import psychlua.HScript;
 import crowplexus.iris.Iris;
 #end
 
+import torchsfunctions.functions.Extras;
 import torchsthings.states.ResultsScreen;
 
 /**
@@ -2031,6 +2032,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	var zoomTweens:Array<FlxTween> = [null];
+
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
 		var flValue2:Null<Float> = Std.parseFloat(value2);
@@ -2077,6 +2080,45 @@ class PlayState extends MusicBeatState
 
 					FlxG.camera.zoom += flValue1;
 					camHUD.zoom += flValue2;
+				}
+
+			case 'Updated Camera Zoom': //I will not remove the old one, instead, I will just add my own. Eventually, I will get to replacing the old ones to use my new zoom function.
+				if (ClientPrefs.data.camZooms) {
+					var val1:String = 'regular';
+					if (value1 != null && value1 != 'regular' && value1 != '') val1 = value1.toLowerCase().trim();
+					var vals2:Array<String> = value2.split(',');
+
+					var zoomAmount:Float = Std.parseFloat(vals2[0].trim());
+					var zoomTime:Float = Std.parseFloat(vals2[1].trim());
+					var easeType:EaseFunction = Extras.stringToEase(vals2[2].trim());
+
+					if (zoomTweens[0] != null && (val1 == 'main' || val1 == 'both' || val1 == 'reset')) zoomTweens[0].cancel();
+					if (zoomTweens[1] != null && (val1 == 'hud' || val1 == 'both' || val1 == 'reset')) zoomTweens[1].cancel();
+
+					switch (val1) {
+						case 'main':
+							zoomTweens[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType,
+							onComplete: function(t:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+						case 'hud':
+							zoomTweens[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
+						case 'both':
+							zoomTweens[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
+							zoomTweens[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType,
+							onComplete: function(t:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+						case 'reset':
+							zoomTweens[1] = FlxTween.tween(camHUD, {zoom: 1}, 0.5, {ease: FlxEase.linear});
+							zoomTweens[0] = FlxTween.tween(camGame, {zoom: StageData.getStageFile(SONG.stage).defaultZoom}, 0.5, {ease: FlxEase.linear,
+							onComplete: function(t:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+						default:
+							FlxG.camera.zoom += zoomAmount;
+							camHUD.zoom += zoomAmount;
+					}
 				}
 
 			case 'Play Animation':

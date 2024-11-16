@@ -7,6 +7,7 @@ Added:
 - Added "musicAsString" function to Paths
 - Added "getDirectory" and "getDirectoryFile" functions to Paths
 - My own Haxe library
+- New, improved, zoom function
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
@@ -19,3 +20,4 @@ Plans/ToDo:
 - Disable RGB shader on notes if character overrides it
 - Rewrite my Character Menu to match the Vanilla Character Menu
 - Implement the new Freeplay Menu from Vanilla FNF
+- Implement my custom healthbar that allows for other images to be used between characters
