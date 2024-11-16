@@ -1,0 +1,42 @@
+bf:BOYFRIEND.XML
+bf-car:BOYFRIEND.XML
+bf-christmas:Holiday BF
+bidu:BD
+bf-holding-gf:BF and GF
+bf-pixel:8-Bit BF
+dad:Daddy Dearest
+gf:Girlfriend
+gf-car:Girlfriend
+gf-christmas:Holiday GF
+gf-pixel:8-Bit GF
+gf-tankman:GF in Danger
+mom:Mommy Mearest
+mom-car:Mommy Mearest
+monster:Lemon Creature
+monster-christmas:Lemon Creature
+parents-christmas:DD and MM
+pico:Pico
+pico-player:Pico
+pico-playerZ3mp:Pico
+pico-lion:Pico
+pico-speaker:Pico
+senpai:Senpai
+senpai-angry:Angry Senpai
+spirit:Senpai Spirit
+spooky:IS SPOOKY MONTH!
+tankman:Tankman
+tankman-player Tankman
+Robin:Robin
+darnell:Darnell
+nene:Nene
+bf-z3mp:Ze3mp
+Compota-Hyper:Com-Hyp
+noah:Noah
+gf-z3mp:Z3mp GF
+gf-carZ3mp:Z3mp GF Car
+picoZ3mp:pZ3mp
+torch:Torch
+jeys-bf:BFJ
+bf-iandee:BFIE
+gf-iandee:GFIE
+gf-car-iandee:GFCIE

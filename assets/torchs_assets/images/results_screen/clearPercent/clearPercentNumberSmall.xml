@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="clearPercentNumberSmall.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="number 0 0000" x="10" y="10" width="35" height="44"/>
+	<SubTexture name="number 1 0000" x="55" y="10" width="25" height="41"/>
+	<SubTexture name="number 2 0000" x="90" y="10" width="38" height="45"/>
+	<SubTexture name="number 3 0000" x="138" y="10" width="38" height="46"/>
+	<SubTexture name="number 4 0000" x="186" y="10" width="35" height="43"/>
+	<SubTexture name="number 5 0000" x="10" y="66" width="37" height="44"/>
+	<SubTexture name="number 6 0000" x="57" y="66" width="34" height="42"/>
+	<SubTexture name="number 7 0000" x="101" y="66" width="35" height="44"/>
+	<SubTexture name="number 8 0000" x="146" y="66" width="36" height="45"/>
+	<SubTexture name="number 9 0000" x="192" y="66" width="35" height="44"/>
+</TextureAtlas>

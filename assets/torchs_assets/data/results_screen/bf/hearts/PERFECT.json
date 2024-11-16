@@ -1,0 +1,14 @@
+{
+    "rank": "PERFECT",
+    "offsets": [1342, 370],
+    "animation_delay": 4.41,
+    "scale": 1,
+    "animation_type": "spritemap",
+    "loop_name": "hearts/loopage",
+    "intro_name": "hearts/intro",
+    "char_name": "bf",
+    "file_name": "",
+    "other_folder": "hearts",
+    "on_top": true,
+    "library": "torchs_assets"
+}

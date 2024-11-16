@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="girlfriend.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="introShit0000" x="10" y="10" width="222" height="226" frameX="-42" frameY="-128" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0001" x="242" y="10" width="210" height="290" frameX="-18" frameY="-45" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0002" x="242" y="10" width="210" height="290" frameX="-18" frameY="-45" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0003" x="462" y="10" width="210" height="290" frameX="0" frameY="0" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0004" x="462" y="10" width="210" height="290" frameX="0" frameY="0" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0005" x="682" y="10" width="210" height="290" frameX="-1" frameY="-3" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0006" x="682" y="10" width="210" height="290" frameX="-1" frameY="-3" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0007" x="10" y="310" width="210" height="290" frameX="-6" frameY="-15" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="introShit0008" x="230" y="310" width="210" height="290" frameX="-6" frameY="-15" frameWidth="264" frameHeight="354"/>
+	<SubTexture name="loopage0000" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0001" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0002" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0003" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0004" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0005" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0006" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0007" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0008" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0009" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0010" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0011" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0012" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0013" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0014" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0015" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0016" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0017" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0018" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0019" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0020" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0021" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0022" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0023" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0024" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0025" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0026" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0027" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0028" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0029" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0030" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0031" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0032" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0033" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0034" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0035" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0036" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0037" x="669" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0038" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0039" x="10" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0040" x="229" y="610" width="209" height="290"/>
+	<SubTexture name="loopage0041" x="450" y="310" width="209" height="290"/>
+	<SubTexture name="loopage0042" x="450" y="310" width="209" height="290"/>
+</TextureAtlas>

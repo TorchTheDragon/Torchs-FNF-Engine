@@ -1,0 +1,22 @@
+Implemented:
+- Results Screen
+- Vanilla FNF Soundtray
+
+Imported:
+- All of my custom objects in case I want to use them
+
+Added:
+- Added "musicAsString" function to Paths
+- Added "getDirectory" and "getDirectoryFile" functions to Paths
+
+Updates:
+- Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
+- Updated sound, music, inst, soundRandom, getPath, and getTextFromFile to include the option to use libraries/parent folders
+- Three new base stage functions that utilize the Paths.currentLevel thing to ensure nothing breaks on accident ("playWeekSound" - plays a sound in the week folder, "playWeekMusic" - plays music in the week folder, "randomWeekSound" - plays a random sound provided)
+
+Plans/ToDo:
+- Per character based Note Colors, will be a client pref and will be set in the character editor
+- Specific noteskins for characters if toggle is enabled
+- Disable RGB shader on notes if character overrides it
+- Rewrite my Character Menu to match the Vanilla Character Menu
+- Implement the new Freeplay Menu from Vanilla FNF

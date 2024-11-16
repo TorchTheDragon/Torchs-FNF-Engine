@@ -1,0 +1,14 @@
+{
+    "rank": "GOOD",
+    "offsets": [629, 323],
+    "animation_delay": 0.91,
+    "scale": 1,
+    "animation_type": "sparrowatlas",
+    "loop_name": "loopage",
+    "intro_name": "intro",
+    "char_name": "bf",
+    "file_name": "girlfriend",
+    "other_folder": "gf",
+    "on_top": false,
+    "library": "torchs_assets"
+}

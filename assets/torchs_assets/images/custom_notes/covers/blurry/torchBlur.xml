@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="torch.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="blueCover0000" x="10" y="10" width="161" height="125"/>
+	<SubTexture name="blueCover0001" x="181" y="10" width="134" height="108" frameX="-11" frameY="-12" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="blueCover0002" x="325" y="10" width="99" height="85" frameX="-30" frameY="-19" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="blueCoverEnd0000" x="434" y="10" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0001" x="434" y="10" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0002" x="525" y="10" width="171" height="151" frameX="-30" frameY="-3" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0003" x="706" y="10" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0004" x="706" y="10" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0005" x="10" y="210" width="234" height="197" frameX="-1" frameY="-6" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0006" x="254" y="210" width="251" height="198" frameX="0" frameY="-22" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverEnd0007" x="515" y="210" width="246" height="171" frameX="-10" frameY="-58" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="blueCoverStart0000" x="771" y="210" width="98" height="98"/>
+	<SubTexture name="greenCover0000" x="10" y="418" width="161" height="125"/>
+	<SubTexture name="greenCover0001" x="181" y="418" width="134" height="108" frameX="-11" frameY="-12" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="greenCover0002" x="325" y="418" width="99" height="85" frameX="-30" frameY="-19" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="greenCoverEnd0000" x="434" y="418" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0001" x="434" y="418" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0002" x="525" y="418" width="171" height="151" frameX="-30" frameY="-3" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0003" x="706" y="418" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0004" x="706" y="418" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0005" x="10" y="618" width="234" height="197" frameX="-1" frameY="-6" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0006" x="254" y="618" width="251" height="198" frameX="0" frameY="-22" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverEnd0007" x="515" y="210" width="246" height="171" frameX="-10" frameY="-58" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="greenCoverStart0000" x="771" y="210" width="98" height="98"/>
+	<SubTexture name="purpleCover0000" x="10" y="418" width="161" height="125"/>
+	<SubTexture name="purpleCover0001" x="181" y="418" width="134" height="108" frameX="-11" frameY="-12" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="purpleCover0002" x="325" y="418" width="99" height="85" frameX="-30" frameY="-19" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="purpleCoverEnd0000" x="434" y="418" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0001" x="434" y="418" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0002" x="525" y="418" width="171" height="151" frameX="-30" frameY="-3" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0003" x="706" y="418" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0004" x="706" y="418" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0005" x="10" y="618" width="234" height="197" frameX="-1" frameY="-6" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0006" x="254" y="618" width="251" height="198" frameX="0" frameY="-22" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverEnd0007" x="515" y="210" width="246" height="171" frameX="-10" frameY="-58" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="purpleCoverStart0000" x="771" y="210" width="98" height="98"/>
+	<SubTexture name="redCover0000" x="10" y="10" width="161" height="125"/>
+	<SubTexture name="redCover0001" x="181" y="10" width="134" height="108" frameX="-11" frameY="-12" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="redCover0002" x="325" y="10" width="99" height="85" frameX="-30" frameY="-19" frameWidth="161" frameHeight="125"/>
+	<SubTexture name="redCoverEnd0000" x="434" y="10" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0001" x="434" y="10" width="81" height="40" frameX="-79" frameY="-78" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0002" x="525" y="10" width="171" height="151" frameX="-30" frameY="-3" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0003" x="706" y="10" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0004" x="706" y="10" width="219" height="190" frameX="-4" frameY="0" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0005" x="10" y="210" width="234" height="197" frameX="-1" frameY="-6" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0006" x="254" y="210" width="251" height="198" frameX="0" frameY="-22" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverEnd0007" x="515" y="210" width="246" height="171" frameX="-10" frameY="-58" frameWidth="256" frameHeight="229"/>
+	<SubTexture name="redCoverStart0000" x="771" y="210" width="98" height="98"/>
+</TextureAtlas>

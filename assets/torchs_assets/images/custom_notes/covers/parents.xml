@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="parents.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="blueCover0000" x="10" y="10" width="88" height="51" frameX="-3" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCover0001" x="108" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCover0002" x="205" y="10" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCover-alt0000" x="294" y="10" width="88" height="51" frameX="-3" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCover-alt0001" x="392" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCover-alt0002" x="489" y="10" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="blueCoverEnd0000" x="733" y="398" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0001" x="733" y="398" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0002" x="807" y="398" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0003" x="969" y="398" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0004" x="969" y="398" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0005" x="1181" y="398" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0006" x="1413" y="398" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd0007" x="1659" y="398" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0000" x="578" y="10" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0001" x="578" y="10" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0002" x="652" y="10" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0003" x="814" y="10" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0004" x="814" y="10" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0005" x="1026" y="10" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0006" x="1258" y="10" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverEnd-alt0007" x="1504" y="10" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="blueCoverStart0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="blueCoverStart-alt0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="greenCover0000" x="1848" y="10" width="88" height="51" frameX="-3" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="greenCover0001" x="1946" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="greenCover0002" x="10" y="204" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="greenCover-alt0000" x="99" y="204" width="88" height="51" frameX="-2" frameY="-8" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="greenCover-alt0001" x="197" y="204" width="87" height="60" frameX="0" frameY="-7" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="greenCover-alt0002" x="294" y="204" width="79" height="65" frameX="-5" frameY="0" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="greenCoverEnd0000" x="383" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0001" x="383" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0002" x="457" y="204" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0003" x="619" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0004" x="619" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0005" x="831" y="204" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0006" x="1063" y="204" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd0007" x="1309" y="204" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0000" x="1554" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0001" x="1554" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0002" x="1628" y="204" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0003" x="1790" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0004" x="1790" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0005" x="10" y="398" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0006" x="242" y="398" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverEnd-alt0007" x="488" y="398" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="greenCoverStart0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="greenCoverStart-alt0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="purpleCover0000" x="1848" y="10" width="88" height="51" frameX="-2" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="purpleCover0001" x="1946" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="purpleCover0002" x="10" y="204" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="purpleCover-alt0000" x="99" y="204" width="88" height="51" frameX="-2" frameY="-8" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="purpleCover-alt0001" x="197" y="204" width="87" height="60" frameX="0" frameY="-7" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="purpleCover-alt0002" x="294" y="204" width="79" height="65" frameX="-5" frameY="0" frameWidth="90" frameHeight="67"/>
+	<SubTexture name="purpleCoverEnd0000" x="383" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0001" x="383" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0002" x="457" y="204" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0003" x="619" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0004" x="619" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0005" x="831" y="204" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0006" x="1063" y="204" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd0007" x="1309" y="204" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0000" x="1554" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0001" x="1554" y="204" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0002" x="1628" y="204" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0003" x="1790" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0004" x="1790" y="204" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0005" x="10" y="398" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0006" x="242" y="398" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverEnd-alt0007" x="488" y="398" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="purpleCoverStart0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="purpleCoverStart-alt0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="redCover0000" x="10" y="10" width="88" height="51" frameX="-2" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCover0001" x="108" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCover0002" x="205" y="10" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCover-alt0000" x="294" y="10" width="88" height="51" frameX="-2" frameY="-8" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCover-alt0001" x="392" y="10" width="87" height="60" frameX="0" frameY="-7" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCover-alt0002" x="489" y="10" width="79" height="65" frameX="-5" frameY="0" frameWidth="91" frameHeight="67"/>
+	<SubTexture name="redCoverEnd0000" x="733" y="398" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0001" x="733" y="398" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0002" x="807" y="398" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0003" x="969" y="398" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0004" x="969" y="398" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0005" x="1181" y="398" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0006" x="1413" y="398" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd0007" x="1659" y="398" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0000" x="578" y="10" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0001" x="578" y="10" width="64" height="22" frameX="-80" frameY="-79" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0002" x="652" y="10" width="152" height="138" frameX="-32" frameY="-2" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0003" x="814" y="10" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0004" x="814" y="10" width="202" height="175" frameX="-5" frameY="0" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0005" x="1026" y="10" width="222" height="184" frameX="0" frameY="-5" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0006" x="1258" y="10" width="236" height="183" frameX="0" frameY="-22" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverEnd-alt0007" x="1504" y="10" width="235" height="160" frameX="-8" frameY="-56" frameWidth="243" frameHeight="216"/>
+	<SubTexture name="redCoverStart0000" x="1749" y="10" width="89" height="88"/>
+	<SubTexture name="redCoverStart-alt0000" x="1749" y="10" width="89" height="88"/>
+</TextureAtlas>

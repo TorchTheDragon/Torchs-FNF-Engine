@@ -1,0 +1,14 @@
+{
+    "rank": "SHIT",
+    "offsets": [640, 383],
+    "animation_delay": 0,
+    "scale": 1,
+    "animation_type": "spritemap",
+    "loop_name": "stuffs/loopage",
+    "intro_name": "stuffs/intro",
+    "char_name": "bf",
+    "file_name": "",
+    "other_folder": "",
+    "on_top": false,
+    "library": "torchs_assets"
+}

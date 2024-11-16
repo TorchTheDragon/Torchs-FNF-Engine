@@ -1,0 +1,14 @@
+{
+    "rank": "GREAT",
+    "offsets": [929, 363],
+    "animation_delay": 0,
+    "scale": 0.93,
+    "animation_type": "spritemap",
+    "loop_name": "stuffs/loopage",
+    "intro_name": "stuffs/intro",
+    "char_name": "bf",
+    "file_name": "",
+    "other_folder": "gf",
+    "on_top": false,
+    "library": "torchs_assets"
+}

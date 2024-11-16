@@ -1,0 +1,16 @@
+{
+    "rank": "SHIT",
+    "offsets": [800, 435],
+    "animation_delay": 0,
+    "scale": 1,
+    "animation_type": "spritemap",
+    "loop_name": "wah",
+    "intro_name": "wah",
+    "char_name": "pico",
+    "file_name": "",
+    "other_folder": "",
+    "on_top": false,
+    "library": "torchs_assets",
+    "tweenIn": true,
+    "visibleWhileTweening": true
+}

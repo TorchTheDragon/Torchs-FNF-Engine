@@ -1,0 +1,14 @@
+{
+    "rank": "PERFECT",
+    "offsets": [949, 399],
+    "animation_delay": 0,
+    "scale": 0.88,
+    "animation_type": "spritemap",
+    "loop_name": "stuffs/loopage",
+    "intro_name": "stuffs/intro",
+    "char_name": "pico",
+    "file_name": "",
+    "other_folder": "",
+    "on_top": false,
+    "library": "torchs_assets"
+}
