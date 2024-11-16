@@ -25,3 +25,4 @@ Plans/ToDo:
 - Rewrite my Character Menu to match the Vanilla Character Menu
 - Implement the new Freeplay Menu from Vanilla FNF
 - Implement my custom healthbar that allows for other images to be used between characters
+- Implement strum covers

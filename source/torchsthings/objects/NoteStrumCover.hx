@@ -121,6 +121,13 @@ class NoteStrumCover extends FlxSprite {
 		return false;
 	}
 
+    public static function getStrumSkinPostfix() {
+        var skin:String = '';
+        if(ClientPrefs.data.strumSkin != ClientPrefs.defaultData.strumSkin)
+            skin = '-' + ClientPrefs.data.strumSkin.trim().toLowerCase().replace(' ', '_');
+        return skin;
+    }
+
     public function reloadCover(?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared', ?rgbEnabled:Bool = true) {
         {
             var lastAnim:String = null;
@@ -131,10 +138,12 @@ class NoteStrumCover extends FlxSprite {
                 texture = 'custom_notes/covers/normal';
                 library = 'torchs_assets';
             }
-            
-            assets = texture;
 
-            frames = Paths.getSparrowAtlas(texture, library);
+            var skinPostFix:String = getStrumSkinPostfix();
+            
+            assets = texture + skinPostFix;
+
+            frames = Paths.getSparrowAtlas(texture + skinPostFix, library);
             antialiasing = ClientPrefs.data.antialiasing;
             animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
             animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
