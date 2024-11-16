@@ -10,7 +10,7 @@ Added:
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
-- Updated sound, music, inst, soundRandom, getPath, and getTextFromFile to include the option to use libraries/parent folders
+- Updated sound, music, inst, soundRandom, getPath, and getTextFromFile functions in Paths file to include the option to use libraries/parent folders
 - Three new base stage functions that utilize the Paths.currentLevel thing to ensure nothing breaks on accident ("playWeekSound" - plays a sound in the week folder, "playWeekMusic" - plays music in the week folder, "randomWeekSound" - plays a random sound provided)
 
 Plans/ToDo:
