@@ -27,6 +27,18 @@ typedef CharacterFile = {
 	var healthbar_colors:Array<Int>;
 	var vocals_file:String;
 	@:optional var _editor_isPlayer:Null<Bool>;
+
+	@:optional var noteSkin:String;
+	@:optional var noteColors:Array<NoteColors>;
+	@:optional var splashSkin:String;
+	@:optional var strumSkin:String;
+}
+
+typedef NoteColors = {
+	var left:Array<FlxColor>;
+	var down:Array<FlxColor>;
+	var up:Array<FlxColor>;
+	var right:Array<FlxColor>;
 }
 
 typedef AnimArray = {
@@ -80,6 +92,16 @@ class Character extends FlxSprite
 	public var noAntialiasing:Bool = false;
 	public var originalFlipX:Bool = false;
 	public var editorIsPlayer:Null<Bool> = null;
+
+	public var noteSkin:String = '';
+	public var noteColors:NoteColors = {
+		left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+		up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+		right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+	}; // This needed a default value
+	public var splashSkin:String = '';
+	public var strumSkin:String = '';
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
@@ -234,6 +256,11 @@ class Character extends FlxSprite
 		if(isAnimateAtlas) copyAtlasValues();
 		#end
 		//trace('Loaded file to character ' + curCharacter);
+
+		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin;
+		if (json.noteColors != null) noteColors = json.noteColors;
+		if (json.splashSkin != null && json.splashColors != '') splashSkin = json.splashSkin;
+		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
 	}
 
 	override function update(elapsed:Float)

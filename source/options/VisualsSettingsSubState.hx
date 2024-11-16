@@ -86,6 +86,13 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = playNoteSplashes;
 
+		var option:Option = new Option('Character Note Colors:',
+			"Should characters override the default Note Colors?",
+			'characterNoteColors',
+			STRING,
+			['Enabled', 'Opponent Only', 'Disabled']);
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',
