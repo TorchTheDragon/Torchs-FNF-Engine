@@ -1,13 +1,12 @@
-Implemented:
-- Results Screen
-- Vanilla FNF Soundtray
-
 Imported:
 - All of my custom objects in case I want to use them
+- Vanilla based Results Screen with a bit of customizabity for other characters
+- Vanilla FNF Soundtray through some jank rerouting
 
 Added:
 - Added "musicAsString" function to Paths
 - Added "getDirectory" and "getDirectoryFile" functions to Paths
+- My own Haxe library
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
