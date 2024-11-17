@@ -29,7 +29,7 @@ typedef CharacterFile = {
 	@:optional var _editor_isPlayer:Null<Bool>;
 
 	@:optional var noteSkin:String;
-	@:optional var noteColors:Array<NoteColors>;
+	var noteColors:NoteColors;
 	@:optional var splashSkin:String;
 	@:optional var strumSkin:String;
 }

@@ -13,6 +13,7 @@ import openfl.utils.Assets;
 import objects.Character;
 import objects.HealthIcon;
 import objects.Bar;
+import objects.Note;
 
 import states.editors.content.Prompt;
 import states.editors.content.PsychJsonPrinter;
@@ -251,7 +252,7 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		UI_box.scrollFactor.set();
 		UI_box.cameras = [camHUD];
 
-		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['Animations', 'Character', 'Note Assets']);
+		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['Animations', 'Character', 'Note Colors']);
 		UI_characterbox.scrollFactor.set();
 		UI_characterbox.cameras = [camHUD];
 		add(UI_characterbox);
@@ -261,6 +262,7 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		addSettingsUI();
 		addAnimationsUI();
 		addCharacterUI();
+		addNoteColorsUI();
 
 		UI_box.selectedName = 'Settings';
 		UI_characterbox.selectedName = 'Character';
@@ -414,7 +416,13 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 				healthbar_colors: [161, 161, 161],
 				camera_position: [0, 0],
 				position: [0, 0],
-				vocals_file: null
+				vocals_file: null,
+				noteColors: {
+					left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+					down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+					up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+					right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+				}
 			};
 
 			character.loadCharacterFile(_template);
@@ -705,8 +713,207 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 
 	var noteType:PsychUIDropDownMenu;
 
-	function addNoteAssetsUI() {
-		var tab_group = UI_characterbox.getTab('Note Assets').menu;
+	// THIS IS TOO MANY FUCKING STEPPERS AAAAAAAAAAAAAAAAAAAAAAA
+	var leftNoteColorStepperRR:PsychUINumericStepper;
+	var leftNoteColorStepperRG:PsychUINumericStepper;
+	var leftNoteColorStepperRB:PsychUINumericStepper;
+	var leftNoteColorStepperGR:PsychUINumericStepper;
+	var leftNoteColorStepperGG:PsychUINumericStepper;
+	var leftNoteColorStepperGB:PsychUINumericStepper;
+	var leftNoteColorStepperBR:PsychUINumericStepper;
+	var leftNoteColorStepperBG:PsychUINumericStepper;
+	var leftNoteColorStepperBB:PsychUINumericStepper;
+	var downNoteColorStepperRR:PsychUINumericStepper;
+	var downNoteColorStepperRG:PsychUINumericStepper;
+	var downNoteColorStepperRB:PsychUINumericStepper;
+	var downNoteColorStepperGR:PsychUINumericStepper;
+	var downNoteColorStepperGG:PsychUINumericStepper;
+	var downNoteColorStepperGB:PsychUINumericStepper;
+	var downNoteColorStepperBR:PsychUINumericStepper;
+	var downNoteColorStepperBG:PsychUINumericStepper;
+	var downNoteColorStepperBB:PsychUINumericStepper;
+	var upNoteColorStepperRR:PsychUINumericStepper;
+	var upNoteColorStepperRG:PsychUINumericStepper;
+	var upNoteColorStepperRB:PsychUINumericStepper;
+	var upNoteColorStepperGR:PsychUINumericStepper;
+	var upNoteColorStepperGG:PsychUINumericStepper;
+	var upNoteColorStepperGB:PsychUINumericStepper;
+	var upNoteColorStepperBR:PsychUINumericStepper;
+	var upNoteColorStepperBG:PsychUINumericStepper;
+	var upNoteColorStepperBB:PsychUINumericStepper;
+	var rightNoteColorStepperRR:PsychUINumericStepper;
+	var rightNoteColorStepperRG:PsychUINumericStepper;
+	var rightNoteColorStepperRB:PsychUINumericStepper;
+	var rightNoteColorStepperGR:PsychUINumericStepper;
+	var rightNoteColorStepperGG:PsychUINumericStepper;
+	var rightNoteColorStepperGB:PsychUINumericStepper;
+	var rightNoteColorStepperBR:PsychUINumericStepper;
+	var rightNoteColorStepperBG:PsychUINumericStepper;
+	var rightNoteColorStepperBB:PsychUINumericStepper;
+	// THIS IS TOO MANY FUCKING STEPPERS AAAAAAAAAAAAAAAAAAAAAAA
+
+	var leftNoteButton:PsychUIButton;
+	var downNoteButton:PsychUIButton;
+	var upNoteButton:PsychUIButton;
+	var rightNoteButton:PsychUIButton;
+
+	var redText:FlxText;
+	var blueText:FlxText;
+	var greenText:FlxText;
+
+	var noteColorNotes:Array<Note>;
+
+	function addNoteColorsUI() {
+		var tab_group = UI_characterbox.getTab('Note Colors').menu;
+		noteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
+		for (i => note in noteColorNotes) {
+			note.y = 15;
+			note.scale.set(0.5, 0.5);
+			note.updateHitbox();
+			note.x = 7 + (85 * i);
+			switch (i) {
+				case 0:
+					note.rgbShader.r = character.noteColors.left[0];
+					note.rgbShader.g = character.noteColors.left[1];
+					note.rgbShader.b = character.noteColors.left[2];
+				case 1:
+					note.rgbShader.r = character.noteColors.down[0];
+					note.rgbShader.g = character.noteColors.down[1];
+					note.rgbShader.b = character.noteColors.down[2];
+				case 2:
+					note.rgbShader.r = character.noteColors.up[0];
+					note.rgbShader.g = character.noteColors.up[1];
+					note.rgbShader.b = character.noteColors.up[2];
+				case 3:
+					note.rgbShader.r = character.noteColors.right[0];
+					note.rgbShader.g = character.noteColors.right[1];
+					note.rgbShader.b = character.noteColors.right[2];
+			}
+			tab_group.add(note);
+		}
+
+		var redY = 140;
+		var greenY = 180;
+		var blueY = 220;
+
+		// Left Notes
+		leftNoteColorStepperRR = new PsychUINumericStepper(noteColorNotes[0].x, redY, 20, noteColorNotes[0].rgbShader.r.red, 0, 255, 0);
+		leftNoteColorStepperRG = new PsychUINumericStepper(leftNoteColorStepperRR.x + 65, redY, 20, noteColorNotes[0].rgbShader.r.green, 0, 255, 0);
+		leftNoteColorStepperRB = new PsychUINumericStepper(leftNoteColorStepperRG.x + 65, redY, 20, noteColorNotes[0].rgbShader.r.blue, 0, 255, 0);
+		leftNoteColorStepperGR = new PsychUINumericStepper(noteColorNotes[0].x, greenY, 20, noteColorNotes[0].rgbShader.g.red, 0, 255, 0);
+		leftNoteColorStepperGG = new PsychUINumericStepper(leftNoteColorStepperGR.x + 65, greenY, 20, noteColorNotes[0].rgbShader.g.green, 0, 255, 0);
+		leftNoteColorStepperGB = new PsychUINumericStepper(leftNoteColorStepperGG.x + 65, greenY, 20, noteColorNotes[0].rgbShader.g.blue, 0, 255, 0);
+		leftNoteColorStepperBR = new PsychUINumericStepper(noteColorNotes[0].x, blueY, 20, noteColorNotes[0].rgbShader.b.red, 0, 255, 0);
+		leftNoteColorStepperBG = new PsychUINumericStepper(leftNoteColorStepperBR.x + 65, blueY, 20, noteColorNotes[0].rgbShader.b.green, 0, 255, 0);
+		leftNoteColorStepperBB = new PsychUINumericStepper(leftNoteColorStepperBG.x + 65, blueY, 20, noteColorNotes[0].rgbShader.b.blue, 0, 255, 0);
+
+		// Down Notes
+		downNoteColorStepperRR = new PsychUINumericStepper(noteColorNotes[0].x, redY, 20, noteColorNotes[1].rgbShader.r.red, 0, 255, 0);
+		downNoteColorStepperRG = new PsychUINumericStepper(downNoteColorStepperRR.x + 65, redY, 20, noteColorNotes[1].rgbShader.r.green, 0, 255, 0);
+		downNoteColorStepperRB = new PsychUINumericStepper(downNoteColorStepperRG.x + 65, redY, 20, noteColorNotes[1].rgbShader.r.blue, 0, 255, 0);
+		downNoteColorStepperGR = new PsychUINumericStepper(noteColorNotes[0].x, greenY, 20, noteColorNotes[1].rgbShader.g.red, 0, 255, 0);
+		downNoteColorStepperGG = new PsychUINumericStepper(downNoteColorStepperGR.x + 65, greenY, 20, noteColorNotes[1].rgbShader.g.green, 0, 255, 0);
+		downNoteColorStepperGB = new PsychUINumericStepper(downNoteColorStepperGG.x + 65, greenY, 20, noteColorNotes[1].rgbShader.g.blue, 0, 255, 0);
+		downNoteColorStepperBR = new PsychUINumericStepper(noteColorNotes[0].x, blueY, 20, noteColorNotes[1].rgbShader.b.red, 0, 255, 0);
+		downNoteColorStepperBG = new PsychUINumericStepper(downNoteColorStepperBR.x + 65, blueY, 20, noteColorNotes[1].rgbShader.b.green, 0, 255, 0);
+		downNoteColorStepperBB = new PsychUINumericStepper(downNoteColorStepperBG.x + 65, blueY, 20, noteColorNotes[1].rgbShader.b.blue, 0, 255, 0);
+
+		// Up Notes
+		upNoteColorStepperRR = new PsychUINumericStepper(noteColorNotes[0].x, redY, 20, noteColorNotes[2].rgbShader.r.red, 0, 255, 0);
+		upNoteColorStepperRG = new PsychUINumericStepper(upNoteColorStepperRR.x + 65, redY, 20, noteColorNotes[2].rgbShader.r.green, 0, 255, 0);
+		upNoteColorStepperRB = new PsychUINumericStepper(upNoteColorStepperRG.x + 65, redY, 20, noteColorNotes[2].rgbShader.r.blue, 0, 255, 0);
+		upNoteColorStepperGR = new PsychUINumericStepper(noteColorNotes[0].x, greenY, 20, noteColorNotes[2].rgbShader.g.red, 0, 255, 0);
+		upNoteColorStepperGG = new PsychUINumericStepper(upNoteColorStepperGR.x + 65, greenY, 20, noteColorNotes[2].rgbShader.g.green, 0, 255, 0);
+		upNoteColorStepperGB = new PsychUINumericStepper(upNoteColorStepperGG.x + 65, greenY, 20, noteColorNotes[2].rgbShader.g.blue, 0, 255, 0);
+		upNoteColorStepperBR = new PsychUINumericStepper(noteColorNotes[0].x, blueY, 20, noteColorNotes[2].rgbShader.b.red, 0, 255, 0);
+		upNoteColorStepperBG = new PsychUINumericStepper(upNoteColorStepperBR.x + 65, blueY, 20, noteColorNotes[2].rgbShader.b.green, 0, 255, 0);
+		upNoteColorStepperBB = new PsychUINumericStepper(upNoteColorStepperBG.x + 65, blueY, 20, noteColorNotes[2].rgbShader.b.blue, 0, 255, 0);
+
+		// Right Notes
+		rightNoteColorStepperRR = new PsychUINumericStepper(noteColorNotes[0].x, redY, 20, noteColorNotes[3].rgbShader.r.red, 0, 255, 0);
+		rightNoteColorStepperRG = new PsychUINumericStepper(rightNoteColorStepperRR.x + 65, redY, 20, noteColorNotes[3].rgbShader.r.green, 0, 255, 0);
+		rightNoteColorStepperRB = new PsychUINumericStepper(rightNoteColorStepperRG.x + 65, redY, 20, noteColorNotes[3].rgbShader.r.blue, 0, 255, 0);
+		rightNoteColorStepperGR = new PsychUINumericStepper(noteColorNotes[0].x, greenY, 20, noteColorNotes[3].rgbShader.g.red, 0, 255, 0);
+		rightNoteColorStepperGG = new PsychUINumericStepper(rightNoteColorStepperGR.x + 65, greenY, 20, noteColorNotes[3].rgbShader.g.green, 0, 255, 0);
+		rightNoteColorStepperGB = new PsychUINumericStepper(rightNoteColorStepperGG.x + 65, greenY, 20, noteColorNotes[3].rgbShader.g.blue, 0, 255, 0);
+		rightNoteColorStepperBR = new PsychUINumericStepper(noteColorNotes[0].x, blueY, 20, noteColorNotes[3].rgbShader.b.red, 0, 255, 0);
+		rightNoteColorStepperBG = new PsychUINumericStepper(rightNoteColorStepperBR.x + 65, blueY, 20, noteColorNotes[3].rgbShader.b.green, 0, 255, 0);
+		rightNoteColorStepperBB = new PsychUINumericStepper(rightNoteColorStepperBG.x + 65, blueY, 20, noteColorNotes[3].rgbShader.b.blue, 0, 255, 0);
+
+		var leftColorSteppers:Array<PsychUINumericStepper> = [leftNoteColorStepperRR, leftNoteColorStepperRG, leftNoteColorStepperRB, leftNoteColorStepperGR, leftNoteColorStepperGG, leftNoteColorStepperGB, leftNoteColorStepperBR, leftNoteColorStepperBG, leftNoteColorStepperBB];
+		var downColorSteppers:Array<PsychUINumericStepper> = [downNoteColorStepperRR, downNoteColorStepperRG, downNoteColorStepperRB, downNoteColorStepperGR, downNoteColorStepperGG, downNoteColorStepperGB, downNoteColorStepperBR, downNoteColorStepperBG, downNoteColorStepperBB];
+		var upColorSteppers:Array<PsychUINumericStepper> = [upNoteColorStepperRR, upNoteColorStepperRG, upNoteColorStepperRB, upNoteColorStepperGR, upNoteColorStepperGG, upNoteColorStepperGB, upNoteColorStepperBR, upNoteColorStepperBG, upNoteColorStepperBB];
+		var rightColorSteppers:Array<PsychUINumericStepper> = [rightNoteColorStepperRR, rightNoteColorStepperRG, rightNoteColorStepperRB, rightNoteColorStepperGR, rightNoteColorStepperGG, rightNoteColorStepperGB, rightNoteColorStepperBR, rightNoteColorStepperBG, rightNoteColorStepperBB];
+
+		redText = new FlxText(noteColorNotes[0].x, redY - 18, 100, 'Inside Color:');
+		greenText = new FlxText(noteColorNotes[0].x, greenY - 18, 100, 'Middle Color:');
+		blueText = new FlxText(noteColorNotes[0].x, blueY - 18, 100, 'Outer Color:');
+
+		leftNoteButton = new PsychUIButton(noteColorNotes[0].x, 100, "Left Note", function() {
+			for (i in 0...leftColorSteppers.length) {
+				tab_group.add(leftColorSteppers[i]);
+				if (tab_group.members.contains(downColorSteppers[i])) tab_group.remove(downColorSteppers[i]);
+				if (tab_group.members.contains(upColorSteppers[i])) tab_group.remove(upColorSteppers[i]);
+				if (tab_group.members.contains(rightColorSteppers[i])) tab_group.remove(rightColorSteppers[i]);
+			}
+			if (!tab_group.members.contains(redText)) tab_group.add(redText);
+			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
+			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
+			if (!tab_group.members.contains(downNoteButton)) tab_group.add(downNoteButton); else tab_group.replace(downNoteButton, downNoteButton);
+			if (!tab_group.members.contains(upNoteButton)) tab_group.add(upNoteButton); else tab_group.replace(upNoteButton, upNoteButton);
+			if (!tab_group.members.contains(rightNoteButton)) tab_group.add(rightNoteButton); else tab_group.replace(rightNoteButton, rightNoteButton);
+			tab_group.remove(leftNoteButton);
+		});
+		downNoteButton = new PsychUIButton(noteColorNotes[1].x, 100, "Down Note", function() {
+			for (i in 0...downColorSteppers.length) {
+				tab_group.add(downColorSteppers[i]);
+				if (tab_group.members.contains(leftColorSteppers[i])) tab_group.remove(leftColorSteppers[i]);
+				if (tab_group.members.contains(upColorSteppers[i])) tab_group.remove(upColorSteppers[i]);
+				if (tab_group.members.contains(rightColorSteppers[i])) tab_group.remove(rightColorSteppers[i]);
+			}
+			if (!tab_group.members.contains(redText)) tab_group.add(redText);
+			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
+			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
+			if (!tab_group.members.contains(leftNoteButton)) tab_group.add(leftNoteButton); else tab_group.replace(leftNoteButton, leftNoteButton);
+			if (!tab_group.members.contains(upNoteButton)) tab_group.add(upNoteButton); else tab_group.replace(upNoteButton, upNoteButton);
+			if (!tab_group.members.contains(rightNoteButton)) tab_group.add(rightNoteButton); else tab_group.replace(rightNoteButton, rightNoteButton);
+			tab_group.remove(downNoteButton);
+		});
+		upNoteButton = new PsychUIButton(noteColorNotes[2].x, 100, "Up Note", function() {
+			for (i in 0...upColorSteppers.length) {
+				tab_group.add(upColorSteppers[i]);
+				if (tab_group.members.contains(leftColorSteppers[i])) tab_group.remove(leftColorSteppers[i]);
+				if (tab_group.members.contains(downColorSteppers[i])) tab_group.remove(downColorSteppers[i]);
+				if (tab_group.members.contains(rightColorSteppers[i])) tab_group.remove(rightColorSteppers[i]);
+			}
+			if (!tab_group.members.contains(redText)) tab_group.add(redText);
+			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
+			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
+			if (!tab_group.members.contains(leftNoteButton)) tab_group.add(leftNoteButton); else tab_group.replace(leftNoteButton, leftNoteButton);
+			if (!tab_group.members.contains(downNoteButton)) tab_group.add(downNoteButton); else tab_group.replace(downNoteButton, downNoteButton);
+			if (!tab_group.members.contains(rightNoteButton)) tab_group.add(rightNoteButton); else tab_group.replace(rightNoteButton, rightNoteButton);
+			tab_group.remove(upNoteButton);
+		});
+		rightNoteButton = new PsychUIButton(noteColorNotes[3].x, 100, "Right Note", function() {
+			for (i in 0...leftColorSteppers.length) {
+				tab_group.add(rightColorSteppers[i]);
+				if (tab_group.members.contains(leftColorSteppers[i])) tab_group.remove(leftColorSteppers[i]);
+				if (tab_group.members.contains(downColorSteppers[i])) tab_group.remove(downColorSteppers[i]);
+				if (tab_group.members.contains(upColorSteppers[i])) tab_group.remove(upColorSteppers[i]);
+			}
+			if (!tab_group.members.contains(redText)) tab_group.add(redText);
+			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
+			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
+			if (!tab_group.members.contains(leftNoteButton)) tab_group.add(leftNoteButton); else tab_group.replace(leftNoteButton, leftNoteButton);
+			if (!tab_group.members.contains(downNoteButton)) tab_group.add(downNoteButton); else tab_group.replace(downNoteButton, downNoteButton);
+			if (!tab_group.members.contains(upNoteButton)) tab_group.add(upNoteButton); else tab_group.replace(upNoteButton, upNoteButton);
+			tab_group.remove(rightNoteButton);
+		});
+		
+		tab_group.add(leftNoteButton);
+		tab_group.add(downNoteButton);
+		tab_group.add(upNoteButton);
+		tab_group.add(rightNoteButton);
 	}
 
 	public function UIEvent(id:String, sender:Dynamic) {
@@ -736,63 +943,90 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		}
 		else if(id == PsychUINumericStepper.CHANGE_EVENT)
 		{
-			if (sender == scaleStepper)
-			{
+			if (sender == scaleStepper) {
 				reloadCharacterImage();
 				character.jsonScale = sender.value;
 				character.scale.set(character.jsonScale, character.jsonScale);
 				character.updateHitbox();
 				updatePointerPos(false);
 				unsavedProgress = true;
-			}
-			else if(sender == positionXStepper)
-			{
+			} else if(sender == positionXStepper) {
 				character.positionArray[0] = positionXStepper.value;
 				updateCharacterPositions();
 				unsavedProgress = true;
-			}
-			else if(sender == positionYStepper)
-			{
+			} else if(sender == positionYStepper) {
 				character.positionArray[1] = positionYStepper.value;
 				updateCharacterPositions();
 				unsavedProgress = true;
-			}
-			else if(sender == singDurationStepper)
-			{
+			} else if(sender == singDurationStepper) {
 				character.singDuration = singDurationStepper.value;
 				unsavedProgress = true;
-			}
-			else if(sender == positionCameraXStepper)
-			{
+			} else if(sender == positionCameraXStepper) {
 				character.cameraPosition[0] = positionCameraXStepper.value;
 				updatePointerPos();
 				unsavedProgress = true;
-			}
-			else if(sender == positionCameraYStepper)
-			{
+			} else if(sender == positionCameraYStepper) {
 				character.cameraPosition[1] = positionCameraYStepper.value;
 				updatePointerPos();
 				unsavedProgress = true;
-			}
-			else if(sender == healthColorStepperR)
-			{
+			} else if(sender == healthColorStepperR) {
 				character.healthColorArray[0] = Math.round(healthColorStepperR.value);
 				updateHealthBar();
 				unsavedProgress = true;
-			}
-			else if(sender == healthColorStepperG)
-			{
+			} else if(sender == healthColorStepperG) {
 				character.healthColorArray[1] = Math.round(healthColorStepperG.value);
 				updateHealthBar();
 				unsavedProgress = true;
-			}
-			else if(sender == healthColorStepperB)
-			{
+			} else if(sender == healthColorStepperB) {
 				character.healthColorArray[2] = Math.round(healthColorStepperB.value);
 				updateHealthBar();
 				unsavedProgress = true;
+			} else if (sender == leftNoteColorStepperRR || sender == leftNoteColorStepperRG || sender == leftNoteColorStepperRB || sender == leftNoteColorStepperGR || sender == leftNoteColorStepperGG || sender == leftNoteColorStepperGB || sender == leftNoteColorStepperBR || sender == leftNoteColorStepperBG || sender == leftNoteColorStepperBB) {
+				character.noteColors.left = [FlxColor.fromRGB(Std.int(leftNoteColorStepperRR.value), Std.int(leftNoteColorStepperRG.value), Std.int(leftNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperGR.value), Std.int(leftNoteColorStepperGG.value), Std.int(leftNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperBR.value), Std.int(leftNoteColorStepperBG.value), Std.int(leftNoteColorStepperBB.value))];
+				updateLeftNote();
+				unsavedProgress = true;
+			} else if (sender == downNoteColorStepperRR || sender == downNoteColorStepperRG || sender == downNoteColorStepperRB || sender == downNoteColorStepperGR || sender == downNoteColorStepperGG || sender == downNoteColorStepperGB || sender == downNoteColorStepperBR || sender == downNoteColorStepperBG || sender == downNoteColorStepperBB) {
+				character.noteColors.down = [FlxColor.fromRGB(Std.int(downNoteColorStepperRR.value), Std.int(downNoteColorStepperRG.value), Std.int(downNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperGR.value), Std.int(downNoteColorStepperGG.value), Std.int(downNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperBR.value), Std.int(downNoteColorStepperBG.value), Std.int(downNoteColorStepperBB.value))];
+				updateDownNote();
+				unsavedProgress = true;
+			} else if (sender == upNoteColorStepperRR || sender == upNoteColorStepperRG || sender == upNoteColorStepperRB || sender == upNoteColorStepperGR || sender == upNoteColorStepperGG || sender == upNoteColorStepperGB || sender == upNoteColorStepperBR || sender == upNoteColorStepperBG || sender == upNoteColorStepperBB) {
+				character.noteColors.up = [FlxColor.fromRGB(Std.int(upNoteColorStepperRR.value), Std.int(upNoteColorStepperRG.value), Std.int(upNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperGR.value), Std.int(upNoteColorStepperGG.value), Std.int(upNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperBR.value), Std.int(upNoteColorStepperBG.value), Std.int(upNoteColorStepperBB.value))];
+				updateUpNote();
+				unsavedProgress = true;
+			} else if (sender == rightNoteColorStepperRR || sender == rightNoteColorStepperRG || sender == rightNoteColorStepperRB || sender == rightNoteColorStepperGR || sender == rightNoteColorStepperGG || sender == rightNoteColorStepperGB || sender == rightNoteColorStepperBR || sender == rightNoteColorStepperBG || sender == rightNoteColorStepperBB) {
+				character.noteColors.right = [FlxColor.fromRGB(Std.int(rightNoteColorStepperRR.value), Std.int(rightNoteColorStepperRG.value), Std.int(rightNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperGR.value), Std.int(rightNoteColorStepperGG.value), Std.int(rightNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperBR.value), Std.int(rightNoteColorStepperBG.value), Std.int(rightNoteColorStepperBB.value))];
+				updateRightNote();
+				unsavedProgress = true;
 			}
 		}
+	}
+
+	function updateLeftNote() {
+		var noteShader = noteColorNotes[0].rgbShader;
+		noteShader.r = character.noteColors.left[0];
+		noteShader.g = character.noteColors.left[1];
+		noteShader.b = character.noteColors.left[2];
+	}
+
+	function updateDownNote() {
+		var noteShader = noteColorNotes[1].rgbShader;
+		noteShader.r = character.noteColors.down[0];
+		noteShader.g = character.noteColors.down[1];
+		noteShader.b = character.noteColors.down[2];
+	}
+
+	function updateUpNote() {
+		var noteShader = noteColorNotes[2].rgbShader;
+		noteShader.r = character.noteColors.up[0];
+		noteShader.g = character.noteColors.up[1];
+		noteShader.b = character.noteColors.up[2];
+	}
+
+	function updateRightNote() {
+		var noteShader = noteColorNotes[3].rgbShader;
+		noteShader.r = character.noteColors.right[0];
+		noteShader.g = character.noteColors.right[1];
+		noteShader.b = character.noteColors.right[2];
 	}
 
 	function reloadCharacterImage()
