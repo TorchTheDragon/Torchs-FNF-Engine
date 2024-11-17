@@ -516,7 +516,7 @@ class Paths
 	}
 	
 	// Hopefully this works - Torch
-	public static function loadAnimateAtlasWithLibrary(spr:FlxAnimate, folderOrImg:Dynamic, ?library:String = 'shared') {
+	public static function loadAnimateAtlasFromLibrary(spr:FlxAnimate, folderOrImg:Dynamic, ?library:String = 'shared') {
 		var changedAnimJson = false;
 		var changedAtlasJson = false;
 		var changedImage = false;

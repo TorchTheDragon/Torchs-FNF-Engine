@@ -555,7 +555,7 @@ class ResultsScreen extends MusicBeatState {
             case 'spritemap':
                 obj = new FlxAnimate();
                 obj.showPivot = false;
-                Paths.loadAnimateAtlasWithLibrary(obj, desti, data.library);
+                Paths.loadAnimateAtlasFromLibrary(obj, desti, data.library);
                 obj.anim.addBySymbol('intro', data.intro_name, 24, false);
                 obj.anim.addBySymbol('idle', data.loop_name, 24, true);
                 obj.anim.play('intro');

@@ -4,8 +4,9 @@ Imported:
 - Vanilla FNF Soundtray through some jank rerouting
 
 Added:
-- Added "musicAsString" function to Paths
-- Added "getDirectory" and "getDirectoryFile" functions to Paths
+- Added "musicAsString" function to Paths.hx
+- Added "getDirectory" and "getDirectoryFile" functions to Paths.hx
+- Added "loadAnimateAtlasFromLibrary" function to Paths.hx
 - My own Haxe library
 - New, improved, zoom function
 - My custom noteskin for others to use
