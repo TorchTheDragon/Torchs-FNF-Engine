@@ -1091,6 +1091,52 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		positionCameraYStepper.value = character.cameraPosition[1];
 		reloadAnimationDropDown();
 		updateHealthBar();
+		updateLeftNote();
+		updateDownNote();
+		updateUpNote();
+		updateRightNote();
+		setNoteColorVals();
+	}
+
+	// AAAA I HATE THIS LONG ASS AMOUNT OF VARIABLES
+	function setNoteColorVals() {
+		var shaders = [noteColorNotes[0].rgbShader, noteColorNotes[1].rgbShader, noteColorNotes[2].rgbShader, noteColorNotes[3].rgbShader];
+		leftNoteColorStepperRR.value = shaders[0].r.red;
+		leftNoteColorStepperRG.value = shaders[0].r.green;
+		leftNoteColorStepperRB.value = shaders[0].r.blue;
+		leftNoteColorStepperGR.value = shaders[0].g.red;
+		leftNoteColorStepperGG.value = shaders[0].g.green;
+		leftNoteColorStepperGB.value = shaders[0].g.blue;
+		leftNoteColorStepperBR.value = shaders[0].b.red;
+		leftNoteColorStepperBG.value = shaders[0].b.green;
+		leftNoteColorStepperBB.value = shaders[0].b.blue;
+		downNoteColorStepperRR.value = shaders[1].r.red;
+		downNoteColorStepperRG.value = shaders[1].r.green;
+		downNoteColorStepperRB.value = shaders[1].r.blue;
+		downNoteColorStepperGR.value = shaders[1].g.red;
+		downNoteColorStepperGG.value = shaders[1].g.green;
+		downNoteColorStepperGB.value = shaders[1].g.blue;
+		downNoteColorStepperBR.value = shaders[1].b.red;
+		downNoteColorStepperBG.value = shaders[1].b.green;
+		downNoteColorStepperBB.value = shaders[1].b.blue;
+		upNoteColorStepperRR.value = shaders[2].r.red;
+		upNoteColorStepperRG.value = shaders[2].r.green;
+		upNoteColorStepperRB.value = shaders[2].r.blue;
+		upNoteColorStepperGR.value = shaders[2].g.red;
+		upNoteColorStepperGG.value = shaders[2].g.green;
+		upNoteColorStepperGB.value = shaders[2].g.blue;
+		upNoteColorStepperBR.value = shaders[2].b.red;
+		upNoteColorStepperBG.value = shaders[2].b.green;
+		upNoteColorStepperBB.value = shaders[2].b.blue;
+		rightNoteColorStepperRR.value = shaders[3].r.red;
+		rightNoteColorStepperRG.value = shaders[3].r.green;
+		rightNoteColorStepperRB.value = shaders[3].r.blue;
+		rightNoteColorStepperGR.value = shaders[3].g.red;
+		rightNoteColorStepperGG.value = shaders[3].g.green;
+		rightNoteColorStepperGB.value = shaders[3].g.blue;
+		rightNoteColorStepperBR.value = shaders[3].b.red;
+		rightNoteColorStepperBG.value = shaders[3].b.green;
+		rightNoteColorStepperBB.value = shaders[3].b.blue;
 	}
 
 	var holdingArrowsTime:Float = 0;
@@ -1537,7 +1583,14 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 			"no_antialiasing": character.noAntialiasing,
 			"healthbar_colors": character.healthColorArray,
 			"vocals_file": character.vocalsFile,
-			"_editor_isPlayer": character.isPlayer
+			"_editor_isPlayer": character.isPlayer,
+
+			"noteColors": {
+				"left": character.noteColors.left,
+				"down": character.noteColors.down,
+				"up": character.noteColors.up,
+				"right": character.noteColors.right
+			}
 		};
 
 		var data:String = PsychJsonPrinter.print(json, ['offsets', 'position', 'healthbar_colors', 'camera_position', 'indices']);
