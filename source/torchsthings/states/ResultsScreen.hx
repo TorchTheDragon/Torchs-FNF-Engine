@@ -81,7 +81,7 @@ class ResultsScreen extends MusicBeatState {
 
     function charAnimPicker(?char:String = 'bf'):String { // Add more depending on what characters can be used for the results screen
         switch (char.toLowerCase().trim()) {
-            case 'pico' | 'pico-player':
+            case 'pico' | 'pico-player' | 'pico-playable' | 'pico-blazin':
                 return 'pico';
             default:
                 return 'bf';
