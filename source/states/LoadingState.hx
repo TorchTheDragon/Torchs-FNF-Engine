@@ -20,6 +20,7 @@ import sys.thread.Mutex;
 
 import objects.Note;
 import objects.NoteSplash;
+import torchsthings.objects.StrumCover;
 
 class LoadingState extends MusicBeatState
 {
@@ -342,6 +343,11 @@ class LoadingState extends MusicBeatState
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) noteSplash = PlayState.SONG.splashSkin;
 			else noteSplash += NoteSplash.getSplashSkinPostfix();
 			imagesToPrepare.push(noteSplash);
+
+			// Load Strum Covers
+			var strumCovers:String = StrumCover.defaultCoverSkin;
+			strumCovers += StrumCover.getStrumSkinPostfix();
+			imagesToPrepare.push(strumCovers);
 
 			try
 			{
