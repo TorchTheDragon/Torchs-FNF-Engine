@@ -1,92 +1,92 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "Tankman Idle Dance",
-			"indices": []
+			"indices": [],
+			"name": "Tankman Idle Dance"
 		},
 		{
-			"loop": false,
 			"offsets": [48, 54],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "Tankman UP note 1",
-			"indices": []
+			"indices": [],
+			"name": "Tankman UP note 1"
 		},
 		{
-			"loop": false,
 			"offsets": [76, -101],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Tankman DOWN note 1",
-			"indices": []
+			"indices": [],
+			"name": "Tankman DOWN note 1"
 		},
 		{
-			"loop": false,
 			"offsets": [84, -14],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Tankman Right Note 1",
-			"indices": []
+			"indices": [],
+			"name": "Tankman Right Note 1"
 		},
 		{
-			"loop": false,
 			"offsets": [-21, -31],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Tankman Note Left 1",
-			"indices": []
+			"indices": [],
+			"name": "Tankman Note Left 1"
 		},
 		{
-			"loop": false,
 			"offsets": [-15, -8],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP-alt",
-			"fps": 24,
-			"name": "TANKMAN UGH",
-			"indices": []
+			"indices": [],
+			"name": "TANKMAN UGH"
 		},
 		{
-			"loop": false,
 			"offsets": [1, 16],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN-alt",
-			"fps": 24,
-			"name": "PRETTY GOOD tankman",
-			"indices": []
+			"indices": [],
+			"name": "PRETTY GOOD tankman"
 		},
 		{
-			"loop": false,
 			"offsets": [48, 54],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "Tankman UP note MISS",
-			"indices": []
+			"indices": [],
+			"name": "Tankman UP note MISS"
 		},
 		{
-			"loop": false,
 			"offsets": [76, -101],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "Tankman DOWN note MISS",
-			"indices": []
+			"indices": [],
+			"name": "Tankman DOWN note MISS"
 		},
 		{
-			"loop": false,
 			"offsets": [84, -14],
-			"anim": "singLEFTmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "Tankman Right Note MISS",
-			"indices": []
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "Tankman Right Note MISS"
 		},
 		{
-			"loop": false,
 			"offsets": [-21, -31],
-			"anim": "singRIGHTmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "Tankman Note Left MISS",
-			"indices": []
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "Tankman Note Left MISS"
 		}
 	],
 	"vocals_file": "",
@@ -100,22 +100,22 @@
 	"noteColors": {
 		"right": [
 			-2631721,
-			-5263441,
+			-1,
 			-14145496
 		],
 		"up": [
 			-2631721,
-			-5263441,
+			-1,
 			-14145496
 		],
 		"down": [
 			-2631721,
-			-5263441,
+			-1,
 			-14145496
 		],
 		"left": [
 			-2631721,
-			-5263441,
+			-1,
 			-14145496
 		]
 	},

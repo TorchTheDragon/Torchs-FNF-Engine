@@ -363,6 +363,12 @@ class PixelSplashShaderRef
 		shader.b.value = [0, 0, 0];
 	}
 
+	public function setUsingFlxColors(colors:Array<FlxColor>) { // I forgot shaders use a 0-1 scale and not a 0-255 scale
+		shader.r.value = [colors[0].red / 255, colors[0].green / 255, colors[0].blue / 255];
+		shader.g.value = [colors[1].red / 255, colors[1].green / 255, colors[1].blue / 255];
+		shader.b.value = [colors[2].red / 255, colors[2].green / 255, colors[2].blue / 255];
+	}
+
 	public function new(?pixelNote:Bool = false) {
 		reset();
 		enabled = true;
