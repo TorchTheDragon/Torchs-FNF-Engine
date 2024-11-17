@@ -53,7 +53,9 @@ import crowplexus.iris.Iris;
 #end
 
 import torchsfunctions.functions.Extras;
+
 import torchsthings.states.ResultsScreen;
+import torchsthings.objects.*;
 
 /**
  * This is where all the Gameplay stuff happens and is managed
@@ -166,6 +168,15 @@ class PlayState extends MusicBeatState
 	public var opponentStrums:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
 	public var playerStrums:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash> = new FlxTypedGroup<NoteSplash>();
+
+	// Strum Covers
+	public var playerCovers:FlxTypedGroup<StrumCover> = new FlxTypedGroup<StrumCover>();
+	public var opponentCovers:FlxTypedGroup<StrumCover> = new FlxTypedGroup<StrumCover>();
+	public var strumLineCovers:FlxTypedGroup<StrumCover> = new FlxTypedGroup<StrumCover>();
+
+	// Enemy Splashes
+	public var enemyNoteSplashes:Bool = false;
+	public var enemyCoverSplashes:Bool = false;
 
 	public var camZooming:Bool = false;
 	public var camZoomingMult:Float = 1;
@@ -499,6 +510,7 @@ class PlayState extends MusicBeatState
 		uiGroup.add(timeTxt);
 
 		noteGroup.add(strumLineNotes);
+		noteGroup.add(strumLineCovers);
 
 		if(ClientPrefs.data.timeBarType == 'Song Name')
 		{
@@ -1531,6 +1543,7 @@ class PlayState extends MusicBeatState
 			}
 
 			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player);
+			var strumCover:StrumCover = new StrumCover(babyArrow);
 			babyArrow.downScroll = ClientPrefs.data.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
 			{
@@ -1540,10 +1553,10 @@ class PlayState extends MusicBeatState
 			}
 			else babyArrow.alpha = targetAlpha;
 
-			if (player == 1)
+			if (player == 1) {
 				playerStrums.add(babyArrow);
-			else
-			{
+				playerCovers.add(strumCover);
+			} else {
 				if(ClientPrefs.data.middleScroll)
 				{
 					babyArrow.x += 310;
@@ -1552,9 +1565,11 @@ class PlayState extends MusicBeatState
 					}
 				}
 				opponentStrums.add(babyArrow);
+				opponentCovers.add(strumCover);
 			}
 
 			strumLineNotes.add(babyArrow);
+			strumLineCovers.add(strumCover);
 			babyArrow.playerPosition();
 		}
 	}
@@ -1848,6 +1863,24 @@ class PlayState extends MusicBeatState
 
 		setOnScripts('botPlay', cpuControlled);
 		callOnScripts('onUpdatePost', [elapsed]);
+
+		playerCovers.forEach(function(c:StrumCover) {
+			if (c.visible != false) {
+				for (i in 0...keysArray.length) {
+					if (!controls.pressed(keysArray[i]) && i == c.strumNote.noteData && (c.animation.curAnim.name == 'hold' || c.animation.curAnim.name == 'hold-alt') && !cpuControlled) {
+						c.end();
+					}
+				}
+			}
+		});
+
+		opponentCovers.forEach(function(c:StrumCover) {
+			if ((c.animation.curAnim.name == 'hold' || c.animation.curAnim.name == 'hold-anim') && !enemyCoverSplashes) {
+				c.end();
+			}
+		});
+
+		if (maxCombo < combo) maxCombo = combo;
 	}
 
 	// Health icon updaters
@@ -2931,6 +2964,16 @@ class PlayState extends MusicBeatState
 
 	function noteMissCommon(direction:Int, note:Note = null)
 	{
+		if (note != null) {
+			if (note.isSustainNote) {
+				playerCovers.forEach(function(c:StrumCover) {
+					if (Math.abs(note.noteData) == c.strumNote.noteData) {
+						c.end();
+					}
+				});
+			}
+		}
+
 		// score and data
 		var subtract:Float = pressMissDamage;
 		if(note != null) subtract = note.missHealth;
@@ -3055,7 +3098,21 @@ class PlayState extends MusicBeatState
 		var result:Dynamic = callOnLuas('opponentNoteHit', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) callOnHScript('opponentNoteHit', [note]);
 
-		if (!note.isSustainNote) invalidateNote(note);
+		if (!note.isSustainNote) invalidateNote(note); else {
+			opponentCovers.forEach(function(c:StrumCover) {
+				c.enemySplash = enemyCoverSplashes;
+				c.showSplash = enemyCoverSplashes;
+				if (enemyCoverSplashes) {
+					if (Math.abs(note.noteData) == c.strumNote.noteData) {
+						if (note.prevNote == null || !note.prevNote.isSustainNote) {
+							c.start(note);
+						} else if (note.animation.curAnim.name == Note.colArray[note.noteData % Note.colArray.length] + 'holdend') {
+							c.end();
+						}
+					}
+				}
+			});
+		}
 	}
 
 	public function goodNoteHit(note:Note):Void
@@ -3157,7 +3214,21 @@ class PlayState extends MusicBeatState
 		stagesFunc(function(stage:BaseStage) stage.goodNoteHit(note));
 		var result:Dynamic = callOnLuas('goodNoteHit', [notes.members.indexOf(note), leData, leType, isSus]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) callOnHScript('goodNoteHit', [note]);
-		if(!note.isSustainNote) invalidateNote(note);
+		if(!note.isSustainNote) invalidateNote(note); else sickStrum(note);
+	}
+
+	private function sickStrum(note:Note = null):Void {
+		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
+		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);
+		playerCovers.forEach(function(c:StrumCover) {
+			if (daRating.noteSplash && Math.abs(note.noteData) == c.strumNote.noteData) {
+				if (note.prevNote == null || !note.prevNote.isSustainNote) {
+					c.start(note);
+				} else if (note.animation.curAnim.name == Note.colArray[note.noteData % Note.colArray.length] + 'holdend') {
+					c.end();
+				}
+			}
+		});
 	}
 
 	public function invalidateNote(note:Note):Void {

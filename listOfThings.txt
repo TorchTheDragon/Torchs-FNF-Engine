@@ -9,6 +9,7 @@ Added:
 - My own Haxe library
 - New, improved, zoom function
 - My custom noteskin for others to use
+- Custom strum covers
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
@@ -17,12 +18,13 @@ Updates:
 - Updated both versions of monster to have left and right animations swapped
 
 Plans/ToDo:
-- Per character based Note Colors, will be a client pref and will be set in the character editor
-- Specific noteskins for characters if toggle is enabled
-- Disable RGB shader on notes if character overrides it
-- The three things above but also for notesplashes
-- Character Based Note Colors Client Pref will be a list: enabled, opponent only, and disabled. Opponent only would allow the player to still use their own colors.
 - Rewrite my Character Menu to match the Vanilla Character Menu
 - Implement the new Freeplay Menu from Vanilla FNF
 - Implement my custom healthbar that allows for other images to be used between characters
-- Implement strum covers
+
+Working On:
+- Per character based Note Colors, will be a client pref and will be set in the character editor
+- Specific noteskins for characters if toggle is enabled
+- Disable RGB shader on notes if character overrides it, can be used for purposes where they use the assets directly from an image file instead of using the rgb shader to change the colors
+- The three things above but also for notesplashes
+- Character Based Note Colors Client Pref will be a list: enabled, opponent only, and disabled. Opponent only would allow the player to still use their own colors.

@@ -75,7 +75,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		}
 
 		var option:Option = new Option('Note Splash Opacity',
-			'How much transparent should the Note Splashes be.',
+			'How much transparent should the Note Splashes be.\nThis also affects Strum Covers.',
 			'splashAlpha',
 			PERCENT);
 		option.scrollSpeed = 1.6;
@@ -92,6 +92,20 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			STRING,
 			['Enabled', 'Opponent Only', 'Disabled']);
 		addOption(option);
+
+		var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
+		if (strumSkins.length > 0) {
+			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
+				ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
+
+			strumSkins.insert(0, ClientPrefs.defaultData.strumSkin);
+			var option:Option = new Option('Strum Covers:',
+				"Select your prefered Strum Cover variation.",
+				'strumSkin',
+				STRING,
+				strumSkins);
+			addOption(option);
+		}
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',

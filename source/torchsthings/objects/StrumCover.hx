@@ -11,7 +11,7 @@ import openfl.utils.Assets;
 
 using StringTools;
 
-class NoteStrumCover extends FlxSprite {
+class StrumCover extends FlxSprite {
 	public static var defaultCoverSkin(default, never):String = 'strumCovers/NOTE_covers';
     public static var defaultLibrary(default, never):String = 'shared';
     var colArray:Array<String> = Note.colArray;
@@ -129,50 +129,48 @@ class NoteStrumCover extends FlxSprite {
     }
 
     public function reloadCover(?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared', ?rgbEnabled:Bool = true) {
-        {
-            var lastAnim:String = null;
-            if(animation.curAnim != null) lastAnim = animation.curAnim.name;
+        var lastAnim:String = null;
+        if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-            // Failsafe
-            if ((texture.startsWith('custom_notes/covers/') && !Paths.fileExists('images/' + texture + '.png', IMAGE, true, library)) || (texture.startsWith('strumCovers/') && ClientPrefs.data.noteSkin == 'Character Based')) {
-                texture = 'custom_notes/covers/normal';
-                library = 'torchs_assets';
-            }
-
-            var skinPostFix:String = getStrumSkinPostfix();
-            
-            assets = texture + skinPostFix;
-
-            frames = Paths.getSparrowAtlas(texture + skinPostFix, library);
-            antialiasing = ClientPrefs.data.antialiasing;
-            animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
-            animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
-            animation.addByPrefix('end', colArray[strumNote.noteData] + "CoverEnd0", 24, false);
-            if (altSkin(texture)) {
-                animation.addByPrefix('start-alt', colArray[strumNote.noteData] + "CoverStart-alt", 24, false);
-                animation.addByPrefix('hold-alt', colArray[strumNote.noteData] + "Cover-alt", 24, true);
-                animation.addByPrefix('end-alt', colArray[strumNote.noteData] + "CoverEnd-alt", 24, false);
-            }
-            animation.finishCallback = daCallback;
-            animation.play("end");
-            
-            rgbShader = new RGBShaderReference(this, Note.initializeGlobalRGBShader(strumNote.noteData));
-            rgbShader.enabled = rgbEnabled;
-            if(strumNote.noteData > -1 && PlayState.SONG != null && PlayState.SONG.disableNoteRGB) rgbShader.enabled = false;
-            if (strumNote.texture.contains('pixelUI/') || PlayState.isPixelStage) {
-                pixelShader = new PixelSplashShaderRef(true);
-                shader = pixelShader.shader;
-                pixelShader.copyValues(rgbShader.parent);
-                if (!rgbEnabled) pixelShader.shader.mult.value = [0];
-            }
-    
-            if(lastAnim != null) {animation.play(lastAnim, true);}
-
-            if (Paths.fileExists('images/' + texture + '.txt', TEXT, true, library)) {
-                animOffsets = getOffsetsFromFile(texture, library);
-            }
-
-            alpha = ClientPrefs.data.splashAlpha;
+        // Failsafe
+        if ((texture.startsWith('strumCovers/') && !Paths.fileExists('images/' + texture + '.png', IMAGE, true, library))) {
+            texture = 'strumCovers/NOTE_covers';
+            library = 'shared';
         }
+
+        var skinPostFix:String = getStrumSkinPostfix();
+        
+        assets = texture + skinPostFix;
+
+        frames = Paths.getSparrowAtlas(texture + skinPostFix, library);
+        antialiasing = ClientPrefs.data.antialiasing;
+        animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
+        animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
+        animation.addByPrefix('end', colArray[strumNote.noteData] + "CoverEnd0", 24, false);
+        if (altSkin(texture)) {
+            animation.addByPrefix('start-alt', colArray[strumNote.noteData] + "CoverStart-alt", 24, false);
+            animation.addByPrefix('hold-alt', colArray[strumNote.noteData] + "Cover-alt", 24, true);
+            animation.addByPrefix('end-alt', colArray[strumNote.noteData] + "CoverEnd-alt", 24, false);
+        }
+        animation.finishCallback = daCallback;
+        animation.play("end");
+        
+        rgbShader = new RGBShaderReference(this, Note.initializeGlobalRGBShader(strumNote.noteData));
+        rgbShader.enabled = rgbEnabled;
+        if(strumNote.noteData > -1 && PlayState.SONG != null && PlayState.SONG.disableNoteRGB) rgbShader.enabled = false;
+        if (strumNote.texture.contains('pixelUI/') || PlayState.isPixelStage) {
+            pixelShader = new PixelSplashShaderRef(true);
+            shader = pixelShader.shader;
+            pixelShader.copyValues(rgbShader.parent);
+            if (!rgbEnabled) pixelShader.shader.mult.value = [0];
+        }
+
+        if(lastAnim != null) {animation.play(lastAnim, true);}
+
+        if (Paths.fileExists('images/' + texture + skinPostFix + '.txt', TEXT, true, library)) {
+            animOffsets = getOffsetsFromFile(texture + skinPostFix, library);
+        }
+
+        alpha = ClientPrefs.data.splashAlpha;
     }
 }

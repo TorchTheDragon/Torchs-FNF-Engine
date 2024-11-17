@@ -49,7 +49,7 @@ class NoteSplash extends FlxSprite
 
         animation = new PsychAnimationController(this);
 
-		rgbShader = new PixelSplashShaderRef();
+		rgbShader = new PixelSplashShaderRef(PlayState.isPixelStage);
 		shader = rgbShader.shader;
 
 		loadSplash(splash);
@@ -363,12 +363,11 @@ class PixelSplashShaderRef
 		shader.b.value = [0, 0, 0];
 	}
 
-	public function new()
-	{
+	public function new(?pixelNote:Bool = false) {
 		reset();
 		enabled = true;
 
-		if(!PlayState.isPixelStage) pixelAmount = 1;
+		if(!PlayState.isPixelStage || !pixelNote) pixelAmount = 1;
 		else pixelAmount = PlayState.daPixelZoom;
 		//trace('Created shader ' + Conductor.songPosition);
 	}
