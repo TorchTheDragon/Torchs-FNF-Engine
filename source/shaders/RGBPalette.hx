@@ -70,6 +70,13 @@ class RGBShaderReference
 			mult = parent.mult;
 		}
 	}
+
+	public function changeRGB(colors:Array<FlxColor>) {
+		r = colors[0];
+		g = colors[1];
+		b = colors[2];
+		// A simple function, just helps to avoid repetition 
+	}
 	
 	private function set_r(value:FlxColor)
 	{

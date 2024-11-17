@@ -13,6 +13,7 @@ Added:
 - Custom strum covers
 - Per character based Note Colors, Note Splashes, and Note Strums (the setting affects all three at once), will be set in the character editor
 - Character Based Note Colors Client Pref will be a list: enabled, opponent only, and disabled. Opponent only would allow the player to still use their own colors.
+- "changeRGB" function in RGBPalette.hx's RGBShaderReference class to avoid a lot of repetition in code
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages

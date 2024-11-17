@@ -1387,43 +1387,27 @@ class PlayState extends MusicBeatState
 					switch (swagNote.noteData) {
 						case 0:
 							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.r = boyfriend.noteColors.left[0];
-								swagNote.rgbShader.g = boyfriend.noteColors.left[1];
-								swagNote.rgbShader.b = boyfriend.noteColors.left[2];
+								swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
 							} else {
-								swagNote.rgbShader.r = dad.noteColors.left[0];
-								swagNote.rgbShader.g = dad.noteColors.left[1];
-								swagNote.rgbShader.b = dad.noteColors.left[2];
+								swagNote.rgbShader.changeRGB(dad.noteColors.left);
 							}
 						case 1:
 							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.r = boyfriend.noteColors.down[0];
-								swagNote.rgbShader.g = boyfriend.noteColors.down[1];
-								swagNote.rgbShader.b = boyfriend.noteColors.down[2];
+								swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
 							} else {
-								swagNote.rgbShader.r = dad.noteColors.down[0];
-								swagNote.rgbShader.g = dad.noteColors.down[1];
-								swagNote.rgbShader.b = dad.noteColors.down[2];
+								swagNote.rgbShader.changeRGB(dad.noteColors.down);
 							}
 						case 2:
 							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.r = boyfriend.noteColors.up[0];
-								swagNote.rgbShader.g = boyfriend.noteColors.up[1];
-								swagNote.rgbShader.b = boyfriend.noteColors.up[2];
+								swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
 							} else {
-								swagNote.rgbShader.r = dad.noteColors.up[0];
-								swagNote.rgbShader.g = dad.noteColors.up[1];
-								swagNote.rgbShader.b = dad.noteColors.up[2];
+								swagNote.rgbShader.changeRGB(dad.noteColors.up);
 							}
 						case 3:
 							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.r = boyfriend.noteColors.right[0];
-								swagNote.rgbShader.g = boyfriend.noteColors.right[1];
-								swagNote.rgbShader.b = boyfriend.noteColors.right[2];
+								swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
 							} else {
-								swagNote.rgbShader.r = dad.noteColors.right[0];
-								swagNote.rgbShader.g = dad.noteColors.right[1];
-								swagNote.rgbShader.b = dad.noteColors.right[2];
+								swagNote.rgbShader.changeRGB(dad.noteColors.right);
 							}
 					}
 				}
@@ -1449,43 +1433,27 @@ class PlayState extends MusicBeatState
 							switch (sustainNote.noteData) {
 								case 0:
 									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.r = boyfriend.noteColors.left[0];
-										sustainNote.rgbShader.g = boyfriend.noteColors.left[1];
-										sustainNote.rgbShader.b = boyfriend.noteColors.left[2];
+										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
 									} else {
-										sustainNote.rgbShader.r = dad.noteColors.left[0];
-										sustainNote.rgbShader.g = dad.noteColors.left[1];
-										sustainNote.rgbShader.b = dad.noteColors.left[2];
+										sustainNote.rgbShader.changeRGB(dad.noteColors.left);
 									}
 								case 1:
 									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.r = boyfriend.noteColors.down[0];
-										sustainNote.rgbShader.g = boyfriend.noteColors.down[1];
-										sustainNote.rgbShader.b = boyfriend.noteColors.down[2];
+										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
 									} else {
-										sustainNote.rgbShader.r = dad.noteColors.down[0];
-										sustainNote.rgbShader.g = dad.noteColors.down[1];
-										sustainNote.rgbShader.b = dad.noteColors.down[2];
+										sustainNote.rgbShader.changeRGB(dad.noteColors.down);
 									}
 								case 2:
 									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.r = boyfriend.noteColors.up[0];
-										sustainNote.rgbShader.g = boyfriend.noteColors.up[1];
-										sustainNote.rgbShader.b = boyfriend.noteColors.up[2];
+										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
 									} else {
-										sustainNote.rgbShader.r = dad.noteColors.up[0];
-										sustainNote.rgbShader.g = dad.noteColors.up[1];
-										sustainNote.rgbShader.b = dad.noteColors.up[2];
+										sustainNote.rgbShader.changeRGB(dad.noteColors.up);
 									}
 								case 3:
 									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.r = boyfriend.noteColors.right[0];
-										sustainNote.rgbShader.g = boyfriend.noteColors.right[1];
-										sustainNote.rgbShader.b = boyfriend.noteColors.right[2];
+										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
 									} else {
-										sustainNote.rgbShader.r = dad.noteColors.right[0];
-										sustainNote.rgbShader.g = dad.noteColors.right[1];
-										sustainNote.rgbShader.b = dad.noteColors.right[2];
+										sustainNote.rgbShader.changeRGB(dad.noteColors.right);
 									}
 							}
 						}
@@ -1645,35 +1613,21 @@ class PlayState extends MusicBeatState
 
 			if (player == 1) {
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
-					var innerColor:FlxColor = 0xFF000000;
-					var middleColor:FlxColor = 0xFF000000;
-					var outerColor:FlxColor = 0xFF000000;
 					switch (i) {
 						case 0:
-							innerColor = boyfriend.noteColors.left[0];
-							middleColor = boyfriend.noteColors.left[1];
-							outerColor = boyfriend.noteColors.left[2];
+							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.left);
+							strumCover.rgbShader.changeRGB(boyfriend.noteColors.left);
 						case 1:
-							innerColor = boyfriend.noteColors.down[0];
-							middleColor = boyfriend.noteColors.down[1];
-							outerColor = boyfriend.noteColors.down[2];
+							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.down);
+							strumCover.rgbShader.changeRGB(boyfriend.noteColors.down);
 						case 2:
-							innerColor = boyfriend.noteColors.up[0];
-							middleColor = boyfriend.noteColors.up[1];
-							outerColor = boyfriend.noteColors.up[2];
+							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.up);
+							strumCover.rgbShader.changeRGB(boyfriend.noteColors.up);
 						case 3:
-							innerColor = boyfriend.noteColors.right[0];
-							middleColor = boyfriend.noteColors.right[1];
-							outerColor = boyfriend.noteColors.right[2];
+							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.right);
+							strumCover.rgbShader.changeRGB(boyfriend.noteColors.right);
 					}
-
-					babyArrow.rgbShader.r = innerColor;
-					babyArrow.rgbShader.g = middleColor;
-					babyArrow.rgbShader.b = outerColor;
 					babyArrow.rgbShader.enabled = false;
-					strumCover.rgbShader.r = innerColor;
-					strumCover.rgbShader.g = middleColor;
-					strumCover.rgbShader.b = outerColor;
 				}
 
 				playerStrums.add(babyArrow);
@@ -1686,36 +1640,23 @@ class PlayState extends MusicBeatState
 						babyArrow.x += FlxG.width / 2 + 25;
 					}
 				}
-				if (ClientPrefs.data.characterNoteColors == 'Enabled' || ClientPrefs.data.characterNoteColors == 'Opponent Only') {
-					var innerColor:FlxColor = 0xFF000000;
-					var middleColor:FlxColor = 0xFF000000;
-					var outerColor:FlxColor = 0xFF000000;
+				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 					switch (i) {
 						case 0:
-							innerColor = dad.noteColors.left[0];
-							middleColor = dad.noteColors.left[1];
-							outerColor = dad.noteColors.left[2];
+							babyArrow.rgbShader.changeRGB(dad.noteColors.left);
+							strumCover.rgbShader.changeRGB(dad.noteColors.left);
 						case 1:
-							innerColor = dad.noteColors.down[0];
-							middleColor = dad.noteColors.down[1];
-							outerColor = dad.noteColors.down[2];
+							babyArrow.rgbShader.changeRGB(dad.noteColors.down);
+							strumCover.rgbShader.changeRGB(dad.noteColors.down);
 						case 2:
-							innerColor = dad.noteColors.up[0];
-							middleColor = dad.noteColors.up[1];
-							outerColor = dad.noteColors.up[2];
+							babyArrow.rgbShader.changeRGB(dad.noteColors.up);
+							strumCover.rgbShader.changeRGB(dad.noteColors.up);
 						case 3:
-							innerColor = dad.noteColors.right[0];
-							middleColor = dad.noteColors.right[1];
-							outerColor = dad.noteColors.right[2];
+							babyArrow.rgbShader.changeRGB(dad.noteColors.right);
+							strumCover.rgbShader.changeRGB(dad.noteColors.right);
 					}
 
-					babyArrow.rgbShader.r = innerColor;
-					babyArrow.rgbShader.g = middleColor;
-					babyArrow.rgbShader.b = outerColor;
 					babyArrow.rgbShader.enabled = false;
-					strumCover.rgbShader.r = innerColor;
-					strumCover.rgbShader.g = middleColor;
-					strumCover.rgbShader.b = outerColor;
 				}
 				opponentStrums.add(babyArrow);
 				opponentCovers.add(strumCover);
