@@ -7,6 +7,7 @@ import flixel.group.FlxGroup;
 
 import objects.Note;
 import objects.Character;
+import torchsthings.objects.ReflectedChar;
 
 enum Countdown
 {
@@ -39,6 +40,10 @@ class BaseStage extends FlxBasic
 	public var gfGroup(get, never):FlxSpriteGroup;
 
 	public var unspawnNotes(get, never):Array<Note>;
+
+	public var reflectedBF:ReflectedChar;
+	public var reflectedGF:ReflectedChar;
+	public var reflectedDad:ReflectedChar;
 	
 	public var camGame(get, never):FlxCamera;
 	public var camHUD(get, never):FlxCamera;

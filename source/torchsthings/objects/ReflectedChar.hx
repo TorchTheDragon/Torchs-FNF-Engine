@@ -24,33 +24,25 @@ class ReflectedChar extends Character {
         this.y = charRef.y + (charRef.frameHeight*charRef.scale.y*2) - charRef.offset.y + checkCharacter(charRef.curCharacter);
     }
 
-    function checkCharacter(name:String):Float {
+    function checkCharacter(name:String):Float { // Will eventually try to make this into the character file
         switch (name) {
-            case 'jeys-bf':
-                return -115;
-            case 'pico-player' | 'pico' | 'pico-verbal':
+            case 'pico-player' | 'pico' | 'pico-playable' | 'pico-blazin':
                 return -65;
-            case 'pico-intro' | 'pico-intro2':
-                return -70;
-            case 'pico-dead':
-                return -50;
             case 'gf':
                 return -10;
             case 'bf-pixel-opponent':
                 return -325;
-            case 'bf-dead':
-                return -100;
             default: // 'bf' is used at the default here.
                 return -55;
         }
     }
 
     override function update(elapsed:Float) {
+        this.offset.x = charRef.offset.x;
+        this.offset.y = (charRef.frameHeight*charRef.scale.y) - charRef.offset.y;
         if (charRef.animation.curAnim != null) {
             this.animation.play(charRef.animation.curAnim.name, true, false, charRef.animation.curAnim.curFrame);
         }
-        this.offset.x = charRef.offset.x;
-        this.offset.y = (charRef.frameHeight*charRef.scale.y) - charRef.offset.y;
         // YAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY
 
         super.update(elapsed);

@@ -5,6 +5,7 @@ import shaders.RainShader;
 
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import torchsthings.objects.ReflectedChar;
 
 import substates.GameOverSubstate;
 import states.stages.objects.*;
@@ -169,6 +170,9 @@ class PhillyStreets extends BaseStage
 	var noteTypes:Array<String> = [];
 	override function createPost()
 	{
+		reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
+
 		var unspawnNotes:Array<Note> = cast game.unspawnNotes;
 		for (note in unspawnNotes)
 		{

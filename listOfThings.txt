@@ -14,6 +14,7 @@ Added:
 - Per character based Note Colors, Note Splashes, and Note Strums (the setting affects all three at once), will be set in the character editor
 - Character Based Note Colors Client Pref will be a list: enabled, opponent only, and disabled. Opponent only would allow the player to still use their own colors.
 - "changeRGB" function in RGBPalette.hx's RGBShaderReference class to avoid a lot of repetition in code
+- Reflected Character object added to BaseStage.hx to use if wanted, by default, they are not even initialized
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
@@ -30,3 +31,4 @@ Plans/ToDo:
 Working On:
 - Specific note skins, note splashes, and strum covers for characters if toggle is enabled
 - Disable RGB shader on notes, splashes, and covers if character overrides it, can be used for purposes where they use the assets directly from an image file instead of using the rgb shader to change the colors
+- 

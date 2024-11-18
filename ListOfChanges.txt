@@ -16,3 +16,4 @@ Added "setUsingFlxColors" to PixelSplashShaderRef in NoteSplash.hx
 Character based Note Colors, Note Splash Colors, and Strum Cover Colors, set in Character Editor
 ClientPref to change if the Character Based Colors are Enabled, Opponent Only, or Disabled
 Added "changeRGB" function to RGBPalette.hx's RGBShaderReference class to avoid a lot of repetition in code
+Reflected Character object added to BaseStage.hx
