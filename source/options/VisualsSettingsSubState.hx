@@ -4,12 +4,14 @@ import objects.Note;
 import objects.StrumNote;
 import objects.NoteSplash;
 import objects.Alphabet;
+import torchsthings.objects.StrumCover;
 
 class VisualsSettingsSubState extends BaseOptionsMenu
 {
 	var noteOptionID:Int = -1;
 	var notes:FlxTypedGroup<StrumNote>;
 	var splashes:FlxTypedGroup<NoteSplash>;
+	var strums:FlxTypedGroup<StrumCover>;
 	var noteY:Float = 90;
 	public function new()
 	{
@@ -19,6 +21,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		// for note skins and splash skins
 		notes = new FlxTypedGroup<StrumNote>();
 		splashes = new FlxTypedGroup<NoteSplash>();
+		strums = new FlxTypedGroup<StrumCover>();
 		for (i in 0...Note.colArray.length)
 		{
 			var note:StrumNote = new StrumNote(370 + (560 / Note.colArray.length) * i, -200, i, 0);
@@ -35,6 +38,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			splash.alpha = ClientPrefs.data.splashAlpha;
 			splash.animation.finishCallback = function(name:String) splash.visible = false;
 			splashes.add(splash);
+
+			var strum:StrumCover = new StrumCover(note);
+			strum.enemySplash = true;
+			strum.showSplash = true;
+			//strum.start();
+			strums.add(strum);
 			
 			Note.initializeGlobalRGBShader(i % Note.colArray.length);
 			splash.rgbShader.copyValues(Note.globalRgbShaders[i % Note.colArray.length]);
@@ -86,13 +95,6 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = playNoteSplashes;
 
-		var option:Option = new Option('Character Note Colors:',
-			"Should characters override the default Note Colors?",
-			'characterNoteColors',
-			STRING,
-			['Enabled', 'Opponent Only', 'Disabled']);
-		addOption(option);
-
 		var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
 		if (strumSkins.length > 0) {
 			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
@@ -105,7 +107,15 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 				STRING,
 				strumSkins);
 			addOption(option);
+			option.onChange = playStrumCovers;
 		}
+
+		var option:Option = new Option('Character Note Colors:',
+			"Should characters override the default Note Colors?",
+			'characterNoteColors',
+			STRING,
+			['Enabled', 'Opponent Only', 'Disabled']);
+		addOption(option);
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
@@ -118,6 +128,13 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			'timeBarType',
 			STRING,
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
+		addOption(option);
+
+		var option:Option = new Option('Health Bar Type:',
+			"What style of the Health Bar do you want?",
+			'barTypeHealth',
+			STRING,
+			['Default', 'Reanimated']);
 		addOption(option);
 
 		var option:Option = new Option('Flashing Lights',
@@ -191,6 +208,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		super();
 		add(notes);
 		add(splashes);
+		add(strums);
 	}
 
 	var notesShown:Bool = false;
@@ -200,7 +218,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		
 		switch(curOption.variable)
 		{
-			case 'noteSkin', 'splashSkin', 'splashAlpha':
+			case 'noteSkin', 'splashSkin', 'splashAlpha', 'strumSkin':
 				if(!notesShown)
 				{
 					for (note in notes.members)
@@ -211,6 +229,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 				}
 				notesShown = true;
 				if(curOption.variable.startsWith('splash') && Math.abs(notes.members[0].y - noteY) < 25) playNoteSplashes();
+				if(curOption.variable.startsWith('strum') && Math.abs(notes.members[0].y - noteY) < 25) playStrumCovers();
 
 			default:
 				if(notesShown) 
@@ -286,9 +305,26 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		}
 	}
 
+	var strumTime:FlxTimer;
+
+	function playStrumCovers() {
+		for (strum in strums) {
+			strum.reloadCover();
+			strum.showSplash = true;
+			strum.visible = true;
+			strum.start();
+		}
+		if (strumTime != null) strumTime.cancel();
+		strumTime = new FlxTimer().start(0.5, function(t:FlxTimer) {
+			if (strums.members.length > 0) for (strum in strums) if (strum != null) strum.end();
+			strumTime = null;
+		});
+	}
+
 	override function destroy()
 	{
 		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
+		if (strumTime != null) strumTime.cancel();
 		super.destroy();
 	}
 

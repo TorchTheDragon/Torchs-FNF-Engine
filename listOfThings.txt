@@ -15,6 +15,7 @@ Added:
 - Character Based Note Colors Client Pref will be a list: enabled, opponent only, and disabled. Opponent only would allow the player to still use their own colors.
 - "changeRGB" function in RGBPalette.hx's RGBShaderReference class to avoid a lot of repetition in code
 - Reflected Character object added to BaseStage.hx to use if wanted, by default, they are not even initialized
+- Strum Cover skin selection in "VisualSettingsSubState.hx"
 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
