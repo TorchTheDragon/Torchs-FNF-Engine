@@ -1386,26 +1386,42 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 					switch (swagNote.noteData) {
 						case 0:
-							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+							if (gottaHitNote) {
+								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[0] : ClientPrefs.data.arrowRGB[0]);
+								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.left);
 							}
 						case 1:
-							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+							if (gottaHitNote) {
+								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[1] : ClientPrefs.data.arrowRGB[1]);
+								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.down);
 							}
 						case 2:
-							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+							if (gottaHitNote) {
+								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[2] : ClientPrefs.data.arrowRGB[2]);
+								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.up);
 							}
 						case 3:
-							if (gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
-								swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+							if (gottaHitNote) {
+								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[3] : ClientPrefs.data.arrowRGB[3]);
+								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.right);
 							}
@@ -1432,26 +1448,42 @@ class PlayState extends MusicBeatState
 						if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 							switch (sustainNote.noteData) {
 								case 0:
-									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+									if (gottaHitNote) {
+										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[0] : ClientPrefs.data.arrowRGB[0]);
+										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.left);
 									}
 								case 1:
-									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+									if (gottaHitNote) {
+										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[1] : ClientPrefs.data.arrowRGB[1]);
+										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.down);
 									}
 								case 2:
-									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+									if (gottaHitNote) {
+										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[2] : ClientPrefs.data.arrowRGB[2]);
+										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.up);
 									}
 								case 3:
-									if (sustainNote.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-										sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+									if (gottaHitNote) {
+										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[3] : ClientPrefs.data.arrowRGB[3]);
+										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.right);
 									}
@@ -3347,27 +3379,27 @@ class PlayState extends MusicBeatState
 			switch (note.noteData) {
 				case 0:
 					if (note.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-						splash.rgbShader.setUsingFlxColors(boyfriend.noteColors.left);
-					} else {
-						splash.rgbShader.setUsingFlxColors(dad.noteColors.left);
+						splash.rgbShader.changeRGB(boyfriend.noteColors.left);
+					} else if (note.mustPress == false) {
+						splash.rgbShader.changeRGB(dad.noteColors.left);
 					}
 				case 1:
 					if (note.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-						splash.rgbShader.setUsingFlxColors(boyfriend.noteColors.down);
-					} else {
-						splash.rgbShader.setUsingFlxColors(dad.noteColors.down);
+						splash.rgbShader.changeRGB(boyfriend.noteColors.down);
+					} else if (note.mustPress == false) {
+						splash.rgbShader.changeRGB(dad.noteColors.down);
 					}
 				case 2:
 					if (note.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-						splash.rgbShader.setUsingFlxColors(boyfriend.noteColors.up);
-					} else {
-						splash.rgbShader.setUsingFlxColors(dad.noteColors.up);
+						splash.rgbShader.changeRGB(boyfriend.noteColors.up);
+					} else if (note.mustPress == false) {
+						splash.rgbShader.changeRGB(dad.noteColors.up);
 					}
 				case 3:
 					if (note.mustPress && ClientPrefs.data.characterNoteColors == 'Enabled') {
-						splash.rgbShader.setUsingFlxColors(boyfriend.noteColors.right);
-					} else {
-						splash.rgbShader.setUsingFlxColors(dad.noteColors.right);
+						splash.rgbShader.changeRGB(boyfriend.noteColors.right);
+					} else if (note.mustPress == false) {
+						splash.rgbShader.changeRGB(dad.noteColors.right);
 					}
 			}
 		}

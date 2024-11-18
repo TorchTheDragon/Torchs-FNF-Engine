@@ -17,22 +17,29 @@ class StrumCover extends FlxSprite {
     var colArray:Array<String> = Note.colArray;
     public var strumNote:StrumNote;
     var posOffset:Array<Int> = [-25, -5];
-    var animOffsets:Array<Array<Int>> = [/*start*/[20, 15], /*hold*/[-25, -5], /*end*/[-65, -40]];
-	public var rgbShader:RGBShaderReference;
-    public var pixelShader:PixelSplashShaderRef;
+    var animOffsets:Array<Array<Int>> = [/*start*/[20, 15], /*hold*/[-25, -5], /*end*/[-65, -40]]; // Please note that the "start" offset is kind of useless if you have a 1 frame animation
+	//public var rgbShader:RGBPalette;
+    //public var pixelShader:PixelSplashShaderRef;
+    public var rgbShader:PixelSplashShaderRef;
     var assets:String = '';
     public var showSplash:Bool = false;
     public var enemySplash:Bool = false;
     var ratingsToShowUpOn:Array<String> = ['sick'];
 
-    public function new(refNote:StrumNote, ?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared', ?rgbEnabled:Bool = true) {
+    public function new(refNote:StrumNote, ?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared') {
         super(0, 0);
 
         strumNote = refNote;
         if(texture == null) texture = defaultCoverSkin;
         if(library == null) library = defaultLibrary;
 
-        reloadCover(texture, library, rgbEnabled);
+        rgbShader = new PixelSplashShaderRef(PlayState.isPixelStage);
+        shader = rgbShader.shader;
+
+        var tempShader:RGBPalette = Note.globalRgbShaders[strumNote.noteData % Note.colArray.length];
+        rgbShader.copyValues(tempShader);
+
+        reloadCover(texture, library);
 
         visible = false;
     }
@@ -74,6 +81,7 @@ class StrumCover extends FlxSprite {
     public function start(?note:Note = null) {
         if (!enemySplash) showSplash = (ratingsToShowUpOn.contains(getRatingFromNote(note)));
         visible = showSplash;
+        setOffset(0);
         if (note != null && altSkin(assets) && note.noteType == 'Alt Animation') {
             animation.play('start-alt');
             isAltNote = true;
@@ -128,7 +136,7 @@ class StrumCover extends FlxSprite {
         return skin;
     }
 
-    public function reloadCover(?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared', ?rgbEnabled:Bool = true) {
+    public function reloadCover(?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared') {
         var lastAnim:String = null;
         if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
@@ -154,16 +162,6 @@ class StrumCover extends FlxSprite {
         }
         animation.finishCallback = daCallback;
         animation.play("end");
-        
-        rgbShader = new RGBShaderReference(this, Note.initializeGlobalRGBShader(strumNote.noteData));
-        rgbShader.enabled = rgbEnabled;
-        if(strumNote.noteData > -1 && PlayState.SONG != null && PlayState.SONG.disableNoteRGB) rgbShader.enabled = false;
-        if (strumNote.texture.contains('pixelUI/') || PlayState.isPixelStage) {
-            pixelShader = new PixelSplashShaderRef(true);
-            shader = pixelShader.shader;
-            pixelShader.copyValues(rgbShader.parent);
-            if (!rgbEnabled) pixelShader.shader.mult.value = [0];
-        }
 
         if(lastAnim != null) {animation.play(lastAnim, true);}
 

@@ -10,6 +10,13 @@ class RGBPalette {
 	public var b(default, set):FlxColor;
 	public var mult(default, set):Float;
 
+	public function changeRGB(colors:Array<FlxColor>) {
+		r = colors[0];
+		g = colors[1];
+		b = colors[2];
+		// A simple function, just helps to avoid repetition 
+	}
+
 	private function set_r(color:FlxColor) {
 		r = color;
 		shader.r.value = [color.redFloat, color.greenFloat, color.blueFloat];

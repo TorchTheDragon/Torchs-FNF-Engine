@@ -21,7 +21,7 @@ Updates:
 - Updated sound, music, inst, soundRandom, getPath, and getTextFromFile functions in Paths file to include the option to use libraries/parent folders
 - Three new base stage functions that utilize the Paths.currentLevel thing to ensure nothing breaks on accident ("playWeekSound" - plays a sound in the week folder, "playWeekMusic" - plays music in the week folder, "randomWeekSound" - plays a random sound provided)
 - Updated both versions of monster to have left and right animations swapped
-- Updated NoteSplash.hx's PixelSplashShaderRef class to include a function "setUsingFlxColors" to allow changing the RGB values easier using an FlxColor array
+- Updated NoteSplash.hx's PixelSplashShaderRef class to include a function "changeRGB" to allow changing the RGB values easier using an FlxColor array
 
 Plans/ToDo:
 - Rewrite my Character Menu to match the Vanilla Character Menu
