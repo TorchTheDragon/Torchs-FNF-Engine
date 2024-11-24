@@ -18,3 +18,4 @@ ClientPref to change if the Character Based Colors are Enabled, Opponent Only, o
 Added "changeRGB" function to RGBPalette.hx's RGBShaderReference class to avoid a lot of repetition in code
 Reflected Character object added to BaseStage.hx
 Added Strum Skin selection in Visual options
+Custom healthbar Client Pref

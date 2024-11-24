@@ -541,9 +541,19 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
-		var healthBars:Array<Array<String>> = [[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
+		var healthBars:Array<Array<String>> = switch (ClientPrefs.data.healthBarSkin) {
+			case "Char Based":
+				[[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
+			case "Reanimated":
+				[['reanimated' + (isPixelStage ? ((dad.curCharacter == 'spirit') ? '-pixel-glitch' : '-pixel') : ''), 'shared', ((isPixelStage && dad.curCharacter == 'spirit') ? 'true' : 'false'), ((isPixelStage && dad.curCharacter == 'spirit') ? 'healthBar_pixel_glitched' : 'none')], ['reanimated' + (isPixelStage ? '-pixel' : ''), 'shared', 'false', 'none']];
+			case "Default":
+				[['default', 'shared', 'false', 'none'], ['default', 'shared', 'false', 'none']];
+			default:
+				[[ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none'], [ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none']];
+		}
+		
 		//healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
-		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
+		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
@@ -553,18 +563,20 @@ class PlayState extends MusicBeatState
 		uiGroup.add(healthBar);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.y = healthBar.y - 75;
+		//iconP1.y = healthBar.y - 75;
+		iconP1.y = healthBar.y - 50;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.y = healthBar.y - 75;
+		//iconP2.y = healthBar.y - 75;
+		iconP2.y = healthBar.y - 50;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 
-		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
+		scoreTxt = new FlxText(0, healthBar.y + 70/*40*/, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
