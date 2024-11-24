@@ -1,0 +1,1 @@
+To keep things consistent, I would prefer you make the bars 600x60 just so they all have the same width and height in the image.
