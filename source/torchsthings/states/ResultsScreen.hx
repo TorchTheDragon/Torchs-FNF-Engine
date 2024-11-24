@@ -424,7 +424,7 @@ class ResultsScreen extends MusicBeatState {
     override function draw() {
         super.draw();
         songName.clipRect = FlxRect.get(Math.max(0, 540 - songName.x), 0, FlxG.width, songName.height);
-        clearPercentCounter.clipRect = FlxRect.get(Math.max(0, 590 - clearPercentCounter.x) - 50, -10, FlxG.width, clearPercentCounter.height + 25);
+        clearPercentCounter.clipRect = FlxRect.get(Math.max(0, 640 - clearPercentCounter.x) - 100, -10, FlxG.width, clearPercentCounter.height + 25);
     }
 
     function timerThenSongName(timerLength:Float = 3.0, autoScroll:Bool = true) {
@@ -516,7 +516,7 @@ class ResultsScreen extends MusicBeatState {
         //'You Suck!', 'Shit', 'Bad', 'Bruh', 'Meh', 'Nice', 'Good', 'Great', 'Sick!', 'Perfect!!'
         var num:Int = switch (rank) {
             case 8 | 9:
-                4;
+                if (rank == 8 && misses != 0) 3; else 4;
             case 7:
                 3;
             case 6: 

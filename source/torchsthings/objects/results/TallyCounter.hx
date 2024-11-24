@@ -48,6 +48,7 @@ class TallyCounter extends FlxTypedSpriteGroup<FlxSprite> {
                 }
                 var numb:TallyNumber = new TallyNumber(xPos, 0, num);
                 numb.scale.set(this.scale.x, this.scale.y);
+                numb.antialiasing = ClientPrefs.data.antialiasing;
                 add(numb);
                 numb.color = flavor;
             } else {

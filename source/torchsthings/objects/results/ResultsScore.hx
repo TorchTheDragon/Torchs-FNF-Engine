@@ -149,7 +149,7 @@ class ScoreNum extends FlxSprite {
         animation.addByPrefix('DISABLED', 'DISABLED', 24, false);
 
         this.digit = 10;
-
+        antialiasing = ClientPrefs.data.antialiasing;
         animation.play(numToString[digit], true);
 
         updateHitbox();
