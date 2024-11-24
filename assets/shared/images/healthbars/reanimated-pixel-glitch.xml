@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="new_healthBar_glitched_animated.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="healthBar_pixel_glitched0000" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0001" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0002" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0003" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0004" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0005" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0006" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0007" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0008" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0009" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0010" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0011" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0012" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0013" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0014" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0015" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0016" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0017" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0018" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0019" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0020" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0021" x="10" y="10" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0022" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0023" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0024" x="10" y="80" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0025" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0026" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0027" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0028" x="10" y="150" width="598" height="60" frameX="-3" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0029" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+	<SubTexture name="healthBar_pixel_glitched0030" x="10" y="220" width="600" height="60" frameX="0" frameY="0" frameWidth="601" frameHeight="60"/>
+</TextureAtlas>

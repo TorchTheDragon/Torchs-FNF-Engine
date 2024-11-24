@@ -188,7 +188,8 @@ class PlayState extends MusicBeatState
 	public var combo:Int = 0;
 	var maxCombo:Int = 0;
 
-	public var healthBar:Bar;
+	//public var healthBar:Bar;
+	public var healthBar:ImageBar;
 	public var timeBar:Bar;
 	var songPercent:Float = 0;
 
@@ -540,7 +541,9 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
-		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
+		var healthBars:Array<Array<String>> = [[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
+		//healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
+		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();

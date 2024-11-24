@@ -73,5 +73,8 @@
 	},
 	"sing_duration": 4,
 	"scale": 6,
-	"_editor_isPlayer": false
+	"_editor_isPlayer": false,
+	"healthBar": "reanimated-pixel-glitch",
+	"animatedHealthBar": true,
+	"healthBarAnimation": "healthBar_pixel_glitched"
 }

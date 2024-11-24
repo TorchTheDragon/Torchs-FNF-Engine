@@ -55,15 +55,15 @@ class ImageBar extends FlxSpriteGroup
 		leftBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true'));
 		leftBar.antialiasing = antialiasing = ClientPrefs.data.antialiasing;
 		if (emptyBar[2] == 'true') {
-			bg.frames = Paths.getSparrowAtlas(emptyBar[0], emptyBar[1]);
-			leftBar.frames = Paths.getSparrowAtlas(emptyBar[0], emptyBar[1]);
+			bg.frames = Paths.getSparrowAtlas('healthbars/' + emptyBar[0], emptyBar[1]);
+			leftBar.frames = Paths.getSparrowAtlas('healthbars/' + emptyBar[0], emptyBar[1]);
 			animationAdd(true);
 		}
 
 		rightBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + fullBar[0], fullBar[1], false), (fullBar[2] == 'true'));
 		rightBar.antialiasing = ClientPrefs.data.antialiasing;
 		if (fullBar[2] == 'true') {
-			rightBar.frames = Paths.getSparrowAtlas(fullBar[0], fullBar[1]);
+			rightBar.frames = Paths.getSparrowAtlas('healthbars/' + fullBar[0], fullBar[1]);
 			animationAdd(false);
 		}
 
