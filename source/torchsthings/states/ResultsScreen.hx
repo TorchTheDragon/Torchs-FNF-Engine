@@ -154,10 +154,12 @@ class ResultsScreen extends MusicBeatState {
         background = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xFFFECC5C, 0xFFFDC05C], 90);
         background.scrollFactor.set();
         background.cameras = [backgroundCamera];
+        background.antialiasing = ClientPrefs.data.antialiasing;
         add(background);
 
         backgroundFlash.scrollFactor.set();
         backgroundFlash.visible = false;
+        backgroundFlash.antialiasing = ClientPrefs.data.antialiasing;
         add(backgroundFlash);
 
         addResultAnimation(specificChar);
@@ -169,6 +171,7 @@ class ResultsScreen extends MusicBeatState {
             soundSystem.animation.play('idle');
             soundSystem.visible = true;
         });
+        soundSystem.antialiasing = ClientPrefs.data.antialiasing;
         add(soundSystem);
 
         // Only checking the folder to prevent having to hard code every difficulty image name
@@ -179,10 +182,12 @@ class ResultsScreen extends MusicBeatState {
 
         if (!songDiffs.contains(songDiff)) songDiff = 'unknown';
         difficulty.loadGraphic(Paths.image('results_screen/diffs/' + songDiff, 'torchs_assets'));
+        difficulty.antialiasing = ClientPrefs.data.antialiasing;
         add(difficulty);
 
         if (clearPercentCounter != null) add(clearPercentCounter);
 
+        songName.antialiasing = ClientPrefs.data.antialiasing;
         add(songName);
 
         var angleRad = songName.angle * (Math.PI / 180);
@@ -199,10 +204,12 @@ class ResultsScreen extends MusicBeatState {
         var topBar:FlxSprite = new FlxSprite().loadGraphic(Paths.image('results_screen/topBarBlack', 'torchs_assets'));
         topBar.y = -topBar.height;
         FlxTween.tween(topBar, {y: 0}, 7 / 24, {ease: FlxEase.quartOut, startDelay: 3 / 24});
+        topBar.antialiasing = ClientPrefs.data.antialiasing;
         add(topBar);
 
         resultsAnim.animation.addByPrefix('result', 'results instance 1', 24, false);
         resultsAnim.visible = false;
+        resultsAnim.antialiasing = ClientPrefs.data.antialiasing;
         add(resultsAnim);
         new FlxTimer().start(6 / 24, _ -> {
             resultsAnim.visible = true;
@@ -211,6 +218,7 @@ class ResultsScreen extends MusicBeatState {
 
         ratingsPopin.animation.addByPrefix('idle', 'Categories', 24, false);
         ratingsPopin.visible = false;
+        ratingsPopin.antialiasing = ClientPrefs.data.antialiasing;
         add(ratingsPopin);
         new FlxTimer().start(21 / 24, _ -> {
             ratingsPopin.visible = true;
@@ -219,6 +227,7 @@ class ResultsScreen extends MusicBeatState {
 
         scorePopin.animation.addByPrefix("score", 'tally score', 24, false);
         scorePopin.visible = false;
+        scorePopin.antialiasing = ClientPrefs.data.antialiasing;
         add(scorePopin);
         new FlxTimer().start(37 / 24, _ -> {
             scorePopin.visible = true;
@@ -244,6 +253,7 @@ class ResultsScreen extends MusicBeatState {
         highscoreNew.animation.addByPrefix('new', 'highscoreAnim0', 24, false);
         highscoreNew.visible = false;
         highscoreNew.updateHitbox();
+        highscoreNew.antialiasing = ClientPrefs.data.antialiasing;
         add(highscoreNew);
 
         new FlxTimer().start(getDelays('highscore'), _ -> {
@@ -262,25 +272,33 @@ class ResultsScreen extends MusicBeatState {
         var hStuf:Int = 50;
 
         var totalHitCounter:TallyCounter = new TallyCounter(375 - ((totalHit >= 1000) ? 50 : 0), (hStuf * 3), totalHit);
+        totalHitCounter.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(totalHitCounter);
         var maxComboCounter:TallyCounter = new TallyCounter(375 - ((maxCombo >= 1000) ? 50 : 0), (hStuf * 4), maxCombo);
+        maxComboCounter.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(maxComboCounter);
 
         hStuf += 4;
         var extraYOffset:Float = 7;
 
         var tallySick:TallyCounter = new TallyCounter(230, (hStuf * 5) + extraYOffset, sicks, 0xFF89E59E);
+        tallySick.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(tallySick);
         var tallyGood:TallyCounter = new TallyCounter(210, (hStuf * 6) + extraYOffset, goods, 0xFF89C9E5);
+        tallyGood.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(tallyGood);
         var tallyBad:TallyCounter = new TallyCounter(190, (hStuf * 7) + extraYOffset, bads, 0xFFE6CF8A);
+        tallyBad.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(tallyBad);
         var tallyShit:TallyCounter = new TallyCounter(220, (hStuf * 8) + extraYOffset, shits, 0xFFE68A8A);
+        tallyShit.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(tallyShit);
         var tallyMissed:TallyCounter = new TallyCounter(260, (hStuf * 9) + extraYOffset, misses, 0xFFC68AE6);
+        tallyMissed.antialiasing = ClientPrefs.data.antialiasing;
         ratingGrp.add(tallyMissed);
 
         score.visible = false;
+        score.antialiasing = ClientPrefs.data.antialiasing;
         add(score); 
 
         for (ind => rating in ratingGrp.members) {
@@ -329,6 +347,7 @@ class ResultsScreen extends MusicBeatState {
             rankTextBack.x = FlxG.width / 2 - 320;
             rankTextBack.y = 50 + (135 * i / 2) + 10;
             rankTextBack.cameras = [scrollCamera];
+            rankTextBack.antialiasing = ClientPrefs.data.antialiasing;
             add(rankTextBack);
             rankTextBack.velocity.x = (i % 2 == 0) ? -7.0 : 7.0;
         }
@@ -372,6 +391,7 @@ class ResultsScreen extends MusicBeatState {
                 });
             }
         });
+        clearPercentCounter.antialiasing = ClientPrefs.data.antialiasing;
         add(clearPercentCounter);
         if (ratingsPopin != null) {
             ratingsPopin.animation.finishCallback = anim -> {
@@ -493,14 +513,15 @@ class ResultsScreen extends MusicBeatState {
     }
 
     function rankNumToRating(rank:Int):String {
+        //'You Suck!', 'Shit', 'Bad', 'Bruh', 'Meh', 'Nice', 'Good', 'Great', 'Sick!', 'Perfect!!'
         var num:Int = switch (rank) {
-            case 9:
+            case 8 | 9:
                 4;
-            case 8:
+            case 7:
                 3;
-            case 7: 
+            case 6: 
                 2;
-            case 4 | 5 | 6:
+            case 4 | 5:
                 1;
             default:
                 0;
