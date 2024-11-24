@@ -117,12 +117,20 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			['Enabled', 'Opponent Only', 'Disabled']);
 		addOption(option);
 
-		var option:Option = new Option('Health Bar Skin:',
-			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
-			'healthBarSkin',
-			STRING,
-			['Default', 'Char Based', 'Reanimated']);
-		addOption(option);
+		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
+		if (healthSkins.length > 0) {
+			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
+				ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
+
+			healthSkins.insert(0, ClientPrefs.defaultData.strumSkin);
+			healthSkins.insert(1, 'Char Based');
+			var option:Option = new Option('Health Bar Skin:',
+				"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
+				'healthBarSkin',
+				STRING,
+				healthSkins);
+			addOption(option);
+		}
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',

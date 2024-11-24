@@ -545,9 +545,9 @@ class PlayState extends MusicBeatState
 			case "Char Based":
 				[[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
 			case "Reanimated":
-				[['reanimated' + (isPixelStage ? ((dad.curCharacter == 'spirit') ? '-pixel-glitch' : '-pixel') : ''), 'shared', ((isPixelStage && dad.curCharacter == 'spirit') ? 'true' : 'false'), ((isPixelStage && dad.curCharacter == 'spirit') ? 'healthBar_pixel_glitched' : 'none')], ['reanimated' + (isPixelStage ? '-pixel' : ''), 'shared', 'false', 'none']];
+				[['Reanimated' + (isPixelStage ? ((dad.curCharacter == 'spirit') ? '-pixel-glitch' : '-pixel') : ''), 'shared', ((isPixelStage && dad.curCharacter == 'spirit') ? 'true' : 'false'), ((isPixelStage && dad.curCharacter == 'spirit') ? 'healthBar_pixel_glitched' : 'none')], ['Reanimated' + (isPixelStage ? '-pixel' : ''), 'shared', 'false', 'none']];
 			case "Default":
-				[['default', 'shared', 'false', 'none'], ['default', 'shared', 'false', 'none']];
+				[['Default', 'shared', 'false', 'none'], ['Default', 'shared', 'false', 'none']];
 			default:
 				[[ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none'], [ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none']];
 		}
