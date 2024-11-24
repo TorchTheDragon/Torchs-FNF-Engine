@@ -34,12 +34,12 @@ class ImageBar extends FlxSpriteGroup
 	{
 		super(x, y);
 
-        if (emptyBar[0] == '' || emptyBar[0] == null) emptyBar[0] = 'new_healthBar_empty';
+        if (emptyBar[0] == '' || emptyBar[0] == null) emptyBar[0] = 'default';
         if (emptyBar[1] == '') emptyBar[1] = null;
 		if ((emptyBar[2] == '' || emptyBar[2] == null) || (emptyBar[3] == '' || emptyBar[3] == null)) {emptyBar[2] = 'false'; emptyBar[3] == 'none';}
 		barData.insert(0, emptyBar[3]);
 
-        if (fullBar[0] == '' || fullBar[0] == null) fullBar[0] = 'new_healthBar';
+        if (fullBar[0] == '' || fullBar[0] == null) fullBar[0] = 'default';
         if (fullBar[1] == '') fullBar[1] = null;
 		if ((fullBar[2] == '' || fullBar[2] == null) || (fullBar[3] == '' || fullBar [3] == null)) {fullBar[2] = 'false'; fullBar[3] == 'none';}
 		barData.insert(1, fullBar[3]);
@@ -50,9 +50,9 @@ class ImageBar extends FlxSpriteGroup
 		this.valueFunction = valueFunction;
 		setBounds(minVal, maxVal);
 
-		bg = new FlxSprite().loadGraphic(Paths.image(emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true')); //honestly, just here for sizing of everything
+		bg = new FlxSprite().loadGraphic(Paths.image('healthbars/' + emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true')); //honestly, just here for sizing of everything
 
-		leftBar = new FlxSprite().loadGraphic(Paths.image(emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true'));
+		leftBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true'));
 		leftBar.antialiasing = antialiasing = ClientPrefs.data.antialiasing;
 		if (emptyBar[2] == 'true') {
 			bg.frames = Paths.getSparrowAtlas(emptyBar[0], emptyBar[1]);
@@ -60,7 +60,7 @@ class ImageBar extends FlxSpriteGroup
 			animationAdd(true);
 		}
 
-		rightBar = new FlxSprite().loadGraphic(Paths.image(fullBar[0], fullBar[1], false), (fullBar[2] == 'true'));
+		rightBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + fullBar[0], fullBar[1], false), (fullBar[2] == 'true'));
 		rightBar.antialiasing = ClientPrefs.data.antialiasing;
 		if (fullBar[2] == 'true') {
 			rightBar.frames = Paths.getSparrowAtlas(fullBar[0], fullBar[1]);

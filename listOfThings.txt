@@ -32,4 +32,4 @@ Plans/ToDo:
 Working On:
 - Specific note skins, note splashes, and strum covers for characters if toggle is enabled
 - Disable RGB shader on notes, splashes, and covers if character overrides it, can be used for purposes where they use the assets directly from an image file instead of using the rgb shader to change the colors
-- 
+- Adding Custom healthbar per character
