@@ -118,19 +118,18 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
-		if (healthSkins.length > 0) {
-			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
-				ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
-
-			healthSkins.insert(0, ClientPrefs.defaultData.strumSkin);
+		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin) || !healthSkins.contains('Char Based')) {
+			if (!healthSkins.contains(ClientPrefs.data.healthBarSkin))
+				ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
+			healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
 			healthSkins.insert(1, 'Char Based');
-			var option:Option = new Option('Health Bar Skin:',
-				"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
-				'healthBarSkin',
-				STRING,
-				healthSkins);
-			addOption(option);
 		}
+		var option:Option = new Option('Health Bar Skin:',
+			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
+			'healthBarSkin',
+			STRING,
+			healthSkins);
+		addOption(option);
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
@@ -143,13 +142,6 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			'timeBarType',
 			STRING,
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
-		addOption(option);
-
-		var option:Option = new Option('Health Bar Type:',
-			"What style of the Health Bar do you want?",
-			'barTypeHealth',
-			STRING,
-			['Default', 'Reanimated']);
 		addOption(option);
 
 		var option:Option = new Option('Flashing Lights',
