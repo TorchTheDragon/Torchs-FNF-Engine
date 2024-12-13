@@ -1,0 +1,61 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				127,
+				71
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "death",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [
+				-127,
+				65
+			],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "dead loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-129,
+				129
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "dead confirm",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"noteSplashes": "normal",
+	"no_antialiasing": false,
+	"image": "characters/torch",
+	"position": [
+		0,
+		0
+	],
+	"noteAssets": "normal",
+	"healthicon": "torch",
+	"flip_x": true,
+	"healthbar_colors": [
+		49,
+		176,
+		209
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"notePath": "torchs_assets",
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

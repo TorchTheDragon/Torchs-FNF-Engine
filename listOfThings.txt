@@ -17,18 +17,21 @@ Added:
 - Reflected Character object added to BaseStage.hx to use if wanted, by default, they are not even initialized
 - Strum Cover skin selection in "VisualSettingsSubState.hx"
 - Custom Healthbar Support and ClientPref
-
+- Custom healthbar that allows for other images to be used
+- Event to toggle opponent note splashes and strum covers
+- Alt note color support -> compatible with Notes, Note Splashes, Strum Covers, and Strum Notes
+ 
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
 - Updated sound, music, inst, soundRandom, getPath, and getTextFromFile functions in Paths file to include the option to use libraries/parent folders
 - Three new base stage functions that utilize the Paths.currentLevel thing to ensure nothing breaks on accident ("playWeekSound" - plays a sound in the week folder, "playWeekMusic" - plays music in the week folder, "randomWeekSound" - plays a random sound provided)
 - Updated both versions of monster to have left and right animations swapped
 - Updated NoteSplash.hx's PixelSplashShaderRef class to include a function "changeRGB" to allow changing the RGB values easier using an FlxColor array
+- Fixed strum covers lasting longer than they are supposed to when hitting short sustains (hopefully)
 
 Plans/ToDo:
 - Rewrite my Character Menu to match the Vanilla Character Menu
 - Implement the new Freeplay Menu from Vanilla FNF
-- Implement my custom healthbar that allows for other images to be used between characters
 
 Working On:
 - Specific note skins, note splashes, and strum covers for characters if toggle is enabled

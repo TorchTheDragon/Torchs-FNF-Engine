@@ -30,8 +30,10 @@ typedef CharacterFile = {
 
 	@:optional var noteSkin:String;
 	var noteColors:NoteColors;
+	@:optional var altNoteColors:NoteColors;
 	@:optional var splashSkin:String;
 	@:optional var strumSkin:String;
+	@:optional var hasAltColors:Bool;
 
 	@:optional var healthBar:String;
 	@:optional var healthBarLibrary:String;
@@ -105,8 +107,16 @@ class Character extends FlxSprite
 		up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
 		right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
 	}; // This needed a default value
+	
+	public var altNoteColors:NoteColors = {
+		left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+		up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+		right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+	}; // This needed a default value
 	public var splashSkin:String = '';
 	public var strumSkin:String = '';
+	public var hasAltColors:Bool = false;
 
 	public var healthBar:String = 'default';
 	public var healthBarLibrary:String = 'shared';
@@ -275,6 +285,8 @@ class Character extends FlxSprite
 		if (json.healthBarLibrary != null && json.healthBarLibrary != '') healthBarLibrary = json.healthBarLibrary;
 		if (json.animatedHealthBar != null) animatedBar = json.animatedHealthBar;
 		if (json.healthBarAnimation != null && json.healthBarAnimation != '') healthBarAnimation = json.healthBarAnimation;
+		if (json.altNoteColors != null) altNoteColors = json.altNoteColors;
+		if (json.hasAltColors != null) hasAltColors = json.hasAltColors;
 	}
 
 	override function update(elapsed:Float)

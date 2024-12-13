@@ -19,3 +19,6 @@ Added "changeRGB" function to RGBPalette.hx's RGBShaderReference class to avoid 
 Reflected Character object added to BaseStage.hx
 Added Strum Skin selection in Visual options
 Custom healthbar Client Pref
+Fixed strum covers staying longer than they should be on short sustains
+Added Alt Note Color Support for Notes, Strum Notes, Note Splashes, and Strum Covers
+Added event for strum covers and note splashes for opponent

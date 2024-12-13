@@ -422,7 +422,14 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 					down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
 					up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
 					right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
-				}
+				},
+				altNoteColors: {
+					left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+					down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+					up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+					right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+				},
+				hasAltColors: false
 			};
 
 			character.loadCharacterFile(_template);
@@ -711,8 +718,6 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		tab_group.add(saveCharacterButton);
 	}
 
-	var noteType:PsychUIDropDownMenu;
-
 	// THIS IS TOO MANY FUCKING STEPPERS AAAAAAAAAAAAAAAAAAAAAAA
 	var leftNoteColorStepperRR:PsychUINumericStepper;
 	var leftNoteColorStepperRG:PsychUINumericStepper;
@@ -752,16 +757,22 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 	var rightNoteColorStepperBB:PsychUINumericStepper;
 	// THIS IS TOO MANY FUCKING STEPPERS AAAAAAAAAAAAAAAAAAAAAAA
 
+	var hasAltNoteColors:PsychUICheckBox;
+
 	var leftNoteButton:PsychUIButton;
 	var downNoteButton:PsychUIButton;
 	var upNoteButton:PsychUIButton;
 	var rightNoteButton:PsychUIButton;
+	var changeToAltColors:PsychUIButton;
+	var altColors:Bool = false;
 
 	var redText:FlxText;
 	var blueText:FlxText;
 	var greenText:FlxText;
+	var altText:FlxText;
 
 	var noteColorNotes:Array<Note>;
+	var altNoteColorNotes:Array<Note>;
 
 	function addNoteColorsUI() {
 		var tab_group = UI_characterbox.getTab('Note Colors').menu;
@@ -789,6 +800,33 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 					note.rgbShader.g = character.noteColors.right[1];
 					note.rgbShader.b = character.noteColors.right[2];
 			}
+			tab_group.add(note);
+		}
+		altNoteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
+		for (i => note in altNoteColorNotes) {
+			note.y = 15;
+			note.scale.set(0.5, 0.5);
+			note.updateHitbox();
+			note.x = 7 + (85 * i);
+			switch (i) {
+				case 0:
+					note.rgbShader.r = character.altNoteColors.left[0];
+					note.rgbShader.g = character.altNoteColors.left[1];
+					note.rgbShader.b = character.altNoteColors.left[2];
+				case 1:
+					note.rgbShader.r = character.altNoteColors.down[0];
+					note.rgbShader.g = character.altNoteColors.down[1];
+					note.rgbShader.b = character.altNoteColors.down[2];
+				case 2:
+					note.rgbShader.r = character.altNoteColors.up[0];
+					note.rgbShader.g = character.altNoteColors.up[1];
+					note.rgbShader.b = character.altNoteColors.up[2];
+				case 3:
+					note.rgbShader.r = character.altNoteColors.right[0];
+					note.rgbShader.g = character.altNoteColors.right[1];
+					note.rgbShader.b = character.altNoteColors.right[2];
+			}
+			note.visible = false;
 			tab_group.add(note);
 		}
 
@@ -909,7 +947,64 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 			if (!tab_group.members.contains(upNoteButton)) tab_group.add(upNoteButton); else tab_group.replace(upNoteButton, upNoteButton);
 			tab_group.remove(rightNoteButton);
 		});
+
+		altText = new FlxText(rightNoteButton.x - 50, rightNoteButton.y + 24, 150, "Alt Colors Selected: false");
+		changeToAltColors = new PsychUIButton(altText.x, altText.y + 18, "Switch Colors", function() {
+			altColors = !altColors;
+			altText.text = "Alt Colors Selected: " + altColors;
+			for(note in noteColorNotes) note.visible = !altColors;
+			for(note in altNoteColorNotes) note.visible = altColors;
+
+			updateAllNotes();
+
+			// TO MANY DAMN STEPPERS AAAAAAAAAAAAAAAAA
+			leftNoteColorStepperRR.value = altColors ? altNoteColorNotes[0].rgbShader.r.red : noteColorNotes[0].rgbShader.r.red;
+			leftNoteColorStepperRG.value = altColors ? altNoteColorNotes[0].rgbShader.r.green : noteColorNotes[0].rgbShader.r.green;
+			leftNoteColorStepperRB.value = altColors ? altNoteColorNotes[0].rgbShader.r.blue : noteColorNotes[0].rgbShader.r.blue;
+			leftNoteColorStepperGR.value = altColors ? altNoteColorNotes[0].rgbShader.g.red : noteColorNotes[0].rgbShader.g.red;
+			leftNoteColorStepperGG.value = altColors ? altNoteColorNotes[0].rgbShader.g.green : noteColorNotes[0].rgbShader.g.green;
+			leftNoteColorStepperGB.value = altColors ? altNoteColorNotes[0].rgbShader.g.blue : noteColorNotes[0].rgbShader.g.blue;
+			leftNoteColorStepperBR.value = altColors ? altNoteColorNotes[0].rgbShader.b.red : noteColorNotes[0].rgbShader.b.red;
+			leftNoteColorStepperBG.value = altColors ? altNoteColorNotes[0].rgbShader.b.green : noteColorNotes[0].rgbShader.b.green;
+			leftNoteColorStepperBB.value = altColors ? altNoteColorNotes[0].rgbShader.b.blue : noteColorNotes[0].rgbShader.b.blue;
+			downNoteColorStepperRR.value = altColors ? altNoteColorNotes[1].rgbShader.r.red : noteColorNotes[1].rgbShader.r.red;
+			downNoteColorStepperRG.value = altColors ? altNoteColorNotes[1].rgbShader.r.green : noteColorNotes[1].rgbShader.r.green;
+			downNoteColorStepperRB.value = altColors ? altNoteColorNotes[1].rgbShader.r.blue : noteColorNotes[1].rgbShader.r.blue;
+			downNoteColorStepperGR.value = altColors ? altNoteColorNotes[1].rgbShader.g.red : noteColorNotes[1].rgbShader.g.red;
+			downNoteColorStepperGG.value = altColors ? altNoteColorNotes[1].rgbShader.g.green : noteColorNotes[1].rgbShader.g.green;
+			downNoteColorStepperGB.value = altColors ? altNoteColorNotes[1].rgbShader.g.blue : noteColorNotes[1].rgbShader.g.blue;
+			downNoteColorStepperBR.value = altColors ? altNoteColorNotes[1].rgbShader.b.red : noteColorNotes[1].rgbShader.b.red;
+			downNoteColorStepperBG.value = altColors ? altNoteColorNotes[1].rgbShader.b.green : noteColorNotes[1].rgbShader.b.green;
+			downNoteColorStepperBB.value = altColors ? altNoteColorNotes[1].rgbShader.b.blue : noteColorNotes[1].rgbShader.b.blue;
+			upNoteColorStepperRR.value = altColors ? altNoteColorNotes[2].rgbShader.r.red : noteColorNotes[2].rgbShader.r.red;
+			upNoteColorStepperRG.value = altColors ? altNoteColorNotes[2].rgbShader.r.green : noteColorNotes[2].rgbShader.r.green;
+			upNoteColorStepperRB.value = altColors ? altNoteColorNotes[2].rgbShader.r.blue : noteColorNotes[2].rgbShader.r.blue;
+			upNoteColorStepperGR.value = altColors ? altNoteColorNotes[2].rgbShader.g.red : noteColorNotes[2].rgbShader.g.red;
+			upNoteColorStepperGG.value = altColors ? altNoteColorNotes[2].rgbShader.g.green : noteColorNotes[2].rgbShader.g.green;
+			upNoteColorStepperGB.value = altColors ? altNoteColorNotes[2].rgbShader.g.blue : noteColorNotes[2].rgbShader.g.blue;
+			upNoteColorStepperBR.value = altColors ? altNoteColorNotes[2].rgbShader.b.red : noteColorNotes[2].rgbShader.b.red;
+			upNoteColorStepperBG.value = altColors ? altNoteColorNotes[2].rgbShader.b.green : noteColorNotes[2].rgbShader.b.green;
+			upNoteColorStepperBB.value = altColors ? altNoteColorNotes[2].rgbShader.b.blue : noteColorNotes[2].rgbShader.b.blue;
+			rightNoteColorStepperRR.value = altColors ? altNoteColorNotes[3].rgbShader.r.red : noteColorNotes[3].rgbShader.r.red;
+			rightNoteColorStepperRG.value = altColors ? altNoteColorNotes[3].rgbShader.r.green : noteColorNotes[3].rgbShader.r.green;
+			rightNoteColorStepperRB.value = altColors ? altNoteColorNotes[3].rgbShader.r.blue : noteColorNotes[3].rgbShader.r.blue;
+			rightNoteColorStepperGR.value = altColors ? altNoteColorNotes[3].rgbShader.g.red : noteColorNotes[3].rgbShader.g.red;
+			rightNoteColorStepperGG.value = altColors ? altNoteColorNotes[3].rgbShader.g.green : noteColorNotes[3].rgbShader.g.green;
+			rightNoteColorStepperGB.value = altColors ? altNoteColorNotes[3].rgbShader.g.blue : noteColorNotes[3].rgbShader.g.blue;
+			rightNoteColorStepperBR.value = altColors ? altNoteColorNotes[3].rgbShader.b.red : noteColorNotes[3].rgbShader.b.red;
+			rightNoteColorStepperBG.value = altColors ? altNoteColorNotes[3].rgbShader.b.green : noteColorNotes[3].rgbShader.b.green;
+			rightNoteColorStepperBB.value = altColors ? altNoteColorNotes[3].rgbShader.b.blue : noteColorNotes[3].rgbShader.b.blue;
+			// TO MANY DAMN STEPPERS AAAAAAAAAAAAAAAAA
+		});
+
+		hasAltNoteColors = new PsychUICheckBox(altText.x, changeToAltColors.y + 24, "Has Alt Note Colors?", 150);
+		hasAltNoteColors.onClick = function() {
+			character.hasAltColors = hasAltNoteColors.checked;
+		};
 		
+		tab_group.add(altText);
+		tab_group.add(changeToAltColors);
+		tab_group.add(hasAltNoteColors);
 		tab_group.add(leftNoteButton);
 		tab_group.add(downNoteButton);
 		tab_group.add(upNoteButton);
@@ -982,51 +1077,62 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 				updateHealthBar();
 				unsavedProgress = true;
 			} else if (sender == leftNoteColorStepperRR || sender == leftNoteColorStepperRG || sender == leftNoteColorStepperRB || sender == leftNoteColorStepperGR || sender == leftNoteColorStepperGG || sender == leftNoteColorStepperGB || sender == leftNoteColorStepperBR || sender == leftNoteColorStepperBG || sender == leftNoteColorStepperBB) {
-				character.noteColors.left = [FlxColor.fromRGB(Std.int(leftNoteColorStepperRR.value), Std.int(leftNoteColorStepperRG.value), Std.int(leftNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperGR.value), Std.int(leftNoteColorStepperGG.value), Std.int(leftNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperBR.value), Std.int(leftNoteColorStepperBG.value), Std.int(leftNoteColorStepperBB.value))];
+				var colArray:Array<FlxColor> = [FlxColor.fromRGB(Std.int(leftNoteColorStepperRR.value), Std.int(leftNoteColorStepperRG.value), Std.int(leftNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperGR.value), Std.int(leftNoteColorStepperGG.value), Std.int(leftNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(leftNoteColorStepperBR.value), Std.int(leftNoteColorStepperBG.value), Std.int(leftNoteColorStepperBB.value))];
+				altColors ? character.altNoteColors.left = colArray : character.noteColors.left = colArray;
 				updateLeftNote();
 				unsavedProgress = true;
 			} else if (sender == downNoteColorStepperRR || sender == downNoteColorStepperRG || sender == downNoteColorStepperRB || sender == downNoteColorStepperGR || sender == downNoteColorStepperGG || sender == downNoteColorStepperGB || sender == downNoteColorStepperBR || sender == downNoteColorStepperBG || sender == downNoteColorStepperBB) {
-				character.noteColors.down = [FlxColor.fromRGB(Std.int(downNoteColorStepperRR.value), Std.int(downNoteColorStepperRG.value), Std.int(downNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperGR.value), Std.int(downNoteColorStepperGG.value), Std.int(downNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperBR.value), Std.int(downNoteColorStepperBG.value), Std.int(downNoteColorStepperBB.value))];
+				var colArray:Array<FlxColor> = [FlxColor.fromRGB(Std.int(downNoteColorStepperRR.value), Std.int(downNoteColorStepperRG.value), Std.int(downNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperGR.value), Std.int(downNoteColorStepperGG.value), Std.int(downNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(downNoteColorStepperBR.value), Std.int(downNoteColorStepperBG.value), Std.int(downNoteColorStepperBB.value))];
+				altColors ? character.altNoteColors.down = colArray : character.noteColors.down = colArray;
 				updateDownNote();
 				unsavedProgress = true;
 			} else if (sender == upNoteColorStepperRR || sender == upNoteColorStepperRG || sender == upNoteColorStepperRB || sender == upNoteColorStepperGR || sender == upNoteColorStepperGG || sender == upNoteColorStepperGB || sender == upNoteColorStepperBR || sender == upNoteColorStepperBG || sender == upNoteColorStepperBB) {
-				character.noteColors.up = [FlxColor.fromRGB(Std.int(upNoteColorStepperRR.value), Std.int(upNoteColorStepperRG.value), Std.int(upNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperGR.value), Std.int(upNoteColorStepperGG.value), Std.int(upNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperBR.value), Std.int(upNoteColorStepperBG.value), Std.int(upNoteColorStepperBB.value))];
+				var colArray:Array<FlxColor> = [FlxColor.fromRGB(Std.int(upNoteColorStepperRR.value), Std.int(upNoteColorStepperRG.value), Std.int(upNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperGR.value), Std.int(upNoteColorStepperGG.value), Std.int(upNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(upNoteColorStepperBR.value), Std.int(upNoteColorStepperBG.value), Std.int(upNoteColorStepperBB.value))];
+				altColors ? character.altNoteColors.up = colArray : character.noteColors.up = colArray;
 				updateUpNote();
 				unsavedProgress = true;
 			} else if (sender == rightNoteColorStepperRR || sender == rightNoteColorStepperRG || sender == rightNoteColorStepperRB || sender == rightNoteColorStepperGR || sender == rightNoteColorStepperGG || sender == rightNoteColorStepperGB || sender == rightNoteColorStepperBR || sender == rightNoteColorStepperBG || sender == rightNoteColorStepperBB) {
-				character.noteColors.right = [FlxColor.fromRGB(Std.int(rightNoteColorStepperRR.value), Std.int(rightNoteColorStepperRG.value), Std.int(rightNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperGR.value), Std.int(rightNoteColorStepperGG.value), Std.int(rightNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperBR.value), Std.int(rightNoteColorStepperBG.value), Std.int(rightNoteColorStepperBB.value))];
+				var colArray:Array<FlxColor> = [FlxColor.fromRGB(Std.int(rightNoteColorStepperRR.value), Std.int(rightNoteColorStepperRG.value), Std.int(rightNoteColorStepperRB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperGR.value), Std.int(rightNoteColorStepperGG.value), Std.int(rightNoteColorStepperGB.value)), FlxColor.fromRGB(Std.int(rightNoteColorStepperBR.value), Std.int(rightNoteColorStepperBG.value), Std.int(rightNoteColorStepperBB.value))];
+				altColors ? character.altNoteColors.right = colArray : character.noteColors.right = colArray;
 				updateRightNote();
 				unsavedProgress = true;
 			}
 		}
 	}
 
+	function updateAllNotes() {
+		updateLeftNote();
+		updateDownNote();
+		updateUpNote();
+		updateRightNote();
+	}
+
 	function updateLeftNote() {
-		var noteShader = noteColorNotes[0].rgbShader;
-		noteShader.r = character.noteColors.left[0];
-		noteShader.g = character.noteColors.left[1];
-		noteShader.b = character.noteColors.left[2];
+		var noteShader = altColors ? altNoteColorNotes[0].rgbShader : noteColorNotes[0].rgbShader;
+		noteShader.r = altColors ? character.altNoteColors.left[0] : character.noteColors.left[0];
+		noteShader.g = altColors ? character.altNoteColors.left[1] : character.noteColors.left[1];
+		noteShader.b = altColors ? character.altNoteColors.left[2] : character.noteColors.left[2];
 	}
 
 	function updateDownNote() {
-		var noteShader = noteColorNotes[1].rgbShader;
-		noteShader.r = character.noteColors.down[0];
-		noteShader.g = character.noteColors.down[1];
-		noteShader.b = character.noteColors.down[2];
+		var noteShader = altColors ? altNoteColorNotes[1].rgbShader : noteColorNotes[1].rgbShader;
+		noteShader.r = altColors ? character.altNoteColors.down[0] : character.noteColors.down[0];
+		noteShader.g = altColors ? character.altNoteColors.down[1] : character.noteColors.down[1];
+		noteShader.b = altColors ? character.altNoteColors.down[2] : character.noteColors.down[2];
 	}
 
 	function updateUpNote() {
-		var noteShader = noteColorNotes[2].rgbShader;
-		noteShader.r = character.noteColors.up[0];
-		noteShader.g = character.noteColors.up[1];
-		noteShader.b = character.noteColors.up[2];
+		var noteShader = altColors ? altNoteColorNotes[2].rgbShader : noteColorNotes[2].rgbShader;
+		noteShader.r = altColors ? character.altNoteColors.up[0] : character.noteColors.up[0];
+		noteShader.g = altColors ? character.altNoteColors.up[1] : character.noteColors.up[1];
+		noteShader.b = altColors ? character.altNoteColors.up[2] : character.noteColors.up[2];
 	}
 
 	function updateRightNote() {
-		var noteShader = noteColorNotes[3].rgbShader;
-		noteShader.r = character.noteColors.right[0];
-		noteShader.g = character.noteColors.right[1];
-		noteShader.b = character.noteColors.right[2];
+		var noteShader = altColors ? altNoteColorNotes[3].rgbShader : noteColorNotes[3].rgbShader;
+		noteShader.r = altColors ? character.altNoteColors.right[0] : character.noteColors.right[0];
+		noteShader.g = altColors ? character.altNoteColors.right[1] : character.noteColors.right[1];
+		noteShader.b = altColors ? character.altNoteColors.right[2] : character.noteColors.right[2];
 	}
 
 	function reloadCharacterImage()
@@ -1089,12 +1195,10 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		positionYStepper.value = character.positionArray[1];
 		positionCameraXStepper.value = character.cameraPosition[0];
 		positionCameraYStepper.value = character.cameraPosition[1];
+		altColors = false;
 		reloadAnimationDropDown();
 		updateHealthBar();
-		updateLeftNote();
-		updateDownNote();
-		updateUpNote();
-		updateRightNote();
+		updateAllNotes();
 		setNoteColorVals();
 	}
 
@@ -1590,7 +1694,16 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 				"down": character.noteColors.down,
 				"up": character.noteColors.up,
 				"right": character.noteColors.right
-			}
+			},
+
+			"altNoteColors": {
+				"left": character.altNoteColors.left,
+				"down": character.altNoteColors.down,
+				"up": character.altNoteColors.up,
+				"right": character.altNoteColors.right
+			},
+
+			"hasAltColors": character.hasAltColors
 		};
 
 		var data:String = PsychJsonPrinter.print(json, ['offsets', 'position', 'healthbar_colors', 'camera_position', 'indices']);

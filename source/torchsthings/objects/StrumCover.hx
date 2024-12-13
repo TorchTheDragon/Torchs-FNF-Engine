@@ -18,8 +18,6 @@ class StrumCover extends FlxSprite {
     public var strumNote:StrumNote;
     var posOffset:Array<Int> = [-25, -5];
     var animOffsets:Array<Array<Int>> = [/*start*/[20, 15], /*hold*/[-25, -5], /*end*/[-65, -40]]; // Please note that the "start" offset is kind of useless if you have a 1 frame animation
-	//public var rgbShader:RGBPalette;
-    //public var pixelShader:PixelSplashShaderRef;
     public var rgbShader:PixelSplashShaderRef;
     var assets:String = '';
     public var showSplash:Bool = false;
@@ -70,8 +68,6 @@ class StrumCover extends FlxSprite {
         super.update(elapsed);
     }
 
-    var isAltNote:Bool = false;
-
     function getRatingFromNote(note:Note):String {
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
 		var daRating:Rating = Conductor.judgeNote(PlayState.instance.ratingsData, noteDiff / PlayState.instance.playbackRate);
@@ -82,13 +78,8 @@ class StrumCover extends FlxSprite {
         if (!enemySplash) showSplash = (ratingsToShowUpOn.contains(getRatingFromNote(note)));
         visible = showSplash;
         setOffset(0);
-        if (note != null && altSkin(assets) && note.noteType == 'Alt Animation') {
-            animation.play('start-alt');
-            isAltNote = true;
-        } else {
-            animation.play("start");
-            isAltNote = false;
-        }
+        animation.play("start");
+        endAnimAlreadyPlayed = false;
     }
 
     function setOffset(?anim:Int) {
@@ -97,37 +88,36 @@ class StrumCover extends FlxSprite {
         y = strumNote.y + posOffset[1];
     }
 
+    public var endAnimAlreadyPlayed:Bool = false;
+
     public function end(?force:Bool = false) {
         if (force) visible = true; else visible = showSplash;
         setOffset(2); // For End Anim Offset
-        animation.play("end" + (isAltNote ? '-alt' : ''), true);
+        if (endAnimAlreadyPlayed == false) {
+            endAnimAlreadyPlayed = true;
+            animation.play("end", true);
+        }
     }
 
     function daCallback(anim:String) {
         switch (anim) {
-            case "start" | 'start-alt':
+            case "start":
                 setOffset(1); // For Hold Anim Offset
-                animation.play("hold" + (isAltNote ? '-alt' : ''));
+                animation.play("hold");
 
-            case "end" | 'end-alt':
+            case "end":
                 setOffset(0); // For Start Anim Offset
                 showSplash = false;
                 visible = false;
         }
     }
 
-    function altSkin(?assets:String = ''):Bool {
-		var tableOfSkins:Array<String> = [
-			'custom_notes/covers/parents'
-		];
-
-        for (skin in tableOfSkins) {
-            if (assets.startsWith(skin)) {
-                return true;
-            }
+    function strumFinishCallback(anim:String) {
+        switch (anim) {
+            case "confirm":
+                if(!endAnimAlreadyPlayed) end();
         }
-		return false;
-	}
+    }
 
     public static function getStrumSkinPostfix() {
         var skin:String = '';
@@ -155,12 +145,8 @@ class StrumCover extends FlxSprite {
         animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
         animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
         animation.addByPrefix('end', colArray[strumNote.noteData] + "CoverEnd0", 24, false);
-        if (altSkin(texture)) {
-            animation.addByPrefix('start-alt', colArray[strumNote.noteData] + "CoverStart-alt", 24, false);
-            animation.addByPrefix('hold-alt', colArray[strumNote.noteData] + "Cover-alt", 24, true);
-            animation.addByPrefix('end-alt', colArray[strumNote.noteData] + "CoverEnd-alt", 24, false);
-        }
         animation.finishCallback = daCallback;
+        if (strumNote != null) strumNote.animation.finishCallback = strumFinishCallback;
         animation.play("end");
 
         if(lastAnim != null) {animation.play(lastAnim, true);}
