@@ -2280,7 +2280,9 @@ class PlayState extends MusicBeatState
 				enemyNoteSplashes = val1;
 				enemyCoverSplashes = val2;
 
-			case 'Updated Camera Zoom': //I will not remove the old one, instead, I will just add my own. Eventually, I will get to replacing the old ones to use my new zoom function.
+			case 'Updated Camera Zoom' | "Torch's Custom Zoom": 
+				// I will not remove the old one, instead, I will just add my own. Eventually, I will get to replacing the old ones to use my new zoom function.
+				// The only reason this is also labeled "Torch's Custom Zoom" is for compatibilty with old charts that use my old event name. 
 				if (ClientPrefs.data.camZooms) {
 					var val1:String = 'regular';
 					if (value1 != null && value1 != 'regular' && value1 != '') val1 = value1.toLowerCase().trim();
