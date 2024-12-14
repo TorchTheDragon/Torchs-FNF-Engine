@@ -112,8 +112,6 @@ class StrumCover extends FlxSprite {
         }
     }
 
-    // Hi Jorge, this is just a test to see if your server webhook recieves this
-
     function strumFinishCallback(anim:String) {
         switch (anim) {
             case "confirm":
