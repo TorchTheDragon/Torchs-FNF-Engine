@@ -32,6 +32,8 @@ class ReflectedChar extends Character {
                 return -10;
             case 'bf-pixel-opponent':
                 return -325;
+            case 'torch' | 'torch-dead':
+                return -75;
             default: // 'bf' is used at the default here.
                 return -55;
         }

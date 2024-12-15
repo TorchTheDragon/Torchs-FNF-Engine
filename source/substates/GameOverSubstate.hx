@@ -61,6 +61,14 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
+		var playBF:String = PlayState.instance.boyfriend.curCharacter;
+		#if MODS_ALLOWED
+		if (FileSystem.exists(Paths.getPath('characters/$playBF-dead.json', TEXT, null, true)))
+		#else
+		if (Assets.exists(Paths.getPath('characters/$playBF-dead.json', TEXT, null, true)))
+		#end
+		{characterName = playBF + '-dead';}
+
 		if(boyfriend == null)
 		{
 			boyfriend = new Character(PlayState.instance.boyfriend.getScreenPosition().x, PlayState.instance.boyfriend.getScreenPosition().y, characterName, true);

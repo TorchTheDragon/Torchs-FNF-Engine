@@ -2,10 +2,7 @@
 	"animations": [
 		{
 			"loop": false,
-			"offsets": [
-				127,
-				71
-			],
+			"offsets": [127, 71],
 			"anim": "firstDeath",
 			"fps": 24,
 			"name": "death",
@@ -13,10 +10,7 @@
 		},
 		{
 			"loop": true,
-			"offsets": [
-				-127,
-				65
-			],
+			"offsets": [-102, 68],
 			"anim": "deathLoop",
 			"fps": 24,
 			"name": "dead loop",
@@ -24,10 +18,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				-129,
-				129
-			],
+			"offsets": [-102, 124],
 			"anim": "deathConfirm",
 			"fps": 24,
 			"name": "dead confirm",
@@ -35,27 +26,59 @@
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "normal",
 	"no_antialiasing": false,
 	"image": "characters/torch",
-	"position": [
-		0,
-		0
-	],
-	"noteAssets": "normal",
+	"position": [-100, 5],
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "torch",
 	"flip_x": true,
-	"healthbar_colors": [
-		49,
-		176,
-		209
-	],
-	"camera_position": [
-		0,
-		0
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [49, 176, 209],
+	"camera_position": [0, 0],
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"sing_duration": 4,
-	"scale": 1,
+	"hasAltColors": false,
+	"scale": 0.9,
 	"_editor_isPlayer": true
 }
