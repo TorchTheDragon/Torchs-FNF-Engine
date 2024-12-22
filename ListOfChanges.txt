@@ -22,3 +22,4 @@ Custom healthbar Client Pref
 Fixed strum covers staying longer than they should be on short sustains
 Added Alt Note Color Support for Notes, Strum Notes, Note Splashes, and Strum Covers
 Added event for strum covers and note splashes for opponent
+Added custom note skin and texture library support for character based note skins and colors

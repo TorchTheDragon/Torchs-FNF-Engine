@@ -19,7 +19,8 @@ Added:
 - Custom Healthbar Support and ClientPref
 - Custom healthbar that allows for other images to be used
 - Event to toggle opponent note splashes and strum covers
-- Alt note color support -> compatible with Notes, Note Splashes, Strum Covers, and Strum Notes
+- Alt note color support -> compatible with Notes, Note Splashes, Strum Covers, and Strum Notes (made kinda better in the literal next addition)
+- Added specific note skins, the ability to disable note RGB per character and to set colors for both Normal and Alt notes.
  
 Updates:
 - Updated FlxAnimate to the newest version, also fixed issues with other ones in specific stages
@@ -34,6 +35,8 @@ Plans/ToDo:
 - Implement the new Freeplay Menu from Vanilla FNF
 
 Working On:
-- Specific note skins, note splashes, and strum covers for characters if toggle is enabled
-- Disable RGB shader on notes, splashes, and covers if character overrides it, can be used for purposes where they use the assets directly from an image file instead of using the rgb shader to change the colors
+- Specific -note skins-, note splashes, and strum covers for characters if toggle is enabled
+- Disable RGB shader on -notes-, splashes, and covers if character overrides it, can be used for purposes where they use the assets directly from an image file instead of using the rgb shader to change the colors
 - Adding support for Custom healthbar per character
+
+-word- means crossed out since I don't have a way to do that in a text file

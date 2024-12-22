@@ -29,6 +29,9 @@ typedef CharacterFile = {
 	@:optional var _editor_isPlayer:Null<Bool>;
 
 	@:optional var noteSkin:String;
+	@:optional var noteSkinLib:String;
+	@:optional var disableNoteRBG:Bool;
+	@:optional var useNoteSkin:Bool;
 	var noteColors:NoteColors;
 	@:optional var altNoteColors:NoteColors;
 	@:optional var splashSkin:String;
@@ -101,6 +104,9 @@ class Character extends FlxSprite
 	public var editorIsPlayer:Null<Bool> = null;
 
 	public var noteSkin:String = '';
+	public var noteSkinLib:String = '';
+	public var disableNoteRGB:Bool = false;
+	public var useNoteSkin:Bool = false;
 	public var noteColors:NoteColors = {
 		left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
 		down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
@@ -278,6 +284,7 @@ class Character extends FlxSprite
 		//trace('Loaded file to character ' + curCharacter);
 
 		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin;
+		if (json.noteSkinLib != null && json.noteSkinLib != '') noteSkinLib = json.noteSkinLib; else noteSkinLib = 'shared';
 		if (json.noteColors != null) noteColors = json.noteColors;
 		if (json.splashSkin != null && json.splashColors != '') splashSkin = json.splashSkin;
 		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
@@ -287,6 +294,8 @@ class Character extends FlxSprite
 		if (json.healthBarAnimation != null && json.healthBarAnimation != '') healthBarAnimation = json.healthBarAnimation;
 		if (json.altNoteColors != null) altNoteColors = json.altNoteColors;
 		if (json.hasAltColors != null) hasAltColors = json.hasAltColors;
+		if (json.disableNoteRGB != null) disableNoteRGB = json.disableNoteRGB;
+		if (json.useNoteSkin != null) useNoteSkin = json.useNoteSkin;
 	}
 
 	override function update(elapsed:Float)

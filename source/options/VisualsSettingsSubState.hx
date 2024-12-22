@@ -110,8 +110,8 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			option.onChange = playStrumCovers;
 		}
 
-		var option:Option = new Option('Character Note Colors:',
-			"Should characters override the default Note Colors?",
+		var option:Option = new Option('Character Based Notes:',
+			"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
 			'characterNoteColors',
 			STRING,
 			['Enabled', 'Opponent Only', 'Disabled']);

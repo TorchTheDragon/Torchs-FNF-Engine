@@ -758,6 +758,13 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 	// THIS IS TOO MANY FUCKING STEPPERS AAAAAAAAAAAAAAAAAAAAAAA
 
 	var hasAltNoteColors:PsychUICheckBox;
+	var noteSkinText:FlxText;
+	var charNoteSkin:PsychUIInputText;
+	var noteSkinLibText:FlxText;
+	var charNoteSkinLib:PsychUIInputText;
+	var disableNoteRGB:PsychUICheckBox;
+	var usingNoteSkin:PsychUICheckBox;
+	var reloadNotes:PsychUIButton;
 
 	var leftNoteButton:PsychUIButton;
 	var downNoteButton:PsychUIButton;
@@ -831,8 +838,8 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		}
 
 		var redY = 140;
-		var greenY = 180;
-		var blueY = 220;
+		var greenY = 172;
+		var blueY = 204;
 
 		// Left Notes
 		leftNoteColorStepperRR = new PsychUINumericStepper(noteColorNotes[0].x, redY, 20, noteColorNotes[0].rgbShader.r.red, 0, 255, 0);
@@ -883,9 +890,9 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		var upColorSteppers:Array<PsychUINumericStepper> = [upNoteColorStepperRR, upNoteColorStepperRG, upNoteColorStepperRB, upNoteColorStepperGR, upNoteColorStepperGG, upNoteColorStepperGB, upNoteColorStepperBR, upNoteColorStepperBG, upNoteColorStepperBB];
 		var rightColorSteppers:Array<PsychUINumericStepper> = [rightNoteColorStepperRR, rightNoteColorStepperRG, rightNoteColorStepperRB, rightNoteColorStepperGR, rightNoteColorStepperGG, rightNoteColorStepperGB, rightNoteColorStepperBR, rightNoteColorStepperBG, rightNoteColorStepperBB];
 
-		redText = new FlxText(noteColorNotes[0].x, redY - 18, 100, 'Inside Color:');
-		greenText = new FlxText(noteColorNotes[0].x, greenY - 18, 100, 'Middle Color:');
-		blueText = new FlxText(noteColorNotes[0].x, blueY - 18, 100, 'Outer Color:');
+		redText = new FlxText(noteColorNotes[0].x, redY - 12, 100, 'Inside Color:');
+		greenText = new FlxText(noteColorNotes[0].x, greenY - 12, 100, 'Middle Color:');
+		blueText = new FlxText(noteColorNotes[0].x, blueY - 12, 100, 'Outer Color:');
 
 		leftNoteButton = new PsychUIButton(noteColorNotes[0].x, 100, "Left Note", function() {
 			for (i in 0...leftColorSteppers.length) {
@@ -949,7 +956,7 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		});
 
 		altText = new FlxText(rightNoteButton.x - 50, rightNoteButton.y + 24, 150, "Alt Colors Selected: false");
-		changeToAltColors = new PsychUIButton(altText.x, altText.y + 18, "Switch Colors", function() {
+		changeToAltColors = new PsychUIButton(altText.x, altText.y + 12, "Switch Colors", function() {
 			altColors = !altColors;
 			altText.text = "Alt Colors Selected: " + altColors;
 			for(note in noteColorNotes) note.visible = !altColors;
@@ -997,9 +1004,60 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 			// TO MANY DAMN STEPPERS AAAAAAAAAAAAAAAAA
 		});
 
+		var leftSteppers:Array<Array<PsychUINumericStepper>> = [[leftNoteColorStepperRR, leftNoteColorStepperRG, leftNoteColorStepperRB], [leftNoteColorStepperGR, leftNoteColorStepperGG, leftNoteColorStepperGB], [leftNoteColorStepperBR, leftNoteColorStepperBG, leftNoteColorStepperBB]];
+		var downSteppers:Array<Array<PsychUINumericStepper>> = [[downNoteColorStepperRR, downNoteColorStepperRG, downNoteColorStepperRB], [downNoteColorStepperGR, downNoteColorStepperGG, downNoteColorStepperGB], [downNoteColorStepperBR, downNoteColorStepperBG, downNoteColorStepperBB]];
+		var upSteppers:Array<Array<PsychUINumericStepper>> = [[upNoteColorStepperRR, upNoteColorStepperRG, upNoteColorStepperRB], [upNoteColorStepperGR, upNoteColorStepperGG, upNoteColorStepperGB], [upNoteColorStepperBR, upNoteColorStepperBG, upNoteColorStepperBB]];
+		var rightSteppers:Array<Array<PsychUINumericStepper>> = [[rightNoteColorStepperRR, rightNoteColorStepperRG, rightNoteColorStepperRB], [rightNoteColorStepperGR, rightNoteColorStepperGG, rightNoteColorStepperGB], [rightNoteColorStepperBR, rightNoteColorStepperBG, rightNoteColorStepperBB]];
+
 		hasAltNoteColors = new PsychUICheckBox(altText.x, changeToAltColors.y + 24, "Has Alt Note Colors?", 150);
-		hasAltNoteColors.onClick = function() {
-			character.hasAltColors = hasAltNoteColors.checked;
+		hasAltNoteColors.onClick = function() {character.hasAltColors = hasAltNoteColors.checked;};
+		
+		noteSkinText = new FlxText(hasAltNoteColors.x, hasAltNoteColors.y + 18, 150, "Note Skin:");
+		charNoteSkin = new PsychUIInputText(noteSkinText.x, noteSkinText.y + 12, 75, character.noteSkin != null ? character.noteSkin : '', 8);
+		noteSkinLibText = new FlxText(charNoteSkin.x, charNoteSkin.y + 18, 150, "Note Skin Library:");
+		charNoteSkinLib = new PsychUIInputText(noteSkinLibText.x, noteSkinLibText.y + 12, 75, character.noteSkinLib != null ? character.noteSkinLib : '', 8);
+		reloadNotes = new PsychUIButton(leftNoteButton.x, blueY + 31, "Reload Notes", function() {
+			var allNotes:Array<Note> = [];
+			for (note in noteColorNotes) {
+				allNotes.push(note);
+			}
+			for (note in altNoteColorNotes) {
+				allNotes.push(note);
+			}
+
+			for (note in allNotes) {
+				note.rgbShader.enabled = !character.disableNoteRGB; // Yeah yeah, I know I am swapping it, but if "disableNoteRGB" is true, then if I didn't swap it, the notes would be showing the RGB shader in the preview
+				//trace(Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib));
+				if (character.useNoteSkin && Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib)) {
+					reloadNote(note);
+				}
+			}
+
+			updateAllNotes();
+			/*
+			for (note in noteColorNotes) {
+				if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
+				if (note.rgbShader.enabled == true) {
+					updateAllNotes();
+				}
+			}
+			for (note in altNoteColorNotes) {
+				if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
+				if (note.rgbShader.enabled == true) {
+					updateAllNotes();
+				}
+			}
+			*/
+		});
+		
+		disableNoteRGB = new PsychUICheckBox(reloadNotes.x + 85, reloadNotes.y + 4, "No Note RGB?", 75);
+		disableNoteRGB.onClick = function() {
+			character.disableNoteRGB = disableNoteRGB.checked;
+		};
+
+		usingNoteSkin = new PsychUICheckBox(disableNoteRGB.x + 100, disableNoteRGB.y, "Custom Note Skin?", 150);
+		usingNoteSkin.onClick = function() {
+			character.useNoteSkin = usingNoteSkin.checked;
 		};
 		
 		tab_group.add(altText);
@@ -1009,6 +1067,13 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		tab_group.add(downNoteButton);
 		tab_group.add(upNoteButton);
 		tab_group.add(rightNoteButton);
+		tab_group.add(noteSkinText);
+		tab_group.add(charNoteSkin);
+		tab_group.add(noteSkinLibText);
+		tab_group.add(charNoteSkinLib);
+		tab_group.add(disableNoteRGB);
+		tab_group.add(usingNoteSkin);
+		tab_group.add(reloadNotes);
 	}
 
 	public function UIEvent(id:String, sender:Dynamic) {
@@ -1024,15 +1089,17 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 				character.healthIcon = healthIconInputText.text;
 				if(lastIcon != healthIcon.getCharacter()) updatePresence();
 				unsavedProgress = true;
-			}
-			else if(sender == vocalsInputText)
-			{
+			} else if (sender == vocalsInputText) {
 				character.vocalsFile = vocalsInputText.text;
 				unsavedProgress = true;
-			}
-			else if(sender == imageInputText)
-			{
+			} else if (sender == imageInputText) {
 				character.imageFile = imageInputText.text;
+				unsavedProgress = true;
+			} else if (sender == charNoteSkin) {
+				character.noteSkin = charNoteSkin.text;
+				unsavedProgress = true;
+			} else if (sender == charNoteSkinLib) {
+				character.noteSkinLib = charNoteSkinLib.text;
 				unsavedProgress = true;
 			}
 		}
@@ -1101,10 +1168,24 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 	}
 
 	function updateAllNotes() {
+		for (note in noteColorNotes) {
+			reloadNote(note);
+			if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
+		}
+		for (note in altNoteColorNotes) {
+			reloadNote(note);
+			if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
+		}
 		updateLeftNote();
 		updateDownNote();
 		updateUpNote();
 		updateRightNote();
+	}
+
+	function reloadNote(note:Note) {
+		note.reloadNote(character.noteSkin, character.noteSkinLib);
+		note.scale.set(0.5, 0.5);
+		note.updateHitbox();
 	}
 
 	function updateLeftNote() {
@@ -1196,6 +1277,10 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		positionCameraXStepper.value = character.cameraPosition[0];
 		positionCameraYStepper.value = character.cameraPosition[1];
 		altColors = false;
+		disableNoteRGB.checked = character.disableNoteRGB;
+		usingNoteSkin.checked = character.useNoteSkin;
+		charNoteSkin.text = character.noteSkin;
+		charNoteSkinLib.text = character.noteSkinLib;
 		reloadAnimationDropDown();
 		updateHealthBar();
 		updateAllNotes();
@@ -1695,15 +1780,17 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 				"up": character.noteColors.up,
 				"right": character.noteColors.right
 			},
-
 			"altNoteColors": {
 				"left": character.altNoteColors.left,
 				"down": character.altNoteColors.down,
 				"up": character.altNoteColors.up,
 				"right": character.altNoteColors.right
 			},
-
-			"hasAltColors": character.hasAltColors
+			"hasAltColors": character.hasAltColors,
+			"noteSkin": character.noteSkin,
+			"noteSkinLib": character.noteSkinLib,
+			"disableNoteRGB": character.disableNoteRGB,
+			"useNoteSkin": character.useNoteSkin
 		};
 
 		var data:String = PsychJsonPrinter.print(json, ['offsets', 'position', 'healthbar_colors', 'camera_position', 'indices']);

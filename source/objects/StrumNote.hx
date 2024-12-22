@@ -8,6 +8,7 @@ import shaders.RGBPalette.RGBShaderReference;
 class StrumNote extends FlxSprite
 {
 	public var rgbShader:RGBShaderReference;
+	public var disableRGB:Bool = false;
 	public var resetAnim:Float = 0;
 	public var noteData:Int = 0;
 	public var direction:Float = 90;
@@ -24,8 +25,10 @@ class StrumNote extends FlxSprite
 		return value;
 	}
 
+	public var library:String = 'shared';
+
 	public var useRGBShader:Bool = true;
-	public function new(x:Float, y:Float, leData:Int, player:Int) {
+	public function new(x:Float, y:Float, leData:Int, player:Int, ?customTexture:String = '', ?customLibrary:String = 'shared') {
 		animation = new PsychAnimationController(this);
 
 		rgbShader = new RGBShaderReference(this, Note.initializeGlobalRGBShader(leData));
@@ -56,7 +59,12 @@ class StrumNote extends FlxSprite
 		else skin = Note.defaultNoteSkin;
 
 		var customSkin:String = skin + Note.getNoteSkinPostfix(); 
-		if (Paths.fileExists('images/$customSkin.png', IMAGE)) skin = customSkin;
+		if (customTexture != null && customTexture != '') {
+			if (Paths.fileExists('images/$customTexture.png', IMAGE, false, customLibrary)) {
+				skin = customTexture;
+				library = customLibrary;
+			} else if (Paths.fileExists('images/$customSkin.png', IMAGE)) skin = customSkin;
+		}
 
 		texture = skin; //Load texture and anims
 		scrollFactor.set();
@@ -68,14 +76,17 @@ class StrumNote extends FlxSprite
 		var lastAnim:String = null;
 		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-		if (!Paths.fileExists('images/pixelUI/$texture.png', IMAGE) && PlayState.isPixelStage) texture = Note.defaultNoteSkin;
+		if (!Paths.fileExists('images/pixelUI/$texture.png', IMAGE, false, library) && PlayState.isPixelStage) {
+			texture = Note.defaultNoteSkin;
+			library = 'shared';
+		}
 
 		if(PlayState.isPixelStage)
 		{
-			loadGraphic(Paths.image('pixelUI/' + texture));
+			loadGraphic(Paths.image('pixelUI/' + texture, library));
 			width = width / 4;
 			height = height / 5;
-			loadGraphic(Paths.image('pixelUI/' + texture), true, Math.floor(width), Math.floor(height));
+			loadGraphic(Paths.image('pixelUI/' + texture, library), true, Math.floor(width), Math.floor(height));
 
 			antialiasing = false;
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));
@@ -106,7 +117,7 @@ class StrumNote extends FlxSprite
 		}
 		else
 		{
-			frames = Paths.getSparrowAtlas(texture);
+			frames = Paths.getSparrowAtlas(texture, library);
 			animation.addByPrefix('green', 'arrowUP');
 			animation.addByPrefix('blue', 'arrowDOWN');
 			animation.addByPrefix('purple', 'arrowLEFT');
@@ -168,6 +179,6 @@ class StrumNote extends FlxSprite
 			centerOffsets();
 			centerOrigin();
 		}
-		if(useRGBShader) rgbShader.enabled = (animation.curAnim != null && animation.curAnim.name != 'static');
+		if(useRGBShader) rgbShader.enabled = (animation.curAnim != null && animation.curAnim.name != 'static' && !disableRGB);
 	}
 }
