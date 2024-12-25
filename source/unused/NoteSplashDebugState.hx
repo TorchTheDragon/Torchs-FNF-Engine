@@ -164,7 +164,8 @@ class NoteSplashDebugState extends MusicBeatState implements PsychUIEventHandler
 		loadFrames();
 		changeSelection();
 		super.create();
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 	}
 
 	var curAnim:Int = 1;
@@ -177,7 +178,8 @@ class NoteSplashDebugState extends MusicBeatState implements PsychUIEventHandler
 		{
 			MusicBeatState.switchState(new MasterEditorMenu());
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			FlxG.mouse.visible = false;
+			//FlxG.mouse.visible = false;
+			Cursor.hide();
 		}
 		super.update(elapsed);
 

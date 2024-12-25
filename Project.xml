@@ -125,6 +125,8 @@
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED" version="1.9.2"/>
 	<haxelib name="hxdiscord_rpc" version="1.2.4" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
+	<haxelib name="haxeui-core"/>
+	<haxelib name="haxeui-flixel"/>
 
 	<!--Torch's Stuff-->
 	<haxelib name="torchsfunctions"/>
@@ -189,6 +191,10 @@
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
+
+	<haxedef name="haxeui_no_mouse_reset"/>
+	<haxedef name="haxeui_focus_out_on_click"/>
+	<haxedef name="haxeui_dont_impose_base_class"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 

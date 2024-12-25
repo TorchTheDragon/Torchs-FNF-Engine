@@ -329,19 +329,20 @@ class ModsMenuState extends MusicBeatState
 
 			persistentUpdate = false;
 			FlxG.autoPause = ClientPrefs.data.autoPause;
-			FlxG.mouse.visible = false;
+			//FlxG.mouse.visible = false;
+			Cursor.hide();
 			return;
 		}
 
 		if(Math.abs(FlxG.mouse.deltaX) > 10 || Math.abs(FlxG.mouse.deltaY) > 10)
 		{
 			controls.controllerMode = false;
-			if(!FlxG.mouse.visible) FlxG.mouse.visible = true;
+			if(!FlxG.mouse.visible) /*FlxG.mouse.visible = true;*/ Cursor.show();
 		}
 		
 		if(controls.controllerMode != _lastControllerMode)
 		{
-			if(controls.controllerMode) FlxG.mouse.visible = false;
+			if(controls.controllerMode) /*FlxG.mouse.visible = false;*/ Cursor.hide();
 			_lastControllerMode = controls.controllerMode;
 		}
 

@@ -134,7 +134,8 @@ class DialogueCharacterEditorState extends MusicBeatState implements PsychUIEven
 		hudGroup.add(daText);
 
 		addEditorBox();
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 		updateCharTypeBox();
 		
 		super.create();

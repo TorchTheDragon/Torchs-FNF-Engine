@@ -133,6 +133,9 @@ class Main extends Sprite
 			FlxG.sound = soundFrontEnd;
 			daGame._customSoundTray = torchsthings.objects.CustomSoundTray.CustomSoundTray;
 		}
+
+		backend.input.Cursor.registerHaxeUICursors();
+
 		addChild(daGame);
 		#if !mobile
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);

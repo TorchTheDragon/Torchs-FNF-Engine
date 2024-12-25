@@ -957,7 +957,8 @@ class CharacterMenu extends MusicBeatState{
                 // I can't get it to hide all items sadly, so buttons and random black boxes from text fields stay - Torch
                 changeActive([bgColorR, bgColorG, bgColorB, saveButton, testColors], true);
                 changeAlpha([offsets, curChar, bgColorText, bgColorR, bgColorG, bgColorB, saveButton, saveButton.label, testColors, testColors.label], 1);
-                FlxG.mouse.visible = true;
+                //FlxG.mouse.visible = true;
+                Cursor.show();
                 disableUIKeys = true;
 
                 @:privateAccess
@@ -1112,7 +1113,8 @@ class CharacterMenu extends MusicBeatState{
             } else {
                 changeActive([bgColorR, bgColorG, bgColorB, saveButton, testColors], false);
                 changeAlpha([offsets, curChar, bgColorText, bgColorR, bgColorG, bgColorB, saveButton, saveButton.label, testColors, testColors.label], 0);
-                FlxG.mouse.visible = false;
+                //FlxG.mouse.visible = false;
+                Cursor.hide();
                 disableUIKeys = false;
 
                 @:privateAccess 

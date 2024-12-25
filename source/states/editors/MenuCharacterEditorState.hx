@@ -61,7 +61,8 @@ class MenuCharacterEditorState extends MusicBeatState implements PsychUIEventHan
 		add(tipText);
 
 		addEditorBox();
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 		updateCharacters();
 
 		super.create();

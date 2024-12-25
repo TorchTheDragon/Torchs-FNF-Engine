@@ -17,8 +17,10 @@ import objects.Note;
 
 import states.editors.content.Prompt;
 import states.editors.content.PsychJsonPrinter;
+import backend.EditorState;
 
-class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
+//class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
+class CharacterEditorState extends EditorState implements PsychUIEventHandler.PsychUIEvent
 {
 	var character:Character;
 	var ghost:FlxSprite;
@@ -153,7 +155,8 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		add(frameAdvanceText);
 
 		addHelpScreen();
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 		FlxG.camera.zoom = 1;
 
 		makeUIMenu();
@@ -257,6 +260,7 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		UI_characterbox.cameras = [camHUD];
 		add(UI_characterbox);
 		add(UI_box);
+		boxesGroup([UI_characterbox, UI_box]);
 
 		addGhostUI();
 		addSettingsUI();
@@ -1034,20 +1038,6 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 			}
 
 			updateAllNotes();
-			/*
-			for (note in noteColorNotes) {
-				if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
-				if (note.rgbShader.enabled == true) {
-					updateAllNotes();
-				}
-			}
-			for (note in altNoteColorNotes) {
-				if (note.shader == null && character.disableNoteRGB == false) note.shader = note.rgbShader.parent.shader;
-				if (note.rgbShader.enabled == true) {
-					updateAllNotes();
-				}
-			}
-			*/
 		});
 		
 		disableNoteRGB = new PsychUICheckBox(reloadNotes.x + 85, reloadNotes.y + 4, "No Note RGB?", 75);
@@ -1074,6 +1064,16 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		tab_group.add(disableNoteRGB);
 		tab_group.add(usingNoteSkin);
 		tab_group.add(reloadNotes);
+
+		inputTextsGroup([charNoteSkin, charNoteSkinLib]);
+		numericSteppersGroup(leftColorSteppers);
+		numericSteppersGroup(downColorSteppers);
+		numericSteppersGroup(upColorSteppers);
+		numericSteppersGroup(rightColorSteppers);
+		buttonsGroup([reloadNotes, changeToAltColors, rightNoteButton, upNoteButton, downNoteButton, leftNoteButton]);
+		checkBoxesGroup([usingNoteSkin, disableNoteRGB, hasAltNoteColors]);
+		//inputTexts.add(charNoteSkin);
+		//inputTexts.add(charNoteSkinLib);
 	}
 
 	public function UIEvent(id:String, sender:Dynamic) {
@@ -1536,7 +1536,8 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 			}
 			else
 			{
-				FlxG.mouse.visible = false;
+				//FlxG.mouse.visible = false;
+				Cursor.hide();
 				MusicBeatState.switchState(new PlayState());
 			}
 			return;

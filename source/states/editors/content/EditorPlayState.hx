@@ -136,7 +136,8 @@ class EditorPlayState extends MusicBeatSubstate
 		tipText.borderSize = 2;
 		tipText.scrollFactor.set();
 		add(tipText);
-		FlxG.mouse.visible = false;
+		//FlxG.mouse.visible = false;
+		Cursor.hide();
 		
 		generateSong();
 		_noteList = null;
@@ -265,7 +266,8 @@ class EditorPlayState extends MusicBeatSubstate
 	{
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 		NoteSplash.configs.clear();
 		super.destroy();
 	}

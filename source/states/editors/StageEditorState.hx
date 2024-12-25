@@ -108,7 +108,8 @@ class StageEditorState extends MusicBeatState implements PsychUIEventHandler.Psy
 		updateSpriteList();
 
 		addHelpScreen();
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 		animationEditor = new StageEditorAnimationSubstate();
 
 		super.create();
