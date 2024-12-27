@@ -10,6 +10,9 @@ class StageWeek1 extends BaseStage
 	var dadbattleFog:DadBattleFog;
 	override function create()
 	{
+		//ratingPos.set(17, 300); // Just used random numbers for example
+		//comboCountPos.set(15, 275);
+
 		var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 		add(bg);
 
@@ -34,6 +37,11 @@ class StageWeek1 extends BaseStage
 			add(stageCurtains);
 		}
 	}
+
+	override function createPost(){
+		//changeComboGroupCamera(Base);
+	}
+
 	override function eventPushed(event:objects.Note.EventNote)
 	{
 		switch(event.event)

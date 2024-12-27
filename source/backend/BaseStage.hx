@@ -52,6 +52,9 @@ class BaseStage extends FlxBasic
 	public var defaultCamZoom(get, set):Float;
 	public var camFollow(get, never):FlxObject;
 
+	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
+	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
+
 	public function new()
 	{
 		if(game == null)
@@ -194,4 +197,23 @@ class BaseStage extends FlxBasic
 	function randomWeekSound(name:String, min:Int, max:Int, ?modsAllowed:Bool = true) {
 		return Paths.soundRandom(name, min, max, '', true, modsAllowed);
 	}
+
+	function changeComboGroupCamera(mode:CameraMode) { // Needs to be in createPost(), does not work in create() function
+		switch (mode) {
+			case Base:
+				PlayState.instance.comboGroup.cameras = [camGame];
+			case Other:
+				PlayState.instance.comboGroup.cameras = [camOther];
+			case Hud:
+				PlayState.instance.comboGroup.cameras = [camHUD];
+			default:
+				changeComboGroupCamera(Base);
+		}
+	}
+}
+
+enum CameraMode {
+	Hud;
+	Other;
+	Base;
 }

@@ -2891,8 +2891,13 @@ class PlayState extends MusicBeatState
 		rating.velocity.y -= FlxG.random.int(140, 175) * playbackRate;
 		rating.velocity.x -= FlxG.random.int(0, 10) * playbackRate;
 		rating.visible = (!ClientPrefs.data.hideHud && showRating);
-		rating.x += ClientPrefs.data.comboOffset[0];
-		rating.y -= ClientPrefs.data.comboOffset[1];
+		var tempPoint:FlxPoint = new FlxPoint(0, 0);
+		stagesFunc(function(stage:BaseStage) {
+			tempPoint.x = stage.ratingPos.x;
+			tempPoint.y = stage.ratingPos.y;
+		});
+		if (tempPoint.x != 0) rating.x = tempPoint.x; else rating.x += ClientPrefs.data.comboOffset[0];
+		if (tempPoint.y != 0) rating.y = tempPoint.y; else rating.y -= ClientPrefs.data.comboOffset[1];
 		rating.antialiasing = antialias;
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'combo' + uiPostfix));
@@ -2930,11 +2935,16 @@ class PlayState extends MusicBeatState
 		var separatedScore:String = Std.string(combo).lpad('0', 3);
 		for (i in 0...separatedScore.length)
 		{
+			var comboPoint:FlxPoint = new FlxPoint(0, 0);
+			stagesFunc(function(stage:BaseStage) {
+				comboPoint.x = stage.comboCountPos.x;
+				comboPoint.y = stage.comboCountPos.y;
+			});
+
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'num' + Std.parseInt(separatedScore.charAt(i)) + uiPostfix));
 			numScore.screenCenter();
-			numScore.x = placement + (43 * daLoop) - 90 + ClientPrefs.data.comboOffset[2];
-			numScore.y += 80 - ClientPrefs.data.comboOffset[3];
-
+			if (comboPoint.x != 0) numScore.x = (43 * daLoop) + comboPoint.x; else numScore.x = placement + (43 * daLoop) - 90 + ClientPrefs.data.comboOffset[2];
+			if (comboPoint.y != 0) numScore.y = comboPoint.y; else numScore.y += 80 - ClientPrefs.data.comboOffset[3];
 			if (!PlayState.isPixelStage) numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			else numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
 			numScore.updateHitbox();

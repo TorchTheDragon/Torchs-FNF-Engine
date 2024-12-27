@@ -35,7 +35,7 @@ class EditorState extends MusicBeatState {
             Cursor.cursorMode = Cell;
         } else if (FlxG.mouse.overlaps(psychBoxes, FlxG.camera) && boxMoved || FlxG.mouse.overlaps(psychBoxes, FlxG.camera) && !boxReleased) { //Temp work around for detection cuz IDK
             Cursor.cursorMode = Grabbing;
-        }  else Cursor.cursorMode = Default;
+        } else Cursor.cursorMode = Default;
     }
 
     function inputTextsGroup(array:Array<PsychUIInputText>) {
