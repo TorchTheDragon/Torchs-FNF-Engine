@@ -3363,7 +3363,7 @@ class PlayState extends MusicBeatState
 			opponentCovers.forEach(function(c:StrumCover) {
 				c.enemySplash = enemyCoverSplashes;
 				c.showSplash = enemyCoverSplashes;
-				if (Math.abs(note.noteData) == c.strumNote.noteData && (note.prevNote == null || !note.prevNote.isSustainNote) && enemyCoverSplashes) c.start(note);
+				if (Math.abs(note.noteData) == c.strumNote.noteData && (note.prevNote == null || !note.prevNote.isSustainNote) && enemyCoverSplashes && note.prevNote.sustainLength >= c.minSustainLength) c.start(note);
 			});
 		}
 	}
@@ -3511,7 +3511,7 @@ class PlayState extends MusicBeatState
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
 		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);
 		playerCovers.forEach(function(c:StrumCover) {
-			if (daRating.noteSplash && Math.abs(note.noteData) == c.strumNote.noteData && (note.prevNote == null || !note.prevNote.isSustainNote)) c.start(note);
+			if (daRating.noteSplash && Math.abs(note.noteData) == c.strumNote.noteData && (note.prevNote == null || !note.prevNote.isSustainNote) && note.prevNote.sustainLength >= c.minSustainLength) c.start(note);
 		});
 	}
 
