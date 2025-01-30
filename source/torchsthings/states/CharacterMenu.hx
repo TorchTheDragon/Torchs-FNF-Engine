@@ -18,10 +18,12 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import openfl.utils.Assets;
 import openfl.net.FileReference;
+/*
 #if debug
 import flixel.ui.FlxButton;
 import flixel.addons.ui.*;
 #end
+*/
 
 // To add these libraries below, just do "haxelib install torchsfunctions"
 import torchsfunctions.functions.KeyboardTools;
@@ -201,13 +203,13 @@ class CharacterMenu extends MusicBeatState{
     var offsets:FlxText;
     var testOffsets:Array<Int> = [0, 0];
     var curChar:FlxText;
-    var saveButton:FlxButton;
+    var saveButton:PsychUIButton;
     var bgColorText:FlxText;
     var backgroundColor:Array<Int> = [0, 0, 0];
-    var bgColorR:FlxUINumericStepper;
-    var bgColorG:FlxUINumericStepper;
-    var bgColorB:FlxUINumericStepper;
-    var testColors:FlxButton;
+    var bgColorR:PsychUINumericStepper;
+    var bgColorG:PsychUINumericStepper;
+    var bgColorB:PsychUINumericStepper;
+    var testColors:PsychUIButton;
     #end
 
     var charData:CharInfoData = {
@@ -344,23 +346,23 @@ class CharacterMenu extends MusicBeatState{
         curChar.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
         add(curChar);
 
-        saveButton = new FlxButton(FlxG.width * 0.7, FlxG.height * 0.95, "Save Info", function() {
+        saveButton = new PsychUIButton(FlxG.width * 0.7, FlxG.height * 0.95, "Save Info", function() {
             saveCharInfo();
         });
         add(saveButton);
 
         backgroundColor = charData.color;
 
-        bgColorR = new FlxUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
-        bgColorG = new FlxUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
-        bgColorB = new FlxUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
+        bgColorR = new PsychUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
+        bgColorG = new PsychUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
+        bgColorB = new PsychUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
         add(bgColorR);
         add(bgColorG);
         add(bgColorB);
         bgColorText = new FlxText(bgColorR.x, bgColorR.y - 18, 0, "Background R/G/B:");
         add(bgColorText);
 
-        testColors = new FlxButton(saveButton.x, saveButton.y - 20, "Test BG Colors", function() {
+        testColors = new PsychUIButton(saveButton.x, saveButton.y - 20, "Test BG Colors", function() {
             backgroundColor = [Math.round(bgColorR.value), Math.round(bgColorG.value), Math.round(bgColorB.value)];
             switch (selectedColumn) {
                 case 'enemy':
