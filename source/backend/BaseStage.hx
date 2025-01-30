@@ -8,9 +8,9 @@ import flixel.group.FlxGroup;
 import objects.Note;
 import objects.Character;
 import torchsthings.objects.ReflectedChar;
+import states.stages.objects.ABotSpeaker;
 
-enum Countdown
-{
+enum Countdown {
 	THREE;
 	TWO;
 	ONE;
@@ -18,8 +18,15 @@ enum Countdown
 	START;
 }
 
-class BaseStage extends FlxBasic
-{
+enum NeneState {
+	STATE_DEFAULT;
+	STATE_PRE_RAISE;
+	STATE_RAISE;
+	STATE_READY;
+	STATE_LOWER;
+}
+
+class BaseStage extends FlxBasic {
 	private var game(get, never):Dynamic;
 	public var onPlayState(get, never):Bool;
 
@@ -55,15 +62,11 @@ class BaseStage extends FlxBasic
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
 
-	public function new()
-	{
-		if(game == null)
-		{
+	public function new() {
+		if(game == null) {
 			FlxG.log.error('Invalid state for the stage added!');
 			destroy();
-		}
-		else 
-		{
+		} else {
 			game.stages.push(this);
 			super();
 			create();
@@ -110,11 +113,9 @@ class BaseStage extends FlxBasic
 	public function addBehindGF(obj:FlxBasic) return insert(members.indexOf(game.gfGroup), obj);
 	public function addBehindBF(obj:FlxBasic) return insert(members.indexOf(game.boyfriendGroup), obj);
 	public function addBehindDad(obj:FlxBasic) return insert(members.indexOf(game.dadGroup), obj);
-	public function setDefaultGF(name:String) //Fix for the Chart Editor on Base Game stages
-	{
+	public function setDefaultGF(name:String) { //Fix for the Chart Editor on Base Game stages
 		var gfVersion:String = PlayState.SONG.gfVersion;
-		if(gfVersion == null || gfVersion.length < 1)
-		{
+		if(gfVersion == null || gfVersion.length < 1) {
 			gfVersion = name;
 			PlayState.SONG.gfVersion = gfVersion;
 		}
@@ -124,13 +125,11 @@ class BaseStage extends FlxBasic
 		return game.variables.get(name);
 
 	//start/end callback functions
-	public function setStartCallback(myfn:Void->Void)
-	{
+	public function setStartCallback(myfn:Void->Void) {
 		if(!onPlayState) return;
 		PlayState.instance.startCallback = myfn;
 	}
-	public function setEndCallback(myfn:Void->Void)
-	{
+	public function setEndCallback(myfn:Void->Void) {
 		if(!onPlayState) return;
 		PlayState.instance.endCallback = myfn;
 	}
@@ -145,14 +144,12 @@ class BaseStage extends FlxBasic
 	inline private function get_isStoryMode() return PlayState.isStoryMode;
 	inline private function get_seenCutscene() return PlayState.seenCutscene;
 	inline private function get_inCutscene() return game.inCutscene;
-	inline private function set_inCutscene(value:Bool)
-	{
+	inline private function set_inCutscene(value:Bool) {
 		game.inCutscene = value;
 		return value;
 	}
 	inline private function get_canPause() return game.canPause;
-	inline private function set_canPause(value:Bool)
-	{
+	inline private function set_canPause(value:Bool) {
 		game.canPause = value;
 		return value;
 	}
@@ -169,8 +166,7 @@ class BaseStage extends FlxBasic
 	inline private function get_dadGroup():FlxSpriteGroup return game.dadGroup;
 	inline private function get_gfGroup():FlxSpriteGroup return game.gfGroup;
 
-	inline private function get_unspawnNotes():Array<Note>
-	{
+	inline private function get_unspawnNotes():Array<Note> {
 		return cast game.unspawnNotes;
 	}
 	
@@ -179,8 +175,7 @@ class BaseStage extends FlxBasic
 	inline private function get_camOther():FlxCamera return game.camOther;
 
 	inline private function get_defaultCamZoom():Float return game.defaultCamZoom;
-	inline private function set_defaultCamZoom(value:Float):Float
-	{
+	inline private function set_defaultCamZoom(value:Float):Float {
 		game.defaultCamZoom = value;
 		return game.defaultCamZoom;
 	}
@@ -208,6 +203,147 @@ class BaseStage extends FlxBasic
 				PlayState.instance.comboGroup.cameras = [camHUD];
 			default:
 				changeComboGroupCamera(Base);
+		}
+	}
+
+	// Abot stuff
+	var abot:ABotSpeaker;
+	var blinkCountdown:Int = 3;
+	final VULTURE_THRESHOLD:Float = 0.5;
+	final MIN_BLINK_DELAY:Int = 3;
+	final MAX_BLINK_DELAY:Int = 7;
+	var animationFinished:Bool = false;
+
+	// As I can't make this permanently be in every stage, you will have to at least throw this function into createPost.
+	// Yes, it has to be in createPost otherwise it will mess up trying to figure out the character name from the gf object.
+	/* Example:
+	override function createPost() {
+		addAbot();
+	}
+	*/
+	function addAbot(?xOffset:Float = 0.0, ?yOffset:Float = 550.0) {
+		if (PlayState.SONG.gfVersion == 'nene' || PlayState.SONG.gfVersion == 'nene-opp') {
+			abot = new ABotSpeaker(gfGroup.x + xOffset, gfGroup.y + yOffset);
+			updateABotEye(true);
+			add(abot);
+		}
+	}
+	function addAbotPost() {
+		if(gf != null) {
+			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
+				switch(currentNeneState) {
+					case STATE_PRE_RAISE:
+						if (name == 'danceLeft' && frameNumber >= 14) {
+							animationFinished = true;
+							transitionState();
+						}
+					default:
+						// Ignore.
+				}
+			}
+		}
+	}
+	// Put this in sectionHit
+	/*
+	override function sectionHit() {
+		updateABotEye();
+	}
+	*/
+	function updateABotEye(finishInstantly:Bool = false) {
+		if (abot != null) {
+			if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+				abot.lookRight();
+			else
+				abot.lookLeft();
+	
+			if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+		}
+	}
+	// Put this in startSong 
+	/*
+	override function startSong() {
+		abotSongStart();
+	}
+	*/
+	function abotSongStart() {
+		if (abot != null) abot.snd = FlxG.sound.music;
+		gf.animation.finishCallback = onNeneAnimationFinished;
+	}
+	// Put this in update
+	/*
+	override function update(elapsed:Float) {
+		abotUpdate();
+	}
+	*/
+	function abotUpdate() {
+		animationFinished = gf.isAnimationFinished();
+		transitionState();
+	}
+	// Put this in beatHit
+	/*
+	override function beatHit() {
+		abotBeatHit();
+	}
+	*/
+	function abotBeatHit() {
+		switch(currentNeneState) {
+			case STATE_READY:
+				if (blinkCountdown == 0) {
+					gf.playAnim('idleKnife', false);
+					blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
+				}
+				else blinkCountdown--;
+			default:
+				// In other states, don't interrupt the existing animation.
+		}
+	}
+	var currentNeneState:NeneState = STATE_DEFAULT;
+	function onNeneAnimationFinished(name:String) {
+		if(!game.startedCountdown) return;
+		switch(currentNeneState) {
+			case STATE_RAISE, STATE_LOWER:
+				if (name == 'raiseKnife' || name == 'lowerKnife') {
+					animationFinished = true;
+					transitionState();
+				}
+			default:
+				// Ignore.
+		}
+	}
+	function transitionState() {
+		switch (currentNeneState) {
+			case STATE_DEFAULT:
+				if (game.health <= VULTURE_THRESHOLD) {
+					currentNeneState = STATE_PRE_RAISE;
+					gf.skipDance = true;
+				}
+			case STATE_PRE_RAISE:
+				if (game.health > VULTURE_THRESHOLD) {
+					currentNeneState = STATE_DEFAULT;
+					gf.skipDance = false;
+				} else if (animationFinished) {
+					currentNeneState = STATE_RAISE;
+					gf.playAnim('raiseKnife');
+					gf.skipDance = true;
+					gf.danced = true;
+					animationFinished = false;
+				}
+			case STATE_RAISE:
+				if (animationFinished) {
+					currentNeneState = STATE_READY;
+					animationFinished = false;
+				}
+			case STATE_READY:
+				if (game.health > VULTURE_THRESHOLD) {
+					currentNeneState = STATE_LOWER;
+					gf.playAnim('lowerKnife');
+				}
+			case STATE_LOWER:
+				if (animationFinished) {
+					currentNeneState = STATE_DEFAULT;
+					animationFinished = false;
+					gf.skipDance = false;
+				}
 		}
 	}
 }
