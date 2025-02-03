@@ -27,14 +27,36 @@ class EditorState extends MusicBeatState {
             if (amountMoving > 0) boxMoved = true; else boxMoved = false;
             if (amountPressed == 0) boxReleased = true; else boxReleased = false;
         }
-        if (FlxG.mouse.overlaps(psychButtons, FlxG.camera) || FlxG.mouse.overlaps(psychDropDowns, FlxG.camera) || FlxG.mouse.overlaps(psychNumericSteppers, FlxG.camera)) {
-            Cursor.cursorMode = Pointer;
+
+        var allButtons:FlxGroup = new FlxGroup();
+        for (item in psychButtons) allButtons.add(item);
+        for (item in psychDropDowns) allButtons.add(item);
+        for (item in psychNumericSteppers) allButtons.add(item);
+
+        if (FlxG.mouse.overlaps(allButtons, FlxG.camera)) {
+            for (item in allButtons) {
+                if (item.active == true && item.visible == true) {
+                    Cursor.cursorMode = Pointer;
+                }
+            }
 		} else if (FlxG.mouse.overlaps(psychInputTexts, FlxG.camera)) {
-			Cursor.cursorMode = Text;
+            for (item in psychInputTexts) {
+                if (item.active == true && item.visible == true) {
+                    Cursor.cursorMode = Text;
+                }
+            }
         } else if (FlxG.mouse.overlaps(psychCheckBoxes, FlxG.camera)) {
-            Cursor.cursorMode = Cell;
+            for (item in psychCheckBoxes) {
+                if (item.active == true && item.visible == true) {
+                    Cursor.cursorMode = Cell;
+                }
+            }
         } else if (FlxG.mouse.overlaps(psychBoxes, FlxG.camera) && boxMoved || FlxG.mouse.overlaps(psychBoxes, FlxG.camera) && !boxReleased) { //Temp work around for detection cuz IDK
-            Cursor.cursorMode = Grabbing;
+            for (item in psychBoxes) {
+                if (item.active == true && item.visible == true) {
+                    Cursor.cursorMode = Grabbing;
+                }
+            }
         } else Cursor.cursorMode = Default;
     }
 

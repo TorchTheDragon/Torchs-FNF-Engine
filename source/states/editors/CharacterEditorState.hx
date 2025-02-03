@@ -260,7 +260,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		UI_characterbox.cameras = [camHUD];
 		add(UI_characterbox);
 		add(UI_box);
-		boxesGroup([UI_characterbox, UI_box]);
+		//boxesGroup([UI_characterbox, UI_box]);
 
 		addGhostUI();
 		addSettingsUI();
@@ -1065,13 +1065,13 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		tab_group.add(usingNoteSkin);
 		tab_group.add(reloadNotes);
 
-		inputTextsGroup([charNoteSkin, charNoteSkinLib]);
-		numericSteppersGroup(leftColorSteppers);
-		numericSteppersGroup(downColorSteppers);
-		numericSteppersGroup(upColorSteppers);
-		numericSteppersGroup(rightColorSteppers);
-		buttonsGroup([reloadNotes, changeToAltColors, rightNoteButton, upNoteButton, downNoteButton, leftNoteButton]);
-		checkBoxesGroup([usingNoteSkin, disableNoteRGB, hasAltNoteColors]);
+		//inputTextsGroup([charNoteSkin, charNoteSkinLib]);
+		//numericSteppersGroup(leftColorSteppers);
+		//numericSteppersGroup(downColorSteppers);
+		//numericSteppersGroup(upColorSteppers);
+		//numericSteppersGroup(rightColorSteppers);
+		//buttonsGroup([reloadNotes, changeToAltColors, rightNoteButton, upNoteButton, downNoteButton, leftNoteButton]);
+		//checkBoxesGroup([usingNoteSkin, disableNoteRGB, hasAltNoteColors]);
 		//inputTexts.add(charNoteSkin);
 		//inputTexts.add(charNoteSkinLib);
 	}
