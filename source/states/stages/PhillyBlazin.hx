@@ -115,8 +115,10 @@ class PhillyBlazin extends BaseStage
 			for (i in 0...4) {
 				PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
 				PlayState.instance.playerStrums.members[i].x += 50;
+				PlayState.instance.defaultStrumPosition[i + 4][0] = 365 + (110 * i) + 50;
 				PlayState.instance.opponentStrums.members[i].x = -5000;
 				PlayState.instance.opponentStrums.members[i].visible = false;
+				PlayState.instance.defaultStrumPosition[i][0] = -5000;
 			}
 		}
 
