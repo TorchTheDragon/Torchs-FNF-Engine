@@ -280,6 +280,13 @@ class PlayState extends MusicBeatState
 	public var startCallback:Void->Void = null;
 	public var endCallback:Void->Void = null;
 
+	// Wobbly Notes Stuff
+	public var defaultStrumPosition:Array<Array<Float>>= [];
+	public var playerStrumsWobble:Array<Int> = [0,0];
+	public var opponentStrumsWobble:Array<Int> = [0,0];
+	public var wobbleNotes:Bool = false;
+	public var strumsWobbled:Array<Bool> = [/*enemy*/ false, /*player*/ false];
+
 	public static var nextReloadAll:Bool = false;
 	override public function create()
 	{
@@ -1785,6 +1792,8 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			strumLineCovers.add(strumCover);
 			babyArrow.playerPosition();
+			if (player == 1) defaultStrumPosition.insert(i + 4, [babyArrow.x, babyArrow.y]);
+			else defaultStrumPosition.insert(i, [babyArrow.x, babyArrow.y]);
 		}
 	}
 
@@ -1901,6 +1910,26 @@ class PlayState extends MusicBeatState
 		}
 		else FlxG.camera.followLerp = 0;
 		callOnScripts('onUpdate', [elapsed]);
+
+		for (i in 0...playerStrums.length) {
+			if (wobbleNotes) {
+				playerStrums.members[i].x = defaultStrumPosition[i + 4][0] + (playerStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				playerStrums.members[i].y = defaultStrumPosition[i + 4][1] + (playerStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+			} else {
+				playerStrums.members[i].x = defaultStrumPosition[i + 4][0];
+				playerStrums.members[i].y = defaultStrumPosition[i + 4][1];
+			}
+		}
+
+		for (i in 0...opponentStrums.length) {
+			if (wobbleNotes) {
+				opponentStrums.members[i].x = defaultStrumPosition[i][0] + (opponentStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				opponentStrums.members[i].y = defaultStrumPosition[i][1] + (opponentStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+			} else {
+				opponentStrums.members[i].x = defaultStrumPosition[i][0];
+				opponentStrums.members[i].y = defaultStrumPosition[i][1];
+			}
+		}
 
 		super.update(elapsed);
 
@@ -2376,6 +2405,57 @@ class PlayState extends MusicBeatState
 							FlxG.camera.zoom += zoomAmount;
 							camHUD.zoom += zoomAmount;
 					}
+				}
+
+			case "Wobble Notes" | "Wobbly Notes": // I am doing a simply rename to Wobbly because I felt that made more sense grammatically 
+				var vals1:Array<String> = value1.trim().split(',');
+				var val1:Array<Null<Int>> = [Std.parseInt(vals1[0]), Std.parseInt(vals1[1])];
+				var who:String = 'none';
+				
+				switch (value2.toLowerCase().trim()) {
+					case 'enemy':
+						strumsWobbled[0] = true;
+						who = "dad";
+					case 'player':
+						strumsWobbled[1] = true;
+						who = 'bf';
+					case 'none' | 'stop' | 'disable':
+						strumsWobbled = [false, false];
+						val1[0] = 0;
+						val1[1] = 0;
+					case 'both':
+						strumsWobbled = [true, true];
+						who = 'both';
+					case 'stop1' | 'stopopponent' | 'stopdad' | 'stopenemy' | 'stopleft':
+						strumsWobbled[0] = false;
+						val1[0] = 0;
+						val1[1] = 0;
+					case 'stop2' | 'stopbf' | 'stopplayer' | 'stopright':
+						strumsWobbled[1] =  false;
+						val1[0] = 0;
+						val1[1] = 0;
+				}
+
+				if ((val1[0] == 0 || val1[0] == null) && (val1[1] == 0 || val1[1] == null)) wobbleNotes = false;
+				else {
+					if (val1[0] != null && val1[1] != null) {
+						switch (who) {
+							case "dad":
+								opponentStrumsWobble = [val1[0], val1[1]];
+							case "bf":
+								playerStrumsWobble = [val1[0], val1[1]];
+							case "both":
+								opponentStrumsWobble = [val1[0], val1[1]];
+								playerStrumsWobble = [val1[0], val1[1]];
+							case "none":
+								opponentStrumsWobble = [0,0];
+								playerStrumsWobble = [0,0];
+						}
+					}
+
+					if (strumsWobbled[0] || strumsWobbled[1]) { //The false is honestly just a failsafe
+						wobbleNotes = true;
+					} else wobbleNotes = false;
 				}
 
 			case 'Play Animation':
