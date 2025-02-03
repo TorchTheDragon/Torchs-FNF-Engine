@@ -9,6 +9,8 @@ import flixel.addons.display.FlxTiledSprite;
 import substates.GameOverSubstate;
 import states.stages.objects.*;
 import objects.Note;
+//import torchsthings.utils.WindowTitleUtils as TitleUtil;
+//import torchsthings.utils.ColorUtil;
 
 class PhillyBlazin extends BaseStage
 {
@@ -32,6 +34,9 @@ class PhillyBlazin extends BaseStage
 			spr.scale.set(1.75, 1.75);
 			spr.updateHitbox();
 		}
+
+		//TitleUtil.setDarkMode();
+		//TitleUtil.setWindowBorderColor(ColorUtil.getIntArray(FlxColor.RED));
 
 		if(!ClientPrefs.data.lowQuality)
 		{
