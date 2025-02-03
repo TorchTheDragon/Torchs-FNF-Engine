@@ -111,6 +111,15 @@ class PhillyBlazin extends BaseStage
 	
 	override function createPost()
 	{
+		if (songName.toLowerCase() == 'blazin') {
+			for (i in 0...4) {
+				PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
+				PlayState.instance.playerStrums.members[i].x += 50;
+				PlayState.instance.opponentStrums.members[i].x = -5000;
+				PlayState.instance.opponentStrums.members[i].visible = false;
+			}
+		}
+
 		FlxG.camera.focusOn(camFollow.getPosition());
 		FlxG.camera.fade(FlxColor.BLACK, 1.5, true, null, true);
 
