@@ -1911,23 +1911,15 @@ class PlayState extends MusicBeatState
 		else FlxG.camera.followLerp = 0;
 		callOnScripts('onUpdate', [elapsed]);
 
-		for (i in 0...playerStrums.length) {
-			if (wobbleNotes) {
+		if (wobbleNotes) {
+			for (i in 0...playerStrums.length) {
 				playerStrums.members[i].x = defaultStrumPosition[i + 4][0] + (playerStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 				playerStrums.members[i].y = defaultStrumPosition[i + 4][1] + (playerStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
-			} else {
-				playerStrums.members[i].x = defaultStrumPosition[i + 4][0];
-				playerStrums.members[i].y = defaultStrumPosition[i + 4][1];
 			}
-		}
-
-		for (i in 0...opponentStrums.length) {
-			if (wobbleNotes) {
+	
+			for (i in 0...opponentStrums.length) {
 				opponentStrums.members[i].x = defaultStrumPosition[i][0] + (opponentStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 				opponentStrums.members[i].y = defaultStrumPosition[i][1] + (opponentStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
-			} else {
-				opponentStrums.members[i].x = defaultStrumPosition[i][0];
-				opponentStrums.members[i].y = defaultStrumPosition[i][1];
 			}
 		}
 
@@ -2453,9 +2445,19 @@ class PlayState extends MusicBeatState
 						}
 					}
 
-					if (strumsWobbled[0] || strumsWobbled[1]) { //The false is honestly just a failsafe
+					if (strumsWobbled[0] && strumsWobbled[1]) { //The false is honestly just a failsafe
 						wobbleNotes = true;
-					} else wobbleNotes = false;
+					} else if (strumsWobbled[0] && !strumsWobbled[1]) {
+						wobbleNotes = true;
+						playerStrumsWobble = [0,0];
+					} else if (!strumsWobbled[0] && strumsWobbled[1]) {
+						wobbleNotes = true;
+						opponentStrumsWobble = [0,0];
+					} else {
+						wobbleNotes = false;
+						playerStrumsWobble = [0,0];
+						opponentStrumsWobble = [0,0];
+					}
 				}
 
 			case 'Play Animation':
