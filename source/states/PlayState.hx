@@ -2405,13 +2405,13 @@ class PlayState extends MusicBeatState
 				var who:String = 'none';
 				
 				switch (value2.toLowerCase().trim()) {
-					case 'enemy':
+					case 'enemy' | 'dad' | 'opponent':
 						strumsWobbled[0] = true;
 						who = "dad";
-					case 'player':
+					case 'player' | 'bf' | 'boyfriend':
 						strumsWobbled[1] = true;
 						who = 'bf';
-					case 'none' | 'stop' | 'disable':
+					case 'none' | 'stop' | 'disable' | 'neither':
 						strumsWobbled = [false, false];
 						val1[0] = 0;
 						val1[1] = 0;
