@@ -3394,6 +3394,11 @@ class PlayState extends MusicBeatState
 				if(canPlay) char.playAnim(animToPlay, true);
 				char.holdTimer = 0;
 			}
+
+			switch(note.noteType) {
+				case 'Ghost Effect':
+					GhostEffect.createGhost(dad, 0, note);
+			}
 		}
 
 		if(opponentVocals.length <= 0) vocals.volume = 1;
@@ -3526,6 +3531,10 @@ class PlayState extends MusicBeatState
 			if (guitarHeroSustains && note.isSustainNote) gainHealth = false;
 			if (gainHealth) health += note.hitHealth * healthGain;
 
+			switch(note.noteType) {
+				case 'Ghost Effect':
+					GhostEffect.createGhost(boyfriend, 1, note);
+			}
 		}
 		else //Notes that count as a miss if you hit them (Hurt notes for example)
 		{
