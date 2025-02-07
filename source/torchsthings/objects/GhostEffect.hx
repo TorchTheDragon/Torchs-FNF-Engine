@@ -30,11 +30,8 @@ class GhostEffect {
 
         switch (note.noteData) {
             case 0:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, leftArrowColor);
-                } else {
-                    FlxTween.tween(ghost, {alpha: 0}, tweenTime);
-                }
+                if (arrowColorGhost) FlxTween.color(ghost, tweenTime, defaultColor, leftArrowColor);
+                else FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 FlxTween.tween(ghost, {x: char.x - slideDistance}, tweenTime, {
                     onComplete: function(t:FlxTween) {
                         ghost.kill();
@@ -42,11 +39,8 @@ class GhostEffect {
                     }
                 });
             case 1:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, downArrowColor);
-                } else {
-                    FlxTween.tween(ghost, {alpha: 0}, tweenTime);
-                }
+                if (arrowColorGhost) FlxTween.color(ghost, tweenTime, defaultColor, downArrowColor);
+                else FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 FlxTween.tween(ghost, {y: char.y + slideDistance}, tweenTime, {
                     onComplete: function(t:FlxTween) {
                         ghost.kill();
@@ -54,11 +48,8 @@ class GhostEffect {
                     }
                 });
             case 2:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, upArrowColor);
-                } else {
-                    FlxTween.tween(ghost, {alpha: 0}, tweenTime);
-                }
+                if (arrowColorGhost) FlxTween.color(ghost, tweenTime, defaultColor, upArrowColor); 
+                else FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 FlxTween.tween(ghost, {y: char.y - slideDistance}, tweenTime, {
                     onComplete: function(t:FlxTween) {
                         ghost.kill();
@@ -66,11 +57,8 @@ class GhostEffect {
                     }
                 });
             case 3:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, rightArrowColor);
-                } else {
-                    FlxTween.tween(ghost, {alpha: 0}, tweenTime);
-                }
+                if (arrowColorGhost) FlxTween.color(ghost, tweenTime, defaultColor, rightArrowColor); 
+                else FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 FlxTween.tween(ghost, {x: char.x + slideDistance}, tweenTime, {
                     onComplete: function(t:FlxTween) {
                         ghost.kill();
