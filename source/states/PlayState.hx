@@ -2447,13 +2447,13 @@ class PlayState extends MusicBeatState
 
 					if (strumsWobbled[0] && strumsWobbled[1]) { //The false is honestly just a failsafe
 						wobbleNotes = true;
-					} else if (strumsWobbled[0] && !strumsWobbled[1]) {
+					} /*else if (strumsWobbled[0] && !strumsWobbled[1]) {
 						wobbleNotes = true;
 						playerStrumsWobble = [0,0];
 					} else if (!strumsWobbled[0] && strumsWobbled[1]) {
 						wobbleNotes = true;
 						opponentStrumsWobble = [0,0];
-					} else {
+					}*/ else {
 						wobbleNotes = false;
 						playerStrumsWobble = [0,0];
 						opponentStrumsWobble = [0,0];
