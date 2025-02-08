@@ -1,4 +1,4 @@
-package torchsthings.objects;
+package torchsthings.objects.effects;
 
 import objects.Character;
 import flixel.system.FlxAssets.FlxShader;

@@ -56,6 +56,7 @@ import torchsfunctions.functions.Extras;
 
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
+import torchsthings.objects.effects.GhostEffect;
 
 /**
  * This is where all the Gameplay stuff happens and is managed

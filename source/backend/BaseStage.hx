@@ -7,7 +7,7 @@ import flixel.group.FlxGroup;
 
 import objects.Note;
 import objects.Character;
-import torchsthings.objects.ReflectedChar;
+import torchsthings.objects.effects.ReflectedChar;
 import states.stages.objects.ABotSpeaker;
 
 enum Countdown {

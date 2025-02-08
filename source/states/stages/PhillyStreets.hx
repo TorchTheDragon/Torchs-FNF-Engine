@@ -5,7 +5,7 @@ import shaders.RainShader;
 
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
-import torchsthings.objects.ReflectedChar;
+import torchsthings.objects.effects.ReflectedChar;
 
 import substates.GameOverSubstate;
 import states.stages.objects.*;
