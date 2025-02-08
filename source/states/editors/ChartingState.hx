@@ -33,6 +33,8 @@ import objects.HealthIcon;
 import objects.Note;
 import objects.StrumNote;
 
+import torchsthings.utils.WindowTitleUtils;
+
 using DateTools;
 
 typedef UndoStruct = {
@@ -221,6 +223,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Charting Menu');
+
 		if(Difficulty.list.length < 1) Difficulty.resetList();
 		_keysPressedBuffer.resize(keysArray.length);
 

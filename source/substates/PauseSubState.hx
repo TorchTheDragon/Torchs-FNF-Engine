@@ -10,6 +10,8 @@ import states.StoryMenuState;
 import states.FreeplayState;
 import options.OptionsState;
 
+import torchsthings.utils.WindowTitleUtils;
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
@@ -32,6 +34,8 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + " - PAUSED!");
+
 		if(Difficulty.list.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
 
 		if(PlayState.chartingMode)
@@ -430,6 +434,11 @@ class PauseSubState extends MusicBeatSubstate
 		skipTimeText.x = skipTimeTracker.x + skipTimeTracker.width + 60;
 		skipTimeText.y = skipTimeTracker.y;
 		skipTimeText.visible = (skipTimeTracker.alpha >= 1);
+	}
+
+	override public function close() {
+		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle().replace(" - PAUSED!", ''));
+		super.close();
 	}
 
 	function updateSkipTimeText()

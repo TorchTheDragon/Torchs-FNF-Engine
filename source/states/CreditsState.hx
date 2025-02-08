@@ -1,6 +1,7 @@
 package states;
 
 import objects.AttachedSprite;
+import torchsthings.utils.WindowTitleUtils;
 
 class CreditsState extends MusicBeatState
 {
@@ -19,6 +20,8 @@ class CreditsState extends MusicBeatState
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Viewing Credits');
+
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);

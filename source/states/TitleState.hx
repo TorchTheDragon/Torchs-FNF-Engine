@@ -19,6 +19,8 @@ import states.StoryMenuState;
 import states.OutdatedState;
 import states.MainMenuState;
 
+import torchsthings.utils.WindowTitleUtils;
+
 typedef TitleData =
 {
 	var titlex:Float;
@@ -71,6 +73,8 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle);
+
 		Paths.clearStoredMemory();
 		super.create();
 		Paths.clearUnusedMemory();

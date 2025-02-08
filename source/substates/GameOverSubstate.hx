@@ -10,6 +10,8 @@ import flixel.math.FlxPoint;
 import states.StoryMenuState;
 import states.FreeplayState;
 
+import torchsthings.utils.WindowTitleUtils;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	public var boyfriend:Character;
@@ -26,6 +28,8 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var instance:GameOverSubstate;
 	public function new(?playStateBoyfriend:Character = null)
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + ' - GAME OVER!!!');
+
 		if(playStateBoyfriend != null && playStateBoyfriend.curCharacter == characterName) //Avoids spawning a second boyfriend cuz animate atlas is laggy
 		{
 			this.boyfriend = playStateBoyfriend;

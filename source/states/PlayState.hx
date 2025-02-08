@@ -57,6 +57,7 @@ import torchsfunctions.functions.Extras;
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
 import torchsthings.objects.effects.GhostEffect;
+import torchsthings.utils.WindowTitleUtils;
 
 /**
  * This is where all the Gameplay stuff happens and is managed
@@ -670,6 +671,10 @@ class PlayState extends MusicBeatState
 		var splash:NoteSplash = new NoteSplash();
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
+
+		var songTitleCased:String = songName.replace('-', ' ').toUpperCase();
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE); // Just doing this in case of things like restarting song
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.baseTitle + ' - $songTitleCased', true);
 
 		super.create();
 		Paths.clearUnusedMemory();
@@ -1988,6 +1993,8 @@ class PlayState extends MusicBeatState
 
 			if(ClientPrefs.data.timeBarType != 'Song Name')
 				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
+
+			WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - " + FlxStringUtil.formatTime(secondsTotal, false));
 		}
 
 		if (camZooming)

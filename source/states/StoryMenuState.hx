@@ -15,6 +15,8 @@ import substates.ResetScoreSubState;
 
 import backend.StageData;
 
+import torchsthings.utils.WindowTitleUtils;
+
 class StoryMenuState extends MusicBeatState
 {
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
@@ -45,6 +47,9 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Story Menu");
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
