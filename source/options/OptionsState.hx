@@ -2,6 +2,7 @@ package options;
 
 import states.MainMenuState;
 import backend.StageData;
+import torchsthings.utils.WindowTitleUtils;
 
 class OptionsState extends MusicBeatState
 {
@@ -47,6 +48,8 @@ class OptionsState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options Menu", null);
 		#end
+
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Options");
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;

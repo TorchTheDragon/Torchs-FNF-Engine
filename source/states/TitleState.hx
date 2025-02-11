@@ -73,7 +73,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.DEFAULT_TITLE);
 
 		Paths.clearStoredMemory();
 		super.create();
