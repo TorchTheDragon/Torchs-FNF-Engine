@@ -3408,7 +3408,7 @@ class PlayState extends MusicBeatState
 
 			switch(note.noteType) {
 				case 'Ghost Effect' | 'Ghost Effect Alt':
-					GhostEffect.createGhost(dad, 0, note);
+					if (!note.isSustainNote) GhostEffect.createGhost(dad, 0, note);
 			}
 		}
 
@@ -3544,7 +3544,7 @@ class PlayState extends MusicBeatState
 
 			switch(note.noteType) {
 				case 'Ghost Effect' | 'Ghost Effect Alt':
-					GhostEffect.createGhost(boyfriend, 1, note);
+					if (!note.isSustainNote) GhostEffect.createGhost(boyfriend, 1, note);
 			}
 		}
 		else //Notes that count as a miss if you hit them (Hurt notes for example)
