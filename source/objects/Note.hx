@@ -44,7 +44,8 @@ class Note extends FlxSprite
 		'Hurt Note',
 		'GF Sing',
 		'No Animation',
-		'Ghost Effect'
+		'Ghost Effect',
+		'Ghost Effect Alt'
 	];
 
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -213,7 +214,7 @@ class Note extends FlxSprite
 					hitCausesMiss = true;
 					hitsound = 'cancelMenu';
 					hitsoundChartEditor = false;
-				case 'Alt Animation':
+				case 'Alt Animation' | 'Ghost Effect Alt':
 					animSuffix = '-alt';
 				case 'No Animation':
 					noAnimation = true;

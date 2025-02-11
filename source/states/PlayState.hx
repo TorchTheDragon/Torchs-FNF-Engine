@@ -3407,7 +3407,7 @@ class PlayState extends MusicBeatState
 			}
 
 			switch(note.noteType) {
-				case 'Ghost Effect':
+				case 'Ghost Effect' | 'Ghost Effect Alt':
 					GhostEffect.createGhost(dad, 0, note);
 			}
 		}
@@ -3543,7 +3543,7 @@ class PlayState extends MusicBeatState
 			if (gainHealth) health += note.hitHealth * healthGain;
 
 			switch(note.noteType) {
-				case 'Ghost Effect':
+				case 'Ghost Effect' | 'Ghost Effect Alt':
 					GhostEffect.createGhost(boyfriend, 1, note);
 			}
 		}
