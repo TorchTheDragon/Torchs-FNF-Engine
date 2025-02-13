@@ -89,6 +89,8 @@ class ImageBar extends FlxSpriteGroup
 		}
 	}
 
+	public var healthLerp:Bool = false;
+	var lerpingHealth:Float = 1;
 	public var enabled:Bool = true;
 	override function update(elapsed:Float) {
 		if(!enabled)
@@ -100,11 +102,17 @@ class ImageBar extends FlxSpriteGroup
 		if(valueFunction != null)
 		{
 			var value:Null<Float> = FlxMath.remapToRange(FlxMath.bound(valueFunction(), bounds.min, bounds.max), bounds.min, bounds.max, 0, 100);
-			percent = (value != null ? value : 0);
+			if (healthLerp) {
+				lerpingHealth = FlxMath.lerp(lerpingHealth, value, 0.15);
+				percent = (value != null ? lerpingHealth : 0);
+			} else {
+				percent = (value != null ? value : 0);
+			}
 		}
 		else percent = 0;
 		super.update(elapsed);
 	}
+
 	
 	public function setBounds(min:Float, max:Float)
 	{

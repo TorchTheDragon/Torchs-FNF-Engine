@@ -570,6 +570,7 @@ class PlayState extends MusicBeatState
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
+		//healthBar.healthLerp = true; // Lerping Works
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		//iconP1.y = healthBar.y - 75;
