@@ -1928,6 +1928,15 @@ class PlayState extends MusicBeatState
 				opponentStrums.members[i].x = defaultStrumPosition[i][0] + (opponentStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 				opponentStrums.members[i].y = defaultStrumPosition[i][1] + (opponentStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 			}
+		} else {
+			for (i in 0...opponentStrums.length) {
+				opponentStrums.members[i].x = defaultStrumPosition[i][0];
+				opponentStrums.members[i].y = defaultStrumPosition[i][1];
+			}
+			for (i in 0...playerStrums.length) {
+				playerStrums.members[i].x = defaultStrumPosition[i + 4][0];
+				playerStrums.members[i].y = defaultStrumPosition[i + 4][1];
+			}
 		}
 
 		super.update(elapsed);
@@ -2469,7 +2478,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 
-					if (strumsWobbled[0] && strumsWobbled[1]) { //The false is honestly just a failsafe
+					if (strumsWobbled[0] || strumsWobbled[1]) { //The false is honestly just a failsafe
 						wobbleNotes = true;
 					} /*else if (strumsWobbled[0] && !strumsWobbled[1]) {
 						wobbleNotes = true;
