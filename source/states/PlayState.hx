@@ -2163,8 +2163,23 @@ class PlayState extends MusicBeatState
 		var newPercent:Null<Float> = FlxMath.remapToRange(FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max), healthBar.bounds.min, healthBar.bounds.max, 0, 100);
 		healthBar.percent = (newPercent != null ? newPercent : 0);
 
-		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
-		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+		//iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+		//iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+
+		if (healthBar.percent < 30) // Player Losing
+			iconP1.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
+		else if (healthBar.percent > 75) // Player Winning
+			iconP1.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
+		else
+			iconP1.animation.curAnim.curFrame = 0;
+
+		if (healthBar.percent > 75) // Enemy Losing
+			iconP2.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
+		else if (healthBar.percent < 30) // Enemy Winning
+			iconP2.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
+		else
+			iconP2.animation.curAnim.curFrame = 0;
+
 		return health;
 	}
 

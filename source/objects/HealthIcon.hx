@@ -31,12 +31,40 @@ class HealthIcon extends FlxSprite
 			
 			var graphic = Paths.image(name, allowGPU);
 			var iSize:Float = Math.round(graphic.width / graphic.height);
+			/*
 			loadGraphic(graphic, true, Math.floor(graphic.width / iSize), Math.floor(graphic.height));
 			iconOffsets[0] = (width - 150) / iSize;
 			iconOffsets[1] = (height - 150) / iSize;
 			updateHitbox();
+			*/
+			if (graphic.width == 300) {
+				loadGraphic(graphic, true, Math.floor(graphic.width / 2), Math.floor(graphic.height));
+				iconOffsets[0] = (width - 150) / iSize;
+				iconOffsets[1] = (height - 150) / iSize;
+				updateHitbox();
+				animation.add(char, [0, 1, 0], 0, false, isPlayer);
+			} else if (graphic.width == 450) {
+				loadGraphic(graphic, true, Math.floor(graphic.width / 3), Math.floor(graphic.height));
+				iconOffsets[0] = (width - 150) / iSize;
+				iconOffsets[1] = (height - 150) / iSize;
+				updateHitbox();
+				animation.add(char, [0, 1, 2], 0, false, isPlayer);
+			} else { // This is just an attempt for other icon support, will detect is less than 300 or more than 300. If 300 or less, only 2 icons, if more, 3 icons.
+				var num:Int = 2;
+				if (graphic.width < 300) {
+					num = 2;
+				} else if (graphic.width >= 300) {
+					num = 3;
+				}
 
-			animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
+				loadGraphic(graphic, true, Math.floor(graphic.width / num), Math.floor(graphic.height));
+				iconOffsets[0] = (width - 150) / iSize;
+				iconOffsets[1] = (height - 150) / iSize;
+				updateHitbox();
+				animation.add(char, num == 2 ? [0, 1, 0] : [0, 1, 2], 0, false, isPlayer);
+			}
+
+			//animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
 			animation.play(char);
 			this.char = char;
 
