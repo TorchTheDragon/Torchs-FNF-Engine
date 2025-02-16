@@ -12,12 +12,14 @@ import flixel.FlxSubState;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxSave;
+import flixel.util.FlxGradient;
 import flixel.input.keyboard.FlxKey;
 import flixel.animation.FlxAnimationController;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
 import haxe.Json;
+import tjson.TJSON;
 
 import cutscenes.DialogueBoxPsych;
 
@@ -115,6 +117,17 @@ class PlayState extends MusicBeatState
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
 	public var noteKillOffset:Float = 350;
+
+	//Credits
+	public var creditsGroup:FlxSpriteGroup;
+	public var creditsDisk:FlxSprite;
+	public var creditsArtist:FlxText;
+	public var creditsCharter:FlxText;
+	public var creditsSongTitle:FlxText;
+	public var creditsBG:FlxSprite;
+	public var creditsFrontBG:FlxSprite;
+	public var creditsIconP:HealthIcon;
+	public var creditsIconEn:HealthIcon;
 
 	public var playbackRate(default, set):Float = 1;
 
@@ -496,6 +509,8 @@ class PlayState extends MusicBeatState
 		uiGroup = new FlxSpriteGroup();
 		comboGroup = new FlxSpriteGroup();
 		noteGroup = new FlxTypedGroup<FlxBasic>();
+		creditsGroup = new FlxSpriteGroup();
+		add(creditsGroup);
 		add(comboGroup);
 		add(uiGroup);
 		add(noteGroup);
@@ -606,6 +621,84 @@ class PlayState extends MusicBeatState
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
+		creditsGroup.cameras = [camOther];
+
+		// Below didn't work so I shall give it a fix
+		//var path = File.getContent(Paths.json(songName + '/credits')); 
+		var path = "";
+		if (FileSystem.exists(Paths.json(songName + '/credits'))) {
+			path = File.getContent(Paths.json(songName + '/credits'));
+		} 
+		#if MODS_ALLOWED
+		else 
+		if (FileSystem.exists(Paths.modsJson(songName + '/credits'))){
+			path = File.getContent(Paths.modsJson(songName + '/credits'));
+		}
+		#end
+		else {
+			path = '
+			{
+				"artist": "Unknown",
+				"charter": "Unknown"
+			}
+			';		
+		}
+
+		var jsonObj = tjson.TJSON.parse(path);
+
+		//creditsBG = new FlxSprite(-2500, 300).loadGraphic(Paths.image('rectangulofeo')).makeGraphic(2400, 170);
+		//creditsBG.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		var dadColor:FlxColor = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		var bfColor:FlxColor = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
+		creditsBG = FlxGradient.createGradientFlxSprite(2400, 170, [dadColor, dadColor, bfColor, bfColor, bfColor], 1, 0, false); // 2:3 ratio to make it look better
+		creditsBG.x = -2500;
+		creditsBG.y = 300;
+		creditsFrontBG = new FlxSprite(-2500, 300);
+		creditsFrontBG.makeGraphic(2400, 150, FlxColor.BLACK);
+
+		creditsDisk = new FlxSprite(-1175, 300).loadGraphic(Paths.image("disk"));
+		creditsDisk.setGraphicSize(Std.int(creditsDisk.width * 0.65));
+
+		var textX:Int = -575;
+		var creditsTextSize:Int = 25;
+
+		creditsSongTitle = new FlxText(textX, 330);
+		creditsSongTitle.text = "Now Playing  :  " + curSong;
+		creditsSongTitle.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsSongTitle.size = creditsTextSize;
+
+		creditsArtist = new FlxText(textX, creditsSongTitle.y + 40);
+		creditsArtist.text = "By: " + jsonObj.artist;
+		creditsArtist.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsArtist.size = creditsTextSize;
+
+		creditsCharter = new FlxText(textX, creditsArtist.y + 40);
+		creditsCharter.text = "Charter: " + jsonObj.charter;
+		creditsCharter.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsCharter.size = creditsTextSize;
+
+		creditsIconP = new HealthIcon(boyfriend.healthIcon, false);
+		creditsIconP.flipX = true;
+		creditsIconP.setGraphicSize(Std.int(creditsIconP.width * 0.65));
+		//creditsIconP.setGraphicSize(0.4, 0.4);
+		creditsIconP.x = -170;
+		creditsIconP.y = 315;
+
+		creditsIconEn = new HealthIcon(dad.healthIcon, false);
+		creditsIconEn.setGraphicSize(Std.int(creditsIconEn.width * 0.65));
+		//creditsIconEn.setGraphicSize(0.4, 0.4);
+		creditsIconEn.x = -170;
+		creditsIconEn.y = 315; 
+
+		creditsGroup.add(creditsBG);
+		creditsGroup.add(creditsFrontBG);
+		creditsGroup.add(creditsDisk);
+		creditsGroup.add(creditsIconP);
+		creditsGroup.add(creditsIconEn);
+		creditsGroup.add(creditsArtist);
+		creditsGroup.add(creditsSongTitle);
+		creditsGroup.add(creditsCharter);
+		creditsGroup.visible = ClientPrefs.data.showSongCredits;
 
 		startingSong = true;
 
@@ -3747,6 +3840,56 @@ class PlayState extends MusicBeatState
 	var lastStepHit:Int = -1;
 	override function stepHit()
 	{
+		switch(curStep)
+		{
+			case 3:
+				FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
+				creditsIconEn.angle = 15;
+				creditsIconP.angle = -15;
+				FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
+				FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsDisk, {angle: 2000}, 15, 
+				{   ease:FlxEase.expoOut, 
+					onComplete: 
+					function(twn:FlxTween)
+					{
+						remove(creditsGroup);
+					}
+				});
+				FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+			case 7:
+				FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
+			case 25:
+				FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+			case 26:
+				FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+			}
+
+			if(curStep % 2 == 0)
+			{
+				if (creditsIconP.angle == -15)
+				{
+					creditsIconP.angle = 15;
+					creditsIconEn.angle = -15;
+				}
+				else
+				{
+					if(creditsIconP.angle == 15)
+					{
+						creditsIconP.angle = -15;
+						creditsIconEn.angle = 15;
+					}
+				}	
+		}
 		super.stepHit();
 
 		if(curStep == lastStepHit) {
