@@ -186,6 +186,8 @@ class Note extends FlxSprite
 		}
 	}
 
+	public var noCharShader:Bool = false;
+
 	private function set_noteType(value:String):String {
 		noteSplashData.texture = PlayState.SONG != null ? PlayState.SONG.splashSkin : 'noteSplashes';
 		defaultRGB();
@@ -214,6 +216,7 @@ class Note extends FlxSprite
 					hitCausesMiss = true;
 					hitsound = 'cancelMenu';
 					hitsoundChartEditor = false;
+					noCharShader = true;
 				case 'Alt Animation' | 'Ghost Effect Alt':
 					animSuffix = '-alt';
 				case 'No Animation':
