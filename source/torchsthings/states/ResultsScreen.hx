@@ -20,6 +20,7 @@ import torchsthings.objects.results.ResultsScore;
 import torchsthings.objects.results.TallyCounter;
 import torchsthings.shaders.LeftMaskShader;
 import torchsthings.utils.WindowTitleUtils;
+import flixel.util.FlxSignal;
 
 import states.FreeplayState;
 import states.StoryMenuState;
@@ -584,7 +585,10 @@ class ResultsScreen extends MusicBeatState {
                 obj.anim.addBySymbol('intro', data.intro_name, 24, false);
                 obj.anim.addBySymbol('idle', data.loop_name, 24, true);
                 obj.anim.play('intro');
-                obj.anim.onComplete = function() {obj.anim.play('idle', true);}
+                var signal = new FlxSignal();
+                signal.add(function() {obj.anim.play('idle', true);});
+                obj.anim.onComplete = signal;
+                //obj.anim.onComplete = function() {obj.anim.play('idle', true);}
                 obj.anim.pause();
             case 'sparrowatlas':
                 obj = new FlxSprite();
