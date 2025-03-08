@@ -1,5 +1,7 @@
 package states.stages.objects;
 
+import flixel.util.FlxSignal;
+
 enum SpraycanState
 {
 	WAITING;
@@ -14,16 +16,20 @@ class SpraycanAtlasSprite extends FlxSpriteGroup
 
 	public var canAtlas:FlxAnimate;
 	public var explosion:FlxSprite;
+
+	var spraycanComplete:FlxSignal = new FlxSignal();
 	public function new(x:Float = 0, y:Float = 0)
 	{
 		super();
+
+		spraycanComplete.add(function() {finishCanAnimation();});
 
 		canAtlas = new FlxAnimate(x, y);
 		Paths.loadAnimateAtlasFromLibrary(canAtlas, 'spraycanAtlas', 'weekend1');
 		canAtlas.anim.addBySymbolIndices('Can Start', 'Can with Labels', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 24, false);
 		canAtlas.anim.addBySymbolIndices('Hit Pico', 'Can with Labels', [19, 20, 21, 22, 23, 24, 25], false);
 		canAtlas.anim.addBySymbolIndices('Can Shot', 'Can with Labels', [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42], 24, false);
-		canAtlas.anim.onComplete = function() {finishCanAnimation();};
+		canAtlas.anim.onComplete = spraycanComplete;
 		canAtlas.visible = canAtlas.active = false;
 		canAtlas.antialiasing = ClientPrefs.data.antialiasing;
 		add(canAtlas);

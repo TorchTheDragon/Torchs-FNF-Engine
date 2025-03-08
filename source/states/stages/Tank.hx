@@ -4,6 +4,7 @@ import states.stages.objects.*;
 import cutscenes.CutsceneHandler;
 import substates.GameOverSubstate;
 import objects.Character;
+import flixel.util.FlxSignal;
 
 class Tank extends BaseStage
 {
@@ -11,6 +12,8 @@ class Tank extends BaseStage
 	var tankGround:BackgroundTank;
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
+
+	var picoStress:FlxSignal = new FlxSignal();
 
 	override function create()
 	{
@@ -309,7 +312,7 @@ class Tank extends BaseStage
 		cutsceneHandler.push(pico);
 
 		// prepare pico animation cycle
-		function picoStressCycle() {
+		picoStress.add(function() {
 			switch (pico.anim.curInstance.symbol.name) {
 				case "dieBitch", "GF Time to Die sequence":
 					pico.anim.play('picoAppears', true);
@@ -329,10 +332,10 @@ class Tank extends BaseStage
 				case "picoEnd", "Pico Dual Wield on Speaker idle":
 					gfGroup.alpha = 1;
 					pico.visible = false;
-					if (pico.anim.onComplete == picoStressCycle) pico.anim.onComplete = function() {};
+					if (pico.anim.onComplete == picoStress) pico.anim.onComplete = new FlxSignal();
 			}
-		}
-		pico.anim.onComplete = picoStressCycle;
+		});
+		pico.anim.onComplete = picoStress;
 
 		boyfriendCutscene = new FlxSprite(boyfriend.x + 5, boyfriend.y + 20);
 		boyfriendCutscene.antialiasing = ClientPrefs.data.antialiasing;
