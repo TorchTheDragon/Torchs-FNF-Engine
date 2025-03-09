@@ -140,6 +140,17 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			'bool');
 		addOption(option);
 
+		var option:Option = new Option('Dynamic Cam. Move Amount',
+			'The camera move depending on the note pressed using this value \nif the value is zero, it is disabled',
+			'extraCamMovementAmount',
+			INT);
+		option.scrollSpeed = 2.5;
+		option.minValue = 0;
+		option.maxValue = 100;
+		option.changeValue = 1;
+		option.decimals = 1;
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',
