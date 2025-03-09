@@ -6,7 +6,7 @@ import objects.Note;
 class GhostEffect {
     public static var arrowColorGhost:Bool = true;
     public static var tweenTime:Float = 0.4;
-    public static var slideDistance:Float = 150.0;
+    public static var slideDistance:Float = 90.0;
 
     public static function createGhost(char:Character, player:Int, note:Note) {
         var ghost:GhostChar = new GhostChar(char);
