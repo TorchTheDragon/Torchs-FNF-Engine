@@ -1,0 +1,16 @@
+{
+    "emptyBar": "Default",
+    "emptyBarLibrary": "shared",
+    "emptyBarAnimated": false,
+    "emptyBarOverlay": "",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimationName": "",
+    "fullBar": "Default",
+    "fullBarLibrary": "shared",
+    "fullBarAnimated": false,
+    "fullBarOverlay": "",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimationName": ""
+}

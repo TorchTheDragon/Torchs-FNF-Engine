@@ -1,0 +1,16 @@
+{
+    "emptyBar": "Reanimated-pixel-glitch",
+    "emptyBarLibrary": "shared",
+    "emptyBarOverlay": "",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimated": true,
+    "emptyBarAnimationName": "healthBar_pixel_glitched",
+    "fullBar": "Reanimated-pixel",
+    "fullBarLibrary": "shared",
+    "fullBarOverlay": "",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimated": false,
+    "fullBarAnimationName": ""
+}

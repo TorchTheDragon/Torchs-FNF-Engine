@@ -8,6 +8,8 @@ class ImageBar extends FlxSpriteGroup
 	public var leftBar:FlxSprite;
 	public var rightBar:FlxSprite;
 	public var bg:FlxSprite;
+	public var leftBarOverlay:FlxSprite;
+	public var rightBarOverlay:FlxSprite;
 	public var valueFunction:Void->Float = null;
 	public var percent(default, set):Float = 0;
 	public var bounds:Dynamic = {min: 0, max: 1};
@@ -18,7 +20,7 @@ class ImageBar extends FlxSpriteGroup
 	public var barWidth(default, set):Int = 1;
 	public var barHeight(default, set):Int = 1;
 	public var barOffset:FlxPoint = new FlxPoint(-5, -5);
-	public var barData:Array<String> = [];
+	public var barData:BarSettings = null;
 
 	/*
 		When choosing your bar, the array goes like this:
@@ -30,41 +32,57 @@ class ImageBar extends FlxSpriteGroup
 		All of these have to be a string, so number 3 would end up being either 'true' or 'false', not true or false... does that make sense?
 	*/
 
-	public function new(x:Float, y:Float, emptyBar:Array<String>, fullBar:Array<String>, enemyColor:FlxColor = 0xFFFF0000, playerColor:FlxColor = 0xFF00FF0D, valueFunction:Void->Float = null, minVal:Float = 0, maxVal:Float = 2)
-	{
+	public function new(x:Float, y:Float, barSettings:BarSettings, enemyColor:FlxColor = 0xFFFF0000, playerColor:FlxColor = 0xFF00FF0D, valueFunction:Void->Float = null, minVal:Float = 0, maxVal:Float = 2) {
 		super(x, y);
+		if (barSettings == null) {
+			barSettings = {
+				emptyBar: "Default",
+				emptyBarLibrary: "shared",
+				emptyBarAnimated: false,
+				fullBar: "Default",
+				fullBarLibrary: "shared",
+				fullBarAnimated: false
+			}
+		}
+		barData = barSettings;
 
-        if (emptyBar[0] == '' || emptyBar[0] == null) emptyBar[0] = 'default';
-        if (emptyBar[1] == '') emptyBar[1] = null;
-		if ((emptyBar[2] == '' || emptyBar[2] == null) || (emptyBar[3] == '' || emptyBar[3] == null)) {emptyBar[2] = 'false'; emptyBar[3] == 'none';}
-		barData.insert(0, emptyBar[3]);
-
-        if (fullBar[0] == '' || fullBar[0] == null) fullBar[0] = 'default';
-        if (fullBar[1] == '') fullBar[1] = null;
-		if ((fullBar[2] == '' || fullBar[2] == null) || (fullBar[3] == '' || fullBar [3] == null)) {fullBar[2] = 'false'; fullBar[3] == 'none';}
-		barData.insert(1, fullBar[3]);
-		
 		if (valueFunction == null) {
 			valueFunction = function() return 1;
 		}
 		this.valueFunction = valueFunction;
 		setBounds(minVal, maxVal);
 
-		bg = new FlxSprite().loadGraphic(Paths.image('healthbars/' + emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true')); //honestly, just here for sizing of everything
-
-		leftBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + emptyBar[0], emptyBar[1], false), (emptyBar[2] == 'true'));
-		leftBar.antialiasing = antialiasing = ClientPrefs.data.antialiasing;
-		if (emptyBar[2] == 'true') {
-			bg.frames = Paths.getSparrowAtlas('healthbars/' + emptyBar[0], emptyBar[1]);
-			leftBar.frames = Paths.getSparrowAtlas('healthbars/' + emptyBar[0], emptyBar[1]);
+		bg = new FlxSprite().loadGraphic(Paths.image('healthbars/' + barData.emptyBar, barData.emptyBarLibrary, false), barData.emptyBarAnimated);
+		bg.antialiasing = ClientPrefs.data.antialiasing;
+		leftBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + barData.emptyBar, barData.emptyBarLibrary, false), barData.emptyBarAnimated);
+		leftBar.antialiasing = ClientPrefs.data.antialiasing;
+		if (barData.emptyBarAnimated) {
+			bg.frames = Paths.getSparrowAtlas('healthbars/' + barData.emptyBar, barData.emptyBarLibrary);
+			leftBar.frames = Paths.getSparrowAtlas('healthbars/' + barData.emptyBar, barData.emptyBarLibrary);
 			animationAdd(true);
 		}
+		if (barData.emptyBarOverlay != null && barData.emptyBarOverlay != '') {
+			leftBarOverlay = new FlxSprite().loadGraphic(Paths.image('healthbars/' + barData.emptyBarOverlay, barData.emptyBarLibrary, false), barData.emptyBarOverlayAnimated);
+			leftBarOverlay.antialiasing = ClientPrefs.data.antialiasing;
+			if (barData.emptyBarOverlayAnimated) {
+				leftBarOverlay.frames = Paths.getSparrowAtlas('healthbars/' + barData.emptyBarOverlay, barData.emptyBarLibrary);
+				animationAdd(true, true);
+			}
+		}
 
-		rightBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + fullBar[0], fullBar[1], false), (fullBar[2] == 'true'));
+		rightBar = new FlxSprite().loadGraphic(Paths.image('healthbars/' + barData.fullBar, barData.fullBarLibrary, false), barData.fullBarAnimated);
 		rightBar.antialiasing = ClientPrefs.data.antialiasing;
-		if (fullBar[2] == 'true') {
-			rightBar.frames = Paths.getSparrowAtlas('healthbars/' + fullBar[0], fullBar[1]);
+		if (barData.fullBarAnimated) {
+			rightBar.frames = Paths.getSparrowAtlas('healthbars/' + barData.fullBar, barData.fullBarLibrary);
 			animationAdd(false);
+		}
+		if (barData.fullBarOverlay != null && barData.fullBarOverlay != '') {
+			rightBarOverlay = new FlxSprite().loadGraphic(Paths.image('healthbars/' + barData.fullBarOverlay, barData.fullBarLibrary, false), barData.fullBarOverlayAnimated);
+			rightBarOverlay.antialiasing = ClientPrefs.data.antialiasing;
+			if (barData.fullBarOverlayAnimated) {
+				rightBarOverlay.frames = Paths.getSparrowAtlas('healthbars/' + barData.fullBarOverlay, barData.fullBarLibrary);
+				animationAdd(false, true);
+			}
 		}
 
 		setColors(enemyColor, playerColor);
@@ -76,16 +94,28 @@ class ImageBar extends FlxSpriteGroup
 		bg.visible = false;
 		add(leftBar);
 		add(rightBar);
+		if (leftBarOverlay != null) add(leftBarOverlay);
+		if (rightBarOverlay != null) add(rightBarOverlay);
 		regenerateClips();
 	}
 
-	public function animationAdd(left:Bool) {
-		if (left) {
-			leftBar.animation.addByPrefix("idle", barData[0], 24, true);
-			leftBar.animation.play("idle");
+	public function animationAdd(left:Bool, ?overlay:Bool = false) {
+		if (overlay) {
+			if (left) {
+				leftBarOverlay.animation.addByPrefix("idle", barData.emptyBarOverlayAnimationName, 24, true);
+				leftBarOverlay.animation.play('idle');
+			} else {
+				rightBarOverlay.animation.addByPrefix("idle", barData.fullBarOverlayAnimationName, 24, true);
+				rightBarOverlay.animation.play('idle');
+			}
 		} else {
-			rightBar.animation.addByPrefix("idle", barData[1], 24, true);
-			rightBar.animation.play("idle");
+			if (left) {
+				leftBar.animation.addByPrefix("idle", barData.emptyBarAnimationName, 24, true);
+				leftBar.animation.play("idle");
+			} else {
+				rightBar.animation.addByPrefix("idle", barData.fullBarAnimationName, 24, true);
+				rightBar.animation.play("idle");
+			}
 		}
 	}
 
@@ -140,10 +170,15 @@ class ImageBar extends FlxSpriteGroup
 		bg.shader = shader;
 		leftBar.shader = shader;
 		rightBar.shader = shader;
+		if (leftBarOverlay != null) leftBarOverlay.shader = shader;
+		if (rightBarOverlay != null) rightBarOverlay.shader = shader;
 	}
 	
 	public function grabShaders():Array<FlxShader> {
-		return [bg.shader, leftBar.shader, rightBar.shader];
+		var temp:Array<FlxShader> = [bg.shader, leftBar.shader, rightBar.shader];
+		if (leftBarOverlay != null) temp.push(leftBarOverlay.shader);
+		if (rightBarOverlay != null) temp.push(rightBarOverlay.shader);
+		return temp;
 	}
 
 	public function updateBar()
@@ -172,6 +207,33 @@ class ImageBar extends FlxSpriteGroup
 		// flixel is retarded
 		leftBar.clipRect = leftBar.clipRect;
 		rightBar.clipRect = rightBar.clipRect;
+		updateOverlays(leftSize);
+	}
+
+	public function updateOverlays(size:Float) {
+		if (leftBarOverlay == null && rightBarOverlay == null) return;
+		
+		if (leftBarOverlay != null) {
+			leftBarOverlay.setPosition(leftBar.x, leftBar.y);
+			
+			leftBarOverlay.clipRect.width = size;
+			leftBarOverlay.clipRect.height = barHeight + 10;
+			leftBarOverlay.clipRect.x = barOffset.x;
+			leftBarOverlay.clipRect.y = barOffset.y;
+
+			leftBarOverlay.clipRect = leftBarOverlay.clipRect;
+		}
+
+		if (rightBarOverlay != null) {
+			rightBarOverlay.setPosition(rightBar.x, rightBar.y);
+			
+			rightBarOverlay.clipRect.width = barWidth - size;
+			rightBarOverlay.clipRect.height = barHeight + 10;
+			rightBarOverlay.clipRect.x = barOffset.x + size;
+			rightBarOverlay.clipRect.y = barOffset.y;
+
+			rightBarOverlay.clipRect = rightBarOverlay.clipRect;
+		}
 	}
 
 	public function regenerateClips()
@@ -182,11 +244,21 @@ class ImageBar extends FlxSpriteGroup
 			leftBar.updateHitbox();
 			leftBar.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
 		}
+		if (leftBarOverlay != null) {
+			leftBarOverlay.setGraphicSize(Std.int(bg.width), Std.int(bg.height));
+			leftBarOverlay.updateHitbox();
+			leftBarOverlay.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
+		}
 		if(rightBar != null)
 		{
 			rightBar.setGraphicSize(Std.int(bg.width), Std.int(bg.height));
 			rightBar.updateHitbox();
 			rightBar.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
+		}
+		if (rightBarOverlay != null) {
+			rightBarOverlay.setGraphicSize(Std.int(bg.width), Std.int(bg.height));
+			rightBarOverlay.updateHitbox();
+			rightBarOverlay.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
 		}
 		updateBar();
 	}
@@ -221,4 +293,21 @@ class ImageBar extends FlxSpriteGroup
 		regenerateClips();
 		return value;
 	}
+}
+
+typedef BarSettings = {
+	var emptyBar:String;
+	var emptyBarLibrary:String;
+	@:optional var emptyBarOverlay:String;
+	@:optional var emptyBarOverlayAnimated:Bool;
+	@:optional var emptyBarOverlayAnimationName:String;
+	var emptyBarAnimated:Bool;
+	@:optional var emptyBarAnimationName:String;
+	var fullBar:String;
+	var fullBarLibrary:String;
+	@:optional var fullBarOverlay:String;
+	@:optional var fullBarOverlayAnimated:Bool;
+	@:optional var fullBarOverlayAnimationName:String;
+	var fullBarAnimated:Bool;
+	@:optional var fullBarAnimationName:String;
 }

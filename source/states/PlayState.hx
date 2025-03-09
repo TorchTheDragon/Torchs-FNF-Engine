@@ -58,6 +58,7 @@ import torchsfunctions.functions.Extras;
 
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
+import torchsthings.objects.ImageBar.BarSettings;
 import torchsthings.objects.effects.GhostEffect;
 import torchsthings.utils.WindowTitleUtils;
 
@@ -565,6 +566,42 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
+		var healthBarSettings:BarSettings = switch (ClientPrefs.data.healthBarSkin) {
+			case "Char Based":
+				var temp:String = '
+				{
+					"emptyBar": "${dad.healthBar}",
+					"emptyBarLibrary": "${dad.healthBarLibrary}",
+					"emptyBarOverlay": "${dad.healthBarOverlay}",
+					"emptyBarOverlayAnimated": ${dad.animatedOverlay},
+					"emptyBarOverlayAnimationName": "${dad.healthBarOverlayAnimation}",
+					"emptyBarAnimated": ${dad.animatedBar},
+					"emptyBarAnimationName": "${dad.healthBarAnimation}",
+					"fullBar": "${boyfriend.healthBar}",
+					"fullBarLibrary": "${boyfriend.healthBarLibrary}",
+					"fullBarOverlay": "${boyfriend.healthBarOverlay}",
+					"fullBarOverlayAnimated": ${boyfriend.animatedOverlay},
+					"fullBarOverlayAnimationName": "${boyfriend.healthBarOverlayAnimation}",
+					"fullBarAnimated": ${boyfriend.animatedBar},
+					"fullBarAnimationName": "${boyfriend.healthBarAnimation}"
+				}
+				';
+				haxe.Json.parse(temp);
+			case "Reanimated":
+				if (dad.curCharacter == 'spirit' && isPixelStage) {
+					haxe.Json.parse(Assets.getText(Paths.json("healthbars/Reanimated-pixel-glitch", "shared").replace("data", "images")));
+				} else if (isPixelStage) {
+					haxe.Json.parse(Assets.getText(Paths.json("healthbars/Reanimated-pixel", "shared").replace("data", "images")));
+				} else {
+					haxe.Json.parse(Assets.getText(Paths.json("healthbars/Reanimated", "shared").replace("data", "images")));
+				}
+			case "Default":
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Default", "shared").replace("data", "images")));
+			default:
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/" + ClientPrefs.data.healthBarSkin, "shared").replace("data", "images")));
+		}
+
+		/*
 		var healthBars:Array<Array<String>> = switch (ClientPrefs.data.healthBarSkin) {
 			case "Char Based":
 				[[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
@@ -575,9 +612,11 @@ class PlayState extends MusicBeatState
 			default:
 				[[ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none'], [ClientPrefs.data.healthBarSkin.toLowerCase(), 'shared', 'false', 'none']];
 		}
+		*/
 		
 		//healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
-		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
+		//healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
+		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBarSettings, FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
@@ -585,7 +624,7 @@ class PlayState extends MusicBeatState
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
-		//healthBar.healthLerp = true; // Lerping Works
+		healthBar.healthLerp = true; // Lerping Works
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		//iconP1.y = healthBar.y - 75;

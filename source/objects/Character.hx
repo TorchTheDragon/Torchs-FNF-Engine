@@ -40,8 +40,11 @@ typedef CharacterFile = {
 
 	@:optional var healthBar:String;
 	@:optional var healthBarLibrary:String;
+	@:optional var healthBarOverlay:String;
 	@:optional var animatedHealthBar:Bool;
 	@:optional var healthBarAnimation:String;
+	@:optional var animatedHealthBarOverlay:Bool;
+	@:optional var healthBarOverlayAnimation:String;
 }
 
 typedef NoteColors = {
@@ -126,8 +129,11 @@ class Character extends FlxSprite
 
 	public var healthBar:String = 'default';
 	public var healthBarLibrary:String = 'shared';
+	public var healthBarOverlay:String = '';
 	public var animatedBar:Bool = false;
 	public var healthBarAnimation:String = '';
+	public var animatedOverlay:Bool = false;
+	public var healthBarOverlayAnimation:String = '';
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
@@ -290,8 +296,11 @@ class Character extends FlxSprite
 		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
 		if (json.healthBar != null && json.healthBar != '') healthBar = json.healthBar;
 		if (json.healthBarLibrary != null && json.healthBarLibrary != '') healthBarLibrary = json.healthBarLibrary;
+		if (json.healthBarOverlay != null && json.healthBarOverlay != '') healthBarOverlay = json.healthBarOverlay;
 		if (json.animatedHealthBar != null) animatedBar = json.animatedHealthBar;
+		if (json.animatedHealthBarOverlay != null) animatedOverlay = json.animatedHealthBarOverlay;
 		if (json.healthBarAnimation != null && json.healthBarAnimation != '') healthBarAnimation = json.healthBarAnimation;
+		if (json.healthBarOverlayAnimation != null && json.healthBarOverlayAnimation != '') healthBarOverlayAnimation = json.healthBarOverlayAnimation;
 		if (json.altNoteColors != null) altNoteColors = json.altNoteColors;
 		if (json.hasAltColors != null) hasAltColors = json.hasAltColors;
 		if (json.disableNoteRGB != null) disableNoteRGB = json.disableNoteRGB;

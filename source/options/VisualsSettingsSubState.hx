@@ -118,11 +118,14 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
-		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin) || !healthSkins.contains('Char Based')) {
-			if (!healthSkins.contains(ClientPrefs.data.healthBarSkin))
-				ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
+		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin)) {
 			healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
+		}
+		if (!healthSkins.contains('Char Based')) {
 			healthSkins.insert(1, 'Char Based');
+		}
+		if (!healthSkins.contains(ClientPrefs.data.healthBarSkin)) {
+			ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
 		}
 		var option:Option = new Option('Health Bar Skin:',
 			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",

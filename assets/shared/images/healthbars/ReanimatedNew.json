@@ -1,0 +1,16 @@
+{
+    "emptyBar": "ReanimatedNew",
+    "emptyBarLibrary": "shared",
+    "emptyBarOverlay": "ReanimatedNew-Overlay",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimated": false,
+    "emptyBarAnimationName": "",
+    "fullBar": "ReanimatedNew",
+    "fullBarLibrary": "shared",
+    "fullBarOverlay": "ReanimatedNew-Overlay",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimated": false,
+    "fullBarAnimationName": ""
+}
