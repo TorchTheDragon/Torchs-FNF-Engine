@@ -2558,6 +2558,12 @@ class PlayState extends MusicBeatState
 							onComplete: function(t:FlxTween) {
 								defaultCamZoom = camGame.zoom;
 							}});
+						case "soft" | "soft reset" | "sr":
+							zoomTweens[1] = FlxTween.tween(camHUD, {zoom: 1}, zoomTime, {ease: easeType});
+							zoomTweens[0] = FlxTween.tween(camGame, {zoom: StageData.getStageFile(SONG.stage).defaultZoom}, zoomTime, {ease: easeType,
+							onComplete: function(t:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
 						default:
 							FlxG.camera.zoom += zoomAmount;
 							camHUD.zoom += zoomAmount;

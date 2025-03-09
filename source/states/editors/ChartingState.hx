@@ -75,7 +75,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Philly Glow', "Exclusive to Week 3\nValue 1: 0/1/2 = OFF/ON/Reset Gradient\n \nNo, i won't add it to other weeks."],
 		['Kill Henchmen', "For Mom's songs, don't use this please, i love them :("],
 		['Add Camera Zoom', "Used on MILF on that one \"hard\" part\nValue 1: Camera zoom add (Default: 0.015)\nValue 2: UI zoom add (Default: 0.03)\nLeave the values blank if you want to use Default."],
-		['Updated Camera Zoom', "Value 1: Sets the Zoom Type\nRegular: Default Cam Zoom\nMain: Use the tween on the Game Camera\nHUD: Uses the tween on the Game HUD\nBoth: Uses the tween on the Game Camera and the HUD\nReset: Resets both to default (leave Value 2 blank)\n\nValue 2: Is either Zoom Amount or 3 values\n1 - Zoom Amount, 2 - Zoom Duration, 3 - Tween Ease\n2 & 3 is only used if value 1 is not 'regular'\n\nExamples:\nRegular ex. - '1.5'\nCustom ex. - '1.5,0.75,expoIn'\n\nFor the list of tweens, please go to this site below\nhttps://api.haxeflixel.com/flixel/tweens/FlxEase.html"],
+		['Updated Camera Zoom', "Value 1: Sets the Zoom Type\nRegular: Default Cam Zoom\nMain: Use the tween on the Game Camera\nHUD: Uses the tween on the Game HUD\nBoth: Uses the tween on the Game Camera and the HUD\nReset: Resets both to default (leave Value 2 blank)\nSoft Reset: Resets both to default, but with customizability (First value of Value 2 will be ignored)\n\nValue 2: Is either Zoom Amount or 3 values\n1 - Zoom Amount, 2 - Zoom Duration, 3 - Tween Ease\n2 & 3 is only used if value 1 is not 'regular'\n\nExamples:\nRegular ex. - '1.5'\nCustom ex. - '1.5,0.75,expoIn'\n\nFor the list of tweens, please go to this site below\nhttps://api.haxeflixel.com/flixel/tweens/FlxEase.html"],
 		['BG Freaks Expression', "Should be used only in \"school\" Stage!"],
 		['Trigger BG Ghouls', "Should be used only in \"schoolEvil\" Stage!"],
 		['Play Animation', "Plays an animation on a Character,\nonce the animation is completed,\nthe animation changes to Idle\n\nValue 1: Animation to play.\nValue 2: Character (Dad, BF, GF)"],
@@ -385,7 +385,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		add(infoBox);
 		
 		// Original height is 280
-		mainBox = new PsychUIBox(mainBoxPosition.x, mainBoxPosition.y, 300, 340, ['Charting', 'Data', 'Events', 'Note', 'Section', 'Song']);
+		mainBox = new PsychUIBox(mainBoxPosition.x, mainBoxPosition.y, 300, 360, ['Charting', 'Data', 'Events', 'Note', 'Section', 'Song']);
 		mainBox.selectedName = 'Song';
 		mainBox.scrollFactor.set();
 		mainBox.cameras = [camUI];
