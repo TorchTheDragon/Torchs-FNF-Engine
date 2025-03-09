@@ -23,3 +23,19 @@ Fixed strum covers staying longer than they should be on short sustains
 Added Alt Note Color Support for Notes, Strum Notes, Note Splashes, and Strum Covers
 Added event for strum covers and note splashes for opponent
 Added custom note skin and texture library support for character based note skins and colors
+IN DEV - Cursor that changes based on what it is overlapping
+Ability to change the Camera and Position of Rating and Combo count
+Added ability to use ABot, or Nene's Speaker, on any stage
+Made Blazin Middlescroll
+Added Wobbly Notes as an event
+Reflected Char has Atlas character support now, meaning it can work on spritemaps now instead of just spritesheets
+Added ability to mess with the window's title and color (Windows 10 and Windows 11 only I think)
+Added a custom note type for a ghost effect
+Added Cinematic Bars Event
+Added ability on Healthbar to have it smoothly move instead of an immediate jump when gaining or losing health
+Added ability to use Winning Icons on characters
+From JorgeX_YT from Reanimated - Added Credits to the intros of songs (It's a toggle). I won't be adding the default ones as I personally don't know who the song artists are nor do I know the charters.
+BIG UPDATE - UPDATED TO FLXANIMATE 4.0.0 FOR BETTER COMPATIBILITY WITH FLXANIMATE OBJECTS, example being shaders
+Made ABot actually able to use shaders
+Fixed Custom Character Note RGB from editing the colors of Custom Notes like the Hurt Note.
+Completely Revamped ImageBar for better customizabity as well as being able to edit everything through a json instead of hard coding it.
