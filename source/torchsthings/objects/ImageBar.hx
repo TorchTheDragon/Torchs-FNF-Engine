@@ -119,6 +119,15 @@ class ImageBar extends FlxSpriteGroup
 		}
 	}
 
+	function setShader(sdr:FlxShader) {
+		bg.shader = sdr;
+		for (bar in [leftBar, rightBar, leftBarOverlay, rightBarOverlay]) {
+			if (bar != null) {
+				bar.shader = sdr;
+			}
+		}
+	}
+
 	public var healthLerp:Bool = false;
 	var lerpingHealth:Float = 1;
 	public var enabled:Bool = true;
@@ -141,6 +150,9 @@ class ImageBar extends FlxSpriteGroup
 		}
 		else percent = 0;
 		super.update(elapsed);
+		if (this.shader != null && bg.shader != this.shader) {
+			setShader(this.shader);
+		}
 	}
 
 	
@@ -164,21 +176,6 @@ class ImageBar extends FlxSpriteGroup
 		rightBar.color = leftBar.color;
 		leftBar.color = tempCol;
 		updateBar();
-	}
-
-	public function setSpriteShaders(shader:FlxShader) {
-		bg.shader = shader;
-		leftBar.shader = shader;
-		rightBar.shader = shader;
-		if (leftBarOverlay != null) leftBarOverlay.shader = shader;
-		if (rightBarOverlay != null) rightBarOverlay.shader = shader;
-	}
-	
-	public function grabShaders():Array<FlxShader> {
-		var temp:Array<FlxShader> = [bg.shader, leftBar.shader, rightBar.shader];
-		if (leftBarOverlay != null) temp.push(leftBarOverlay.shader);
-		if (rightBarOverlay != null) temp.push(rightBarOverlay.shader);
-		return temp;
 	}
 
 	public function updateBar()
