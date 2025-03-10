@@ -42,9 +42,9 @@ class CreditsState extends MusicBeatState
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			["Torch Engine Port Team"],
-			["TorchTheDragon",	"torchengine/torch",	"Main and Sole programmer of this port",			"https://www.youtube.com/@TorchTheDragon", 	"AA1111"],
-			['JorgeX_YT',		'torchengine/jorge',		'Programmer and contributor',				'https://www.youtube.com/@JorgeX_YT',	'4CE8BF'],
-			['Law',				'torchengine/law',			'Programmer and contributor',						'https://twitter.com/Lawornot',			'000099'],
+			["TorchTheDragon",	"torchengine/torch",	"Main Programmer of this port",			"https://www.youtube.com/@TorchTheDragon", 	"AA1111"],
+			['JorgeX_YT',		'torchengine/jorge',		'Programmer and Contributor',				'https://www.youtube.com/@JorgeX_YT',	'4CE8BF'],
+			['Law',				'torchengine/law',			'Programmer and Contributor',						'https://twitter.com/Lawornot',			'000099'],
 			[""],
 			["Psych Engine Team"],
 			["Shadow Mario",		"shadowmario",		"Main Programmer and Head of Psych Engine",					"https://ko-fi.com/shadowmario",	"444444"],
