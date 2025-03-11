@@ -142,12 +142,12 @@ class StrumCover extends FlxSprite {
         assets = texture + skinPostFix;
 
         frames = Paths.getSparrowAtlas(texture + skinPostFix, library);
-        antialiasing = ClientPrefs.data.antialiasing;
         animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
         animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
         animation.addByPrefix('end', colArray[strumNote.noteData] + "CoverEnd0", 24, false);
         animation.finishCallback = daCallback;
         if (strumNote != null) strumNote.animation.finishCallback = strumFinishCallback;
+        antialiasing = ClientPrefs.data.antialiasing;
         animation.play("end");
 
         if(lastAnim != null) {animation.play(lastAnim, true);}

@@ -4,6 +4,7 @@ import objects.Character;
 import objects.Note;
 
 class GhostEffect {
+    public static var coloredGhost:Bool = true;
     public static var arrowColorGhost:Bool = true;
     public static var tweenTime:Float = 0.4;
     public static var slideDistance:Float = 90.0;
@@ -22,24 +23,18 @@ class GhostEffect {
             colors[i].alphaFloat = 0.15;
         }
 
-        /*
-        var leftArrowColor:FlxColor = ghost.charRef.noteColors.left[0];
-        leftArrowColor.alphaFloat = 0.15;
-        var upArrowColor:FlxColor = ghost.charRef.noteColors.up[0];
-        upArrowColor.alphaFloat = 0.15;
-        var downArrowColor:FlxColor = ghost.charRef.noteColors.down[0];
-        downArrowColor.alphaFloat = 0.15;
-        var rightArrowColor:FlxColor = ghost.charRef.noteColors.right[0];
-        rightArrowColor.alphaFloat = 0.15;
-        */
+        var arrowColors:Array<FlxColor> = [ghost.charRef.noteColors.left[0], ghost.charRef.noteColors.down[0], ghost.charRef.noteColors.up[0], ghost.charRef.noteColors.right[0]];
+        for (i in 0...arrowColors.length) {
+            arrowColors[i].alphaFloat = 0.15;
+        }
 
         var defaultColor:FlxColor = ghost.color;
         defaultColor.alphaFloat = 0.9;
 
         switch (note.noteData) {
             case 0:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, colors[0]);
+                if (coloredGhost) {
+                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[0] : colors[0]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -50,8 +45,8 @@ class GhostEffect {
                     }
                 });
             case 1:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, colors[1]);
+                if (coloredGhost) {
+                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[1] : colors[1]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -62,8 +57,8 @@ class GhostEffect {
                     }
                 });
             case 2:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, colors[2]);
+                if (coloredGhost) {
+                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[2] : colors[2]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -74,8 +69,8 @@ class GhostEffect {
                     }
                 });
             case 3:
-                if (arrowColorGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, colors[3]);
+                if (coloredGhost) {
+                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[3] : colors[3]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -119,12 +114,14 @@ class GhostChar extends Character {
         offsets = [charRef.offset.x, charRef.offset.y];
         frameName = charRef.isAnimateAtlas ? charRef.atlas.anim.curSymbol.name : charRef.animation.curAnim.name;
         curFrame = charRef.isAnimateAtlas ? charRef.atlas.anim.curSymbol.curFrame : charRef.animation.curAnim.curFrame;
+        this.shader = charRef.shader;
         this.dance();
     }
 
     override function update(elapsed:Float) {
-        this.offset.x = offsets[0];
-        this.offset.y = offsets[1];
+        //this.offset.x = offsets[0];
+        //this.offset.y = offsets[1];
+        this.offset.set(offsets[0], offsets[1]);
         if (charRef.isAnimateAtlas == true && charRef.atlas.anim.curSymbol != null) {
             this.atlas.anim.play(frameName, true, false, curFrame);
         } else {
