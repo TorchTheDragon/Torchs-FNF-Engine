@@ -27,6 +27,11 @@ class GhostEffect {
         var defaultColor:FlxColor = ghost.color;
         defaultColor.alphaFloat = 0.9;
 
+        function ghostKill(t:FlxTween) {
+            ghost.kill();
+            ghost.destroy();
+        }
+
         switch (note.noteData) {
             case 0:
                 if (coloredGhost) {
@@ -34,48 +39,48 @@ class GhostEffect {
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
-                FlxTween.tween(ghost, {x: char.x - slideDistance}, tweenTime, {
-                    onComplete: function(t:FlxTween) {
-                        ghost.kill();
-                        ghost.destroy();
-                    }
-                });
+                if (slideDistance == 0) {
+                    ghost.scale.set(1.2, 1.2);
+                    FlxTween.tween(ghost, {"scale.x": ghost.charRef.scale.x, "scale.y": ghost.charRef.scale.y}, tweenTime, {onComplete: ghostKill});
+                } else {
+                    FlxTween.tween(ghost, {x: char.x - slideDistance}, tweenTime, {onComplete: ghostKill});
+                }
             case 1:
                 if (coloredGhost) {
                     FlxTween.color(ghost, tweenTime, defaultColor, colors[1]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
-                FlxTween.tween(ghost, {y: char.y + slideDistance}, tweenTime, {
-                    onComplete: function(t:FlxTween) {
-                        ghost.kill();
-                        ghost.destroy();
-                    }
-                });
+                if (slideDistance == 0) {
+                    ghost.scale.set(1.2, 1.2);
+                    FlxTween.tween(ghost, {"scale.x": ghost.charRef.scale.x, "scale.y": ghost.charRef.scale.y}, tweenTime, {onComplete: ghostKill});
+                } else {
+                    FlxTween.tween(ghost, {y: char.y + slideDistance}, tweenTime, {onComplete: ghostKill});
+                }
             case 2:
                 if (coloredGhost) {
                     FlxTween.color(ghost, tweenTime, defaultColor, colors[2]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
-                FlxTween.tween(ghost, {y: char.y - slideDistance}, tweenTime, {
-                    onComplete: function(t:FlxTween) {
-                        ghost.kill();
-                        ghost.destroy();
-                    }
-                });
+                if (slideDistance == 0) {
+                    ghost.scale.set(1.2, 1.2);
+                    FlxTween.tween(ghost, {"scale.x": ghost.charRef.scale.x, "scale.y": ghost.charRef.scale.y}, tweenTime, {onComplete: ghostKill});
+                } else {
+                    FlxTween.tween(ghost, {y: char.y - slideDistance}, tweenTime, {onComplete: ghostKill});
+                }
             case 3:
                 if (coloredGhost) {
                     FlxTween.color(ghost, tweenTime, defaultColor, colors[3]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
-                FlxTween.tween(ghost, {x: char.x + slideDistance}, tweenTime, {
-                    onComplete: function(t:FlxTween) {
-                        ghost.kill();
-                        ghost.destroy();
-                    }
-                });
+                if (slideDistance == 0) {
+                    ghost.scale.set(1.2, 1.2);
+                    FlxTween.tween(ghost, {"scale.x": ghost.charRef.scale.x, "scale.y": ghost.charRef.scale.y}, tweenTime, {onComplete: ghostKill});
+                } else {
+                    FlxTween.tween(ghost, {x: char.x + slideDistance}, tweenTime, {onComplete: ghostKill});
+                }
         }
     }
 
