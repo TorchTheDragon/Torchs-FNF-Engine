@@ -17,15 +17,11 @@ class GhostEffect {
             PlayState.instance.addBehindDad(ghost);
         }
 
-        var colors:Array<FlxColor> = [0xFFC24B99, 0xFF00FFFF, 0xFF12FA05, 0xFFF9393F];
+        //var colors:Array<FlxColor> = [0xFFC24B99, 0xFF00FFFF, 0xFF12FA05, 0xFFF9393F];
+        var colors:Array<FlxColor> = [arrowColorGhost ? ghost.charRef.noteColors.left[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], arrowColorGhost ? ghost.charRef.noteColors.down[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[1][0] : ClientPrefs.data.arrowRGB[1][0], arrowColorGhost ? ghost.charRef.noteColors.up[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[2][0] : ClientPrefs.data.arrowRGB[2][0], arrowColorGhost ? ghost.charRef.noteColors.right[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[3][0] : ClientPrefs.data.arrowRGB[3][0]];
         colors = getColors(player, ghost);
         for (i in 0...colors.length) {
             colors[i].alphaFloat = 0.15;
-        }
-
-        var arrowColors:Array<FlxColor> = [ghost.charRef.noteColors.left[0], ghost.charRef.noteColors.down[0], ghost.charRef.noteColors.up[0], ghost.charRef.noteColors.right[0]];
-        for (i in 0...arrowColors.length) {
-            arrowColors[i].alphaFloat = 0.15;
         }
 
         var defaultColor:FlxColor = ghost.color;
@@ -34,7 +30,7 @@ class GhostEffect {
         switch (note.noteData) {
             case 0:
                 if (coloredGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[0] : colors[0]);
+                    FlxTween.color(ghost, tweenTime, defaultColor, colors[0]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -46,7 +42,7 @@ class GhostEffect {
                 });
             case 1:
                 if (coloredGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[1] : colors[1]);
+                    FlxTween.color(ghost, tweenTime, defaultColor, colors[1]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -58,7 +54,7 @@ class GhostEffect {
                 });
             case 2:
                 if (coloredGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[2] : colors[2]);
+                    FlxTween.color(ghost, tweenTime, defaultColor, colors[2]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
@@ -70,7 +66,7 @@ class GhostEffect {
                 });
             case 3:
                 if (coloredGhost) {
-                    FlxTween.color(ghost, tweenTime, defaultColor, arrowColorGhost ? arrowColors[3] : colors[3]);
+                    FlxTween.color(ghost, tweenTime, defaultColor, colors[3]);
                 } else {
                     FlxTween.tween(ghost, {alpha: 0}, tweenTime);
                 }
