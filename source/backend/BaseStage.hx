@@ -214,10 +214,9 @@ class BaseStage extends FlxBasic {
 	final MAX_BLINK_DELAY:Int = 7;
 	var animationFinished:Bool = false;
 
-	// As I can't make this permanently be in every stage, you will have to at least throw this function into createPost.
-	// Yes, it has to be in createPost otherwise it will mess up trying to figure out the character name from the gf object.
+	// As I can't make this permanently be in every stage, you will have to at least throw this function into createP.
 	/* Example:
-	override function createPost() {
+	override function create() {
 		addAbot();
 	}
 	*/
@@ -228,6 +227,13 @@ class BaseStage extends FlxBasic {
 			add(abot);
 		}
 	}
+	
+	// Small changes after abot is made.
+	/* Example:
+	override function createPost() {
+		addAbotPost();
+	}
+	*/
 	function addAbotPost() {
 		if(gf != null) {
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {

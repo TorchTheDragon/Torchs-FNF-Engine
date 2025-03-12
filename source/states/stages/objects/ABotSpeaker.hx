@@ -23,6 +23,7 @@ class ABotSpeaker extends FlxSpriteGroup
 	var volumes:Array<Float> = [];
 
 	public function setShader(sdr:FlxShader) {
+		this.shader = sdr;
 		bg.shader = sdr;
 		for (sprite in vizSprites) {
 			sprite.shader = sdr;
