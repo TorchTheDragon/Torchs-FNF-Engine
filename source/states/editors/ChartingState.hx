@@ -88,7 +88,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		["Enemy Splashes", "Value 1: Enemy Note Splashes (true/false)\n\nValue 2: Enemy Strum Cover Splashes (true/false)"],
 		['Wobbly Notes', "Value 1: The wiggle factor 'x,y' Int Array\nValue 2: Who does it effect? Options are:\n'enemy', 'player', 'both', and 'none'\n'stop1' and 'stop2' also work\n'stop1' affects the enemy, 'stop2' affects the player\n\nSet value 1 to '0,0' or set 'none' in value 2 to remove\nwobble"],
-		['Cinematic Bars', "Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"]
+		['Cinematic Bars', "Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"],
+		['Edit Ghost Notes', 'Value 1: If the ghost should be colored, \nif the ghosts color should be affected by their custom note colors\nDefault Values: "true, true".\n\nValue 2: The tween time, the sliding distance.\nDefault Values: "0.4, 90.0"']
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor
