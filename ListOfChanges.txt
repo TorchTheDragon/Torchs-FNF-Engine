@@ -1,4 +1,4 @@
-This text file is just a way to keep things in order of what was updated or added.
+This text file is just a way to keep things in order of what was updated or added. Side note... I may not keep them in order on accident... sorry.
 
 Imported my Haxe library (torchfunctions)
 Imported the vanilla FNF soundtray to the game
@@ -39,3 +39,9 @@ BIG UPDATE - UPDATED TO FLXANIMATE 4.0.0 FOR BETTER COMPATIBILITY WITH FLXANIMAT
 Made ABot actually able to use shaders
 Fixed Custom Character Note RGB from editing the colors of Custom Notes like the Hurt Note.
 Completely Revamped ImageBar for better customizabity as well as being able to edit everything through a json instead of hard coding it.
+Made the ABot speaker's visualizer update with current volume level
+Ghost Effect has an alt note variant
+Ghost Effect will use scaling method if slideDistance is set to 0
+Ghost Effect values can be changed via an event
+ImageBar can now be lerped if the "healthLerp" variable is set to true in it
+Custom Window Titles added to multiple states... I still have more to do lol
