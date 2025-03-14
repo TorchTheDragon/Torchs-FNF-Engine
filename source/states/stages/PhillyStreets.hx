@@ -248,7 +248,7 @@ class PhillyStreets extends BaseStage {
 	var cutsceneHandler:CutsceneHandler;
 	function darnellCutscene()
 	{
-		moveCamera(false);
+		moveCamera(true);
 		camFollow.x += 250;
 		FlxG.camera.snapToTarget();
 		FlxG.camera.zoom = 1.3;
