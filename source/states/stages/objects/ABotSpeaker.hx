@@ -4,6 +4,7 @@ package states.stages.objects;
 import funkin.vis.dsp.SpectralAnalyzer;
 #end
 import flixel.system.FlxAssets.FlxShader;
+import torchsthings.utils.MathUtil;
 
 class ABotSpeaker extends FlxSpriteGroup
 {
@@ -114,8 +115,15 @@ class ABotSpeaker extends FlxSpriteGroup
 		for (i in 0...Std.int(Math.min(vizSprites.length, levels.length)))
 		{
 			var animFrame:Int = Math.round(levels[i].value * 5);
-			animFrame = Std.int(Math.abs(FlxMath.bound(animFrame, 0, 5) - 5)); // shitty dumbass flip, cuz dave got da shit backwards lol!
-		
+			
+			#if desktop
+			animFrame = Math.round(animFrame * MathUtil.logToLinear(FlxG.sound.volume));
+			#end
+			
+			animFrame = Math.floor(Math.min(5, animFrame));
+			animFrame = Math.floor(Math.max(0, animFrame));
+			animFrame = Std.int(Math.abs(animFrame - 5)); // shitty dumbass flip, cuz dave got da shit backwards lol!
+				
 			vizSprites[i].animation.curAnim.curFrame = animFrame;
 			levelMax = Std.int(Math.max(levelMax, 5 - animFrame));
 		}
