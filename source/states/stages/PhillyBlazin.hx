@@ -79,8 +79,11 @@ class PhillyBlazin extends BaseStage
 			add(additionalLighten);
 		}
 
+		/*
 		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
 		add(abot);
+		*/
+		addAbot(0, 550);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -116,6 +119,7 @@ class PhillyBlazin extends BaseStage
 	
 	override function createPost()
 	{
+		addAbotPost();
 		if (songName.toLowerCase() == 'blazin') {
 			for (i in 0...4) {
 				PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
@@ -145,7 +149,7 @@ class PhillyBlazin extends BaseStage
 			if(character == null) continue;
 			character.color = 0xFF888888;
 		}
-		abot.color = 0xFF888888;
+		if (abot != null) abot.color = 0xFF888888;
 
 		var unspawnNotes:Array<Note> = cast game.unspawnNotes;
 		for (note in unspawnNotes)
@@ -162,12 +166,16 @@ class PhillyBlazin extends BaseStage
 
 	override function beatHit()
 	{
-		//if(curBeat % 2 == 0) abot.beatHit();
+		abotBeatHit();
+	}
+
+	override function sectionHit() {
+		updateABotEye();
 	}
 	
 	override function startSong()
 	{
-		if (abot != null) abot.snd = FlxG.sound.music;
+		abotSongStart();
 	}
 
 	function setupRainShader()
@@ -203,6 +211,7 @@ class PhillyBlazin extends BaseStage
 			applyLightning();
 			lightningTimer = FlxG.random.float(7, 15);
 		}
+		abotUpdate();
 	}
 	
 	function applyLightning():Void
