@@ -45,3 +45,4 @@ Ghost Effect will use scaling method if slideDistance is set to 0
 Ghost Effect values can be changed via an event
 ImageBar can now be lerped if the "healthLerp" variable is set to true in it
 Custom Window Titles added to multiple states... I still have more to do lol
+CUSTOM NOTES FOR CHARACTERS ACTUALLY HAS MOD SUPPORT LESSSSSS GO.... I changed how "Paths.getSparrowAtlas" works a small bit, not a major change really. "Reload Notes" may break after 2-3 times of changing the image, but a quick reload into the state fixes it.

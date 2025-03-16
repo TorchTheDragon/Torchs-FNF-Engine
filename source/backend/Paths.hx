@@ -332,10 +332,28 @@ class Paths
 
 		var xml:String = modsXml(key);
 		if(FileSystem.exists(xml)) xmlExists = true;
-		return FlxAtlasFrames.fromSparrow(imageLoaded, (xmlExists ? File.getContent(xml) : getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder)));
+		//return FlxAtlasFrames.fromSparrow(imageLoaded, (xmlExists ? File.getContent(xml) : getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder)));
+		return FlxAtlasFrames.fromSparrow(imageLoaded, (xmlExists ? grabTextFromXML(xml) : grabTextFromXML(getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder))));
 		#else
-		return FlxAtlasFrames.fromSparrow(imageLoaded, getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder));
+		//return FlxAtlasFrames.fromSparrow(imageLoaded, getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder));
+		return FlxAtlasFrames.fromSparrow(imageLoaded, grabTextFromXML(getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder)));
 		#end
+	}
+
+	// This was only made because I was having weird issues with XML files in Mod Folders not loading, this was the only way I could fix it
+	static function grabTextFromXML(path:String) { 
+		var fileStuff:String = null;
+		if (FileSystem.exists(path)) {
+			//trace("XML Exists at " + path);
+			#if sys
+			fileStuff = File.getContent(path);
+			#else
+			fileStuff = Assets.getText(path);
+			#end
+		}
+		if (fileStuff != null && fileStuff != '') {
+			return fileStuff;
+		} else return '';
 	}
 
 	inline static public function getPackerAtlas(key:String, ?parentFolder:String = null, ?allowGPU:Bool = true):FlxAtlasFrames
