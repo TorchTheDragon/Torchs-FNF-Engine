@@ -737,16 +737,16 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 	var noteColorStepperOuterB:PsychUINumericStepper;
 
 	var noteColors:Array<Array<FlxColor>> = [
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF]
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF]
 	];
 	var noteColorsAlt:Array<Array<FlxColor>> = [
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF],
-		[0xFFFFFF, 0xFFFFFF, 0xFFFFFF]
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+		[0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF]
 	];
 
 	var curNote:Int = 0;
@@ -771,6 +771,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 	var blueText:FlxText;
 	var greenText:FlxText;
 	var altText:FlxText;
+
+	var innerColorRectangle:FlxSprite;
+	var inbetweenColorRectangle:FlxSprite;
+	var outerColorRectangle:FlxSprite;
 
 	var noteColorNotes:Array<Note>;
 	var altNoteColorNotes:Array<Note>;
@@ -848,8 +852,11 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		var stepperArray:Array<PsychUINumericStepper> = [noteColorStepperInsideR, noteColorStepperInsideG, noteColorStepperInsideB, noteColorStepperInbetweenR, noteColorStepperInbetweenG, noteColorStepperInbetweenB, noteColorStepperOuterR, noteColorStepperOuterG, noteColorStepperOuterB];
 
 		redText = new FlxText(noteColorNotes[0].x, redY - 12, 100, 'Inside Color:');
+		innerColorRectangle = new FlxSprite(redText.x + 95, redText.y + 2).makeGraphic(100, 8, FlxColor.WHITE);
 		greenText = new FlxText(noteColorNotes[0].x, greenY - 12, 100, 'Middle Color:');
+		inbetweenColorRectangle = new FlxSprite(innerColorRectangle.x, greenText.y + 2).makeGraphic(100, 8, FlxColor.WHITE);
 		blueText = new FlxText(noteColorNotes[0].x, blueY - 12, 100, 'Outer Color:');
+		outerColorRectangle = new FlxSprite(inbetweenColorRectangle.x, blueText.y + 2).makeGraphic(100, 8, FlxColor.WHITE);
 
 		leftNoteButton = new PsychUIButton(noteColorNotes[0].x, 100, "Left Note", function() {
 			curNote = 0;
@@ -866,6 +873,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (i in 0...stepperArray.length) {
 				if (!tab_group.members.contains(stepperArray[i])) tab_group.add(stepperArray[i]);
 			}
+			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
+			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
+			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
+			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -889,6 +900,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (i in 0...stepperArray.length) {
 				if (!tab_group.members.contains(stepperArray[i])) tab_group.add(stepperArray[i]);
 			}
+			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
+			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
+			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
+			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -912,6 +927,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (i in 0...stepperArray.length) {
 				if (!tab_group.members.contains(stepperArray[i])) tab_group.add(stepperArray[i]);
 			}
+			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
+			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
+			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
+			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -935,6 +954,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (i in 0...stepperArray.length) {
 				if (!tab_group.members.contains(stepperArray[i])) tab_group.add(stepperArray[i]);
 			}
+			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
+			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
+			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
+			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -947,21 +970,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altText = new FlxText(rightNoteButton.x - 50, rightNoteButton.y + 24, 150, "Alt Colors Selected: false");
 		changeToAltColors = new PsychUIButton(altText.x, altText.y + 12, "Switch Colors", function() {
 			altColors = !altColors;
-			altText.text = "Alt Colors Selected: " + altColors;
-			for(note in noteColorNotes) note.visible = !altColors;
-			for(note in altNoteColorNotes) note.visible = altColors;
-
-			updateAllNotes();
-
-			noteColorStepperInsideR.value = altColors ? noteColorsAlt[curNote][0].red : noteColors[curNote][0].red;
-			noteColorStepperInsideG.value = altColors ? noteColorsAlt[curNote][0].green : noteColors[curNote][0].green;
-			noteColorStepperInsideB.value = altColors ? noteColorsAlt[curNote][0].blue : noteColors[curNote][0].blue;
-			noteColorStepperInbetweenR.value = altColors ? noteColorsAlt[curNote][1].red : noteColors[curNote][1].red;
-			noteColorStepperInbetweenG.value = altColors ? noteColorsAlt[curNote][1].green : noteColors[curNote][1].green;
-			noteColorStepperInbetweenB.value = altColors ? noteColorsAlt[curNote][1].blue : noteColors[curNote][1].blue;
-			noteColorStepperOuterR.value = altColors ? noteColorsAlt[curNote][2].red : noteColors[curNote][2].red;
-			noteColorStepperOuterG.value = altColors ? noteColorsAlt[curNote][2].green : noteColors[curNote][2].green;
-			noteColorStepperOuterB.value = altColors ? noteColorsAlt[curNote][2].blue : noteColors[curNote][2].blue;
+			altButton();
 		});
 
 		hasAltNoteColors = new PsychUICheckBox(altText.x, changeToAltColors.y + 24, "Has Alt Note Colors?", 150);
@@ -1025,6 +1034,31 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		//checkBoxesGroup([usingNoteSkin, disableNoteRGB, hasAltNoteColors]);
 		//inputTexts.add(charNoteSkin);
 		//inputTexts.add(charNoteSkinLib);
+	}
+
+	function altButton() {
+		altText.text = "Alt Colors Selected: " + altColors;
+		for(note in noteColorNotes) note.visible = !altColors;
+		for(note in altNoteColorNotes) note.visible = altColors;
+
+		updateAllNotes();
+
+		noteColorStepperInsideR.value = altColors ? noteColorsAlt[curNote][0].red : noteColors[curNote][0].red;
+		noteColorStepperInsideG.value = altColors ? noteColorsAlt[curNote][0].green : noteColors[curNote][0].green;
+		noteColorStepperInsideB.value = altColors ? noteColorsAlt[curNote][0].blue : noteColors[curNote][0].blue;
+		noteColorStepperInbetweenR.value = altColors ? noteColorsAlt[curNote][1].red : noteColors[curNote][1].red;
+		noteColorStepperInbetweenG.value = altColors ? noteColorsAlt[curNote][1].green : noteColors[curNote][1].green;
+		noteColorStepperInbetweenB.value = altColors ? noteColorsAlt[curNote][1].blue : noteColors[curNote][1].blue;
+		noteColorStepperOuterR.value = altColors ? noteColorsAlt[curNote][2].red : noteColors[curNote][2].red;
+		noteColorStepperOuterG.value = altColors ? noteColorsAlt[curNote][2].green : noteColors[curNote][2].green;
+		noteColorStepperOuterB.value = altColors ? noteColorsAlt[curNote][2].blue : noteColors[curNote][2].blue;
+		updateRectangles();
+	}
+
+	function updateRectangles() {
+		innerColorRectangle.color = altColors ? noteColorsAlt[curNote][0] : noteColors[curNote][0];
+		inbetweenColorRectangle.color = altColors ? noteColorsAlt[curNote][1] : noteColors[curNote][1];
+		outerColorRectangle.color = altColors ? noteColorsAlt[curNote][2] : noteColors[curNote][2];
 	}
 
 	function grabColors():Array<FlxColor> {
@@ -1133,6 +1167,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 				unsavedProgress = true;
 			} else if (sender == noteColorStepperInsideR || sender == noteColorStepperInsideG || sender == noteColorStepperInsideB || sender == noteColorStepperInbetweenR || sender == noteColorStepperInbetweenG || sender == noteColorStepperInbetweenB || sender == noteColorStepperOuterR || sender == noteColorStepperOuterG || sender == noteColorStepperOuterB) {
 				var colArray = [returnColor('inside'), returnColor('middle'), returnColor('outer')];
+				updateRectangles();
 				switch (curNote) {
 					case 0:
 						altColors ? character.altNoteColors.left = colArray : character.noteColors.left = colArray;
@@ -1271,10 +1306,12 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		updateHealthBar();
 		updateAllNotes();
 		setNoteColorVals();
+		altButton();
 	}
 
 	// AAAA I HATE THIS LONG ASS AMOUNT OF VARIABLES
 	function setNoteColorVals() {
+		/*
 		var shaders = [noteColorNotes[0].rgbShader, noteColorNotes[1].rgbShader, noteColorNotes[2].rgbShader, noteColorNotes[3].rgbShader];
 		noteColors[0][0] = shaders[0].r; // Fix these, I noticed they are wrong...
 		noteColors[0][1] = shaders[0].g;
@@ -1301,6 +1338,17 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		noteColorsAlt[3][0] = altShaders[3].r;
 		noteColorsAlt[3][1] = altShaders[3].g;
 		noteColorsAlt[3][2] = altShaders[3].b;
+		*/
+		var colors = [character.noteColors.left, character.noteColors.down, character.noteColors.up, character.noteColors.right];
+		noteColors[0] = colors[0];
+		noteColors[1] = colors[1];
+		noteColors[2] = colors[2];
+		noteColors[3] = colors[3];
+		var colorsAlt = [character.altNoteColors.left, character.altNoteColors.down, character.altNoteColors.up, character.altNoteColors.right];
+		noteColorsAlt[0] = colorsAlt[0];
+		noteColorsAlt[1] = colorsAlt[1];
+		noteColorsAlt[2] = colorsAlt[2];
+		noteColorsAlt[3] = colorsAlt[3];
 
 		noteColorStepperInsideR.value = noteColors[0][0].red;
 		noteColorStepperInsideG.value = noteColors[0][0].green;
