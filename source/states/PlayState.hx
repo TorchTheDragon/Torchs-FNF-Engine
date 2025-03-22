@@ -308,6 +308,7 @@ class PlayState extends MusicBeatState
 	public var strumsWobbled:Array<Bool> = [/*enemy*/ false, /*player*/ false];
 
 	public static var nextReloadAll:Bool = false;
+	public static var healthBarSettings:BarSettings = null;
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -570,7 +571,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
-		var healthBarSettings:BarSettings = switch (ClientPrefs.data.healthBarSkin) {
+		if (healthBarSettings == null) healthBarSettings = switch (ClientPrefs.data.healthBarSkin) {
 			case "Char Based":
 				var temp:String = '
 				{
@@ -1548,9 +1549,9 @@ class PlayState extends MusicBeatState
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = holdLength;
 				swagNote.noteType = noteType;
-				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
+				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(swagNote.noteType)) {
 					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
-				} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled') {
+				} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(swagNote.noteType)) {
 					swagNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
 				}
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
@@ -1631,9 +1632,9 @@ class PlayState extends MusicBeatState
 						sustainNote.gfNote = swagNote.gfNote;
 						sustainNote.noteType = swagNote.noteType;
 
-						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
+						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
 							sustainNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
-						} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled') {
+						} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
 							sustainNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
 						}
 
@@ -3885,7 +3886,7 @@ class PlayState extends MusicBeatState
 			closeSubState();
 			resetSubState();
 		}
-
+		healthBarSettings = null;
 		#if LUA_ALLOWED
 		for (lua in luaArray)
 		{

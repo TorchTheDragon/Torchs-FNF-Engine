@@ -10,6 +10,12 @@ import objects.Character;
 import torchsthings.objects.effects.ReflectedChar;
 import states.stages.objects.ABotSpeaker;
 
+/*
+import lime.utils.Assets;
+import torchsthings.objects.ImageBar;
+import torchsthings.objects.ImageBar.BarSettings;*/ 
+//This is used to add a custom healthbar for certain Stages 
+
 enum Countdown {
 	THREE;
 	TWO;
@@ -205,6 +211,11 @@ class BaseStage extends FlxBasic {
 				changeComboGroupCamera(Base);
 		}
 	}
+
+	/*var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/5peso", "shared").replace("data", "images")));
+	PlayState.healthBarSettings = settings; // These 2 lines are to verify which healthbar you want to add
+
+	PlayState.instance.iconP2.visible = false;*/ //and this one in case you want to deactivate the icons or just the opponent's, It has to be in "createPost"
 
 	// Abot stuff
 	var abot:ABotSpeaker;

@@ -231,7 +231,10 @@ class Note extends FlxSprite
 		}
 		return value;
 	}
-
+	public static var keepSkin:Array<String> = [
+		'Shoot Note'
+	];
+	
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
 	{
 		super();
