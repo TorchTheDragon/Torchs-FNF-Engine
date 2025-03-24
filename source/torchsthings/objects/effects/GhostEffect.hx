@@ -17,9 +17,14 @@ class GhostEffect {
             PlayState.instance.addBehindDad(ghost);
         }
 
-        //var colors:Array<FlxColor> = [0xFFC24B99, 0xFF00FFFF, 0xFF12FA05, 0xFFF9393F];
-        var colors:Array<FlxColor> = [arrowColorGhost ? ghost.charRef.noteColors.left[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], arrowColorGhost ? ghost.charRef.noteColors.down[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[1][0] : ClientPrefs.data.arrowRGB[1][0], arrowColorGhost ? ghost.charRef.noteColors.up[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[2][0] : ClientPrefs.data.arrowRGB[2][0], arrowColorGhost ? ghost.charRef.noteColors.right[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[3][0] : ClientPrefs.data.arrowRGB[3][0]];
-        colors = getColors(player, ghost);
+        var noteColors:Bool = (ClientPrefs.data.characterNoteColors == 'Enabled');
+        var enemyNotes:Bool = (ClientPrefs.data.characterNoteColors == 'Opponent Only');
+
+        var colors:Array<FlxColor> = [
+            ((noteColors || enemyNotes && player == 0) && arrowColorGhost) ? ghost.charRef.noteColors.left[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], 
+            ((noteColors || enemyNotes && player == 0) && arrowColorGhost) ? ghost.charRef.noteColors.down[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[1][0] : ClientPrefs.data.arrowRGB[1][0], 
+            ((noteColors || enemyNotes && player == 0) && arrowColorGhost) ? ghost.charRef.noteColors.up[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[2][0] : ClientPrefs.data.arrowRGB[2][0], 
+            ((noteColors || enemyNotes && player == 0) && arrowColorGhost) ? ghost.charRef.noteColors.right[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[3][0] : ClientPrefs.data.arrowRGB[3][0]];
         for (i in 0...colors.length) {
             colors[i].alphaFloat = 0.15;
         }
@@ -82,22 +87,6 @@ class GhostEffect {
                     FlxTween.tween(ghost, {x: char.x + slideDistance}, tweenTime, {onComplete: ghostKill});
                 }
         }
-    }
-
-    static function getColors(player:Int, ghost:GhostChar):Array<FlxColor> {
-        var daColors:Array<FlxColor> = [];
-        if (ClientPrefs.data.characterNoteColors == 'Enabled') {
-            daColors = [ghost.charRef.noteColors.left[0], ghost.charRef.noteColors.down[0], ghost.charRef.noteColors.up[0], ghost.charRef.noteColors.right[0]];
-        } else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
-            if (player == 1) {
-                daColors = [PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[1][0] : ClientPrefs.data.arrowRGB[1][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[2][0] : ClientPrefs.data.arrowRGB[2][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[3][0] : ClientPrefs.data.arrowRGB[3][0]];
-            } else {
-                daColors = [ghost.charRef.noteColors.left[0], ghost.charRef.noteColors.down[0], ghost.charRef.noteColors.up[0], ghost.charRef.noteColors.right[0]];
-            }
-        } else {
-            daColors = [PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[1][0] : ClientPrefs.data.arrowRGB[1][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[2][0] : ClientPrefs.data.arrowRGB[2][0], PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[3][0] : ClientPrefs.data.arrowRGB[3][0]];
-        }
-        return daColors;
     }
 }
 
