@@ -876,7 +876,6 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
 			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
 			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
-			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -903,7 +902,6 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
 			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
 			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
-			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -930,7 +928,6 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
 			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
 			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
-			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -957,7 +954,6 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			if (!tab_group.members.contains(innerColorRectangle)) tab_group.add(innerColorRectangle);
 			if (!tab_group.members.contains(inbetweenColorRectangle)) tab_group.add(inbetweenColorRectangle);
 			if (!tab_group.members.contains(outerColorRectangle)) tab_group.add(outerColorRectangle);
-			updateRectangles();
 			if (!tab_group.members.contains(redText)) tab_group.add(redText);
 			if (!tab_group.members.contains(blueText)) tab_group.add(blueText);
 			if (!tab_group.members.contains(greenText)) tab_group.add(greenText);
@@ -1076,7 +1072,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		}
 	}
 
-	function returnColor(place:String):FlxColor {
+	function returnColor(?place:String):FlxColor {
 		if (curNote < 0) curNote = 0; else if (curNote > 3) curNote = 3;
 		var innerColor:FlxColor = FlxColor.fromRGB(Std.int(noteColorStepperInsideR.value), Std.int(noteColorStepperInsideG.value), Std.int(noteColorStepperInsideB.value));
 		var inbetweenColor:FlxColor = FlxColor.fromRGB(Std.int(noteColorStepperInbetweenR.value), Std.int(noteColorStepperInbetweenG.value), Std.int(noteColorStepperInbetweenB.value));
@@ -1309,36 +1305,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altButton();
 	}
 
-	// AAAA I HATE THIS LONG ASS AMOUNT OF VARIABLES
 	function setNoteColorVals() {
-		/*
-		var shaders = [noteColorNotes[0].rgbShader, noteColorNotes[1].rgbShader, noteColorNotes[2].rgbShader, noteColorNotes[3].rgbShader];
-		noteColors[0][0] = shaders[0].r; // Fix these, I noticed they are wrong...
-		noteColors[0][1] = shaders[0].g;
-		noteColors[0][2] = shaders[0].b;
-		noteColors[1][0] = shaders[1].r;
-		noteColors[1][1] = shaders[1].g;
-		noteColors[1][2] = shaders[1].b;
-		noteColors[2][0] = shaders[2].r;
-		noteColors[2][1] = shaders[2].g;
-		noteColors[2][2] = shaders[2].b;
-		noteColors[3][0] = shaders[3].r;
-		noteColors[3][1] = shaders[3].g;
-		noteColors[3][2] = shaders[3].b;
-		var altShaders = [altNoteColorNotes[0].rgbShader, altNoteColorNotes[1].rgbShader, altNoteColorNotes[2].rgbShader, altNoteColorNotes[3].rgbShader];
-		noteColorsAlt[0][0] = altShaders[0].r;
-		noteColorsAlt[0][1] = altShaders[0].g;
-		noteColorsAlt[0][2] = altShaders[0].b;
-		noteColorsAlt[1][0] = altShaders[1].r;
-		noteColorsAlt[1][1] = altShaders[1].g;
-		noteColorsAlt[1][2] = altShaders[1].b;
-		noteColorsAlt[2][0] = altShaders[2].r;
-		noteColorsAlt[2][1] = altShaders[2].g;
-		noteColorsAlt[2][2] = altShaders[2].b;
-		noteColorsAlt[3][0] = altShaders[3].r;
-		noteColorsAlt[3][1] = altShaders[3].g;
-		noteColorsAlt[3][2] = altShaders[3].b;
-		*/
 		var colors = [character.noteColors.left, character.noteColors.down, character.noteColors.up, character.noteColors.right];
 		noteColors[0] = colors[0];
 		noteColors[1] = colors[1];
@@ -1366,9 +1333,17 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 	var holdingFrameTime:Float = 0;
 	var holdingFrameElapsed:Float = 0;
 	var undoOffsets:Array<Float> = null;
+	var firstColorUpdate:Bool = false;
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		// Only to update the initial colors.
+		if (!firstColorUpdate) {
+			returnColor();
+		}
+
+		updateRectangles();
 
 		if(PsychUIInputText.focusOn != null)
 		{
