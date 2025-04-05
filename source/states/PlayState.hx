@@ -62,6 +62,8 @@ import torchsthings.objects.ImageBar.BarSettings;
 import torchsthings.objects.effects.GhostEffect;
 import torchsthings.utils.WindowTitleUtils;
 
+import lawsthings.objects.IconsAnimator;
+
 /**
  * This is where all the Gameplay stuff happens and is managed
  *
@@ -294,6 +296,9 @@ class PlayState extends MusicBeatState
 	// Less laggy controls
 	private var keysArray:Array<String>;
 	public var songName:String;
+
+	//IconsDance
+	var iconsAnimator:IconsAnimator;
 
 	// Callbacks for stages
 	public var startCallback:Void->Void = null;
@@ -644,6 +649,8 @@ class PlayState extends MusicBeatState
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
+		
+		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
 
 		scoreTxt = new FlxText(0, healthBar.y + 70/*40*/, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -2156,7 +2163,7 @@ class PlayState extends MusicBeatState
 			health = healthBar.bounds.max;
 
 		updateIconsScale(elapsed);
-		updateIconsPosition();
+		iconsAnimator.updateIconsPosition();
 
 		if (startedCountdown && !paused)
 		{
@@ -2335,13 +2342,6 @@ class PlayState extends MusicBeatState
 		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
-	}
-
-	public dynamic function updateIconsPosition()
-	{
-		var iconOffset:Int = 26;
-		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
-		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 	}
 
 	var iconsAnimations:Bool = true;
@@ -4000,10 +4000,9 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
-
-		iconP1.scale.set(1.2, 1.2);
-		iconP2.scale.set(1.2, 1.2);
-
+		var curDadAnimation = dad.isAnimateAtlas ? dad.atlas.anim.curSymbol.name : dad.animation.curAnim.name;
+		var curBoyfriendAnimation = boyfriend.isAnimateAtlas ? boyfriend.atlas.anim.curSymbol.name : boyfriend.animation.curAnim.name;
+		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, curBoyfriendAnimation, curDadAnimation);
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 

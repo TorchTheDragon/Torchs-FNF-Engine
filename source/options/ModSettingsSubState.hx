@@ -68,16 +68,17 @@ class ModSettingsSubState extends BaseOptionsMenu
 						{
 							newOption.getValue = function() {
 								var data = save.get(newOption.variable);
-								if(data == null) return 'NONE';
-								return !Controls.instance.controllerMode ? data.keyboard : data.gamepad;
+								if(data == null) return ['NONE'];
+								return !Controls.instance.controllerMode ? [data.keyboard] : [data.gamepad];
 							};
 							newOption.setValue = function(value:Dynamic) {
 								var data = save.get(newOption.variable);
 								if(data == null) data = {keyboard: 'NONE', gamepad: 'NONE'};
-
+						
 								if(!controls.controllerMode) data.keyboard = value;
 								else data.gamepad = value;
 								save.set(newOption.variable, data);
+								return !Controls.instance.controllerMode ? [data.keyboard] : [data.gamepad]; 
 							};
 						}
 
@@ -87,8 +88,14 @@ class ModSettingsSubState extends BaseOptionsMenu
 
 						@:privateAccess
 						{
-							newOption.getValue = function() return save.get(newOption.variable);
-							newOption.setValue = function(value:Dynamic) save.set(newOption.variable, value);
+							newOption.setValue = function(value:Dynamic) {
+								save.set(newOption.variable, value);
+								return [value]; 
+							};
+							newOption.setValue = function(value:Dynamic) {
+								save.set(newOption.variable, value);
+								return [value];
+							};
 						}
 				}
 

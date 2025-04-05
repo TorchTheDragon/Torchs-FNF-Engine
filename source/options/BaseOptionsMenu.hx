@@ -181,6 +181,29 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						FlxG.sound.play(Paths.sound('scrollMenu'));
 					}
 
+				case ARRAY:
+					if (controls.ACCEPT) {
+						// Si la opción actual es "iconAnims", abre el sub‑menú
+						if (curOption.type == ARRAY && curOption.variable == "iconAnims") {
+							// Determinar los índices actuales para primaria y secundaria
+							var currentPrimary:Int = 0;
+							var currentSecondary:Int = 0;
+							if (ClientPrefs.data.iconAnims != null && ClientPrefs.data.iconAnims.length >= 2) {
+								currentPrimary = curOption.options.indexOf(ClientPrefs.data.iconAnims[0]);
+								currentSecondary = curOption.options.indexOf(ClientPrefs.data.iconAnims[1]);
+								if (currentPrimary < 0) currentPrimary = 0;
+								if (currentSecondary < 0) currentSecondary = 0;
+							}
+							// Cambia al sub‑menú para seleccionar animaciones
+							persistentUpdate = false;
+							FlxG.sound.music.volume = 0;
+							openSubState(new IconDanceSubMenu(curOption.options, currentPrimary, currentSecondary, function() {
+								updateTextFrom(curOption); // Actualiza el texto en el menú principal
+								curOption.change();
+							}));
+						}
+					}
+
 				default:
 					if(controls.UI_LEFT || controls.UI_RIGHT)
 					{
@@ -224,6 +247,17 @@ class BaseOptionsMenu extends MusicBeatSubstate
 										curOption.curOption = num;
 										curOption.setValue(curOption.options[num]);
 										//trace(curOption.options[num]);
+
+									// case ARRAY:
+									// 	var num:Int = curOption.curOption;
+									// 	if(controls.UI_LEFT_P) --num;
+									// 	else num++;
+									// 	if(num < 0)
+									// 		num = curOption.options.length - 1;
+									// 	else if(num >= curOption.options.length)
+									// 		num = 0;
+									// 	curOption.curOption = num;
+									// 	curOption.setValue(curOption.options[num]);
 
 									default:
 								}
@@ -458,18 +492,23 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		ClientPrefs.toggleVolumeKeys(true);
 	}
 
-	function updateTextFrom(option:Option) {
-		if(option.type == KEYBIND)
-		{
+	function updateTextFrom(option:Option):Void {
+		if(option.type == KEYBIND) {
 			updateBind(option);
 			return;
 		}
-
+		
+		if(option.type == ARRAY) {
+			var arr:Array<String> = option.getValue();
+			option.text = "Primary: " + (arr.length > 0 ? arr[0] : "None") + " / Secondary: " + (arr.length > 1 ? arr[1] : "None");
+			return;
+		}
+		
 		var text:String = option.displayFormat;
 		var val:Dynamic = option.getValue();
 		if(option.type == PERCENT) val *= 100;
 		var def:Dynamic = option.defaultValue;
-		option.text = text.replace('%v', val).replace('%d', def);
+		option.text = text.replace('%v', Std.string(val)).replace('%d', Std.string(def));
 	}
 	
 	function changeSelection(change:Int = 0)

@@ -14,6 +14,7 @@ enum OptionType {
 	PERCENT;
 	STRING;
 	KEYBIND;
+	ARRAY;
 }
 
 class Option
@@ -40,9 +41,9 @@ class Option
 
 	public var defaultKeys:Keybind = null; //Only used in keybind type
 	public var keys:Keybind = null; //Only used in keybind type
+	public var maxSelections:Null<Int> = null;
 
-	public function new(name:String, description:String = '', variable:String, type:OptionType = BOOL, ?options:Array<String> = null, ?translation:String = null)
-	{
+	public function new(name:String, description:String = '', variable:String, type:OptionType = BOOL, ?options:Array<String> = null, ?translation:String = null, ?maxSelections:Int = null) {
 		_name = name;
 		_translationKey = translation != null ? translation : _name;
 		this.name = Language.getPhrase('setting_$_translationKey', name);
@@ -50,6 +51,7 @@ class Option
 		this.variable = variable;
 		this.type = type;
 		this.options = options;
+		this.maxSelections = maxSelections; // Nueva línea
 
 		if(this.type != KEYBIND) this.defaultValue = Reflect.getProperty(ClientPrefs.defaultData, variable);
 		switch(type)
@@ -76,6 +78,11 @@ class Option
 				defaultValue = '';
 				defaultKeys = {gamepad: 'NONE', keyboard: 'NONE'};
 				keys = {gamepad: 'NONE', keyboard: 'NONE'};
+
+			case ARRAY:
+				if(defaultValue == null) defaultValue = [];
+				if(options != null && options.length > 0 && (defaultValue == null || defaultValue.length == 0))
+					defaultValue = [options[0]];
 		}
 
 		try
@@ -104,6 +111,7 @@ class Option
 
 	dynamic public function getValue():Dynamic
 	{
+		if(type == ARRAY) return Reflect.getProperty(ClientPrefs.data, variable).copy();
 		var value = Reflect.getProperty(ClientPrefs.data, variable);
 		if(type == KEYBIND) return !Controls.instance.controllerMode ? value.keyboard : value.gamepad;
 		return value;
@@ -111,14 +119,37 @@ class Option
 
 	dynamic public function setValue(value:Dynamic)
 	{
-		if(type == KEYBIND)
-		{
-			var keys = Reflect.getProperty(ClientPrefs.data, variable);
-			if(!Controls.instance.controllerMode) keys.keyboard = value;
-			else keys.gamepad = value;
-			return value;
+		if (type == ARRAY) {
+			var arr:Array<String> = Reflect.getProperty(ClientPrefs.data, variable);
+			if (arr.contains(value)) {
+				arr.remove(value);
+			} else {
+				if (maxSelections == null || arr.length < maxSelections) {
+					arr.push(value);
+				}
+			}
+			Reflect.setProperty(ClientPrefs.data, variable, arr);
+			return arr; // Siempre retorna un Array<String>
 		}
-		return Reflect.setProperty(ClientPrefs.data, variable, value);
+	
+		if (type == KEYBIND) {
+			var keys = Reflect.getProperty(ClientPrefs.data, variable);
+			if (!Controls.instance.controllerMode) 
+				keys.keyboard = value;
+			else 
+				keys.gamepad = value;
+			
+			Reflect.setProperty(ClientPrefs.data, variable, keys);
+			return [keys.keyboard, keys.gamepad];
+		}
+	
+		if (variable != null) {
+			Reflect.setProperty(ClientPrefs.data, variable, value);
+			var result:Dynamic = Reflect.getProperty(ClientPrefs.data, variable);
+			if (result == null) return value;
+			return result;
+		}
+		return value;
 	}
 
 	var _name:String = null;

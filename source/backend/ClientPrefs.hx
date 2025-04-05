@@ -44,6 +44,7 @@ import states.TitleState;
 	public var noReset:Bool = false;
 	public var healthBarAlpha:Float = 1;
 	public var hitsoundVolume:Float = 0;
+	public var iconAnims:Array<String> = ['Default', 'Disabled'];
 	public var extraCamMovementAmount:Int = 30;
 	public var pauseMusic:String = 'Tea Time';
 	public var checkForUpdates:Bool = true;
@@ -211,6 +212,13 @@ class ClientPrefs {
 			var savedMap:Map<String, Dynamic> = FlxG.save.data.gameplaySettings;
 			for (name => value in savedMap)
 				data.gameplaySettings.set(name, value);
+		}
+
+		if(FlxG.save.data.iconAnim != null) {
+			data.iconAnims = [FlxG.save.data.iconAnim];
+			FlxG.save.data.iconAnim = null;
+			FlxG.save.data.iconAnims = data.iconAnims;
+			FlxG.save.flush();
 		}
 		
 		// flixel automatically saves your volume!
