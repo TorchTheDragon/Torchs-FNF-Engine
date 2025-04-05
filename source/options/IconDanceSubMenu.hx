@@ -83,7 +83,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
 
         iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
 
-        instructions = new FlxText(0, 0, FlxG.width, "Izquierda/Derecha: cambia primaria   Arriba/Abajo: cambia secundaria   ENTER: confirmar   ESC: cancelar");
+        instructions = new FlxText(0, 0, FlxG.width, "Left/Right: Change primary Anim   Up/Down: Change secondary Anim  ENTER: Confirm   ESC: Cancel");
         instructions.setFormat("vcr.ttf", 12, 0xAAAAAA, "center");
         instructions.screenCenter();
         instructions.y = FlxG.height - 40;
