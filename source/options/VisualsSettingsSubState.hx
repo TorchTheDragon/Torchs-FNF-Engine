@@ -151,6 +151,35 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
+		var option:Option = new Option('Icons Dance:',
+			"Combine up to 2 icon animations!",
+			'iconAnims',
+			ARRAY, 
+			[
+				'Default', 
+                'Arrow Funk', 
+                'GF Dance', 
+                'Zoom In And Out', 
+                'Bounce', 
+                'Heartbeat', 
+                'Spin', 
+                'Color Flash', 
+                'Stretch', 
+                'Mirror Flip', 
+                'Beat Drop', 
+                'Color Cycle', 
+                'Vertical Shake',
+                'Pulse',   
+                'Pop',        
+                'Tilt',         
+                'Glow',             
+                'Disabled'
+			],
+			null,
+			2 
+		);
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',

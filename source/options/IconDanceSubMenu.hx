@@ -10,7 +10,7 @@ import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import objects.Alphabet;
 import objects.HealthIcon;
-import objectsplus.IconsAnimator;
+import lawsthings.objects.IconsAnimator;
 
 class IconDanceSubMenu extends MusicBeatSubstate
 {

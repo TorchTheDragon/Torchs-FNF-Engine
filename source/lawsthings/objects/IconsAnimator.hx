@@ -1,4 +1,4 @@
-package objectsplus;
+package lawsthings.objects;
 
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
