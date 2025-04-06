@@ -83,10 +83,10 @@ class IconDanceSubMenu extends MusicBeatSubstate
 
         iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
 
-        instructions = new FlxText(0, 0, FlxG.width, "Left/Right: Change primary Anim   Up/Down: Change secondary Anim  ENTER: Confirm   ESC: Cancel");
-        instructions.setFormat("vcr.ttf", 12, 0xAAAAAA, "center");
+        instructions = new FlxText(0, 0, FlxG.width, "Left/Right: Change primary Anim | Up/Down: Change secondary Anim | ENTER: Confirm | ESC: Cancel");
+        instructions.setFormat("vcr.ttf", 24, 0xAAAAAA, "center");
         instructions.screenCenter();
-        instructions.y = FlxG.height - 40;
+        instructions.y = FlxG.height - 60;
         instructions.alpha = 0;
         add(instructions);
 
@@ -202,7 +202,8 @@ class IconDanceSubMenu extends MusicBeatSubstate
 	{
 		var primaryAnim = availableAnims[primaryIndex];
 		var secondaryAnim = availableAnims[secondaryIndex];
-		trace('Verificando: $primaryAnim vs $secondaryAnim');
+		//trace('Verificando: $primaryAnim vs $secondaryAnim');
+        trace('Animations: [$primaryAnim & $secondaryAnim]');
 	
 		var conflictingAnimations:Map<String, Array<String>> = [
 			"Spin" => ["Tilt", "GF Dance", "Wobble"], // Nombres exactos
@@ -226,19 +227,22 @@ class IconDanceSubMenu extends MusicBeatSubstate
 			secondaryIndex = (secondaryIndex + 1) % availableAnims.length;
 			secondaryAnim = availableAnims[secondaryIndex];
 			attempts++;
-			trace('Ajustando secundaria a: $secondaryAnim');
+			//trace('Ajustando secundaria a: $secondaryAnim');
+            trace('Adjusting secondary animation to: $secondaryAnim');
 		}
 	
 		if (attempts >= maxAttempts)
 		{
-			FlxG.log.warn("No se encontró animación secundaria compatible.");
+			//FlxG.log.warn("No se encontró animación secundaria compatible.");
+            FlxG.log.warn("No compatible secondary animation found.");
 		}
 	
 		secondaryText.text = "Secondary: " + secondaryAnim;
 	
 		if (hasConflict(secondaryAnim, primaryAnim, conflictingAnimations))
 		{
-			showConflictMessage("Conflicto detectado. Ajustando animación primaria.");
+			//showConflictMessage("Conflicto detectado. Ajustando animación primaria.");
+            showConflictMessage('Animation conflict detected. Adjusting primary animation.');
 			primaryIndex = (primaryIndex + 1) % availableAnims.length;
 			primaryText.text = "Primary: " + availableAnims[primaryIndex];
 		}
@@ -277,29 +281,35 @@ class IconDanceSubMenu extends MusicBeatSubstate
         // Destruir íconos
         if (iconP1 != null) {
             remove(iconP1);
+            iconP1.kill();
             iconP1.destroy();
-            iconP1 = null;
+            //iconP1 = null;
         }
         if (iconP2 != null) {
             remove(iconP2);
+            iconP2.kill();
             iconP2.destroy();
-            iconP2 = null;
+            //iconP2 = null;
         }
     
         super.destroy();
     }
     
     function closeMenu():Void {
-        FlxTween.tween(modalBg, {alpha: 0}, 0.5, {ease: FlxEase.quadIn});
-        FlxTween.tween(primaryText, {alpha: 0}, 0.5, {ease: FlxEase.quadIn});
-        FlxTween.tween(secondaryText, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.1});
-        FlxTween.tween(iconP1, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.2});
-        FlxTween.tween(iconP2, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.2});
-        FlxTween.tween(instructions, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.3});
+        FlxTween.tween(modalBg, {alpha: 0}, 0.7, {ease: FlxEase.quadIn});
+        FlxTween.tween(primaryText, {alpha: 0}, 0.7, {ease: FlxEase.quadIn});
+        FlxTween.tween(secondaryText, {alpha: 0}, 0.7, {ease: FlxEase.quadIn, startDelay: 0.1});
+        FlxTween.tween(iconP1, {alpha: 0}, 0.6, {ease: FlxEase.quadIn, startDelay: 0.2});
+        FlxTween.tween(iconP2, {alpha: 0}, 0.6, {ease: FlxEase.quadIn, startDelay: 0.2});
+        FlxTween.tween(instructions, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.3, onComplete: function(t:FlxTween) {
+            close();
+        }});
     
+        /*
         var timer = new FlxTimer();
-        timer.start(0.6, function(timer:FlxTimer) {
+        timer.start(1, function(timer:FlxTimer) {
             close();
         });
+        */
     }
 }

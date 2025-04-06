@@ -500,7 +500,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		
 		if(option.type == ARRAY) {
 			var arr:Array<String> = option.getValue();
-			option.text = "Primary: " + (arr.length > 0 ? arr[0] : "None") + " / Secondary: " + (arr.length > 1 ? arr[1] : "None");
+			option.text = "Primary: " + (arr.length > 0 ? arr[0] : "None") + "\nSecondary: " + (arr.length > 1 ? arr[1] : "None");
 			return;
 		}
 		
