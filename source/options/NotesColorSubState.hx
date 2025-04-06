@@ -13,6 +13,8 @@ import objects.Note;
 import shaders.RGBPalette;
 import shaders.RGBPalette.RGBShaderReference;
 
+import torchsthings.utils.WindowTitleUtils;
+
 class NotesColorSubState extends MusicBeatSubstate
 {
 	var onModeColumn:Bool = true;
@@ -53,6 +55,8 @@ class NotesColorSubState extends MusicBeatSubstate
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Note Colors Menu", null);
 		#end
+
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Note Colors Menu");
 		
 		onPixel = PlayState.isPixelStage;
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));

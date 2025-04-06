@@ -88,6 +88,7 @@ class OptionsState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options Menu", null);
 		#end
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Options");
 	}
 
 	override function update(elapsed:Float) {

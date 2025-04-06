@@ -4,6 +4,7 @@ import backend.StageData;
 import objects.Character;
 import objects.Bar;
 import flixel.addons.display.shapes.FlxShapeCircle;
+import torchsthings.utils.WindowTitleUtils;
 
 import states.stages.StageWeek1 as BackgroundStage;
 
@@ -40,6 +41,7 @@ class NoteOffsetState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Delay/Combo Offset Menu", null);
 		#end
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Delay/Combo Offset Menu");
 
 		// Cameras
 		camGame = initPsychCamera();

@@ -795,6 +795,11 @@ class ModsMenuState extends MusicBeatState
 		Mods.parseList();
 		Mods.loadTopMod();
 	}
+
+	override function closeSubState() {
+		super.closeSubState();
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mods");
+	}
 }
 
 class ModItem extends FlxSpriteGroup
