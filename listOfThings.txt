@@ -40,3 +40,5 @@ Working On:
 - Adding support for Custom healthbar per character
 
 -word- means crossed out since I don't have a way to do that in a text file
+
+I DON'T PAY ATTENTION TO THIS TEXT DOCUMENT ANYMORE, PAY IT NO MIND IN THE FUTURE

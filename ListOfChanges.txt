@@ -46,3 +46,9 @@ Ghost Effect values can be changed via an event
 ImageBar can now be lerped if the "healthLerp" variable is set to true in it
 Custom Window Titles added to multiple states... I still have more to do lol
 CUSTOM NOTES FOR CHARACTERS ACTUALLY HAS MOD SUPPORT LESSSSSS GO.... I changed how "Paths.getSparrowAtlas" works a small bit, not a major change to its functionality really. "Reload Notes" may break after 2-3 times of changing the image, but a quick reload into the state fixes it.
+
+EVERYTHING BEFORE THIS WAS ON PSYCH 1.0 ENGINE, AFTER THIS LINE IS STUFF I HAVE ADDED SINCE I UPDATED MY ENGINE TO PSYCH 1.0.1
+Updated a lot of titles for several menus
+Added Icon Dancing - Lawornot
+Fixed a crash with icon dancing
+^^^ RELEASE 0.1.0 ^^^
