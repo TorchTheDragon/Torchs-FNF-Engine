@@ -1569,7 +1569,7 @@ class PlayState extends MusicBeatState
 								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors && !swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.left);
 									else if (!swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
-								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[0] : ClientPrefs.data.arrowRGB[0]);
 								}
 							} else {
@@ -1583,7 +1583,7 @@ class PlayState extends MusicBeatState
 								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors && !swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.down);
 									else if (!swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
-								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[1] : ClientPrefs.data.arrowRGB[1]);
 								}
 							} else {
@@ -1597,7 +1597,7 @@ class PlayState extends MusicBeatState
 								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors && !swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.up);
 									else if (!swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
-								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[2] : ClientPrefs.data.arrowRGB[2]);
 								}
 							} else {
@@ -1611,7 +1611,7 @@ class PlayState extends MusicBeatState
 								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors && !swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.right);
 									else if (!swagNote.noCharShader) swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
-								} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+								} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 									swagNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[3] : ClientPrefs.data.arrowRGB[3]);
 								}
 							} else {
@@ -1653,7 +1653,7 @@ class PlayState extends MusicBeatState
 										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors && !sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.left);
 											else if (!sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
-										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[0] : ClientPrefs.data.arrowRGB[0]);
 										}
 									} else {
@@ -1667,7 +1667,7 @@ class PlayState extends MusicBeatState
 										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors && !sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.down);
 											else if (!sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
-										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[1] : ClientPrefs.data.arrowRGB[1]);
 										}
 									} else {
@@ -1681,7 +1681,7 @@ class PlayState extends MusicBeatState
 										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors && !sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.up);
 											else if (!sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
-										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[2] : ClientPrefs.data.arrowRGB[2]);
 										}
 									} else {
@@ -1695,7 +1695,7 @@ class PlayState extends MusicBeatState
 										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors && !sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.right);
 											else if (!sustainNote.noCharShader) sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
-										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
+										} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
 											sustainNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[3] : ClientPrefs.data.arrowRGB[3]);
 										}
 									} else {

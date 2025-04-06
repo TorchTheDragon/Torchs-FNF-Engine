@@ -18,7 +18,7 @@ class GhostEffect {
         }
 
         var noteColors:Bool = (ClientPrefs.data.characterNoteColors == 'Enabled');
-        var enemyNotes:Bool = (ClientPrefs.data.characterNoteColors == 'Opponent Only');
+        var enemyNotes:Bool = (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly');
 
         var colors:Array<FlxColor> = [
             ((noteColors || enemyNotes && player == 0) && arrowColorGhost) ? ghost.charRef.noteColors.left[0] : PlayState.isPixelStage ? ClientPrefs.data.arrowRGBPixel[0][0] : ClientPrefs.data.arrowRGB[0][0], 

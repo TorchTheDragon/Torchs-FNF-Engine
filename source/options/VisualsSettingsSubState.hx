@@ -110,7 +110,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
 			'characterNoteColors',
 			STRING,
-			['Enabled', 'Opponent Only', 'Disabled']);
+			['Enabled', 'Opponent\nOnly', 'Disabled']);
 		addOption(option);
 
 		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
