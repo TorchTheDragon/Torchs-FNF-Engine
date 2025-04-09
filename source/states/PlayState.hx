@@ -4003,8 +4003,8 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
-		var curDadAnimation = dad.isAnimateAtlas ? dad.atlas.anim.curSymbol.name : dad.animation.curAnim.name;
-		var curBoyfriendAnimation = boyfriend.isAnimateAtlas ? boyfriend.atlas.anim.curSymbol.name : boyfriend.animation.curAnim.name;
+		var curDadAnimation = dad.isAnimateAtlas ? (dad.atlas.anim.curSymbol != null ? dad.atlas.anim.curSymbol.name : "idle") : (dad.animation.curAnim != null ? dad.animation.curAnim.name : "idle");
+		var curBoyfriendAnimation = boyfriend.isAnimateAtlas ? (boyfriend.atlas.anim.curSymbol != null ? boyfriend.atlas.anim.curSymbol.name : "idle") : (boyfriend.animation.curAnim != null ? boyfriend.animation.curAnim.name : "idle");
 		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, curBoyfriendAnimation, curDadAnimation);
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
