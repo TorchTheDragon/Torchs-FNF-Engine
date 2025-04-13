@@ -1,0 +1,9 @@
+This'll be a true ToDo list I will be writing out for me or others to work on.
+I can't guarantee that any of these will actually get done, but I can at least write out ideas of what is planned.
+
+Vanilla Things:
+Character Selection Menu
+New Freeplay Menu
+
+Custom Things for Engine:
+New tab in character menu for Note Strums, Splashes, and even Health Bars. Also add button to disable RGB Shader override for all of these.
