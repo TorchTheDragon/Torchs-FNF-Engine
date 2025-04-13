@@ -508,7 +508,19 @@ class CustomFlxColor {
 
 class CustomInterp extends crowplexus.hscript.Interp
 {
-	public var parentInstance:Dynamic;
+	public var parentInstance(default, set):Dynamic = [];
+	private var _instanceFields:Array<String>;
+	function set_parentInstance(inst:Dynamic):Dynamic
+	{
+		parentInstance = inst;
+		if(parentInstance == null)
+		{
+			_instanceFields = [];
+			return inst;
+		}
+		_instanceFields = Type.getInstanceFields(Type.getClass(inst));
+		return inst;
+	}
 	public function new()
 	{
 		super();
@@ -530,7 +542,7 @@ class CustomInterp extends crowplexus.hscript.Interp
 			return v;
 		}
 
-		if(parentInstance != null && Type.getInstanceFields(Type.getClass(parentInstance)).contains(id)) {
+		if(parentInstance != null && _instanceFields.contains(id)) {
 			var v = Reflect.getProperty(parentInstance, id);
 			return v;
 		}

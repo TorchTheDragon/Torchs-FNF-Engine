@@ -56,3 +56,4 @@ Fixed a crash with icon dancing
 UPDATE TO PSYCH 1.0.2
 Fix Tankman cutscene messing up camera afterwards
 UPDATE TO PSYCH 1.0.2h
+UPDATE TO PSYCH 1.0.3

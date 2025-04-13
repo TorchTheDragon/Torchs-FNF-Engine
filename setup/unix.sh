@@ -7,15 +7,15 @@ echo Makking the main haxelib and setuping folder in same time..
 mkdir ~/haxelib && haxelib setup ~/haxelib
 echo Installing dependencies...
 echo This might take a few moments depending on your internet speed.
-haxelib install lime 8.1.2
-haxelib install openfl 9.3.3
 haxelib install flixel 5.6.1
 haxelib install flixel-addons 3.2.2
 haxelib install flixel-tools 1.5.1
 haxelib install hscript-iris 1.1.3
 haxelib install tjson 1.4.0
 haxelib install hxdiscord_rpc 1.2.4
-haxelib install hxvlc 1.9.2
+haxelib install hxvlc 2.0.1 --skip-dependencies
+haxelib install lime 8.1.2
+haxelib install openfl 9.3.3
 haxelib install torchsfunctions 0.6.2
 haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 6b1d793fc3653ef9c938f5035733b7155244891c
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit 1906c4a96f6bb6df66562b3f24c62f4c5bba14a7
