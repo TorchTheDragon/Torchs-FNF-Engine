@@ -52,3 +52,7 @@ Updated a lot of titles for several menus
 Added Icon Dancing - Lawornot
 Fixed a crash with icon dancing
 ^^^ RELEASE 0.1.0 ^^^
+
+UPDATE TO PSYCH 1.0.2
+Fix Tankman cutscene messing up camera afterwards
+UPDATE TO PSYCH 1.0.2h

@@ -21,9 +21,8 @@ class VideoSprite extends FlxSpriteGroup {
 	private var videoName:String;
 
 	public var waiting:Bool = false;
-	public var didPlay:Bool = false;
 
-	public function new(videoName:String, isWaiting:Bool, canSkip:Bool = false, shouldLoop:Dynamic = false) {
+	public function new(videoName:String, isWaiting:Bool, canSkip:Bool = false, shouldLoop:Dynamic = false, autoPause = true) {
 		super();
 
 		this.videoName = videoName;
@@ -43,27 +42,12 @@ class VideoSprite extends FlxSpriteGroup {
 		// initialize sprites
 		videoSprite = new FlxVideoSprite();
 		videoSprite.antialiasing = ClientPrefs.data.antialiasing;
+		videoSprite.autoPause = autoPause;
 		add(videoSprite);
 		if(canSkip) this.canSkip = true;
 
 		// callbacks
-		if(!shouldLoop)
-		{
-			videoSprite.bitmap.onEndReached.add(function() {
-				if(alreadyDestroyed) return;
-	
-				trace('Video destroyed');
-				if(cover != null)
-				{
-					remove(cover);
-					cover.destroy();
-				}
-		
-				PlayState.instance.remove(this);
-				destroy();
-				alreadyDestroyed = true;
-			});
-		}
+		if(!shouldLoop) videoSprite.bitmap.onEndReached.add(destroy);
 
 		videoSprite.bitmap.onFormatSetup.add(function()
 		{
@@ -104,8 +88,15 @@ class VideoSprite extends FlxSpriteGroup {
 			finishCallback();
 		onSkip = null;
 
-		PlayState.instance.remove(this);
-		//super.destroy();
+		if (FlxG.state != null) {
+			if (FlxG.state.members.contains(this))
+				FlxG.state.remove(this);
+
+			if (FlxG.state.subState != null && FlxG.state.subState.members.contains(this))
+				FlxG.state.subState.remove(this);
+		}
+		super.destroy();
+		alreadyDestroyed = true;
 	}
 
 	override function update(elapsed:Float)
@@ -127,9 +118,7 @@ class VideoSprite extends FlxSpriteGroup {
 				if(onSkip != null) onSkip();
 				finishCallback = null;
 				videoSprite.bitmap.onEndReached.dispatch();
-				PlayState.instance.remove(this);
 				trace('Skipped video');
-				super.destroy();
 				return;
 			}
 		}
@@ -168,6 +157,7 @@ class VideoSprite extends FlxSpriteGroup {
 		skipSprite.alpha = FlxMath.remapToRange(skipSprite.amount, 0.025, 1, 0, 1);
 	}
 
+	public function play() videoSprite?.play();
 	public function resume() videoSprite?.resume();
 	public function pause() videoSprite?.pause();
 	#end

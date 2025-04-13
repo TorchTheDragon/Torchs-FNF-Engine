@@ -37,11 +37,9 @@ class PauseSubState extends MusicBeatSubstate
 		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + " - PAUSED!");
 
 		if(Difficulty.list.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
-
 		if(PlayState.chartingMode)
 		{
 			menuItemsOG.insert(2, 'Leave Charting Mode');
-			
 			var num:Int = 0;
 			if(!PlayState.instance.startingSong)
 			{
@@ -51,7 +49,7 @@ class PauseSubState extends MusicBeatSubstate
 			menuItemsOG.insert(3 + num, 'End Song');
 			menuItemsOG.insert(4 + num, 'Toggle Practice Mode');
 			menuItemsOG.insert(5 + num, 'Toggle Botplay');
-		}
+		} else if (PlayState.instance.practiceMode && !PlayState.instance.startingSong) menuItemsOG.insert(3, 'Skip Time');
 		menuItems = menuItemsOG;
 
 		for (i in 0...Difficulty.list.length) {
@@ -59,7 +57,6 @@ class PauseSubState extends MusicBeatSubstate
 			difficultyChoices.push(diff);
 		}
 		difficultyChoices.push('BACK');
-
 
 		pauseMusic = new FlxSound();
 		try

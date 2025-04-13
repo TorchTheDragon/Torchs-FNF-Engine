@@ -157,6 +157,7 @@ class Tank extends BaseStage
 
 		cutsceneHandler.finishCallback = function()
 		{
+			game.isCameraOnForcedPos = false;
 			var timeForStuff:Float = Conductor.crochet / 1000 * 4.5;
 			FlxG.sound.music.fadeOut(timeForStuff);
 			FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, timeForStuff, {ease: FlxEase.quadInOut});

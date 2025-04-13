@@ -11,13 +11,19 @@ class PhillyGlowParticle extends FlxSprite
 		this.color = color;
 
 		loadGraphic(Paths.image('philly/particle'));
+		antialiasing = ClientPrefs.data.antialiasing;
+		start();
+	}
+
+	public function start()
+	{
 		lifeTime = FlxG.random.float(0.6, 0.9);
 		decay = FlxG.random.float(0.8, 1);
 		if(!ClientPrefs.data.flashing)
 		{
 			decay *= 0.5;
 			alpha = 0.5;
-		}
+		} else alpha = 1;
 
 		originalScale = FlxG.random.float(0.75, 1);
 		scale.set(originalScale, originalScale);
@@ -25,7 +31,6 @@ class PhillyGlowParticle extends FlxSprite
 		scrollFactor.set(FlxG.random.float(0.3, 0.75), FlxG.random.float(0.65, 0.75));
 		velocity.set(FlxG.random.float(-40, 40), FlxG.random.float(-175, -250));
 		acceleration.set(FlxG.random.float(-10, 10), 25);
-		antialiasing = ClientPrefs.data.antialiasing;
 	}
 
 	override function update(elapsed:Float)
