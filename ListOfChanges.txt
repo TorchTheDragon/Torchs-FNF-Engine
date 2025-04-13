@@ -46,6 +46,7 @@ Ghost Effect values can be changed via an event
 ImageBar can now be lerped if the "healthLerp" variable is set to true in it
 Custom Window Titles added to multiple states... I still have more to do lol
 CUSTOM NOTES FOR CHARACTERS ACTUALLY HAS MOD SUPPORT LESSSSSS GO.... I changed how "Paths.getSparrowAtlas" works a small bit, not a major change to its functionality really. "Reload Notes" may break after 2-3 times of changing the image, but a quick reload into the state fixes it.
+Added color bars to the Note Colors tab in the Character Editor (This change was present... I just forgot to record it here...)
 
 EVERYTHING BEFORE THIS WAS ON PSYCH 1.0 ENGINE, AFTER THIS LINE IS STUFF I HAVE ADDED SINCE I UPDATED MY ENGINE TO PSYCH 1.0.1
 Updated a lot of titles for several menus
@@ -57,3 +58,5 @@ UPDATE TO PSYCH 1.0.2
 Fix Tankman cutscene messing up camera afterwards
 UPDATE TO PSYCH 1.0.2h
 UPDATE TO PSYCH 1.0.3
+UPDATE TO PSYCH 1.0.4.... FINALLY UP TO DATE lol, any future updates will be mine or other peoples additions... which I really hope that other people in the community will help out
+Fixed strum notes ending early on Left, Down, and Right note in pixel mode... firstly, never realized that, secondly, why was only Up setup correctly for that?
