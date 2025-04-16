@@ -60,3 +60,6 @@ UPDATE TO PSYCH 1.0.2h
 UPDATE TO PSYCH 1.0.3
 UPDATE TO PSYCH 1.0.4.... FINALLY UP TO DATE lol, any future updates will be mine or other peoples additions... which I really hope that other people in the community will help out
 Fixed strum notes ending early on Left, Down, and Right note in pixel mode... firstly, never realized that, secondly, why was only Up setup correctly for that?
+Renamed WindowTitleUtils.hx to WindowUtils.hx
+Added transparent background (kinda) to WindowUtils.hx (WINDOWS ONLY IT SEEMS)
+Updated my haxe library/Updated TorchsFunctions to 0.7.0 using some utils I had from this engine
