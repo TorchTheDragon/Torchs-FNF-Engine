@@ -86,10 +86,10 @@ class Main extends Sprite
 		hxvlc.util.Handle.init(#if (hxvlc >= "1.8.0")  ['--no-lua'] #end);
 		#end
 
+		/*
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		/*
 		if (game.zoom == -1.0)
 		{
 			var ratioX:Float = stageWidth / game.width;

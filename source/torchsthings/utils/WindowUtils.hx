@@ -5,6 +5,24 @@ import lime.ui.Window;
 import flixel.util.typeLimit.*;
 import torchsfunctions.WindowsBackend;
 
+#if windows
+@:buildXml('
+<target id="haxe">
+    <lib name="dwmapi.lib" if="windows" />
+</target>
+')
+@:cppFileCode('
+#include <Windows.h>
+#include <cstdio>
+#include <iostream>
+#include <tchar.h>
+#include <dwmapi.h>
+#include <winuser.h>
+')
+#elseif linux
+@:cppFileCode("#include <stdio.h>")
+#end
+
 class WindowUtils {
     public static var gameWindow(get, default):Window = null;
     static function get_gameWindow() {
@@ -44,24 +62,36 @@ class WindowUtils {
         #end
     }
 
-    public static function bgColorAsTransparency(color:OneOfTwo<FlxColor, Array<Int>>) {
+    public static function bgColorAsTransparency(color:OneOfTwo<FlxColor, Array<Int>>, constUpdate:Bool = false) {
+        // constUpdate is only intended for "update" function scenarios, which I honestly insist you don't use.
         #if cpp
-        if ((color is Array)) {
-            var arr:Array<Int> = cast color;
-            WindowsBackend.setWindowTransparencyColor(arr[0], arr[1], arr[2], arr[3]);
-        } else {
-            // Assume it's a FlxColor, which is an Int abstract
-            var bgColor:FlxColor = cast color;
-            WindowsBackend.setWindowTransparencyColor(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
-        }
+        if (!transparencyDisabled) {
+            if ((color is Array)) {
+                var arr:Array<Int> = cast color;
+                if (constUpdate) setWindowTransparency(arr[0], arr[1], arr[2], arr[3]);
+                else WindowsBackend.setWindowTransparencyColor(arr[0], arr[1], arr[2], arr[3]);
+            } else {
+                // Assume it's a FlxColor, which is an Int abstract
+                var bgColor:FlxColor = cast color;
+                if (constUpdate) setWindowTransparency(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+                else WindowsBackend.setWindowTransparencyColor(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+            }
+        } else trace("Transparency is disabled, I can't do shit!");
         #else
         trace('`bgColorAsTransparency` is not available on this platform!');
         #end
     }
 
-    public static function disableTransparency() {
+    public static var transparencyDisabled:Bool = true;
+
+    public static function disableTransparency(disable:Bool = true) {
         #if cpp
-        WindowsBackend.disableWindowTransparency();
+        if (disable) {
+            WindowsBackend.disableWindowTransparency();
+            transparencyDisabled = true;
+        } else {
+            transparencyDisabled = false;
+        }
         #else
         trace('`disableTransparency` is not available on this platform!');
         #end
@@ -101,4 +131,18 @@ class WindowUtils {
     public static function getCurrentTitle():String {
         return gameWindow.title;
     }
+
+    // Custom Backend Stuff for Engine
+    #if windows
+    @:functionCode('
+    HWND window = GetActiveWindow();
+
+    int result = SetWindowLong(window, GWL_EXSTYLE, GetWindowLong(window, GWL_EXSTYLE) | WS_EX_LAYERED);
+    if (alpha > 255) alpha = 255;
+    if (alpha < 0) alpha = 0;
+    SetLayeredWindowAttributes(window, RGB(red, green, blue), alpha, LWA_COLORKEY | LWA_ALPHA);
+    alpha = result;
+    ')
+    public static function setWindowTransparency(red:Int, green:Int, blue:Int, alpha:Int = 255) {return alpha;}
+    #end
 }

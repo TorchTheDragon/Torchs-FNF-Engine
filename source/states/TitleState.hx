@@ -99,9 +99,11 @@ class TitleState extends MusicBeatState
 		}
 
 		/*
-		var bgSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(1, 1, 1, 1));
+		var bgSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(1, 1, 1));
 		bgSprite.scrollFactor.set();
 		add(bgSprite);
+		screenGrab = new BitmapData(FlxG.width, FlxG.height, true, 0);
+		WindowUtils.disableTransparency(false);
 		*/
 
 		//FlxG.mouse.visible = false;
@@ -119,9 +121,12 @@ class TitleState extends MusicBeatState
 		}
 		else startIntro();
 		#end
-
-		//WindowUtils.bgColorAsTransparency(FlxColor.fromRGB(1, 1, 1));
 	}
+
+	/*
+	var screenGrab:BitmapData;
+	var lastColor:Int = -1;
+	*/
 
 	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
@@ -397,16 +402,17 @@ class TitleState extends MusicBeatState
 				
 				if(titleText != null) titleText.animation.play('press');
 
-				FlxG.camera.flash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
+				//FlxG.camera.flash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
+				startFlash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 				transitioning = true;
+				//WindowUtils.disableTransparency();
 				// FlxG.sound.music.stop();
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					MusicBeatState.switchState(new MainMenuState());
-					WindowUtils.disableTransparency();
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
@@ -475,6 +481,29 @@ class TitleState extends MusicBeatState
 			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
 			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 		}
+
+		// Transparent background test, it works decent enough, just doesn't like the flashing lol... 
+		// make sure to look for "disableTransparency" in this state as well, it's what allows "bgColorAsTransparency" to work.
+		
+		/*
+		screenGrab.draw(FlxG.stage);
+		var sampledColor = screenGrab.getPixel(FlxG.width - 20, 20);
+		if (!transitioning && sampledColor != lastColor) {
+			lastColor = sampledColor;
+			var bgColor = FlxColor.fromInt(sampledColor);
+			bgColor.alpha = 255;
+			WindowUtils.bgColorAsTransparency(bgColor, true);
+		}
+		*/
+
+		/*
+		// ONLY WORKS IF RENDERBLIT IS TRUE APPARENTLY
+		if (FlxG.camera != null && FlxG.camera.buffer != null) {
+			var bgColor:FlxColor = FlxColor.fromInt(FlxG.camera.buffer.getPixel(1260, 20));
+			trace('test camera exists');
+			WindowUtils.bgColorAsTransparency([bgColor.red, bgColor.green, bgColor.blue, 255], true);
+		}
+		*/
 
 		super.update(elapsed);
 	}
@@ -609,7 +638,8 @@ class TitleState extends MusicBeatState
 					default: //Go back to normal ugly ass boring GF
 						remove(ngSpr);
 						remove(credGroup);
-						FlxG.camera.flash(FlxColor.WHITE, 2);
+						//FlxG.camera.flash(FlxColor.WHITE, 2);
+						startFlash(FlxColor.WHITE, 2);
 						skippedIntro = true;
 
 						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
@@ -624,7 +654,8 @@ class TitleState extends MusicBeatState
 					{
 						remove(ngSpr);
 						remove(credGroup);
-						FlxG.camera.flash(FlxColor.WHITE, 0.6);
+						//FlxG.camera.flash(FlxColor.WHITE, 0.6);
+						startFlash(FlxColor.WHITE, 0.6);
 						transitioning = false;
 					});
 				}
@@ -632,7 +663,8 @@ class TitleState extends MusicBeatState
 				{
 					remove(ngSpr);
 					remove(credGroup);
-					FlxG.camera.flash(FlxColor.WHITE, 3);
+					//FlxG.camera.flash(FlxColor.WHITE, 3);
+					startFlash(FlxColor.WHITE, 3);
 					sound.onComplete = function() {
 						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
@@ -665,5 +697,11 @@ class TitleState extends MusicBeatState
 			}
 			skippedIntro = true;
 		}
+	}
+
+	function startFlash(color:FlxColor, duration:Float) {
+		var flashSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, color);
+		add(flashSprite);
+		FlxTween.tween(flashSprite, {alpha: 0}, duration, {onComplete: function(t:FlxTween) {flashSprite.destroy();}});
 	}
 }
