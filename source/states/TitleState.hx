@@ -98,9 +98,11 @@ class TitleState extends MusicBeatState
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		}
 
+		/*
 		var bgSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(1, 1, 1, 1));
 		bgSprite.scrollFactor.set();
 		add(bgSprite);
+		*/
 
 		//FlxG.mouse.visible = false;
 		Cursor.hide();
@@ -118,7 +120,7 @@ class TitleState extends MusicBeatState
 		else startIntro();
 		#end
 
-		WindowUtils.bgColorAsTransparency(FlxColor.fromRGB(1, 1, 1));
+		//WindowUtils.bgColorAsTransparency(FlxColor.fromRGB(1, 1, 1));
 	}
 
 	var logoBl:FlxSprite;
