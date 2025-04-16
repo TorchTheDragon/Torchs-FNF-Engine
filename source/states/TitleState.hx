@@ -98,6 +98,10 @@ class TitleState extends MusicBeatState
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		}
 
+		var bgSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(1, 1, 1, 1));
+		bgSprite.scrollFactor.set();
+		add(bgSprite);
+
 		//FlxG.mouse.visible = false;
 		Cursor.hide();
 		#if FREEPLAY
@@ -113,6 +117,8 @@ class TitleState extends MusicBeatState
 		}
 		else startIntro();
 		#end
+
+		WindowUtils.bgColorAsTransparency(FlxColor.fromRGB(1, 1, 1));
 	}
 
 	var logoBl:FlxSprite;
@@ -398,7 +404,7 @@ class TitleState extends MusicBeatState
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					MusicBeatState.switchState(new MainMenuState());
-
+					WindowUtils.disableTransparency();
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);

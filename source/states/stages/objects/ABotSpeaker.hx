@@ -4,7 +4,8 @@ package states.stages.objects;
 import funkin.vis.dsp.SpectralAnalyzer;
 #end
 import flixel.system.FlxAssets.FlxShader;
-import torchsthings.utils.MathUtil;
+//import torchsthings.utils.MathUtil;
+import torchsfunctions.functions.MathTools;
 
 class ABotSpeaker extends FlxSpriteGroup
 {
@@ -117,7 +118,7 @@ class ABotSpeaker extends FlxSpriteGroup
 			var animFrame:Int = Math.round(levels[i].value * 5);
 			
 			#if desktop
-			animFrame = Math.round(animFrame * MathUtil.logToLinear(FlxG.sound.volume));
+			animFrame = Math.round(animFrame * MathTools.logToLinear(FlxG.sound.volume));
 			#end
 			
 			animFrame = Math.floor(Math.min(5, animFrame));

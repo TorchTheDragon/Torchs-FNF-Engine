@@ -3,26 +3,7 @@ package torchsthings.utils;
 import lime.app.Application;
 import lime.ui.Window;
 import flixel.util.typeLimit.*;
-
-#if windows
-@:buildXml('
-<target id="haxe">
-    <lib name="dwmapi.lib" if="windows" />
-</target>
-')
-@:cppFileCode('
-#include <Windows.h>
-#include <cstdio>
-#include <iostream>
-#include <tchar.h>
-#include <dwmapi.h>
-#include <winuser.h>
-
-bool transparencyEnabled = false;
-')
-#elseif linux
-@:cppFileCode("#include <stdio.h>")
-#end
+import torchsfunctions.WindowsBackend;
 
 class WindowUtils {
     public static var gameWindow(get, default):Window = null;
@@ -38,7 +19,7 @@ class WindowUtils {
 
     public static function setWindowColorMode(isDark:Bool = true) {
         #if cpp
-        setColorMode(isDark);
+        WindowsBackend.setColorMode(isDark);
         isDarkMode = isDark;
         #else
         trace('`setWindowColorMode` is not available on this platform!');
@@ -47,7 +28,7 @@ class WindowUtils {
 
     public static function setDarkMode() {
         #if cpp
-        setColorMode(true);
+        WindowsBackend.setColorMode(true);
         isDarkMode = true;
         #else 
         trace('`setDarkMode` is not available on this platform!');
@@ -56,16 +37,39 @@ class WindowUtils {
 
     public static function setLightMode() {
         #if cpp
-        setColorMode(false);
+        WindowsBackend.setColorMode(false);
         isDarkMode = false;
         #else 
         trace('`setLightMode` is not available on this platform!');
         #end
     }
 
+    public static function bgColorAsTransparency(color:OneOfTwo<FlxColor, Array<Int>>) {
+        #if cpp
+        if ((color is Array)) {
+            var arr:Array<Int> = cast color;
+            WindowsBackend.setWindowTransparencyColor(arr[0], arr[1], arr[2], arr[3]);
+        } else {
+            // Assume it's a FlxColor, which is an Int abstract
+            var bgColor:FlxColor = cast color;
+            WindowsBackend.setWindowTransparencyColor(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+        }
+        #else
+        trace('`bgColorAsTransparency` is not available on this platform!');
+        #end
+    }
+
+    public static function disableTransparency() {
+        #if cpp
+        WindowsBackend.disableWindowTransparency();
+        #else
+        trace('`disableTransparency` is not available on this platform!');
+        #end
+    }
+
     public static function setWindowBorderColor(color:Array<Int>, setHeader:Bool = true, setBorder:Bool = true) {
         #if cpp
-        setBorderColor(((color != null) ? color : [255, 255, 255]), setHeader, setBorder);
+        WindowsBackend.setBorderColor(((color != null) ? color : [255, 255, 255]), setHeader, setBorder);
         if(setHeader) windowHeaderColor = ((color != null) ? color : [255, 255, 255]);
         if(setBorder) windowBorderColor = ((color != null) ? color : [255, 255, 255]);
         #else
@@ -75,7 +79,7 @@ class WindowUtils {
 
     public static function setWindowTitleColor(color:Array<Int>) {
         #if cpp
-        setTitleColor(((color != null) ? color : [255, 255, 255]));
+        WindowsBackend.setTitleColor(((color != null) ? color : [255, 255, 255]));
         windowTitleColor = ((color != null) ? color : [255, 255, 255]);
         #else
         trace('`setWindowTitleColor` is not available on this platform!');
@@ -97,43 +101,4 @@ class WindowUtils {
     public static function getCurrentTitle():String {
         return gameWindow.title;
     }
-
-
-
-    // Everything down here is just backend stuff
-    #if windows
-    @:functionCode('
-        HWND window = GetActiveWindow();
-        int isDark = (isDarkMode ? 1 : 0);
-    
-        if (DwmSetWindowAttribute(window, 19, &isDark, sizeof(isDark)) != S_OK) {
-            DwmSetWindowAttribute(window, 20, &isDark, sizeof(isDark));
-        }
-        UpdateWindow(window);
-    ')
-    static function setColorMode(isDarkMode:Bool) {}
-    
-    @:functionCode('
-        HWND window = GetActiveWindow();
-        auto finalColor = RGB(color[0], color[1], color[2]);
-    
-        if(setHeader) DwmSetWindowAttribute(window, 35, &finalColor, sizeof(COLORREF));
-        if(setBorder) DwmSetWindowAttribute(window, 34, &finalColor, sizeof(COLORREF));
-    
-            UpdateWindow(window);
-    ')
-    static function setBorderColor(color:Array<Int>, setHeader:Bool = true, setBorder:Bool = false) {}
-    
-    @:functionCode('
-        HWND window = GetActiveWindow();
-        auto finalColor = RGB(color[0], color[1], color[2]);
-    
-        DwmSetWindowAttribute(window, 36, &finalColor, sizeof(COLORREF));
-        UpdateWindow(window);
-    ')
-    static function setTitleColor(color:Array<Int>) {}
-    
-    @:functionCode('UpdateWindow(GetActiveWindow());')
-    static function updateWindow() {}
-    #end
 }

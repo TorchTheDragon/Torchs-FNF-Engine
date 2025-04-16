@@ -1,6 +1,7 @@
 package torchsthings.objects;
 
-import torchsthings.utils.MathUtil;
+//import torchsthings.utils.MathUtil;
+import torchsfunctions.functions.MathTools;
 import flash.media.Sound;
 import flixel.system.frontEnds.SoundFrontEnd;
 import flixel.system.ui.FlxSoundTray;
@@ -105,7 +106,7 @@ class CustomSoundTray extends FlxSoundTray
 		lerpYPos = 10;
 		visible = true;
 		active = true;
-		var globalVolume:Int = Math.round(MathUtil.logToLinear(FlxG.sound.volume) * 10);
+		var globalVolume:Int = Math.round(MathTools.logToLinear(FlxG.sound.volume) * 10);
 
 		if (FlxG.sound.muted || FlxG.sound.volume == 0)
 			globalVolume = 0;
@@ -137,9 +138,9 @@ class CustomSoundFrontEnd extends SoundFrontEnd
 	override function changeVolume(Amount:Float):Void
 	{
 		muted = false;
-		volume = MathUtil.logToLinear(volume);
+		volume = MathTools.logToLinear(volume);
 		volume += Amount;
-		volume = MathUtil.linearToLog(volume);
+		volume = MathTools.linearToLog(volume);
 		showSoundTray(Amount > 0);
 	}
 }

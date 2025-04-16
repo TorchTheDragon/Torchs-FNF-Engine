@@ -4,7 +4,6 @@ import openfl.display.ShaderParameter;
 import openfl.display.ShaderParameterType;
 import openfl.utils.Assets;
 import torchsfunctions.PostRuntimeShader;
-import backend.MathUtil;
 
 class CRT extends PostRuntimeShader {
     public var time(default, set):Float = 1;

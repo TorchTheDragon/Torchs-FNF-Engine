@@ -11,6 +11,7 @@ import states.stages.objects.*;
 import objects.Note;
 //import torchsthings.utils.WindowUtils as TitleUtil;
 //import torchsthings.utils.ColorUtil;
+//import torchsfunctions.functions.ColorUtils;
 
 class PhillyBlazin extends BaseStage
 {
@@ -36,7 +37,7 @@ class PhillyBlazin extends BaseStage
 		}
 
 		//TitleUtil.setDarkMode();
-		//TitleUtil.setWindowBorderColor(ColorUtil.getIntArray(FlxColor.RED));
+		//TitleUtil.setWindowBorderColor(ColorUtils.getIntArray(FlxColor.RED));
 
 		if(!ClientPrefs.data.lowQuality)
 		{

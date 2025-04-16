@@ -16,7 +16,7 @@ haxelib install hxdiscord_rpc 1.2.4
 haxelib install hxvlc 2.0.1 --skip-dependencies
 haxelib install lime 8.1.2
 haxelib install openfl 9.3.3
-haxelib install torchsfunctions 0.6.2
+haxelib install torchsfunctions 0.7.0 --skip-dependencies
 haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 6b1d793fc3653ef9c938f5035733b7155244891c
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit 1906c4a96f6bb6df66562b3f24c62f4c5bba14a7
 haxelib git funkin.vis https://github.com/FunkinCrew/funkVis 22b1ce089dd924f15cdc4632397ef3504d464e90
