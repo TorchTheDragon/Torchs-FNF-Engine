@@ -5,7 +5,7 @@ import objects.StrumNote;
 import objects.NoteSplash;
 import objects.Alphabet;
 import torchsthings.objects.StrumCover;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class VisualsSettingsSubState extends BaseOptionsMenu
 {
@@ -19,7 +19,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		title = Language.getPhrase('visuals_menu', 'Visuals Settings');
 		rpcTitle = 'Visuals Settings Menu'; //for Discord Rich Presence
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Visual Settings");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Visual Settings");
 
 		// for note skins and splash skins
 		notes = new FlxTypedGroup<StrumNote>();
@@ -413,6 +413,6 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 
 	override function closeSubState() {
 		super.closeSubState();
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Visual Settings");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Visual Settings");
 	}
 }

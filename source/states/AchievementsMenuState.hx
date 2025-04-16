@@ -3,7 +3,7 @@ package states;
 import flixel.FlxObject;
 import flixel.util.FlxSort;
 import objects.Bar;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 #if ACHIEVEMENTS_ALLOWED
 class AchievementsMenuState extends MusicBeatState
@@ -23,7 +23,7 @@ class AchievementsMenuState extends MusicBeatState
 
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Achievements');
+		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Achievements');
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();

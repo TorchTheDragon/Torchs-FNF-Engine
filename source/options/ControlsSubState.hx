@@ -10,7 +10,7 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.gamepad.FlxGamepadManager;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class ControlsSubState extends MusicBeatSubstate
 {
@@ -70,7 +70,7 @@ class ControlsSubState extends MusicBeatSubstate
 		DiscordClient.changePresence("Controls Menu", null);
 		#end
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Controls");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Controls");
 
 		options.push([true]);
 		options.push([true]);

@@ -2,6 +2,7 @@ package torchsthings.utils;
 
 import lime.app.Application;
 import lime.ui.Window;
+import flixel.util.typeLimit.*;
 
 #if windows
 @:buildXml('
@@ -16,12 +17,14 @@ import lime.ui.Window;
 #include <tchar.h>
 #include <dwmapi.h>
 #include <winuser.h>
+
+bool transparencyEnabled = false;
 ')
 #elseif linux
 @:cppFileCode("#include <stdio.h>")
 #end
 
-class WindowTitleUtils {
+class WindowUtils {
     public static var gameWindow(get, default):Window = null;
     static function get_gameWindow() {
         return Application.current.window;
@@ -108,7 +111,7 @@ class WindowTitleUtils {
         }
         UpdateWindow(window);
     ')
-    public static function setColorMode(isDarkMode:Bool) {}
+    static function setColorMode(isDarkMode:Bool) {}
     
     @:functionCode('
         HWND window = GetActiveWindow();
@@ -119,7 +122,7 @@ class WindowTitleUtils {
     
             UpdateWindow(window);
     ')
-    public static function setBorderColor(color:Array<Int>, setHeader:Bool = true, setBorder:Bool = false) {}
+    static function setBorderColor(color:Array<Int>, setHeader:Bool = true, setBorder:Bool = false) {}
     
     @:functionCode('
         HWND window = GetActiveWindow();
@@ -128,9 +131,9 @@ class WindowTitleUtils {
         DwmSetWindowAttribute(window, 36, &finalColor, sizeof(COLORREF));
         UpdateWindow(window);
     ')
-    public static function setTitleColor(color:Array<Int>) {}
+    static function setTitleColor(color:Array<Int>) {}
     
     @:functionCode('UpdateWindow(GetActiveWindow());')
-    public static function updateWindow() {}
+    static function updateWindow() {}
     #end
 }

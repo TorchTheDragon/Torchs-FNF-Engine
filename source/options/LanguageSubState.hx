@@ -1,7 +1,7 @@
 package options;
 
 import openfl.utils.Assets;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class LanguageSubState extends MusicBeatSubstate
 {
@@ -12,7 +12,7 @@ class LanguageSubState extends MusicBeatSubstate
 	var curSelected:Int = 0;
 	public function new()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Language Menu");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Language Menu");
 
 		super();
 

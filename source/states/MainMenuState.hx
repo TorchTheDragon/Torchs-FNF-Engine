@@ -8,7 +8,7 @@ import options.OptionsState;
 
 //temporary
 import torchsthings.states.ResultsScreen;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 enum MainMenuColumn {
 	LEFT;
@@ -45,8 +45,8 @@ class MainMenuState extends MusicBeatState
 	static var showOutdatedWarning:Bool = true;
 	override function create()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Main Menu");
+		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE);
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Main Menu");
 		
 		super.create();
 

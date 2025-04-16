@@ -9,7 +9,7 @@ import flixel.addons.display.FlxTiledSprite;
 import substates.GameOverSubstate;
 import states.stages.objects.*;
 import objects.Note;
-//import torchsthings.utils.WindowTitleUtils as TitleUtil;
+//import torchsthings.utils.WindowUtils as TitleUtil;
 //import torchsthings.utils.ColorUtil;
 
 class PhillyBlazin extends BaseStage

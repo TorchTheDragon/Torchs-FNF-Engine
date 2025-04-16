@@ -10,7 +10,7 @@ import states.StoryMenuState;
 import states.FreeplayState;
 import options.OptionsState;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -34,7 +34,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + " - PAUSED!");
+		WindowUtils.changeTitle(WindowUtils.getCurrentTitle() + " - PAUSED!");
 
 		if(Difficulty.list.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
 		if(PlayState.chartingMode)
@@ -434,7 +434,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
 	override public function close() {
-		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle().replace(" - PAUSED!", ''));
+		WindowUtils.changeTitle(WindowUtils.getCurrentTitle().replace(" - PAUSED!", ''));
 		super.close();
 	}
 

@@ -1,6 +1,6 @@
 package options;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class GameplaySettingsSubState extends BaseOptionsMenu
 {
@@ -9,7 +9,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		title = Language.getPhrase('gameplay_menu', 'Gameplay Settings');
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Gampeplay Settings");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Gampeplay Settings");
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Downscroll', //Name

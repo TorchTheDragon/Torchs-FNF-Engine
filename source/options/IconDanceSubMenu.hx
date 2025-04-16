@@ -11,7 +11,7 @@ import flixel.util.FlxTimer;
 import objects.Alphabet;
 import objects.HealthIcon;
 import lawsthings.objects.IconsAnimator;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class IconDanceSubMenu extends MusicBeatSubstate
 {
@@ -36,7 +36,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
 
     public function new(availableAnims:Array<String>, currentPrimary:Int, currentSecondary:Int, onConfirm:Void->Void)
     {
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Icon Dance Menu");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Icon Dance Menu");
         super();
         this.availableAnims = availableAnims;
         primaryIndex = currentPrimary;

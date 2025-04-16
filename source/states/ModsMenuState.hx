@@ -14,7 +14,7 @@ import options.ModSettingsSubState;
 
 import openfl.display.BitmapData;
 import lime.utils.Assets;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class ModsMenuState extends MusicBeatState
 {
@@ -56,7 +56,7 @@ class ModsMenuState extends MusicBeatState
 	}
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mods");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Mods");
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
@@ -798,7 +798,7 @@ class ModsMenuState extends MusicBeatState
 
 	override function closeSubState() {
 		super.closeSubState();
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mods");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Mods");
 	}
 }
 

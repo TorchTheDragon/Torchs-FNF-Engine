@@ -18,7 +18,7 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 typedef TitleData =
 {
@@ -68,7 +68,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowUtils.changeTitle(WindowUtils.DEFAULT_TITLE);
 
 		Paths.clearStoredMemory();
 		super.create();

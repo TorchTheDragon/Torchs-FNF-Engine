@@ -7,7 +7,7 @@ import objects.Character;
 
 import options.Option.OptionType;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class ModSettingsSubState extends BaseOptionsMenu
 {
@@ -22,7 +22,7 @@ class ModSettingsSubState extends BaseOptionsMenu
 		//title = name;
 		rpcTitle = 'Mod Settings ($name)'; //for Discord Rich Presence
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mod Settings");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Mod Settings");
 
 		if(FlxG.save.data.modSettings == null) FlxG.save.data.modSettings = new Map<String, Dynamic>();
 		else

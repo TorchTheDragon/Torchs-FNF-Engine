@@ -2,7 +2,7 @@ package options;
 
 import states.MainMenuState;
 import backend.StageData;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class OptionsState extends MusicBeatState
 {
@@ -49,7 +49,7 @@ class OptionsState extends MusicBeatState
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Options");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
@@ -88,7 +88,7 @@ class OptionsState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options Menu", null);
 		#end
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Options");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
 	}
 
 	override function update(elapsed:Float) {

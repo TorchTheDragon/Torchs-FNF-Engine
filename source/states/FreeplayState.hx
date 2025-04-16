@@ -17,7 +17,7 @@ import openfl.utils.Assets;
 
 import haxe.Json;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class FreeplayState extends MusicBeatState
 {
@@ -56,8 +56,8 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Freeplay Menu");
+		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE);
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Freeplay Menu");
 		//Paths.clearStoredMemory();
 		//Paths.clearUnusedMemory();
 		

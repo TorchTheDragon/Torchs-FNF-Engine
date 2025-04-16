@@ -19,7 +19,7 @@ import torchsthings.objects.results.ClearPercentCounter;
 import torchsthings.objects.results.ResultsScore;
 import torchsthings.objects.results.TallyCounter;
 import torchsthings.shaders.LeftMaskShader;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 import flixel.util.FlxSignal;
 
 import states.FreeplayState;
@@ -93,8 +93,8 @@ class ResultsScreen extends MusicBeatState {
     public function new(song:String, rating:String, finalScore:Float, diff:String, results:Array<Int>, curHighScore:Float, ?storyMode:Bool = false, ?char:String) {
         super();
 
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Results Screen - ${FlxStringUtil.toTitleCase(song)})');
+		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE);
+		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Results Screen - ${FlxStringUtil.toTitleCase(song)})');
 
         sicks = results[0];
         goods = results[1];

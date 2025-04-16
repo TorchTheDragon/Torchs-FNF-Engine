@@ -18,7 +18,7 @@ import objects.Note;
 import states.editors.content.Prompt;
 import states.editors.content.PsychJsonPrinter;
 import backend.EditorState;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 //class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 class CharacterEditorState extends EditorState implements PsychUIEventHandler.PsychUIEvent
@@ -71,7 +71,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Character Editor');
+		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Character Editor');
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();

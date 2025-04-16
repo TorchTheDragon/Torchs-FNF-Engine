@@ -63,7 +63,7 @@ import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
 import torchsthings.objects.ImageBar.BarSettings;
 import torchsthings.objects.effects.GhostEffect;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 import lawsthings.objects.IconsAnimator;
 
@@ -820,8 +820,8 @@ class PlayState extends MusicBeatState
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
 
 		var songTitleCased:String = songName.replace('-', ' ').toUpperCase();
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE); // Just doing this in case of things like restarting song
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.baseTitle + ' - $songTitleCased', true);
+		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE); // Just doing this in case of things like restarting song
+		WindowUtils.changeDefaultTitle(WindowUtils.baseTitle + ' - $songTitleCased', true);
 
 		super.create();
 		Paths.clearUnusedMemory();
@@ -2214,7 +2214,7 @@ class PlayState extends MusicBeatState
 			if(ClientPrefs.data.timeBarType != 'Song Name')
 				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
 
-			WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - " + FlxStringUtil.formatTime(secondsTotal, false));
+			WindowUtils.changeTitle(WindowUtils.baseTitle + " - " + FlxStringUtil.formatTime(secondsTotal, false));
 		}
 
 		if (camZooming)

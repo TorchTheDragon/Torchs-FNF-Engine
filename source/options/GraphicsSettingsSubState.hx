@@ -1,7 +1,7 @@
 package options;
 
 import objects.Character;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class GraphicsSettingsSubState extends BaseOptionsMenu
 {
@@ -12,7 +12,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		title = Language.getPhrase('graphics_menu', 'Graphics Settings');
 		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
 
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Graphics Settings");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Graphics Settings");
 
 		boyfriend = new Character(840, 170, 'bf', true);
 		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.75));
