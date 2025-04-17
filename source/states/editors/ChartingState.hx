@@ -614,7 +614,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			player2: 'dad',
 			gfVersion: 'gf',
 			stage: 'stage',
-			format: 'psych_v1'
+			format: 'torch_v1'
 		};
 		Song.chartPath = null;
 		loadChart(song);
@@ -3221,7 +3221,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			}
 			if(loadedChart == null || !Reflect.hasField(loadedChart, 'song')) //Check if chart is ACTUALLY a chart and valid
 			{
-				showOutput('Error: File loaded is not a Psych Engine/FNF 0.2.x.x chart.', true);
+				showOutput('Error: File loaded is not a Psych Engine/Torch Engine/FNF 0.2.x.x chart.', true);
 				return;
 			}
 
@@ -3360,7 +3360,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					var loadedChart:SwagSong = Song.parseJSON(fileDialog.data, filePath.substr(filePath.lastIndexOf('/')));
 					if(loadedChart == null || !Reflect.hasField(loadedChart, 'song')) //Check if chart is ACTUALLY a chart and valid
 					{
-						showOutput('Error: File loaded is not a Psych Engine/FNF 0.2.x.x chart.', true);
+						showOutput('Error: File loaded is not a Psych Engine/Torch Engine/FNF 0.2.x.x chart.', true);
 						return;
 					}
 
@@ -3439,7 +3439,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 								var loadedChart:SwagSong = Song.parseJSON(File.getContent(path), autosaveName, null);
 								if(loadedChart == null || !Reflect.hasField(loadedChart, '__original_path'))
 								{
-									showOutput('Error: File loaded is not a valid Psych Engine autosave.', true);
+									showOutput('Error: File loaded is not a valid Psych Engine/Torch Engine autosave.', true);
 									return;
 	
 								}
@@ -3493,7 +3493,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 						var eventsFile:SwagSong = Song.parseJSON(fileDialog.data, filePath.substr(filePath.lastIndexOf('/')));
 						if(eventsFile == null || Reflect.hasField(eventsFile, 'scrollSpeed') || eventsFile.events == null)
 						{
-							showOutput('Error: File loaded is not a Psych Engine chart/events file.', true);
+							showOutput('Error: File loaded is not a Psych Engine/Torch Engine chart/events file.', true);
 							return;
 						}
 	
@@ -3601,7 +3601,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				upperBox.isMinimized = true;
 	
 				updateChartData();
-				fileDialog.save('events.json', PsychJsonPrinter.print({events: PlayState.SONG.events, format: 'psych_v1'}, ['events']),
+				fileDialog.save('events.json', PsychJsonPrinter.print({events: PlayState.SONG.events, format: 'torch_v1_events'}, ['events']),
 					function() showOutput('Events saved successfully to: ${fileDialog.path}'), null,
 					function() showOutput('Error on saving events!', true));
 			}, btnWid);
@@ -3733,19 +3733,19 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group.add(btn);
 
 		btnY += 20;
-		var btn:PsychUIButton = new PsychUIButton(btnX, btnY, '  Psych to V-Slice...', function()
+		var btn:PsychUIButton = new PsychUIButton(btnX, btnY, '  Psych/Torch to V-Slice...', function()
 		{
 			if(!fileDialog.completed) return;
 			upperBox.isMinimized = true;
 			upperBox.bg.visible = false;
 
-			fileDialog.open('song.json', 'Open a Psych Engine Chart JSON', function()
+			fileDialog.open('song.json', 'Open a Psych Engine/Torch Engine Chart JSON', function()
 			{
 				var filePath:String = fileDialog.path.replace('\\', '/');
 				var loadedChart:SwagSong = Song.parseJSON(fileDialog.data, filePath.substr(filePath.lastIndexOf('/')));
 				if(loadedChart == null || !Reflect.hasField(loadedChart, 'song')) //Check if chart is ACTUALLY a chart and valid
 				{
-					showOutput('Error: File loaded is not a Psych Engine 0.x.x/FNF 0.2.x.x chart.', true);
+					showOutput('Error: File loaded is not a Psych Engine 0.x.x/Torch Engine 0.x.x/FNF 0.2.x.x chart.', true);
 					return;
 				}
 
@@ -3897,7 +3897,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group.add(btn);
 
 		btnY += 20;
-		var btn:PsychUIButton = new PsychUIButton(btnX, btnY, '  V-Slice to Psych...', function()
+		var btn:PsychUIButton = new PsychUIButton(btnX, btnY, '  V-Slice to Torch...', function()
 		{
 			if(!fileDialog.completed) return;
 			upperBox.isMinimized = true;
@@ -3927,7 +3927,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 						var pack:PsychPackage = VSlice.convertToPsych(chart, metadata);
 						if(pack.difficulties != null)
 						{
-							fileDialog.openDirectory('Save Converted Psych JSONs', function()
+							fileDialog.openDirectory('Save Converted Psych/Torch JSONs', function()
 							{
 								var path:String = fileDialog.path.replace('\\', '/');
 								if(!path.endsWith('/')) path += '/';
@@ -3996,7 +3996,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					var loadedChart:SwagSong = Song.parseJSON(fileDialog.data, filePath, '');
 					if(loadedChart == null || !Reflect.hasField(loadedChart, 'song')) //Check if chart is ACTUALLY a chart and valid
 					{
-						showOutput('Error: File loaded is not a Psych Engine 0.x.x/FNF 0.2.x.x chart.', true);
+						showOutput('Error: File loaded is not a Psych Engine 0.x.x/Torch Engine 0.x.x/FNF 0.2.x.x chart.', true);
 						return;
 					}
 
@@ -4004,12 +4004,12 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					if(fmt == null || fmt.length < 1)
 						fmt = loadedChart.format = 'unknown';
 
-					if(!fmt.startsWith('psych_v1'))
+					if(!fmt.startsWith('torch_v1') && !fmt.startsWith('psych_v1')) // Since this engine uses Psych Engine as a base, I have to play nice - Torch
 					{
-						loadedChart.format = 'psych_v1_convert';
+						loadedChart.format = 'torch_v1_convert';
 						Song.convert(loadedChart);
 						File.saveContent(fileDialog.path, PsychJsonPrinter.print(loadedChart, ['sectionNotes', 'events']));
-						showOutput('Updated "$filePath" from format "$fmt" to "psych_v1" successfully!');
+						showOutput('Updated "$filePath" from format "$fmt" to "torch_v1" successfully!');
 					}
 					else showOutput('Chart is already up-to-date! Format: "$fmt"', true);
 				}

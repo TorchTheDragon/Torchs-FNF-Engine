@@ -62,7 +62,7 @@ class Song
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
 	public var gfVersion:String = 'gf';
-	public var format:String = 'psych_v1';
+	public var format:String = 'torch_v1';
 
 	public static function convert(songJson:Dynamic) // Convert old charts to psych_v1 format
 	{
@@ -155,7 +155,7 @@ class Song
 		return rawData != null ? parseJSON(rawData, jsonInput) : null;
 	}
 
-	public static function parseJSON(rawData:String, ?nameForError:String = null, ?convertTo:String = 'psych_v1'):SwagSong
+	public static function parseJSON(rawData:String, ?nameForError:String = null, ?convertTo:String = 'torch_v1'):SwagSong
 	{
 		var songJson:SwagSong = cast Json.parse(rawData);
 		if(Reflect.hasField(songJson, 'song'))
@@ -177,6 +177,12 @@ class Song
 					{
 						trace('converting chart $nameForError with format $fmt to psych_v1 format...');
 						songJson.format = 'psych_v1_convert';
+						convert(songJson);
+					}
+				case 'torch_v1':
+					if(!fmt.startsWith('torch_v1') && !fmt.startsWith('psych_v1')) { // Since this engine uses Psych Engine as a base, I have to play nice - Torch
+						trace('converting chart $nameForError with format $fmt to torch_v1 format...');
+						songJson.format = 'torch_v1_convert';
 						convert(songJson);
 					}
 			}
