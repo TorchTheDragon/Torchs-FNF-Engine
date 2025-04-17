@@ -10,6 +10,7 @@ import flixel.system.FlxAssets.FlxShader;
 import openfl.utils.Assets;
 
 using StringTools;
+using flixel.util.FlxStringUtil;
 
 class StrumCover extends FlxSprite {
 	public static var defaultCoverSkin(default, never):String = 'strumCovers/NOTE_covers';
@@ -29,6 +30,7 @@ class StrumCover extends FlxSprite {
         super(0, 0);
 
         strumNote = refNote;
+        setMinimumSustainLength();
         if(texture == null) texture = defaultCoverSkin;
         if(library == null) library = defaultLibrary;
 
@@ -61,6 +63,18 @@ class StrumCover extends FlxSprite {
         }
 
         return returnArr;
+    }
+    
+    public function setMinimumSustainLength(?length:Float, ?multBySpeed:Bool = false) {
+        if (length != null && length != minSustainLength) {
+            minSustainLength = length;
+            if (multBySpeed) minSustainLength *= PlayState.SONG.speed / 1.5;
+        } else {
+            minSustainLength *= PlayState.SONG.speed / 1.5;
+        }
+        var noteColor:String = colArray[strumNote.noteData].toTitleCase();
+        var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';
+        trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
     }
 
     override function update(elapsed:Float) {
