@@ -94,7 +94,7 @@ class ResultsScreen extends MusicBeatState {
         super();
 
 		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE);
-		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Results Screen - ${FlxStringUtil.toTitleCase(song)})');
+		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Results Screen - ${FlxStringUtil.toTitleCase(song)}');
 
         sicks = results[0];
         goods = results[1];
