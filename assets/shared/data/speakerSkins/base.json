@@ -1,0 +1,7 @@
+{
+    "beatAnim": "speakers",
+    "library": "shared",
+    "isAnimateAtlas": false,
+    "offsets": [0.0, 0.0],
+    "gfOffsets": [0.0, 0.0]
+}
