@@ -108,7 +108,7 @@ class ResultsScreen extends MusicBeatState {
         this.storyMode = storyMode;
         specificChar = charAnimPicker(char);
 
-        var fontLetters:String = "AaBbCcDdEeFfGgHhiIJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz:1234567890";
+        var fontLetters:String = "AaBbCcDdEeFfGgHhiIJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz:1234567890 ";
         rank = rankToInt(rating);
 
         songName = new FlxBitmapText(FlxBitmapFont.fromMonospace(Paths.image('results_screen/alphabet', 'torchs_assets'), fontLetters, FlxPoint.get(49, 62)));

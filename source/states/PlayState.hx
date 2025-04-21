@@ -3120,7 +3120,7 @@ class PlayState extends MusicBeatState
 
 				canResync = false;
 				//MusicBeatState.switchState(new FreeplayState());
-				LoadingState.loadAndSwitchState(new ResultsScreen(SONG.song, ratingName, songScore, Difficulty.getString(), [ratingsData[0].hits, ratingsData[1].hits, ratingsData[2].hits, ratingsData[3].hits, songMisses, maxCombo, Math.floor(ratingPercent * 100)], oldScore, false, boyfriend.curCharacter));
+				LoadingState.loadAndSwitchState(new ResultsScreen(SONG.song.replace('-', ' '), ratingName, songScore, Difficulty.getString(), [ratingsData[0].hits, ratingsData[1].hits, ratingsData[2].hits, ratingsData[3].hits, songMisses, maxCombo, Math.floor(ratingPercent * 100)], oldScore, false, boyfriend.curCharacter));
 				//FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
