@@ -10,6 +10,7 @@ import funkin.vis.dsp.SpectralAnalyzer;
 #end
 import torchsfunctions.functions.MathTools;
 import states.stages.objects.ABotSpeaker;
+import torchsthings.objects.speakers.*;
 import objects.Character;
 
 class SpeakerSkin extends FlxSpriteGroup {
@@ -24,7 +25,9 @@ class SpeakerSkin extends FlxSpriteGroup {
     #end
     public var customSpeakerList:Array<String> = [
         'abot',
-        'nene'
+        'nene',
+        'abot-pixel',
+        'nene-pixel'
     ];
     public var gf:Character = PlayState.instance.gf;
     public var bpm:Float = PlayState.SONG.bpm;
@@ -55,21 +58,22 @@ class SpeakerSkin extends FlxSpriteGroup {
             switch (nameOfCustom.toLowerCase()) {
                 case 'abot' | 'nene':
                     daCustomSpeaker = new ABotSpeaker();
-                    //abot.scrollFactor.set(scrollFactorX, scrollFactorY);
                     updateABotEye(daCustomSpeaker, true);
-                    add(daCustomSpeaker);
+                case 'abot-pixel' | 'nene-pixel':
+                    daCustomSpeaker = new PixelABot();
+                    //daCustomSpeaker.scale.set(6, 6);
+                    updateABotEye(daCustomSpeaker, true);
             }
+            if (daCustomSpeaker != null) add(daCustomSpeaker);
         } else if (!spriteList.contains(speaker) #if flxanimate && !atlasList.contains(speaker) #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/base'), true);
             spriteSpeaker.frames = Paths.getSparrowAtlas('speakerskins/base');
             spriteSpeaker.animation.addByPrefix('boom', 'speakers', 24, false);
-            //spriteSpeaker.animation.addByIndices('idle', 'speakers', [24], '', 24);
             spriteSpeaker.animation.play('boom', true);
         } else if (spriteList.contains(speaker) #if flxanimate && !speakerSettings.isAnimateAtlas #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/$speaker', speakerSettings.library), true);
             spriteSpeaker.frames = Paths.getSparrowAtlas('speakerskins/$speaker', speakerSettings.library);
             spriteSpeaker.animation.addByPrefix('boom', speakerSettings.beatAnim, 24, false);
-            //spriteSpeaker.animation.addByIndices('idle', speakerSettings.beatAnim, [speakerSettings.animFrames], '', 24);
             spriteSpeaker.animation.play('boom', true);
         } #if flxanimate else if (atlasList.contains(speaker) && speakerSettings.isAnimateAtlas) {
             atlasSpeaker = new FlxAnimate();
@@ -92,14 +96,19 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
     }
 
-    public function updateABotEye(?abot:ABotSpeaker, ?finishInstantly:Bool = false) {
-		if (abot != null) {
-			if(PlayState.SONG.notes[Std.int(FlxMath.bound(PlayState.instance.curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+    public function updateABotEye(?abot:Dynamic, ?finishInstantly:Bool = false) {
+		if (abot != null && (abot is ABotSpeaker || abot is PixelABot)) {
+            var lookAtPlayer:Bool = PlayState.SONG.notes[Std.int(FlxMath.bound(PlayState.instance.curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection;
+
+			if(lookAtPlayer)
 				abot.lookRight();
 			else
 				abot.lookLeft();
 	
-			if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+			if(finishInstantly) {
+                if (abot is ABotSpeaker) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+                else if (abot is PixelABot) lookAtPlayer ? abot.abotHead.animation.play('right') : abot.abotHead.animation.play('left');
+            }
 		}
 	}
 
@@ -112,7 +121,7 @@ class SpeakerSkin extends FlxSpriteGroup {
     override public function update(elapsed:Float) {
         super.update(elapsed);
         if (customSpeaker) {
-            if (daCustomSpeaker is ABotSpeaker && gf != null) {
+            if ((daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot) && gf != null) {
                 animationFinished = gf.isAnimationFinished();
                 transitionState();
             }
@@ -149,6 +158,17 @@ class SpeakerSkin extends FlxSpriteGroup {
         @:privateAccess
         analyzer = new SpectralAnalyzer(snd._channel.__audioSource, 7, 0.1, 40);
     
+		// This is from Vanilla Funkin Source
+
+		// A-Bot tuning...
+		analyzer.minDb = -65;
+		analyzer.maxDb = -25;
+		analyzer.maxFreq = 22000;
+		// we use a very low minFreq since some songs use low low subbass like a boss
+		analyzer.minFreq = 10;
+
+		// End of base funkin code
+
         #if desktop
         // On desktop it uses FFT stuff that isn't as optimized as the direct browser stuff we use on HTML5
         // So we want to manually change it!
@@ -159,7 +179,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 
     // For stage stuff
     public function createPost() {
-        if(gf != null && customSpeaker && daCustomSpeaker is ABotSpeaker) {
+        if(gf != null && customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
 				switch(currentNeneState) {
 					case STATE_PRE_RAISE:
@@ -174,7 +194,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 		}
     }
     public function beatHit() {
-        if (customSpeaker && daCustomSpeaker is ABotSpeaker) {
+        if (customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
             switch(currentNeneState) {
                 case STATE_READY:
                     if (blinkCountdown == 0) {
@@ -188,7 +208,7 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
     }
     public function songStart() {
-        if (customSpeaker && daCustomSpeaker is ABotSpeaker) {
+        if (customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
             gf.animation.finishCallback = onNeneAnimationFinished;
         }
     }
@@ -260,7 +280,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 		initAnalyzer();
 		#end
         if (customSpeaker) {
-            if (daCustomSpeaker is ABotSpeaker) {
+            if (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot) {
                 daCustomSpeaker.snd = changed;
                 #if funkin.vis
                 daCustomSpeaker.initAnalyzer();
