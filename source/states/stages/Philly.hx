@@ -2,6 +2,8 @@ package states.stages;
 
 import states.stages.objects.*;
 import objects.Character;
+import torchsthings.shaders.RTXShader;
+import openfl.filters.ShaderFilter;
 
 class Philly extends BaseStage
 {
@@ -17,6 +19,8 @@ class Philly extends BaseStage
 	var phillyGlowParticles:FlxTypedGroup<PhillyGlowParticle>;
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
+
+	var rtxTest:RTXShader;
 
 	override function create()
 	{
@@ -47,7 +51,33 @@ class Philly extends BaseStage
 
 		phillyStreet = new BGSprite('philly/street', -40, 50);
 		add(phillyStreet);
+
+		rtxTest = new RTXShader();
+		/*
+		rtxTest.overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
+		rtxTest.satinColor = FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43);
+		rtxTest.shadowColor = FlxColor.fromRGBFloat(0.83, 0.85, 0.0, 0.22);
+		rtxTest.shadowAngle = 270.0;
+		rtxTest.shadowDistance = 25.0;
+		*/
+		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(0.83, 0.85, 0.0, 0.22), -90.0, 25.0);
 	}
+	override function createPost() {
+		//var rtxFilter:ShaderFilter = new ShaderFilter(rtxTest);
+		for (char in [boyfriend, gf, dad]) {
+			//char.setFilters(rtxFilter);
+			char.shader = rtxTest;
+			/*
+			if (char == dad) {
+				char.shader = null;
+				var tempShader:RTXShader = new RTXShader();
+				tempShader.setShaderValues(rtxTest.overlayColor, rtxTest.satinColor, rtxTest.shadowColor, -(rtxTest.shadowAngle), rtxTest.shadowDistance);
+				char.shader = tempShader;
+			}
+				*/
+		}
+	}
+
 	override function eventPushed(event:objects.Note.EventNote)
 	{
 		switch(event.event)
