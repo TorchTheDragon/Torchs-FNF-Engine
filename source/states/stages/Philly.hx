@@ -12,6 +12,7 @@ class Philly extends BaseStage
 	var phillyStreet:BGSprite;
 	var phillyTrain:PhillyTrain;
 	var curLight:Int = -1;
+	var streetBehind:BGSprite;
 
 	//For Philly Glow events
 	var blammedLightsBlack:FlxSprite;
@@ -42,7 +43,7 @@ class Philly extends BaseStage
 		phillyWindow.alpha = 0;
 
 		if(!ClientPrefs.data.lowQuality) {
-			var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
+			streetBehind = new BGSprite('philly/behindTrain', -40, 50);
 			add(streetBehind);
 		}
 
@@ -53,28 +54,24 @@ class Philly extends BaseStage
 		add(phillyStreet);
 
 		rtxTest = new RTXShader();
+		
 		/*
+		// Just leaving these here as the defaults
 		rtxTest.overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
 		rtxTest.satinColor = FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43);
 		rtxTest.shadowColor = FlxColor.fromRGBFloat(0.83, 0.85, 0.0, 0.22);
-		rtxTest.shadowAngle = 270.0;
+		rtxTest.shadowAngle = -90.0;
 		rtxTest.shadowDistance = 25.0;
 		*/
-		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(0.83, 0.85, 0.0, 0.22), -90.0, 25.0);
+		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(112/255, 0, 176/255, 0.45), -90.0, 45.0, true);
 	}
 	override function createPost() {
-		//var rtxFilter:ShaderFilter = new ShaderFilter(rtxTest);
-		for (char in [boyfriend, gf, dad]) {
-			//char.setFilters(rtxFilter);
-			char.shader = rtxTest;
-			/*
-			if (char == dad) {
-				char.shader = null;
-				var tempShader:RTXShader = new RTXShader();
-				tempShader.setShaderValues(rtxTest.overlayColor, rtxTest.satinColor, rtxTest.shadowColor, -(rtxTest.shadowAngle), rtxTest.shadowDistance);
-				char.shader = tempShader;
-			}
-				*/
+		var list = [boyfriend, gf, dad, phillyTrain, phillyStreet];
+		if (streetBehind != null) list.push(streetBehind);
+		for (obj in list) {
+			var tempShader:RTXShader = new RTXShader(); //Making this should hopefully make it work better on different image sizes
+			tempShader.copyShader(rtxTest);
+			obj.shader = tempShader;
 		}
 	}
 

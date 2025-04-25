@@ -13,6 +13,7 @@ class RTXShader extends FlxRuntimeShader {
     public var shadowColor(default, set):FlxColor;
     public var shadowAngle(default, set):Float = 0.0;
     public var shadowDistance(default, set):Float = 0.0;
+    public var falloff(default, set):Bool = false;
 
     public function new() {
         var frag = Assets.getText(Paths.shaderFragment('RTX', 'torchs_assets'));
@@ -22,6 +23,7 @@ class RTXShader extends FlxRuntimeShader {
         shadowColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
         shadowAngle = 0.0;
         shadowDistance = 0.0;
+        falloff = false;
     }
 
     function set_overlayColor(val:FlxColor):FlxColor {
@@ -37,6 +39,7 @@ class RTXShader extends FlxRuntimeShader {
     function set_shadowColor(val:FlxColor):FlxColor {
         this.setFloatArray('shadow', [val.redFloat, val.greenFloat, val.blueFloat, val.alphaFloat]);
         shadowColor = val;
+        if (shadowColor.alphaFloat < 0.45 && falloff == true && shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
         return val;
     }
     function set_shadowAngle(val:Float):Float {
@@ -47,10 +50,17 @@ class RTXShader extends FlxRuntimeShader {
     function set_shadowDistance(val:Float):Float {
         this.setFloat('daDistance', val);
         shadowDistance = val;
+        if (shadowColor.alphaFloat < 0.45 && falloff == true && shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
+        return val;
+    }
+    function set_falloff(val:Bool):Bool {
+        this.setFloat('falloffOn', val ? 1.0 : 0.0);
+        falloff = val;
+        if (shadowColor.alphaFloat < 0.45 && falloff == true && shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
         return val;
     }
 
-    public function setShaderValues(?overlay:FlxColor, ?satin:FlxColor, ?shadow:FlxColor, ?angle:Float = 0.0, ?distance:Float = 0.0) {
+    public function setShaderValues(?overlay:FlxColor, ?satin:FlxColor, ?shadow:FlxColor, ?angle:Float = 0.0, ?distance:Float = 0.0, ?fall:Bool = false) {
         if (overlay == null) overlay = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 1.0);
         if (satin == null) satin = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 1.0);
         if (shadow == null) shadow = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 1.0);
@@ -59,6 +69,18 @@ class RTXShader extends FlxRuntimeShader {
         shadowColor = shadow;
         shadowAngle = angle;
         shadowDistance = distance;
+        falloff = fall;
+        if (shadowColor.alphaFloat < 0.45 && falloff == true && shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
+    }
+
+    public function copyShader(?shade:RTXShader) {
+        this.overlayColor = shade.overlayColor;
+        this.satinColor = shade.satinColor;
+        this.shadowColor = shade.shadowColor;
+        this.shadowAngle = shade.shadowAngle;
+        this.shadowDistance = shade.shadowDistance;
+        this.falloff = shade.falloff;
+        if (this.shadowColor.alphaFloat < 0.45 && this.falloff == true && this.shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
     }
 
     @:access(openfl.display.ShaderParameter)

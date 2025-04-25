@@ -5,6 +5,7 @@ uniform vec4 satin;
 uniform vec4 shadow;
 uniform float daAngle;
 uniform float daDistance;
+uniform float falloffOn;
 
 float DIST = 5.0;
 
@@ -37,9 +38,13 @@ void main() {
     float offsetY = sin(daAngle);
     vec2 multDist = (daDistance * resolution) / DIST;
     for (int i = 0; i < DIST; i++) {
-        vec4 col = flixel_texture2D(bitmap, uv + vec2(offsetX * (multDist.x * i), offsetY * (multDist.y * i)));
-        //float falloff = 1.0 - (float(i) / DIST);
-        sprColor.rgb = blend(sprColor.rgb, colorDodge(sprColor.rgb, shadow.rgb), shadow.a * invert(col.a));
+        vec4 col = texture2D(bitmap, uv + vec2(offsetX * (multDist.x * i), offsetY * (multDist.y * i)));
+        float falloff = 1.0 - (float(i) / DIST);
+        if (falloffOn > 0.5) {
+            sprColor.rgb = blend(sprColor.rgb, colorDodge(sprColor.rgb, shadow.rgb), shadow.a * invert(col.a) * falloff);
+        } else {
+            sprColor.rgb = blend(sprColor.rgb, colorDodge(sprColor.rgb, shadow.rgb), shadow.a * invert(col.a));
+        }
     }
 
     sprColor.rgb = blend(sprColor.rgb, lighten(sprColor.rgb, overlay.rgb), overlay.a);
