@@ -25,6 +25,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		notes = new FlxTypedGroup<StrumNote>();
 		splashes = new FlxTypedGroup<NoteSplash>();
 		strums = new FlxTypedGroup<StrumCover>();
+		StrumCover.visualState = true;
 		for (i in 0...Note.colArray.length)
 		{
 			var note:StrumNote = new StrumNote(370 + (560 / Note.colArray.length) * i, -200, i, 0);
@@ -400,6 +401,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
 		if (strumTime != null) strumTime.cancel();
 		Note.globalRgbShaders = [];
+		StrumCover.visualState = false;
 		super.destroy();
 	}
 

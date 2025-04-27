@@ -65,16 +65,20 @@ class StrumCover extends FlxSprite {
         return returnArr;
     }
     
+    static public var visualState:Bool = false;
+
     public function setMinimumSustainLength(?length:Float, ?multBySpeed:Bool = false) {
-        if (length != null && length != minSustainLength) {
-            minSustainLength = length;
-            if (multBySpeed) minSustainLength *= PlayState.SONG.speed / 1.5;
-        } else {
-            minSustainLength *= PlayState.SONG.speed / 1.5;
+        if (!visualState) {
+            if (length != null && length != minSustainLength) {
+                minSustainLength = length;
+                if (multBySpeed) minSustainLength *= PlayState.SONG.speed / 1.5;
+            } else {
+                minSustainLength *= PlayState.SONG.speed / 1.5;
+            }
+            var noteColor:String = colArray[strumNote.noteData].toTitleCase();
+            var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';
+            trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
         }
-        var noteColor:String = colArray[strumNote.noteData].toTitleCase();
-        var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';
-        trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
     }
 
     override function update(elapsed:Float) {
