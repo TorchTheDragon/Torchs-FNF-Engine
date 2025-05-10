@@ -67,13 +67,11 @@ class StrumCover extends FlxSprite {
     
 
     public function setMinimumSustainLength(?length:Float, ?multBySpeed:Bool = false) {
-        var songSpeed = PlayState.SONG != null ? PlayState.SONG.speed : 1;
-
         if (length != null && length != minSustainLength) {
             minSustainLength = length;
-            if (multBySpeed) minSustainLength *= songSpeed / 1.5;
+            if (multBySpeed) minSustainLength *= Conductor.stepCrochet / 100 * 1.05;
         } else {
-            minSustainLength *= songSpeed / 1.5;
+            minSustainLength *= Conductor.stepCrochet / 100 * 1.05;
         }
         var noteColor:String = colArray[strumNote.noteData].toTitleCase();
         var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';

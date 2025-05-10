@@ -74,3 +74,4 @@ Reenabled the videos in Project.xml
 ^^^ RELEASE 0.1.2 ^^^ // I was gonna mark this as 0.1.1, but I forgot to actually release it after updating it to Psych 1.0.4... my bad...
 
 Fixed Videos crashing game... kind of... I forced the "Paths.clearUnusedMemory();" in stages, that's it
+Adjusted Strum Cover Length Math
