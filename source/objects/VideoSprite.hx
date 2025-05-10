@@ -71,10 +71,7 @@ class VideoSprite extends FlxSpriteGroup {
 	override function destroy()
 	{
 		if(alreadyDestroyed)
-		{
-			super.destroy();
 			return;
-		}
 
 		trace('Video destroyed');
 		if(cover != null)

@@ -72,3 +72,5 @@ Added random RTX Lighing Shader test thing, not really soft coded but can be use
 Fixed a weirdly specific crash when game loads notes. Aka, going into a pixel stage AFTER loading a non pixel stage using a skin that doesn't have a pixel variant. So you'd load the non-pixel variant, it would register it as a valid skin, then you go to pixel stage, instead of checking if a pixel version existed, it assumed there was one because skin was valid... that was the issue.
 Reenabled the videos in Project.xml
 ^^^ RELEASE 0.1.2 ^^^ // I was gonna mark this as 0.1.1, but I forgot to actually release it after updating it to Psych 1.0.4... my bad...
+
+Fixed Videos crashing game... kind of... I forced the "Paths.clearUnusedMemory();" in stages, that's it

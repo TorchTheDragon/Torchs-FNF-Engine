@@ -188,7 +188,11 @@ class Paths
 	{
 		#if MODS_ALLOWED
 		var file:String = modsVideo(key);
-		if(FileSystem.exists(file)) return file;
+		#if sys
+		if (FileSystem.exists(file)) return file;
+		#else
+		if (OpenFlAssets.exists(file)) return file;
+		#end
 		#end
 		return 'assets/videos/$key.$VIDEO_EXT';
 	}
