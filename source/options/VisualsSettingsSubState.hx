@@ -133,7 +133,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			healthSkins);
 		addOption(option);
 
-		var option:Option = new Option('Speaker Skin',
+		var option:Option = new Option('Speaker Skin:',
 			"What speaker skin do you want to use?",
 			'speakerSkin',
 			STRING,
