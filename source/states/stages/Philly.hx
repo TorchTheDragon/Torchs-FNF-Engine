@@ -4,6 +4,7 @@ import states.stages.objects.*;
 import objects.Character;
 import torchsthings.shaders.RTXShader;
 import openfl.filters.ShaderFilter;
+import flixel.util.typeLimit.*;
 
 class Philly extends BaseStage
 {
@@ -66,14 +67,26 @@ class Philly extends BaseStage
 		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(112/255, 0, 176/255, 0.45), -90.0, 45.0, true);
 	}
 	override function createPost() {
-		var list = [boyfriend, gf, dad, phillyTrain, phillyStreet];
+		var list:Array<OneOfTwo<Character, FlxSprite>> = [boyfriend, gf, dad, phillyTrain, phillyStreet];
 		if (streetBehind != null) list.push(streetBehind);
 		for (obj in list) {
-			var tempShader:RTXShader = new RTXShader(); //Making this should hopefully make it work better on different image sizes
+			var tempShader:RTXShader;
+			var char:Character = null;
+			var sprite:FlxSprite = null;
+			if (obj is Character) {
+				char = obj;
+				tempShader = new RTXShader(char); 
+			} else {
+				sprite = obj;
+				tempShader = new RTXShader();
+			} 
 			tempShader.copyShader(rtxTest);
-			obj.shader = tempShader;
-		}
+			if (char != null) char.shader = tempShader;
+			if (sprite != null) sprite.shader = tempShader;
+			shaderList.push(tempShader);
+		} //Making this should hopefully make it work better on different image sizes
 	}
+	var shaderList:Array<RTXShader> = [];
 
 	override function eventPushed(event:objects.Note.EventNote)
 	{
@@ -112,6 +125,9 @@ class Philly extends BaseStage
 				if(particle.alpha <= 0)
 					particle.kill();
 			});
+		}
+		for (shader in shaderList) {
+			shader.update();
 		}
 	}
 

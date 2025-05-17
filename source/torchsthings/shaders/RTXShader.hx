@@ -6,6 +6,7 @@ import openfl.display.ShaderParameter;
 import openfl.display.ShaderParameterType;
 import openfl.utils.Assets;
 import flixel.math.FlxAngle;
+import objects.Character;
 
 class RTXShader extends FlxRuntimeShader {
     public var overlayColor(default, set):FlxColor;
@@ -14,16 +15,20 @@ class RTXShader extends FlxRuntimeShader {
     public var shadowAngle(default, set):Float = 0.0;
     public var shadowDistance(default, set):Float = 0.0;
     public var falloff(default, set):Bool = false;
+    public var char:Character = null;
+    public var defaultAngle:Float = 0.0;
 
-    public function new() {
+    public function new(?character:Character = null) {
         var frag = Assets.getText(Paths.shaderFragment('RTX', 'torchs_assets'));
         super(frag);
         overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
         satinColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
         shadowColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
         shadowAngle = 0.0;
+        defaultAngle = shadowAngle;
         shadowDistance = 0.0;
         falloff = false;
+        if (character != null) char = character;
     }
 
     function set_overlayColor(val:FlxColor):FlxColor {
@@ -68,6 +73,7 @@ class RTXShader extends FlxRuntimeShader {
         satinColor = satin;
         shadowColor = shadow;
         shadowAngle = angle;
+        defaultAngle = angle;
         shadowDistance = distance;
         falloff = fall;
         if (shadowColor.alphaFloat < 0.45 && falloff == true && shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
@@ -78,9 +84,20 @@ class RTXShader extends FlxRuntimeShader {
         this.satinColor = shade.satinColor;
         this.shadowColor = shade.shadowColor;
         this.shadowAngle = shade.shadowAngle;
+        this.defaultAngle = shade.defaultAngle;
         this.shadowDistance = shade.shadowDistance;
         this.falloff = shade.falloff;
         if (this.shadowColor.alphaFloat < 0.45 && this.falloff == true && this.shadowDistance < 45.0) trace("Hey, I'd recommend changing your shadow colors alpha AND distance to be at least 0.45 if you are using falloff.");
+    }
+
+    public function update() {
+        shadowAngle = defaultAngle - getAngle() - 90; // This is honestly so dumb but it's main purpose is for Nene... so... if it works, it works
+    }
+    
+    function getAngle():Float {
+        if (char != null && !char.isAnimateAtlas) {
+            return char.frame.angle;
+        } else return 0.0;
     }
 
     @:access(openfl.display.ShaderParameter)
