@@ -38,7 +38,7 @@ class SpeakerSkin extends FlxSpriteGroup {
     var customSpeaker:Bool = false; // This is for use with completely unique speakers, like Nene's for example
     public var daCustomSpeaker:Dynamic = null;
 
-    override public function new(x:Float, y:Float, speaker:String = 'base', ?custom:Bool = false, ?nameOfCustom:String = 'nene') {
+    override public function new(x:Float, y:Float, speaker:String = 'base') {
         super(x,y);
         var speakerSettings:SpeakerSettings = null;
         if (Paths.fileExists('speakerskins/$speaker', TEXT, false, 'shared')) {
@@ -53,9 +53,9 @@ class SpeakerSkin extends FlxSpriteGroup {
         if (speakerSettings.offsets == null) speakerSettings.offsets = [0, 0];
         if (speakerSettings.gfOffsets == null) speakerSettings.gfOffsets = [0, 0];
 
-        if (custom == true && customSpeakerList.contains(nameOfCustom.toLowerCase())) {
+        if (customSpeakerList.contains(speaker.toLowerCase())) {
             customSpeaker = true;
-            switch (nameOfCustom.toLowerCase()) {
+            switch (speaker.toLowerCase()) {
                 case 'abot' | 'nene':
                     daCustomSpeaker = new ABotSpeaker();
                     updateABotEye(daCustomSpeaker, true);
@@ -65,17 +65,17 @@ class SpeakerSkin extends FlxSpriteGroup {
                     updateABotEye(daCustomSpeaker, true);
             }
             if (daCustomSpeaker != null) add(daCustomSpeaker);
-        } else if (!spriteList.contains(speaker) #if flxanimate && !atlasList.contains(speaker) #end) {
+        } else if (!spriteList.contains(speaker.toLowerCase()) #if flxanimate && !atlasList.contains(speaker.toLowerCase()) #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/base'), true);
             spriteSpeaker.frames = Paths.getSparrowAtlas('speakerskins/base');
             spriteSpeaker.animation.addByPrefix('boom', 'speakers', 24, false);
             spriteSpeaker.animation.play('boom', true);
-        } else if (spriteList.contains(speaker) #if flxanimate && !speakerSettings.isAnimateAtlas #end) {
+        } else if (spriteList.contains(speaker.toLowerCase()) #if flxanimate && !speakerSettings.isAnimateAtlas #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/$speaker', speakerSettings.library), true);
             spriteSpeaker.frames = Paths.getSparrowAtlas('speakerskins/$speaker', speakerSettings.library);
             spriteSpeaker.animation.addByPrefix('boom', speakerSettings.beatAnim, 24, false);
             spriteSpeaker.animation.play('boom', true);
-        } #if flxanimate else if (atlasList.contains(speaker) && speakerSettings.isAnimateAtlas) {
+        } #if flxanimate else if (atlasList.contains(speaker.toLowerCase()) && speakerSettings.isAnimateAtlas) {
             atlasSpeaker = new FlxAnimate();
             atlasSpeaker.showPivot = false;
             Paths.loadAnimateAtlasFromLibrary(atlasSpeaker, 'speakerskins/$speaker', speakerSettings.library);
@@ -98,6 +98,12 @@ class SpeakerSkin extends FlxSpriteGroup {
 
     public function updateABotEye(?abot:Dynamic, ?finishInstantly:Bool = false) {
 		if (abot != null && (abot is ABotSpeaker || abot is PixelABot)) {
+            var norm:ABotSpeaker = null;
+            if (abot is ABotSpeaker) norm = abot;
+            var pix:PixelABot = null;
+            if (abot is PixelABot) pix = abot;
+            // I hate doing this because it's like saying "Oh if this exists... well its the same thing it is" but yet the code likes this better than using Dynamic...
+
             var lookAtPlayer:Bool = PlayState.SONG.notes[Std.int(FlxMath.bound(PlayState.instance.curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection;
 
 			if(lookAtPlayer)
@@ -106,8 +112,8 @@ class SpeakerSkin extends FlxSpriteGroup {
 				abot.lookLeft();
 	
 			if(finishInstantly) {
-                if (abot is ABotSpeaker) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
-                else if (abot is PixelABot) lookAtPlayer ? abot.abotHead.animation.play('right') : abot.abotHead.animation.play('left');
+                if (norm != null) norm.eyes.anim.curFrame = norm.eyes.anim.length - 1;
+                else if (pix != null) lookAtPlayer ? pix.abotHead.animation.play('right') : pix.abotHead.animation.play('left');
             }
 		}
 	}
@@ -178,7 +184,8 @@ class SpeakerSkin extends FlxSpriteGroup {
     #end
 
     // For stage stuff
-    public function createPost() {
+    public function createPost(?girlfriend:Character = null) {
+        if (girlfriend != null && girlfriend != gf) gf = girlfriend;
         if(gf != null && customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
 				switch(currentNeneState) {

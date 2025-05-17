@@ -135,7 +135,8 @@ class Philly extends BaseStage
 				var lightId:Int = Math.round(flValue1);
 
 				var chars:Array<FlxSprite> = [boyfriend, gf, dad];
-				if (abot != null) chars.push(abot);
+				//if (abot != null) chars.push(abot);
+				if (speaker != null) chars.push(speaker);
 				switch(lightId)
 				{
 					case 0:

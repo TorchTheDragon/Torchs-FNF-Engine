@@ -9,6 +9,7 @@ import objects.Note;
 import objects.Character;
 import torchsthings.objects.effects.ReflectedChar;
 import states.stages.objects.ABotSpeaker;
+import torchsthings.objects.SpeakerSkin;
 
 /*
 import lime.utils.Assets;
@@ -82,10 +83,15 @@ class BaseStage extends FlxBasic {
 
 	//main callbacks
 	public function create() {}
-	public function createPost() {}
+	public function createPost() {
+		speaker.createPost(gf);
+	}
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
-	public function startSong() {}
+	public function startSong() {
+		speaker.snd = FlxG.sound.music;
+		speaker.songStart();
+	}
 
 	// FNF steps, beats and sections
 	public var curBeat:Int = 0;
@@ -93,9 +99,13 @@ class BaseStage extends FlxBasic {
 	public var curStep:Int = 0;
 	public var curDecStep:Float = 0;
 	public var curSection:Int = 0;
-	public function beatHit() {}
+	public function beatHit() {
+		speaker.beatHit();
+	}
 	public function stepHit() {}
-	public function sectionHit() {}
+	public function sectionHit() {
+		speaker.updateABotEye(speaker.daCustomSpeaker);
+	}
 
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
@@ -218,154 +228,27 @@ class BaseStage extends FlxBasic {
 
 	PlayState.instance.iconP2.visible = false;*/ //and this one in case you want to deactivate the icons or just the opponent's, It has to be in "createPost"
 
-	// Abot stuff
-	var abot:ABotSpeaker;
-	var blinkCountdown:Int = 3;
-	final VULTURE_THRESHOLD:Float = 0.5;
-	final MIN_BLINK_DELAY:Int = 3;
-	final MAX_BLINK_DELAY:Int = 7;
-	var animationFinished:Bool = false;
+	// New Speaker Shits
+	var speaker:SpeakerSkin;
+	public var defaultSpeaker:String = 'base'; // This is only used for setting a default speaker per stage if someone doesn't change the speaker themselves
 
-	// As I can't make this permanently be in every stage, you will have to at least throw this function into createP.
-	/* Example:
-	override function create() {
-		addAbot();
-	}
-	*/
-	function addAbot(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
-		if (PlayState.SONG.gfVersion == 'nene' || PlayState.SONG.gfVersion == 'nene-opp'|| PlayState.SONG.gfVersion == 'nene-christmas') {
-			abot = new ABotSpeaker(gfGroup.x + xOffset, gfGroup.y + yOffset);
-			abot.scrollFactor.set(scrollFactorX, scrollFactorY);
-			updateABotEye(true);
-			add(abot);
-		}
-	//Example;
-	//addAbot(0, 0, 1, 1);
-	}
-	
-	// Small changes after abot is made.
-	/* Example:
-	override function createPost() {
-		addAbotPost();
-	}
-	*/
-	function addAbotPost() {
-		if(gf != null) {
-			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
-				switch(currentNeneState) {
-					case STATE_PRE_RAISE:
-						if (name == 'danceLeft' && frameNumber >= 14) {
-							animationFinished = true;
-							transitionState();
-						}
-					default:
-						// Ignore.
-				}
-			}
-		}
-	}
-	// Put this in sectionHit
-	/*
-	override function sectionHit() {
-		updateABotEye();
-	}
-	*/
-	function updateABotEye(finishInstantly:Bool = false) {
-		if (abot != null) {
-			if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
-				abot.lookRight();
-			else
-				abot.lookLeft();
-	
-			if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
-		}
-	}
-	// Put this in startSong 
-	/*
-	override function startSong() {
-		abotSongStart();
-	}
-	*/
-	function abotSongStart() {
-		if (abot != null) abot.snd = FlxG.sound.music;
-		gf.animation.finishCallback = onNeneAnimationFinished;
-	}
-	// Put this in update
-	/*
-	override function update(elapsed:Float) {
-		abotUpdate();
-	}
-	*/
-	function abotUpdate() {
-		animationFinished = gf.isAnimationFinished();
-		transitionState();
-	}
-	// Put this in beatHit
-	/*
-	override function beatHit() {
-		abotBeatHit();
-	}
-	*/
-	function abotBeatHit() {
-		switch(currentNeneState) {
-			case STATE_READY:
-				if (blinkCountdown == 0) {
-					gf.playAnim('idleKnife', false);
-					blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
-				}
-				else blinkCountdown--;
+	function addSpeaker(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
+		var skin:String = switch (ClientPrefs.data.speakerSkin.toLowerCase()) {
+			case "stage":
+				defaultSpeaker;
+			case "christmas":
+				"base-christmas";
+			case "abot" | "nene":
+				"abot";
+			case "abot-pixel" | "nene-pixel":
+				"abot-pixel";
 			default:
-				// In other states, don't interrupt the existing animation.
+				"base";
 		}
-	}
-	var currentNeneState:NeneState = STATE_DEFAULT;
-	function onNeneAnimationFinished(name:String) {
-		if(!game.startedCountdown) return;
-		switch(currentNeneState) {
-			case STATE_RAISE, STATE_LOWER:
-				if (name == 'raiseKnife' || name == 'lowerKnife') {
-					animationFinished = true;
-					transitionState();
-				}
-			default:
-				// Ignore.
-		}
-	}
-	function transitionState() {
-		switch (currentNeneState) {
-			case STATE_DEFAULT:
-				if (game.health <= VULTURE_THRESHOLD) {
-					currentNeneState = STATE_PRE_RAISE;
-					gf.skipDance = true;
-				}
-			case STATE_PRE_RAISE:
-				if (game.health > VULTURE_THRESHOLD) {
-					currentNeneState = STATE_DEFAULT;
-					gf.skipDance = false;
-				} else if (animationFinished) {
-					currentNeneState = STATE_RAISE;
-					gf.playAnim('raiseKnife');
-					gf.skipDance = true;
-					gf.danced = true;
-					animationFinished = false;
-				}
-			case STATE_RAISE:
-				if (animationFinished) {
-					currentNeneState = STATE_READY;
-					animationFinished = false;
-				}
-			case STATE_READY:
-				if (game.health > VULTURE_THRESHOLD) {
-					currentNeneState = STATE_LOWER;
-					gf.playAnim('lowerKnife');
-				}
-			case STATE_LOWER:
-				if (animationFinished) {
-					currentNeneState = STATE_DEFAULT;
-					animationFinished = false;
-					gf.skipDance = false;
-				}
-		}
+
+		speaker = new SpeakerSkin(xOffset, yOffset, skin);
+		speaker.scrollFactor.set(scrollFactorX, scrollFactorY);
+		add(speaker);
 	}
 }
 

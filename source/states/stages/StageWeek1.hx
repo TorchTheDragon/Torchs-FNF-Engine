@@ -40,36 +40,6 @@ class StageWeek1 extends BaseStage
 			stageCurtains.updateHitbox();
 			add(stageCurtains);
 		}
-
-		// SPEAKER TEST WIP!!!!!!!!
-		//speakerTest = new SpeakerSkin(0, 0, '', true, 'ABot-pixel');
-		//add(speakerTest);
-	}
-
-	override function createPost(){
-		//changeComboGroupCamera(Base);
-		if (speakerTest != null) {
-			speakerTest.gf = gf;
-			speakerTest.createPost();
-			speakerTest.x = gf.x;
-			speakerTest.y = gf.y - 200;
-		}
-	}
-	override function startSong() {
-		if (speakerTest != null) {
-			speakerTest.snd = FlxG.sound.music;
-			speakerTest.songStart();
-		}
-	}
-	override function beatHit() {
-		if (speakerTest != null) {
-			speakerTest.beatHit();
-		}
-	}
-	override function sectionHit() {
-		if (speakerTest != null) {
-			speakerTest.updateABotEye(speakerTest.daCustomSpeaker);
-		}
 	}
 
 	override function eventPushed(event:objects.Note.EventNote)

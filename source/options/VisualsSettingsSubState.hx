@@ -133,6 +133,13 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			healthSkins);
 		addOption(option);
 
+		var option:Option = new Option('Speaker Skin',
+			"What speaker skin do you want to use?",
+			'speakerSkin',
+			STRING,
+			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
+		addOption(option);
+
 		var option:Option = new Option('Show Credits',
 			'Uncheck this if you dont want to see the credits on song start',
 			'showSongCredits',

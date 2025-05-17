@@ -19,6 +19,7 @@ import states.TitleState;
 	public var splashSkin:String = 'Psych';
 	public var strumSkin:String = 'Default';
 	public var healthBarSkin:String = 'Default';
+	public var speakerSkin:String = 'Stage';
 	public var splashAlpha:Float = 0.6;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;

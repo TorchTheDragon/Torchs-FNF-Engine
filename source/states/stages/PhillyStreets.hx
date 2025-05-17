@@ -126,13 +126,9 @@ class PhillyStreets extends BaseStage {
 			darkenable.push(picoFade);
 		}
 
-		/*
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
-		updateABotEye(true);
-		add(abot);
-		*/
 		setDefaultGF('nene');
-		addAbot();
+		defaultSpeaker = 'abot';
+		addSpeaker(gfGroup.x, gfGroup.y + 550);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -188,26 +184,7 @@ class PhillyStreets extends BaseStage {
 		add(spraycanPile);
 		darkenable.push(spraycanPile);
 
-		addAbotPost();
-		/*
-		if(gf != null)
-		{
-			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
-			{
-				switch(currentNeneState)
-				{
-					case STATE_PRE_RAISE:
-						if (name == 'danceLeft' && frameNumber >= 14)
-						{
-							animationFinished = true;
-							transitionState();
-						}
-					default:
-						// Ignore.
-				}
-			}
-		}
-		*/
+		super.createPost();
 	}
 
 	var videoEnded:Bool = false;
@@ -390,10 +367,6 @@ class PhillyStreets extends BaseStage {
 		};
 		FlxG.camera.fade(FlxColor.BLACK, 2, true, null, true);
 	}
-
-	override function startSong() {
-		abotSongStart();
-	}
 	
 	var casingGroup:FlxSpriteGroup;
 	var casingFrames:FlxAtlasFrames;
@@ -504,13 +477,6 @@ class PhillyStreets extends BaseStage {
 		}
 		
 		if(gf == null || !game.startedCountdown) return;
-
-		abotUpdate();
-	}
-
-	override function sectionHit()
-	{
-		updateABotEye();
 	}
 
 	var lightsStop:Bool = false;
@@ -522,7 +488,7 @@ class PhillyStreets extends BaseStage {
 	var car2Interruptable:Bool = true;
 
 	override function beatHit() {
-		abotBeatHit();
+		super.beatHit();
 
 		if(ClientPrefs.data.lowQuality) return;
 
