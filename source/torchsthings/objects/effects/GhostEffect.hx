@@ -109,8 +109,6 @@ class GhostChar extends Character {
     }
 
     override function update(elapsed:Float) {
-        //this.offset.x = offsets[0];
-        //this.offset.y = offsets[1];
         this.offset.set(offsets[0], offsets[1]);
         if (charRef.isAnimateAtlas == true && charRef.atlas.anim.curSymbol != null) {
             this.atlas.anim.play(frameName, true, false, curFrame);

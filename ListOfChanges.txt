@@ -77,3 +77,4 @@ Fixed Videos crashing game... kind of... I forced the "Paths.clearUnusedMemory()
 Adjusted Strum Cover Length Math
 Speaker Skins work and are built into the BaseStage by default... alignments of the speakers though... that needs to be adjusted - [W.I.P.]
 Updated Stage Template file to inform about Speaker Skin usage
+Base Speaker and Christmas Speaker alignments added [Speaker Skin W.I.P.]

@@ -41,9 +41,11 @@ class SpeakerSkin extends FlxSpriteGroup {
     override public function new(x:Float, y:Float, speaker:String = 'base') {
         super(x,y);
         var speakerSettings:SpeakerSettings = null;
-        if (Paths.fileExists('speakerskins/$speaker', TEXT, false, 'shared')) {
-            haxe.Json.parse(Assets.getText(Paths.json('speakerskins/' + speaker))); // I think I'd prefer this to be in the data folder just so that we can have atlas skins in the speakerskins folder as well
+        if (Paths.fileExists('data/speakerSkins/$speaker.json', TEXT, false, 'shared')) {
+            trace("Found Speaker Skin JSON");
+            speakerSettings = haxe.Json.parse(Assets.getText(Paths.json('speakerSkins/' + speaker))); // I think I'd prefer this to be in the data folder just so that we can have atlas skins in the speakerskins folder as well
         } else {
+            trace("Cannot Find Speaker Skin JSON");
             speakerSettings = {
                 beatAnim: 'speakers',
                 isAnimateAtlas: false
@@ -51,7 +53,9 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
         if (speakerSettings.library == null || speakerSettings.library == '') speakerSettings.library = 'shared';
         if (speakerSettings.offsets == null) speakerSettings.offsets = [0, 0];
-        if (speakerSettings.gfOffsets == null) speakerSettings.gfOffsets = [0, 0];
+        //if (speakerSettings.gfOffsets == null) speakerSettings.gfOffsets = [0, 0];
+
+        var speakerToAdjust:Dynamic = null;
 
         if (customSpeakerList.contains(speaker.toLowerCase())) {
             customSpeaker = true;
@@ -64,6 +68,7 @@ class SpeakerSkin extends FlxSpriteGroup {
                     //daCustomSpeaker.scale.set(6, 6);
                     updateABotEye(daCustomSpeaker, true);
             }
+            speakerToAdjust = daCustomSpeaker;
             if (daCustomSpeaker != null) add(daCustomSpeaker);
         } else if (!spriteList.contains(speaker.toLowerCase()) #if flxanimate && !atlasList.contains(speaker.toLowerCase()) #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/base'), true);
@@ -88,12 +93,17 @@ class SpeakerSkin extends FlxSpriteGroup {
         if (!customSpeaker) {
             if (atlasSpeaker != null) {
                 atlasSpeaker.antialiasing = ClientPrefs.data.antialiasing;
+                speakerToAdjust = atlasSpeaker;
                 add(atlasSpeaker);
             } else if (spriteSpeaker != null) {
                 spriteSpeaker.antialiasing = ClientPrefs.data.antialiasing;
+                speakerToAdjust = spriteSpeaker;
                 add(spriteSpeaker);
             }
         }
+
+        speakerToAdjust.x += speakerSettings.offsets[0];
+        speakerToAdjust.y += speakerSettings.offsets[1];
     }
 
     public function updateABotEye(?abot:Dynamic, ?finishInstantly:Bool = false) {
@@ -186,6 +196,14 @@ class SpeakerSkin extends FlxSpriteGroup {
     // For stage stuff
     public function createPost(?girlfriend:Character = null) {
         if (girlfriend != null && girlfriend != gf) gf = girlfriend;
+
+        /* // I am still undecided if I want to implement this part yet
+        gf.x += speakerSettings.gfOffsets[0];
+        gf.y += speakerSettings.gfOffsets[1];
+        */
+
+        //this.scrollFactor.set(gf.scrollFactor.x, gf.scrollFactor.y);
+
         if(gf != null && customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
 				switch(currentNeneState) {
@@ -308,7 +326,7 @@ enum NeneState {
 
 typedef SpeakerSettings = {
     var beatAnim:String;
-    @:optional var gfOffsets:Array<Float>;
+    //@:optional var gfOffsets:Array<Float>; // Unused
     @:optional var library:String;
     @:optional var offsets:Array<Float>;
     @:optional var isAnimateAtlas:Bool;
