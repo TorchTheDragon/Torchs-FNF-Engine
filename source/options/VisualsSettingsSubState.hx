@@ -140,6 +140,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
 		addOption(option);
 
+		var option:Option = new Option('Volume Bop',
+			"Should the speaker bop be dependant on user volume?\n\nTrue - Speakers bop the louder the overall volume is\nFalse - Speakers bop at song volume independent of user volume",
+			'volumeDependantBop',
+			'bool');
+		addOption(option);
+
 		var option:Option = new Option('Show Credits',
 			'Uncheck this if you dont want to see the credits on song start',
 			'showSongCredits',

@@ -150,7 +150,7 @@ class SpeakerSkin extends FlxSpriteGroup {
                 var animFrame:Int = Math.round(levels[i].value * 5);
     
                 #if desktop
-                animFrame = Math.round(animFrame * MathTools.logToLinear(FlxG.sound.volume));
+                if (ClientPrefs.data.volumeDependantBop) animFrame = Math.round(animFrame * MathTools.logToLinear(FlxG.sound.volume));
                 #end
                 
                 animFrame = Math.floor(Math.min(5, animFrame));

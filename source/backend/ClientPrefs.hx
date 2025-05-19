@@ -85,6 +85,7 @@ import states.TitleState;
 	public var language:String = 'en-US';
 
 	public var characterNoteColors:String = 'Enabled';
+	public var volumeDependantBop:Bool = true;
 }
 
 class ClientPrefs {
