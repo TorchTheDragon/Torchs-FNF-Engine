@@ -106,24 +106,33 @@ class SpeakerSkin extends FlxSpriteGroup {
         speakerToAdjust.y += speakerSettings.offsets[1];
     }
 
+    public function setShader(sdr:FlxShader) {
+		this.shader = sdr;
+        if (spriteSpeaker != null) spriteSpeaker.shader = sdr;
+        if (atlasSpeaker != null) atlasSpeaker.shader = sdr;
+        if (daCustomSpeaker != null) {
+            var setSdr = Reflect.field(daCustomSpeaker, "setShader");
+            if (setSdr != null) Reflect.callMethod(daCustomSpeaker, setSdr, [sdr]);
+        }
+		return sdr;
+	}
+
     public function updateABotEye(?abot:Dynamic, ?finishInstantly:Bool = false) {
-		if (abot != null && (abot is ABotSpeaker || abot is PixelABot)) {
-            var norm:ABotSpeaker = null;
-            if (abot is ABotSpeaker) norm = abot;
-            var pix:PixelABot = null;
-            if (abot is PixelABot) pix = abot;
-            // I hate doing this because it's like saying "Oh if this exists... well its the same thing it is" but yet the code likes this better than using Dynamic...
+		if (abot != null) {
+            var hasEyes = Reflect.hasField(abot, "eyes") && Reflect.hasField(abot.eyes, "anim"); // Needed for if eye look object is FlxAnimate
+            var hasHead = Reflect.field(abot, "abotHead") && Reflect.hasField(abot.abotHead, "animation"); // Needed for if eye look object is FlxSprite
 
             var lookAtPlayer:Bool = PlayState.SONG.notes[Std.int(FlxMath.bound(PlayState.instance.curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection;
 
-			if(lookAtPlayer)
-				abot.lookRight();
-			else
-				abot.lookLeft();
+            var lookDir = Reflect.field(abot, lookAtPlayer ? "lookRight" : "lookLeft");
+            if (lookDir != null) Reflect.callMethod(abot, lookDir, []);
 	
 			if(finishInstantly) {
-                if (norm != null) norm.eyes.anim.curFrame = norm.eyes.anim.length - 1;
-                else if (pix != null) lookAtPlayer ? pix.abotHead.animation.play('right') : pix.abotHead.animation.play('left');
+                if (hasEyes) Reflect.setField(abot.eyes.anim, "curFrame", Reflect.field(abot.eyes.anim, "length") - 1);
+                else if (hasHead) {
+                    var animator = Reflect.field(abot.abotHead, "animation");
+                    if (animator != null) Reflect.callMethod(animator, Reflect.field(animator, "play"), [lookAtPlayer ? "right" : "left"]);
+                }
             }
 		}
 	}
