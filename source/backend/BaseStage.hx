@@ -84,13 +84,15 @@ class BaseStage extends FlxBasic {
 	//main callbacks
 	public function create() {}
 	public function createPost() {
-		speaker.createPost(gf);
+		if (speaker != null) speaker.createPost(gf);
 	}
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
 	public function startSong() {
-		speaker.snd = FlxG.sound.music;
-		speaker.songStart();
+		if (speaker != null) {
+			speaker.snd = FlxG.sound.music;
+			speaker.songStart();
+		}	
 	}
 
 	// FNF steps, beats and sections
@@ -100,11 +102,11 @@ class BaseStage extends FlxBasic {
 	public var curDecStep:Float = 0;
 	public var curSection:Int = 0;
 	public function beatHit() {
-		speaker.beatHit();
+		if (speaker != null) speaker.beatHit();
 	}
 	public function stepHit() {}
 	public function sectionHit() {
-		speaker.updateABotEye(speaker.daCustomSpeaker);
+		if (speaker != null) speaker.updateABotEye(speaker.daCustomSpeaker);
 	}
 
 	// Substate close/open, for pausing Tweens/Timers

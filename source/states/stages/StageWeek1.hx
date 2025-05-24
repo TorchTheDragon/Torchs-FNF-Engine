@@ -2,15 +2,12 @@ package states.stages;
 
 import states.stages.objects.*;
 import objects.Character;
-import torchsthings.objects.SpeakerSkin;
 
 class StageWeek1 extends BaseStage
 {
 	var dadbattleBlack:BGSprite;
 	var dadbattleLight:BGSprite;
 	var dadbattleFog:DadBattleFog;
-
-	var speakerTest:SpeakerSkin = null;
 
 	override function create()
 	{
