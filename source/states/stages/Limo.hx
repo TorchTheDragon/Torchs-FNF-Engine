@@ -204,6 +204,7 @@ class Limo extends BaseStage
 		switch(eventName)
 		{
 			case "Kill Henchmen":
+				PlayState.instance.eventExisted = true;
 				killHenchmen();
 		}
 	}

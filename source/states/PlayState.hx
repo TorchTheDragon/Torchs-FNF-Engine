@@ -2551,12 +2551,15 @@ class PlayState extends MusicBeatState
 	}
 
 	var zoomTweens:Array<FlxTween> = [null];
+	public var eventExisted:Bool = true;
 
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
 		var flValue2:Null<Float> = Std.parseFloat(value2);
 		if(Math.isNaN(flValue1)) flValue1 = null;
 		if(Math.isNaN(flValue2)) flValue2 = null;
+		
+		eventExisted = true;
 
 		switch(eventName) {
 			case 'Hey!':
@@ -2908,11 +2911,14 @@ class PlayState extends MusicBeatState
 				FlxG.sound.play(Paths.sound(value1), flValue2);
 
 			default: // I only have this file for more complicated events that need a lot of code or something
-				CustomEvents.onEvent(eventName, value1, value2);
+				eventExisted = false;
 		}
 
+		// These have to state that the event DOES exist by calling upon the playstate instance, so PlayState.instance.eventExisted = true;
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
 		callOnScripts('onEvent', [eventName, value1, value2, strumTime]);
+
+		if (!eventExisted) CustomEvents.onEvent(eventName, value1, value2);
 	}
 
 	public function moveCameraSection(?sec:Null<Int>):Void {

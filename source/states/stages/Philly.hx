@@ -147,6 +147,7 @@ class Philly extends BaseStage
 		switch(eventName)
 		{
 			case "Philly Glow":
+				PlayState.instance.eventExisted = true;
 				if(flValue1 == null || flValue1 <= 0) flValue1 = 0;
 				var lightId:Int = Math.round(flValue1);
 

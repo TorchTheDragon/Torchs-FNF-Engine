@@ -14,7 +14,7 @@ class CustomEvents {
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
-            case 'Cinematic Bars':
+            case 'Cinematic Bars' | 'Cinematics':
                 var upperBar:FlxSprite = new FlxSprite(-110, cinematicUpperY).makeGraphic(1500, 350, 0xFF000000);
                 var lowerBar:FlxSprite = new FlxSprite(-110, cinematicLowerY).makeGraphic(1500, 350, 0xFF000000);
                 upperBar.cameras = [PlayState.instance.camHUD];
@@ -81,7 +81,8 @@ class CustomEvents {
                         GhostEffect.slideDistance = Std.parseFloat(vals2[1].trim());
                     }
                 }
-
+            default: 
+                trace('Event $eventName doesn\'t exist.');
         }
     }
 }
