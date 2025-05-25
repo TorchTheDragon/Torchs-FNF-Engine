@@ -78,3 +78,9 @@ Adjusted Strum Cover Length Math
 Speaker Skins work and are built into the BaseStage by default... alignments of the speakers though... that needs to be adjusted - [W.I.P.]
 Updated Stage Template file to inform about Speaker Skin usage
 Base Speaker and Christmas Speaker alignments added [Speaker Skin W.I.P.]
+Added 2 more characters to the results screen alphabet: '-' and '_'
+Added option for speakers in SpeakerSkin use the global volume or not [Speaker Skin W.I.P.]
+Using a bit of Reflections now to hopefully make custom speakers easier to implement [Speaker Skin W.I.P.]
+Added W.I.P. Chart for the Torch Mix of Fresh
+Updated event handling a small bit, just a notification to let you know what event doesn't exist (Helps you out in case you imported a chart and the event lua's aren't included)
+Made Wobble Notes move smoothly to the wobble position instead of an instant snap
