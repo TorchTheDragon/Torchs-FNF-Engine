@@ -312,6 +312,8 @@ class PlayState extends MusicBeatState
 	public var defaultStrumPosition:Array<Array<Float>>= [];
 	public var playerStrumsWobble:Array<Int> = [0,0];
 	public var opponentStrumsWobble:Array<Int> = [0,0];
+	public var lerpSpeeds:Array<Float> = [0, 0, 0, 0];
+	public var lerpTweens:Array<flixel.tweens.misc.NumTween> = [null];
 	public var wobbleNotes:Bool = false;
 	public var strumsWobbled:Array<Bool> = [/*enemy*/ false, /*player*/ false];
 
@@ -2128,24 +2130,27 @@ class PlayState extends MusicBeatState
 		else FlxG.camera.followLerp = 0;
 		callOnScripts('onUpdate', [elapsed]);
 
+		for (i in 0...lerpSpeeds.length) {
+			if (lerpTweens[i] != null) lerpSpeeds[i] = lerpTweens[i].value;
+		}
 		if (wobbleNotes) {
 			for (i in 0...playerStrums.length) {
-				playerStrums.members[i].x = defaultStrumPosition[i + 4][0] + (playerStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
-				playerStrums.members[i].y = defaultStrumPosition[i + 4][1] + (playerStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				playerStrums.members[i].x = FlxMath.lerp(playerStrums.members[i].x, defaultStrumPosition[i + 4][0] + (playerStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)), lerpSpeeds[0]); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				playerStrums.members[i].y = FlxMath.lerp(playerStrums.members[i].y, defaultStrumPosition[i + 4][1] + (playerStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + (i + 4) * 0.25) * Math.PI)), lerpSpeeds[1]); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 			}
 	
 			for (i in 0...opponentStrums.length) {
-				opponentStrums.members[i].x = defaultStrumPosition[i][0] + (opponentStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
-				opponentStrums.members[i].y = defaultStrumPosition[i][1] + (opponentStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				opponentStrums.members[i].x = FlxMath.lerp(opponentStrums.members[i].x, defaultStrumPosition[i][0] + (opponentStrumsWobble[0] * Math.sin(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)), lerpSpeeds[2]); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
+				opponentStrums.members[i].y = FlxMath.lerp(opponentStrums.members[i].y, defaultStrumPosition[i][1] + (opponentStrumsWobble[1] * Math.cos(((((Conductor.songPosition) / 1000) * (Conductor.bpm / 60)) + i * 0.25) * Math.PI)), lerpSpeeds[3]); // Man I love having parentheses embeded into parentheses embeded into parentheses embeded into parentheses embeded into parentheses, it's quite fun - Torch
 			}
 		} else {
 			for (i in 0...opponentStrums.length) {
-				opponentStrums.members[i].x = defaultStrumPosition[i][0];
-				opponentStrums.members[i].y = defaultStrumPosition[i][1];
+				opponentStrums.members[i].x = FlxMath.lerp(opponentStrums.members[i].x, defaultStrumPosition[i][0], lerpSpeeds[2]);
+				opponentStrums.members[i].y = FlxMath.lerp(opponentStrums.members[i].y, defaultStrumPosition[i][1], lerpSpeeds[3]);
 			}
 			for (i in 0...playerStrums.length) {
-				playerStrums.members[i].x = defaultStrumPosition[i + 4][0];
-				playerStrums.members[i].y = defaultStrumPosition[i + 4][1];
+				playerStrums.members[i].x = FlxMath.lerp(playerStrums.members[i].x, defaultStrumPosition[i + 4][0], lerpSpeeds[0]);
+				playerStrums.members[i].y = FlxMath.lerp(playerStrums.members[i].y, defaultStrumPosition[i + 4][1], lerpSpeeds[1]);
 			}
 		}
 
@@ -2672,6 +2677,7 @@ class PlayState extends MusicBeatState
 						strumsWobbled = [false, false];
 						val1[0] = 0;
 						val1[1] = 0;
+						who = "none";
 					case 'both' | 'together':
 						strumsWobbled = [true, true];
 						who = 'both';
@@ -2679,10 +2685,18 @@ class PlayState extends MusicBeatState
 						strumsWobbled[0] = false;
 						val1[0] = 0;
 						val1[1] = 0;
+						who = 'dad';
 					case 'stop2' | 'stopbf' | 'stopplayer' | 'stopright' | 'stopp2':
 						strumsWobbled[1] =  false;
 						val1[0] = 0;
 						val1[1] = 0;
+						who = 'bf';
+				}
+
+				for (i in 0...lerpSpeeds.length) {
+					lerpSpeeds[i] = 0;
+					if (lerpTweens[i] != null) lerpTweens[i].cancel();
+					lerpTweens[i] = FlxTween.num(lerpSpeeds[i], 1.0, 5.0);
 				}
 
 				if ((val1[0] == 0 || val1[0] == null) && (val1[1] == 0 || val1[1] == null)) wobbleNotes = false;
