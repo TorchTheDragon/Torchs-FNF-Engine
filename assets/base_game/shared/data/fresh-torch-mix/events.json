@@ -1,0 +1,66 @@
+{
+	"events": [
+		[
+			15000,
+			[
+				["Cinematic Bars", "1,16", "150"]
+			]
+		],
+		[
+			16000,
+			[
+				["Dadbattle Spotlight", "1", ""],
+				["Dadbattle Spotlight", "2", ""]
+			]
+		],
+		[
+			18000,
+			[
+				["Dadbattle Spotlight", "3", ""]
+			]
+		],
+		[
+			20000,
+			[
+				["Dadbattle Spotlight", "2", ""]
+			]
+		],
+		[
+			22000,
+			[
+				["Dadbattle Spotlight", "3", ""]
+			]
+		],
+		[
+			24000,
+			[
+				["Dadbattle Spotlight", "2", ""]
+			]
+		],
+		[
+			26000,
+			[
+				["Dadbattle Spotlight", "3", ""]
+			]
+		],
+		[
+			28000,
+			[
+				["Dadbattle Spotlight", "2", ""]
+			]
+		],
+		[
+			30000,
+			[
+				["Dadbattle Spotlight", "3", ""]
+			]
+		],
+		[
+			32000,
+			[
+				["Dadbattle Spotlight", "0", ""]
+			]
+		]
+	],
+	"format": "torch_v1_events"
+}
