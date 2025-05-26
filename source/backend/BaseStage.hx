@@ -240,12 +240,14 @@ class BaseStage extends FlxBasic {
 				defaultSpeaker;
 			case "christmas":
 				"base-christmas";
-			case "abot" | "nene":
+			case "nene":
 				"abot";
-			case "abot-pixel" | "nene-pixel":
+			case "nene-pixel":
 				"abot-pixel";
+			case 'default':
+				'base';
 			default:
-				"base";
+				ClientPrefs.data.speakerSkin.toLowerCase();
 		}
 
 		speaker = new SpeakerSkin(xOffset, yOffset, skin);
