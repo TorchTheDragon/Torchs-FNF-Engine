@@ -35,11 +35,13 @@ class SpeakerSkin extends FlxSpriteGroup {
     public var atlasSpeaker:FlxAnimate;
     public var spriteSpeaker:FlxSprite;
 
-    var customSpeaker:Bool = false; // This is for use with completely unique speakers, like Nene's for example
-    public var daCustomSpeaker:Dynamic = null;
+    var usingCustom:Bool = false; // This is for use with completely unique speakers, like Nene's for example
+    public var customSpeaker:Dynamic = null;
+    public var speaker:String = 'base';
 
     override public function new(x:Float, y:Float, speaker:String = 'base') {
         super(x,y);
+        this.speaker = speaker;
         var speakerSettings:SpeakerSettings = null;
         if (Paths.fileExists('data/speakerSkins/$speaker.json', TEXT, false, 'shared')) {
             trace("Found Speaker Skin JSON");
@@ -58,18 +60,18 @@ class SpeakerSkin extends FlxSpriteGroup {
         var speakerToAdjust:Dynamic = null;
 
         if (customSpeakerList.contains(speaker.toLowerCase())) {
-            customSpeaker = true;
+            usingCustom = true;
             switch (speaker.toLowerCase()) {
                 case 'abot' | 'nene':
-                    daCustomSpeaker = new ABotSpeaker();
-                    updateABotEye(daCustomSpeaker, true);
+                    customSpeaker = new ABotSpeaker();
+                    updateABotEye(customSpeaker, true);
                 case 'abot-pixel' | 'nene-pixel':
-                    daCustomSpeaker = new PixelABot();
-                    //daCustomSpeaker.scale.set(6, 6);
-                    updateABotEye(daCustomSpeaker, true);
+                    customSpeaker = new PixelABot();
+                    //customSpeaker.scale.set(6, 6);
+                    updateABotEye(customSpeaker, true);
             }
-            speakerToAdjust = daCustomSpeaker;
-            if (daCustomSpeaker != null) add(daCustomSpeaker);
+            speakerToAdjust = customSpeaker;
+            if (customSpeaker != null) add(customSpeaker);
         } else if (!spriteList.contains(speaker.toLowerCase()) #if flxanimate && !atlasList.contains(speaker.toLowerCase()) #end) {
             spriteSpeaker = new FlxSprite().loadGraphic(Paths.image('speakerskins/base'), true);
             spriteSpeaker.frames = Paths.getSparrowAtlas('speakerskins/base');
@@ -86,11 +88,13 @@ class SpeakerSkin extends FlxSpriteGroup {
             Paths.loadAnimateAtlasFromLibrary(atlasSpeaker, 'speakerskins/$speaker', speakerSettings.library);
             atlasSpeaker.anim.addBySymbol('boom', speakerSettings.beatAnim, 24, false);
             atlasSpeaker.anim.play('boom', true);
-        } #end else {
+        } #end else if (spriteList.contains(speaker.toLowerCase()) && speakerSettings.isAnimateAtlas #if flxanimate || atlasList.contains(speaker.toLowerCase()) && !speakerSettings.isAnimateAtlas#end) {
+            trace("Okay, this might crash your game, but at the very least, now you know you fucked up your json. ¯\\_(ツ)_/¯");
+        } else {
             trace('How in the world did you manage to not make a speaker here? I even set up a failsafe...');
         }
 
-        if (!customSpeaker) {
+        if (!usingCustom) {
             if (atlasSpeaker != null) {
                 atlasSpeaker.antialiasing = ClientPrefs.data.antialiasing;
                 speakerToAdjust = atlasSpeaker;
@@ -110,17 +114,29 @@ class SpeakerSkin extends FlxSpriteGroup {
 		this.shader = sdr;
         if (spriteSpeaker != null) spriteSpeaker.shader = sdr;
         if (atlasSpeaker != null) atlasSpeaker.shader = sdr;
-        if (daCustomSpeaker != null) {
-            var setSdr = Reflect.field(daCustomSpeaker, "setShader");
-            if (setSdr != null) Reflect.callMethod(daCustomSpeaker, setSdr, [sdr]);
+        if (customSpeaker != null) {
+            var setSdr = Reflect.field(customSpeaker, "setShader");
+            if (setSdr != null) Reflect.callMethod(customSpeaker, setSdr, [sdr]);
         }
 		return sdr;
 	}
 
+    /*
+    public function setScale(xVal:Float = 1.0, yVal:Float = 1.0) {
+        for (obj in members) {
+            var scaleX:Float = obj.scale.x;
+            var scaleY:Float = obj.scale.y;
+            scaleX = scaleX * xVal;
+            scaleY = scaleY * yVal;
+            obj.scale.set(scaleX, scaleY);
+        }
+    }
+        */
+
     public function updateABotEye(?abot:Dynamic, ?finishInstantly:Bool = false) {
 		if (abot != null) {
             var hasEyes = Reflect.hasField(abot, "eyes") && Reflect.hasField(abot.eyes, "anim"); // Needed for if eye look object is FlxAnimate
-            var hasHead = Reflect.field(abot, "abotHead") && Reflect.hasField(abot.abotHead, "animation"); // Needed for if eye look object is FlxSprite
+            var hasHead = Reflect.hasField(abot, "abotHead") && Reflect.hasField(abot.abotHead, "animation"); // Needed for if eye look object is FlxSprite
 
             var lookAtPlayer:Bool = PlayState.SONG.notes[Std.int(FlxMath.bound(PlayState.instance.curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection;
 
@@ -140,13 +156,14 @@ class SpeakerSkin extends FlxSpriteGroup {
 	var volumes:Array<Float> = [];
     #if funkin.vis
 	var analyzer:SpectralAnalyzer;
+
 	var levels:Array<Bar>;
 	var levelMax:Int = 0;
 
     override public function update(elapsed:Float) {
         super.update(elapsed);
-        if (customSpeaker) {
-            if ((daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot) && gf != null) {
+        if (usingCustom) {
+            if ((customSpeaker is ABotSpeaker || customSpeaker is PixelABot) && gf != null) {
                 animationFinished = gf.isAnimationFinished();
                 transitionState();
             }
@@ -213,7 +230,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 
         //this.scrollFactor.set(gf.scrollFactor.x, gf.scrollFactor.y);
 
-        if(gf != null && customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
+        if(gf != null && usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot)) {
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
 				switch(currentNeneState) {
 					case STATE_PRE_RAISE:
@@ -228,7 +245,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 		}
     }
     public function beatHit() {
-        if (customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
+        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot)) {
             switch(currentNeneState) {
                 case STATE_READY:
                     if (blinkCountdown == 0) {
@@ -242,7 +259,7 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
     }
     public function songStart() {
-        if (customSpeaker && (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot)) {
+        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot)) {
             gf.animation.finishCallback = onNeneAnimationFinished;
         }
     }
@@ -313,11 +330,11 @@ class SpeakerSkin extends FlxSpriteGroup {
 		#if funkin.vis
 		initAnalyzer();
 		#end
-        if (customSpeaker) {
-            if (daCustomSpeaker is ABotSpeaker || daCustomSpeaker is PixelABot) {
-                daCustomSpeaker.snd = changed;
+        if (usingCustom) {
+            if (customSpeaker is ABotSpeaker || customSpeaker is PixelABot) {
+                customSpeaker.snd = changed;
                 #if funkin.vis
-                daCustomSpeaker.initAnalyzer();
+                customSpeaker.initAnalyzer();
                 #end
             }
         }

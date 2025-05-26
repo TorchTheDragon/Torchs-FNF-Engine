@@ -92,7 +92,11 @@ class BaseStage extends FlxBasic {
 		if (speaker != null) {
 			speaker.snd = FlxG.sound.music;
 			speaker.songStart();
-		}	
+		}
+		if (reflected != null) {
+			reflected.snd = FlxG.sound.music;
+			reflected.songStart();
+		}
 	}
 
 	// FNF steps, beats and sections
@@ -103,10 +107,12 @@ class BaseStage extends FlxBasic {
 	public var curSection:Int = 0;
 	public function beatHit() {
 		if (speaker != null) speaker.beatHit();
+		if (reflected != null) reflected.beatHit();
 	}
 	public function stepHit() {}
 	public function sectionHit() {
-		if (speaker != null) speaker.updateABotEye(speaker.daCustomSpeaker);
+		if (speaker != null) speaker.updateABotEye(speaker.customSpeaker);
+		if (reflected != null) reflected.updateABotEye(reflected.customSpeaker);
 	}
 
 	// Substate close/open, for pausing Tweens/Timers
@@ -232,8 +238,11 @@ class BaseStage extends FlxBasic {
 
 	// New Speaker Shits
 	var speaker:SpeakerSkin;
+	var reflected:SpeakerSkin;
 	public var defaultSpeaker:String = 'base'; // This is only used for setting a default speaker per stage if someone doesn't change the speaker themselves
 
+	// I'd highly recommend using gfGroup.x and gfGroup.y to base values off to make it easier
+	// Example -> addSpeaker(gfGroup.x, gfGroup.y + 500);
 	function addSpeaker(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
 		var skin:String = switch (ClientPrefs.data.speakerSkin.toLowerCase()) {
 			case "stage":
@@ -254,6 +263,46 @@ class BaseStage extends FlxBasic {
 		speaker.scrollFactor.set(scrollFactorX, scrollFactorY);
 		add(speaker);
 	}
+
+	function addReflectedChar(char:Character, ?alpha:Float = 0.35) {
+		var reflection:ReflectedChar = new ReflectedChar(char, alpha);
+		if (boyfriendGroup.members.contains(char)) {
+			insert(members.indexOf(game.boyfriendGroup), reflection);
+		} else if (dadGroup.members.contains(char)) {
+			insert(members.indexOf(game.dadGroup), reflection);
+		} else if (gfGroup.members.contains(char)) {
+			insert(members.indexOf(game.gfGroup), reflection);
+		} else {
+			insert(members.indexOf(char), reflection);
+		}
+	}
+
+	/*
+	// Broken concept, couldn't get to work
+	function addReflectedSpeaker(?alpha:Float = 0.35) {
+		if (speaker != null) {
+			reflected = new SpeakerSkin(speaker.x, speaker.y, speaker.speaker);
+			//if (reflected.customSpeaker != null) {
+			//	var speakerMembers:FlxSpriteGroup = reflected.customSpeaker;
+			//	if (speakerMembers != null) {
+			//		for (object in speakerMembers.members) {
+			//			object.flipY = true;
+			//		}
+			//	}
+			//} else for (object in reflected.members) {
+			//	object.flipY = true;
+			//}
+			//reflected.y += reflected.height;
+			//for (obj in reflected.members) obj.scale.y *= -1;
+			reflected.scale.x *= -1;
+			reflected.angle = 180;
+			//reflected.setScale(1, -1);
+			reflected.y += 250;
+			reflected.alpha = alpha;
+			insert(members.indexOf(speaker), reflected);
+		}
+	}
+	*/
 }
 
 enum CameraMode {

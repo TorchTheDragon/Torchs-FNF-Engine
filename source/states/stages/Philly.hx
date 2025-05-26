@@ -64,9 +64,10 @@ class Philly extends BaseStage
 		rtxTest.shadowAngle = -90.0;
 		rtxTest.shadowDistance = 25.0;
 		*/
-		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(112/255, 0, 176/255, 0.45), -90.0, 45.0, true);
+		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(112/255, 0, 176/255, 0.45), 0, 45.0, true);
 	}
 	override function createPost() {
+		super.createPost();
 		var list:Array<OneOfTwo<Character, FlxSprite>> = [boyfriend, gf, dad, phillyTrain, phillyStreet];
 		if (streetBehind != null) list.push(streetBehind);
 		for (obj in list) {
@@ -84,7 +85,8 @@ class Philly extends BaseStage
 			if (char != null) char.shader = tempShader;
 			if (sprite != null) sprite.shader = tempShader;
 			shaderList.push(tempShader);
-		} //Making this should hopefully make it work better on different image sizes
+		}
+		addReflectedChar(boyfriend);
 	}
 	var shaderList:Array<RTXShader> = [];
 
