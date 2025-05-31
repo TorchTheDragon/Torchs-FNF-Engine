@@ -88,3 +88,5 @@ Changed Editor PlayState to also use the selected note skin
 Added Character Shadows as a thing through events
 Fixed Trace in custom events say "event doesnt exist" when using Lua Events
 Changed Ghost Effect to use same shader that Shadow Effect does
+Added a REALLY over the top Glitch Effect Shader that can have COMPLETELY RANDOM combinations between the 6 provided. Warning... could be epileptic under certain circumstances.
+Added Glitch shader to Thorns... WARNING DEFINETELY NEEDS AN EPILEPSY WARNING

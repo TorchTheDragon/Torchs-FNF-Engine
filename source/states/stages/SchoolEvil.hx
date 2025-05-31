@@ -5,11 +5,28 @@ import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 import openfl.utils.Assets as OpenFlAssets;
+import torchsfunctions.functions.ShaderUtils;
+import torchsthings.shaders.GlitchEffect;
+import torchsthings.shaders.CRT;
+import torchsthings.objects.effects.ShadowEffect;
+import openfl.filters.ShaderFilter;
 
 class SchoolEvil extends BaseStage
 {
+	var glitch:GlitchEffect = new GlitchEffect();
+	var gfGlitch:GlitchEffect = new GlitchEffect();
+	var backgroundGlitch:GlitchEffect = new GlitchEffect();
+	var glitchFilter:ShaderFilter;
+
+	var crt:CRT = new CRT(true);
+	var crtFilter:ShaderFilter;
+
 	override function create()
 	{
+		glitch.doTimer = false;
+		glitch.invert = true;
+		gfGlitch.doTimer = false;
+		backgroundGlitch.doTimer = false;
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
@@ -27,6 +44,7 @@ class SchoolEvil extends BaseStage
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
 		bg.antialiasing = false;
+		bg.shader = backgroundGlitch;
 		add(bg);
 		setDefaultGF('gf-pixel');
 
@@ -42,6 +60,43 @@ class SchoolEvil extends BaseStage
 	{
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
+		glitchFilter = new ShaderFilter(glitch);
+		crtFilter = new ShaderFilter(crt);
+		gf.shader = gfGlitch;
+		ShaderUtils.applyFiltersToCams([camGame],  [glitchFilter, crtFilter]);
+		ShaderUtils.applyFiltersToCams([camHUD], [crtFilter]);
+
+		dad.cameras = boyfriend.cameras = [camHUD]; 
+		dad.y -= 200;
+		dad.cameraPosition[1] += 200;
+		boyfriend.y -= 200;
+		boyfriend.cameraPosition[1] += 200;
+
+		var shadows1 = ShadowEffect.createShadows(dad, 0xFF3C6E, 200, 'spirit', 4, 0.25, -200);
+		PlayState.instance.shadowEffects.push(shadows1);
+		for (shadow in shadows1) {
+			addBehindDad(shadow);
+		}
+		var shadows2 = ShadowEffect.createShadows(boyfriend, 0x00F0FF, 200, 'boyfriend', 4, 0.25, -200);
+		PlayState.instance.shadowEffects.push(shadows2);
+		for (shadow in shadows2) {
+			addBehindBF(shadow);
+		}
+	}
+	override function stepHit() {
+		if (curStep % 16 == 0) {
+			glitch.randomizeGlitches();
+		}
+		if (curStep % 8 == 0) {
+			gfGlitch.randomizeGlitches();
+			backgroundGlitch.randomizeGlitches();
+		}
+	}
+	override function update(elapsed:Float) {
+		glitch.update(elapsed);
+		gfGlitch.update(elapsed);
+		backgroundGlitch.update(elapsed);
+		crt.update(elapsed);
 	}
 
 	// Ghouls event
@@ -72,6 +127,7 @@ class SchoolEvil extends BaseStage
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
 					bgGhouls.antialiasing = false;
+					bgGhouls.shader = gfGlitch;
 					bgGhouls.animation.finishCallback = function(name:String)
 					{
 						if(name == 'BG freaks glitch instance')
