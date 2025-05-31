@@ -2751,7 +2751,7 @@ class PlayState extends MusicBeatState
 							return dad;
 						case 'gf', 'girlfriend':
 							return gf;
-						case 'bf' | 'player' | 'boyfriend':
+						case 'bf', 'player', 'boyfriend':
 							return boyfriend;
 						default:
 							var reflect = Reflect.hasField(instance.members, name);
@@ -2762,12 +2762,12 @@ class PlayState extends MusicBeatState
 				var effect = ShadowEffect.createShadows(grabObject(vals1[0].trim().toLowerCase()), color, Std.parseFloat(vals2[0].trim()), vals1[1].trim(), Std.parseInt(vals2[1].trim()), Std.parseFloat(vals2[2].trim()));
 				shadowEffects.push(effect);
 				for (shadow in effect) {
-					switch (value1.trim().toLowerCase()) {
+					switch (vals1[0].trim().toLowerCase()) {
 						case 'dad', 'enemy':
 							addBehindDad(shadow);
 						case 'gf', 'girlfriend':
 							addBehindGF(shadow);
-						case 'bf' | 'player' | 'boyfriend':
+						case 'bf', 'player', 'boyfriend':
 							addBehindBF(shadow);
 						default:
 							var reflect = Reflect.field(instance.members, value1.trim());
