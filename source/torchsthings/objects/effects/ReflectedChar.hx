@@ -6,15 +6,12 @@ import flixel.system.FlxAssets.FlxShader;
 class ReflectedChar extends Character {
     var charRef:Character = null;
 
-    public function new(char:Character, ?alpha:Float = 0.35/*, ?daShader:FlxShader*/) {
+    public function new(char:Character, ?alpha:Float = 0.35) {
         super(char.x, char.y + (char.frameHeight*char.scale.y*2) - char.offset.y + checkCharacter(char.curCharacter), char.curCharacter, char.isPlayer);
         charRef = char;
         this.alpha = alpha;
         this.flipY = true;
         this.shader = charRef.shader;
-        //if (daShader != null) {
-            //this.shader = daShader;
-        //}
         this.dance();
     }
 

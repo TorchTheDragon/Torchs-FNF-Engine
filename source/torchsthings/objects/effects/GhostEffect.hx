@@ -2,6 +2,7 @@ package torchsthings.objects.effects;
 
 import objects.Character;
 import objects.Note;
+import torchsthings.shaders.BlurAndFade;
 
 class GhostEffect {
     public static var coloredGhost:Bool = true;
@@ -95,6 +96,7 @@ class GhostChar extends Character {
     var frameName:String = '';
     var curFrame:Int = 0;
     var offsets:Array<Float> = [0.0, 0.0];
+    var blurring:BlurAndFade;
 
     public function new (char:Character) {
         super(char.x, char.y, char.curCharacter, char.isPlayer);
@@ -104,7 +106,7 @@ class GhostChar extends Character {
         offsets = [charRef.offset.x, charRef.offset.y];
         frameName = charRef.isAnimateAtlas ? charRef.atlas.anim.curSymbol.name : charRef.animation.curAnim.name;
         curFrame = charRef.isAnimateAtlas ? charRef.atlas.anim.curSymbol.curFrame : charRef.animation.curAnim.curFrame;
-        this.shader = charRef.shader;
+        this.shader = blurring = new BlurAndFade(this, 1.75, 0.5, 'ghost');
         this.dance();
     }
 
@@ -115,6 +117,7 @@ class GhostChar extends Character {
         } else {
             this.animation.play(frameName, true, false, curFrame);
         }
+        blurring.syncFrameUVs();
         super.update(elapsed);
     }
 }
