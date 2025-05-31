@@ -85,3 +85,5 @@ Added W.I.P. Chart for the Torch Mix of Fresh
 Updated event handling a small bit, just a notification to let you know what event doesn't exist (Helps you out in case you imported a chart and the event lua's aren't included)
 Made Wobble Notes move smoothly to the wobble position instead of an instant snap
 Changed Editor PlayState to also use the selected note skin
+Added Character Shadows as a thing through events
+Fixed Trace in custom events say "event doesnt exist" when using Lua Events

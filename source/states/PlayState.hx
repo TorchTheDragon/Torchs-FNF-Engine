@@ -62,7 +62,7 @@ import torchsfunctions.functions.Extras;
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
 import torchsthings.objects.ImageBar.BarSettings;
-import torchsthings.objects.effects.GhostEffect;
+import torchsthings.objects.effects.*;
 import torchsthings.utils.WindowUtils;
 
 import lawsthings.objects.IconsAnimator;
@@ -2557,6 +2557,7 @@ class PlayState extends MusicBeatState
 
 	var zoomTweens:Array<FlxTween> = [null];
 	public var eventExisted:Bool = true;
+    public var shadowEffects:Array<Array<ShadowEffect.Shadow>> = [];
 
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
@@ -2728,6 +2729,58 @@ class PlayState extends MusicBeatState
 						wobbleNotes = false;
 						playerStrumsWobble = [0,0];
 						opponentStrumsWobble = [0,0];
+					}
+				}
+				
+			case "Spawn Shadow":
+				var vals1:Array<String> = [];
+				vals1 = value1.split(',');
+
+				var color:FlxColor = 0xFF009CB1;
+				if (vals1[2] != null && vals1[2] != '') {
+					color = FlxColor.fromString(vals1[2].trim());
+				}
+
+				var vals2:Array<String> = [];
+				if (value2 != null && value2 != '') 
+					vals2 = value2.split(',');
+				if (Std.parseInt(vals2[2].trim()) > 10) vals2[2] = '10';
+				function grabObject(name:String) {
+					switch (name) { // Eventually, I this to be able to edit whatever object you add to it
+						case 'dad', 'enemy':
+							return dad;
+						case 'gf', 'girlfriend':
+							return gf;
+						case 'bf' | 'player' | 'boyfriend':
+							return boyfriend;
+						default:
+							var reflect = Reflect.hasField(instance.members, name);
+							if (reflect) return cast(Reflect.field(instance.members, name), Character);
+							else return null;
+					}
+				}
+				var effect = ShadowEffect.createShadows(grabObject(vals1[0].trim().toLowerCase()), color, Std.parseFloat(vals2[0].trim()), vals1[1].trim(), Std.parseInt(vals2[1].trim()), Std.parseFloat(vals2[2].trim()));
+				shadowEffects.push(effect);
+				for (shadow in effect) {
+					switch (value1.trim().toLowerCase()) {
+						case 'dad', 'enemy':
+							addBehindDad(shadow);
+						case 'gf', 'girlfriend':
+							addBehindGF(shadow);
+						case 'bf' | 'player' | 'boyfriend':
+							addBehindBF(shadow);
+						default:
+							var reflect = Reflect.field(instance.members, value1.trim());
+							if (reflect != null) {
+								insert(members.indexOf(reflect), shadow);
+							}
+					}
+				}
+			
+			case 'Remove Shadow':
+				for (effect in shadowEffects) {
+					if (effect[0].shadowID == value1) {
+						for (shadow in effect) shadow.destroy();
 					}
 				}
 
@@ -2930,6 +2983,18 @@ class PlayState extends MusicBeatState
 
 		// These have to state that the event DOES exist by calling upon the playstate instance, so PlayState.instance.eventExisted = true;
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
+		for (lua in luaArray) { // This makes sure that CustomEvents doesn't get called.
+			if (lua.scriptName.contains(eventName)) {
+				eventExisted = true;
+				break;
+			}
+		}
+		for (hscript in hscriptArray) { // Not sure if this one does work, just copied from Lua one above... I should probably test this huh... nah, someone'll let me know
+			if (hscript.origin.contains(eventName)) {
+				eventExisted = true;
+				break;
+			}
+		}
 		callOnScripts('onEvent', [eventName, value1, value2, strumTime]);
 
 		if (!eventExisted) CustomEvents.onEvent(eventName, value1, value2);

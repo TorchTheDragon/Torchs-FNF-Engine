@@ -6,7 +6,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import objects.Character;
-import torchsthings.objects.effects.GhostEffect;
+import torchsthings.objects.effects.*;
 
 class CustomEvents {
     static var cinematicUpperY:Float = -350.0;
@@ -81,6 +81,7 @@ class CustomEvents {
                         GhostEffect.slideDistance = Std.parseFloat(vals2[1].trim());
                     }
                 }
+
             default: 
                 trace('Event $eventName doesn\'t exist.');
         }
