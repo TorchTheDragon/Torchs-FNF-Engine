@@ -25,6 +25,17 @@ void main() {
     vec2 uv = openfl_TextureCoordv;
     vec2 originalUV = uv;
 
+    vec4 baseCol = flixel_texture2D(bitmap, uv);
+
+    if (enableInvert) {
+        vec2 invertChunkUV = floor(originalUV * chunkInvertScale); 
+        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(91.123, 42.456))) * 9031.421);
+
+        if (invertHash > 0.75) {
+            baseCol.rgb = vec3(1.0) - baseCol.rgb; // Invert RGB
+        }
+    }
+
     if (enableChunkShift) {
         vec2 shiftChunkUV = floor(originalUV * chunkShiftScale);
         float shiftHash = fract(sin(dot(shiftChunkUV + glitchSeed * 1.5, vec2(37.119, 91.733))) * 15731.234);
@@ -47,8 +58,6 @@ void main() {
         uv += noise;
     }
 
-    vec4 baseCol = flixel_texture2D(bitmap, uv);
-
     if (enableChromatic) {
         vec2 chunkUV = floor(originalUV * chunkScale);
         float chunkHash = fract(sin(dot(chunkUV + glitchSeed, vec2(12.9898, 78.233))) * 43758.5453);
@@ -70,15 +79,6 @@ void main() {
         float scan = sin(uv.y * 240.0) * 0.1;
         float flicker = sin(iTime * 50.0 + glitchSeed) * 0.1;
         baseCol.rgb += scan + flicker;
-    }
-    
-    if (enableInvert) {
-        vec2 invertChunkUV = floor(originalUV * chunkInvertScale); 
-        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(91.123, 42.456))) * 9031.421);
-
-        if (invertHash > 0.75) {
-            baseCol.rgb = vec3(1.0) - baseCol.rgb; // Invert RGB
-        }
     }
 
     gl_FragColor = baseCol;

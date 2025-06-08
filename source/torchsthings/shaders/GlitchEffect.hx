@@ -1,7 +1,6 @@
 package torchsthings.shaders;
 
 import lime.utils.Assets;
-//import torchsfunctions.PostRuntimeShader;
 import flixel.addons.display.FlxRuntimeShader;
 import flixel.util.FlxTimer;
 
@@ -23,7 +22,9 @@ class GlitchEffect extends FlxRuntimeShader {
         randomizeGlitches();
     }
 
-    public function update(time:Float):Void {
+    var time:Float = 0.0;
+    public function update(elapsed:Float):Void {
+        time += elapsed;
         setFloat("iTime", time);
     }
 
