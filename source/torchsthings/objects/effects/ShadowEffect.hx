@@ -31,8 +31,7 @@ class Shadow extends Character {
         movementAmount = speed;
         this.color = color;
         this.alpha = 0.35;
-        blurFade = new BlurAndFade(this, 2.5, 0.5, 'shadow');
-        this.shader = blurFade;
+        this.shader = blurFade = new BlurAndFade(this, 2.5, 0.5, 'shadow');
         forcedDistance = forcedDistanceChange;
         this.dance();
     }

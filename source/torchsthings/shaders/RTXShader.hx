@@ -1,6 +1,5 @@
 package torchsthings.shaders;
 
-//import torchsfunctions.PostRuntimeShader;
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.display.ShaderParameter;
 import openfl.display.ShaderParameterType;

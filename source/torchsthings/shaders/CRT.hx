@@ -35,7 +35,7 @@ class CRT extends PostRuntimeShader {
         this.setFloat('uSwipeAmount', value);
         return swipeAmount = value;
     }
-
+    
     function set_creepyCRT(value:Float):Float {
         this.setFloat('uIsCreepy', value);
         return creepyCRT = value;
