@@ -11,28 +11,41 @@ import torchsthings.shaders.CRT;
 import torchsthings.objects.effects.ShadowEffect;
 import openfl.filters.ShaderFilter;
 
-class SchoolEvil extends BaseStage
-{
-	/*
-	// Glitch Shader Shit
-	var glitch:GlitchEffect = new GlitchEffect();
-	var gfGlitch:GlitchEffect = new GlitchEffect();
-	var backgroundGlitch:GlitchEffect = new GlitchEffect();
+class SchoolEvil extends BaseStage {
+	var glitch:GlitchEffect;
+	var gfGlitch:GlitchEffect;
+	var backgroundGlitch:GlitchEffect;
 	var glitchFilter:ShaderFilter;
-	*/
-
-	var crt:CRT = new CRT(true);
+	var crt:CRT;
 	var crtFilter:ShaderFilter;
 
-	override function create()
-	{
-		/*
-		// Glitch Shader Shit
-		glitch.doTimer = false;
-		glitch.invert = true;
-		gfGlitch.doTimer = false;
-		backgroundGlitch.doTimer = false;
-		*/
+	override function create() {
+		if (ClientPrefs.data.shaders) {
+			crt = new CRT(true);
+
+			if (ClientPrefs.data.intenseShaders) {
+				glitch = new GlitchEffect(true, true, true, true, true, true, false);
+				gfGlitch = new GlitchEffect(true, true, true, true, true, false, false);
+				backgroundGlitch = new GlitchEffect(true, true, true, true, true, false, false);
+				//glitch.invert = true;
+				//backgroundGlitch.doTimer = false;
+			}
+			else {
+				glitch = new GlitchEffect(true, false, false, false, true, false, false);
+				gfGlitch = new GlitchEffect(true, false, false, false, true, false, false);
+				//glitch.chromatic = false;
+				//glitch.jitter = false;
+				//glitch.wave = false;
+				//glitch.scanlines = false;
+				//glitch.chunkShift = false;
+				//gfGlitch.chromatic = false;
+				//gfGlitch.jitter = false;
+				//gfGlitch.wave = false;
+				//gfGlitch.scanlines = false;
+				//gfGlitch.chunkShift = false;
+			}
+		}
+		
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
@@ -50,8 +63,7 @@ class SchoolEvil extends BaseStage
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
 		bg.antialiasing = false;
-		// Glitch Shader Shit
-		//bg.shader = backgroundGlitch;
+		if (ClientPrefs.data.shaders && ClientPrefs.data.intenseShaders && backgroundGlitch != null) bg.shader = backgroundGlitch;
 		add(bg);
 		setDefaultGF('gf-pixel');
 
@@ -67,55 +79,50 @@ class SchoolEvil extends BaseStage
 	{
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
-		crtFilter = new ShaderFilter(crt);
-		// Glitch Shader Shit
-		//glitchFilter = new ShaderFilter(glitch);
-		//gf.shader = gfGlitch;
-		ShaderUtils.applyFiltersToCams([camGame],  [/*glitchFilter,*/ crtFilter]);
-		ShaderUtils.applyFiltersToCams([camHUD], [crtFilter]);
-
-		// Glitch Shader Shit
-		/*
+		if (ClientPrefs.data.shaders) {
+			crtFilter = new ShaderFilter(crt);
+			glitchFilter = new ShaderFilter(glitch);
+			gf.shader = gfGlitch;
+			ShaderUtils.applyFiltersToCams([camGame],  [glitchFilter, crtFilter]);
+			ShaderUtils.applyFiltersToCams([camHUD], [crtFilter]);
+		}
+		
 		var changePos:Float = 200;
 		dad.cameras = boyfriend.cameras = [camHUD]; 
 		dad.y -= changePos;
+		trail.y -= changePos;
 		dad.cameraPosition[1] += changePos;
 		boyfriend.y -= changePos;
 		boyfriend.cameraPosition[1] += changePos;
-		*/
-
 		
-		var shadows1 = ShadowEffect.createShadows(dad, 0xFF3C6E, 200, 'spirit', 4, 0.25/*, -(changePos)*/);
+		var shadows1 = ShadowEffect.createShadows(dad, 0xFF3C6E, 200, 'spirit', 4, 0.25, -(changePos));
 		PlayState.instance.shadowEffects.push(shadows1);
 		for (shadow in shadows1) {
 			addBehindDad(shadow);
 		}
-		var shadows2 = ShadowEffect.createShadows(boyfriend, 0x00F0FF, 200, 'boyfriend', 4, 0.25/*, -(changePos)*/);
+		var shadows2 = ShadowEffect.createShadows(boyfriend, 0x00F0FF, 200, 'boyfriend', 4, 0.25, -(changePos));
 		PlayState.instance.shadowEffects.push(shadows2);
 		for (shadow in shadows2) {
 			addBehindBF(shadow);
 		}
 	}
 	override function stepHit() {
-		// Glitch Shader Shit
-		/*
-		if (curStep % 16 == 0) {
-			glitch.randomizeGlitches();
+		if (ClientPrefs.data.shaders) {
+			if (curStep % 16 == 0) glitch.randomizeGlitches();
+			if (curStep % 8 == 0) {
+				gfGlitch.randomizeGlitches();
+				if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.randomizeGlitches();
+			}
 		}
-		if (curStep % 8 == 0) {
-			gfGlitch.randomizeGlitches();
-			backgroundGlitch.randomizeGlitches();
-		}
-		*/
 	}
 	override function update(elapsed:Float) {
-		// Glitch Shader Shit
-		/*
-		glitch.update(elapsed);
-		gfGlitch.update(elapsed);
-		backgroundGlitch.update(elapsed);
-		*/
-		crt.update(elapsed);
+		if (ClientPrefs.data.shaders) {
+			glitch.update(elapsed);
+			gfGlitch.update(elapsed);
+			if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
+			
+			crt.update(elapsed);
+		}
 	}
 
 	// Ghouls event
@@ -146,8 +153,7 @@ class SchoolEvil extends BaseStage
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
 					bgGhouls.antialiasing = false;
-					// Glitch Shader Shit
-					//bgGhouls.shader = gfGlitch;
+					if (ClientPrefs.data.shaders) bgGhouls.shader = gfGlitch;
 					bgGhouls.animation.finishCallback = function(name:String)
 					{
 						if(name == 'BG freaks glitch instance')

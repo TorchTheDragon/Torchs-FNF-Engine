@@ -9,8 +9,11 @@ import openfl.utils.Assets as OpenFlAssets;
 class School extends BaseStage
 {
 	var bgGirls:BackgroundGirls;
+	var crt:CRT;
+	var crtFilter:ShaderFilter;
 	override function create()
 	{
+		if (ClientPrefs.data.shaders) crt = new CRT(true);
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
@@ -87,6 +90,17 @@ class School extends BaseStage
 			initDoof();
 			setStartCallback(schoolIntro);
 		}
+	}
+
+	override function createPost() {
+		if (ClientPrefs.data.shaders) {
+			crtFilter = new ShaderFilter(crt);
+			ShaderUtils.applyFiltersToCams([camHUD, camGame], [crtFilter]);
+		}
+	}
+
+	override function update(elapsed:Float) {
+		if (ClientPrefs.data.shaders) crt.update(elapsed);
 	}
 
 	override function beatHit()

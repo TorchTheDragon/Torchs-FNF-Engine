@@ -12,11 +12,19 @@ class GlitchEffect extends FlxRuntimeShader {
     public var scanlines:Bool = true;
     public var chunkShift:Bool = true;
     public var invert:Bool = false;
+    public var doTimer(default, set):Bool = true;
 
-    public function new() {
+    public function new(?chromatic:Bool = true, ?jitter:Bool = true, ?wave:Bool = true, ?scanlines:Bool = true, ?chunkShift:Bool = true, ?invert:Bool = false, ?doTimer:Bool = true) {
         var source = Assets.getText(Paths.shaderFragment('Glitch', 'torchs_assets'));
         source += "\n#define INSTANCE_ID_" + Std.string(Std.random(999999)); // This makes sure you can have MULTIPLE of this effect if you want
         super(source);
+        this.doTimer = doTimer;
+        this.chromatic = chromatic;
+        this.jitter = jitter;
+        this.wave = wave;
+        this.scanlines = scanlines;
+        this.chunkShift = chunkShift;
+        this.invert = invert;
         glitchTimer = new FlxTimer();
         scheduleGlitchRefresh();
         randomizeGlitches();
@@ -50,7 +58,6 @@ class GlitchEffect extends FlxRuntimeShader {
         setFloat("chunkInvertScale", FlxG.random.float(FlxG.random.int(4, 8), FlxG.random.int(8, 24)));
     }
 
-    public var doTimer(default, set):Bool = true;
     function set_doTimer(value:Bool):Bool {
         doTimer = value;
         scheduleGlitchRefresh();

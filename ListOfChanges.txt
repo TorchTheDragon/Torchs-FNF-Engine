@@ -89,4 +89,10 @@ Added Character Shadows as a thing through events
 Fixed Trace in custom events say "event doesnt exist" when using Lua Events
 Changed Ghost Effect to use same shader that Shadow Effect does
 Added a REALLY over the top Glitch Effect Shader that can have COMPLETELY RANDOM combinations between the 6 provided. Warning... could be epileptic under certain circumstances.
-Added Glitch shader to Thorns... WARNING DEFINETELY NEEDS AN EPILEPSY WARNING... it is commented out though, only there for showing.
+Added Glitch shader to Thorns
+Updated my library to 0.7.2
+Added inverted colors option to Glitch shader
+Added a very small template for FlxRuntimeShaders, it is really basic...
+Added "addBehindSpeaker" function to BaseStage - JorgeX_YT
+Added Graphics setting for more intense shaders, in a sense allow people to choose between basic shaders or the more intense ones (Shaders will have to be enabled for this one to work)
+Edited Glitch Shader again to allow defining varaibles through the new function

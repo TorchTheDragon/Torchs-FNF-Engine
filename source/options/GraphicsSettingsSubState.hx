@@ -42,6 +42,12 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			BOOL);
 		addOption(option);
 
+		var option:Option = new Option('Intense Shaders', //Name
+			"If checked, allows for more intense shaders,\nfor example, some that could be considered epileptic.", //Description
+			'intenseShaders',
+			BOOL);
+		addOption(option);
+
 		var option:Option = new Option('GPU Caching', //Name
 			"If checked, allows the GPU to be used for caching textures, decreasing RAM usage.\nDon't turn this on if you have a shitty Graphics Card.", //Description
 			'cacheOnGPU',

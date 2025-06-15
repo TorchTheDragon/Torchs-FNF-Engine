@@ -23,6 +23,7 @@ import states.TitleState;
 	public var splashAlpha:Float = 0.6;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;
+	public var intenseShaders:Bool = false; // For possibly epileptic shaders and such
 	public var cacheOnGPU:Bool = #if !switch false #else true #end; // GPU Caching made by Raltyro
 	public var framerate:Int = 60;
 	public var camZooms:Bool = true;
