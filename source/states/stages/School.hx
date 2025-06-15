@@ -5,6 +5,9 @@ import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 
 import openfl.utils.Assets as OpenFlAssets;
+import torchsthings.shaders.CRT;
+import torchsfunctions.functions.ShaderUtils;
+import openfl.filters.ShaderFilter;
 
 class School extends BaseStage
 {
@@ -13,7 +16,7 @@ class School extends BaseStage
 	var crtFilter:ShaderFilter;
 	override function create()
 	{
-		if (ClientPrefs.data.shaders) crt = new CRT(true);
+		if (ClientPrefs.data.shaders) crt = new CRT();
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';

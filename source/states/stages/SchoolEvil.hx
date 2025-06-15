@@ -27,22 +27,10 @@ class SchoolEvil extends BaseStage {
 				glitch = new GlitchEffect(true, true, true, true, true, true, false);
 				gfGlitch = new GlitchEffect(true, true, true, true, true, false, false);
 				backgroundGlitch = new GlitchEffect(true, true, true, true, true, false, false);
-				//glitch.invert = true;
-				//backgroundGlitch.doTimer = false;
 			}
 			else {
 				glitch = new GlitchEffect(true, false, false, false, true, false, false);
 				gfGlitch = new GlitchEffect(true, false, false, false, true, false, false);
-				//glitch.chromatic = false;
-				//glitch.jitter = false;
-				//glitch.wave = false;
-				//glitch.scanlines = false;
-				//glitch.chunkShift = false;
-				//gfGlitch.chromatic = false;
-				//gfGlitch.jitter = false;
-				//gfGlitch.wave = false;
-				//gfGlitch.scanlines = false;
-				//gfGlitch.chunkShift = false;
 			}
 		}
 		
