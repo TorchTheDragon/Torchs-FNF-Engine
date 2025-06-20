@@ -85,11 +85,11 @@ class School extends BaseStage
 				FlxG.sound.playMusic(playWeekMusic('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'roses':
-				FlxG.sound.play(playWeekSound('ANGRY_TEXT_BOX'));
+				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
 		}
 		if(isStoryMode && !seenCutscene)
 		{
-			if(songName == 'roses') FlxG.sound.play(playWeekSound('ANGRY'));
+			if(songName == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 			initDoof();
 			setStartCallback(schoolIntro);
 		}
