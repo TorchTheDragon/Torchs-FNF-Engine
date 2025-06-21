@@ -168,6 +168,10 @@ class IconsAnimator {
         iconP2.updateHitbox();
     }
 
+    public static function updateIconsStatic(icon1:HealthIcon, icon2:HealthIcon, iconY:Float, curBeat:Int, iconAnims:Array<String>, bfAnim:String, dadAnim:String) {
+        var tempAnimator = new IconsAnimator(icon1, icon2, iconY);
+        tempAnimator.updateIcons(curBeat, iconAnims, bfAnim, dadAnim);
+    }
     function resetPosition(tween:FlxTween) {
         isAnimatingPosition = false;
     }
