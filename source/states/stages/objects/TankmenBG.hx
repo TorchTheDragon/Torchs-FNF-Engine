@@ -1,6 +1,7 @@
 package states.stages.objects;
 
 import flixel.graphics.frames.FlxAtlasFrames;
+import torchsthings.shaders.AdjustColorShader;
 
 class TankmenBG extends FlxSprite
 {
@@ -8,7 +9,9 @@ class TankmenBG extends FlxSprite
 	private var tankSpeed:Float;
 	private var endingOffset:Float;
 	private var goingRight:Bool;
+	private var offsetRight:Bool;
 	public var strumTime:Float;
+	private var colorShader:AdjustColorShader;
 
 	public function new(x:Float, y:Float, facingRight:Bool)
 	{
@@ -18,6 +21,8 @@ class TankmenBG extends FlxSprite
 		goingRight = facingRight;
 		super(x, y);
 
+		colorShader = null;
+
 		frames = Paths.getSparrowAtlas('tankmanKilled1');
 		animation.addByPrefix('run', 'tankman running', 24, true);
 		animation.addByPrefix('shot', 'John Shot ' + FlxG.random.int(1, 2), 24, false);
@@ -25,15 +30,22 @@ class TankmenBG extends FlxSprite
 		animation.curAnim.curFrame = FlxG.random.int(0, animation.curAnim.frames.length - 1);
 		antialiasing = ClientPrefs.data.antialiasing;
 
-		scale.set(0.8, 0.8);
+		scale.set(0.9, 0.9);
 		updateHitbox();
 	}
 
-	public function resetShit(x:Float, y:Float, goingRight:Bool):Void
+	public function setShader(shader:AdjustColorShader):Void
+	{
+    	colorShader = shader;
+    	this.shader = colorShader;
+	}
+
+	public function resetShit(x:Float, y:Float, goingRight:Bool,offsetRight:Bool):Void
 	{
 		this.x = x;
 		this.y = y;
 		this.goingRight = goingRight;
+		this.offsetRight = offsetRight;
 		endingOffset = FlxG.random.float(50, 200);
 		tankSpeed = FlxG.random.float(0.6, 1);
 		flipX = goingRight;
@@ -58,14 +70,17 @@ class TankmenBG extends FlxSprite
 			kill();
 		}
 
-		if(Conductor.songPosition > strumTime)
+		if (Conductor.songPosition > strumTime) 
 		{
-			animation.play('shot');
-			if(goingRight)
-			{
-				offset.x = 300;
-				offset.y = 200;
-			}
+    			animation.play('shot');
+    			if (goingRight && !offsetRight) {
+        		offset.x = 300;
+       			offset.y = 200;
+		}
+    	if (!goingRight && !offsetRight) {
+        		offset.x = 200; 
+        		offset.y = 100;
+    		}
 		}
 	}
 }
