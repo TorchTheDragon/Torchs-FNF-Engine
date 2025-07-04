@@ -25,14 +25,14 @@ void main() {
     vec2 uv = openfl_TextureCoordv;
     vec2 originalUV = uv;
 
-    vec4 baseCol = flixel_texture2D(bitmap, uv);
+    vec4 baseCol = flixel_texture2D(bitmap, openfl_TextureCoordv);
 
     if (enableInvert) {
         vec2 invertChunkUV = floor(originalUV * chunkInvertScale); 
         float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(91.123, 42.456))) * 9031.421);
 
         if (invertHash > 0.75) {
-            baseCol.rgb = vec3(1.0) - baseCol.rgb; // Invert RGB
+            baseCol.rgb = vec3(1.0) - baseCol.rgb;
         }
     }
 

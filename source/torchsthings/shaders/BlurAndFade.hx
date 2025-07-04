@@ -11,7 +11,7 @@ class BlurAndFade extends FlxRuntimeShader {
 
     public function new(parent:FlxSprite, ?blurAmount:Float = 2.5, ?edgeFade:Float = 0.5, ?instanceID:String = '') {
         var source = Assets.getText(Paths.shaderFragment('BlurAndFade', 'torchs_assets'));
-        source += "\n#define INSTANCE_ID_" + ((instanceID != null && instanceID != '') ? instanceID : Std.string(Std.random(999999))); // This makes sure you can have MULTIPLE of this effect if you want
+        source += "\n#define INSTANCE_ID_" + ((instanceID != null && instanceID != '') ? instanceID : Std.string(Std.random(999))); // This makes sure you can have MULTIPLE of this effect if you want
         super(source);
         this.parent = parent;
         this.blurAmount = blurAmount;

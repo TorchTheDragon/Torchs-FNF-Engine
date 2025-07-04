@@ -16,9 +16,8 @@ class GlitchEffect extends FlxRuntimeShader {
 
     public function new(?chromatic:Bool = true, ?jitter:Bool = true, ?wave:Bool = true, ?scanlines:Bool = true, ?chunkShift:Bool = true, ?invert:Bool = false, ?doTimer:Bool = true) {
         var source = Assets.getText(Paths.shaderFragment('Glitch', 'torchs_assets'));
-        source += "\n#define INSTANCE_ID_" + Std.string(Std.random(999999)); // This makes sure you can have MULTIPLE of this effect if you want
+        source += "\n#define INSTANCE_ID_" + Std.string(Std.random(999)); // This makes sure you can have MULTIPLE of this effect if you want
         super(source);
-        this.doTimer = doTimer;
         this.chromatic = chromatic;
         this.jitter = jitter;
         this.wave = wave;
@@ -26,7 +25,8 @@ class GlitchEffect extends FlxRuntimeShader {
         this.chunkShift = chunkShift;
         this.invert = invert;
         glitchTimer = new FlxTimer();
-        scheduleGlitchRefresh();
+        this.doTimer = doTimer;
+        //scheduleGlitchRefresh();
         randomizeGlitches();
     }
 
