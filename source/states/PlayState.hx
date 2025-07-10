@@ -201,6 +201,8 @@ class PlayState extends MusicBeatState
 	public var enemyNoteSplashes:Bool = false;
 	public var enemyCoverSplashes:Bool = false;
 
+	public var cameraZoomTween:FlxTween;
+	public var cameraFollowTween:FlxTween;
 	public var camZooming:Bool = false;
 	public var camZoomingMult:Float = 1;
 	public var camZoomingDecay:Float = 1;
@@ -444,6 +446,7 @@ class PlayState extends MusicBeatState
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
 			case 'stageErect': new StageErect();		//Erect
+			case 'mallErect': new MallErect();			//Mall Erect
 			case 'phillyErect': new PhillyErect();		//Philly Erect
 			case 'tankErect': new TankErect();			//Tank Erect
 		}
@@ -2016,7 +2019,104 @@ class PlayState extends MusicBeatState
 		}
 	}
 	#end
-
+//All this functions are adapted from FNF's original code (emojiConLEnguaDeDinero)
+	public function resetCamera(?resetZoom:Bool = true, ?cancelTweens:Bool = true):Void
+		{
+			// Cancel camera tweens if any are active.
+			if (cancelTweens)
+			{
+				cancelAllCameraTweens();
+			}
+		  
+			FlxG.camera.follow(camFollow, LOCKON, 0);
+			FlxG.camera.targetOffset.set();
+		  
+			if (resetZoom)
+			{
+				resetCameraZoom();
+			}
+		  
+		}
+	
+		public function tweenCameraToPosition(?x:Float, ?y:Float, ?duration:Float, ?ease:Null<Float->Float>):Void
+		{
+			camFollow.setPosition(x, y);
+			tweenCameraToFollowPoint(duration, ease);
+		}
+	
+		public function resetCameraZoom():Void
+		{
+			// Apply camera zoom level from stage data.
+			FlxG.camera.zoom = defaultCamZoom;
+		  
+		}
+		  
+		public function tweenCameraToFollowPoint(?duration:Float, ?ease:Null<Float->Float>):Void
+		{
+			// Cancel the current tween if it's active.
+			cancelCameraFollowTween();
+		  
+			if (duration == 0)
+			{
+			// Instant movement. Just reset the camera to force it to the follow point.
+				resetCamera(false, false);
+			}
+			else
+			{
+				// Follow tween! Caching it so we can cancel/pause it later if needed.
+				var followPos:FlxPoint = camFollow.getPosition() - FlxPoint.weak(FlxG.camera.width * 0.5, FlxG.camera.height * 0.5);
+				cameraFollowTween = FlxTween.tween(FlxG.camera.scroll, {x: followPos.x, y: followPos.y}, duration,
+				{
+					ease: ease,
+					onComplete: function(_) {
+					  resetCamera(false, false); // Re-enable camera following when the tween is complete.
+					}
+				});
+			}
+		}
+		  
+		public function cancelCameraFollowTween()
+		{
+			if (cameraFollowTween != null)
+			{
+				cameraFollowTween.cancel();
+			}
+		}
+		  
+		public function tweenCameraZoom(?zoom:Float, ?duration:Float, ?direct:Bool, ?ease:Null<Float->Float>):Void
+		{
+			// Cancel the current tween if it's active.
+			cancelCameraZoomTween();
+		  
+			// Direct mode: Set zoom directly.
+			// Stage mode: Set zoom as a multiplier of the current stage's default zoom.
+			var targetZoom = zoom * (direct ? FlxCamera.defaultZoom : defaultCamZoom);
+		  
+			if (duration == 0)
+			{
+				// Instant zoom. No tween needed.
+				FlxG.camera.zoom = targetZoom;
+			}
+			else
+			{
+				// Zoom tween! Caching it so we can cancel/pause it later if needed.
+				cameraZoomTween = FlxTween.tween(FlxG.camera, {zoom: targetZoom}, duration, {ease: ease});
+			}
+		}
+		  
+		public function cancelCameraZoomTween()
+		{
+			if (cameraZoomTween != null)
+			{
+				cameraZoomTween.cancel();
+			}
+		}
+		  
+		public function cancelAllCameraTweens()
+		{
+			cancelCameraFollowTween();
+			cancelCameraZoomTween();
+		}
 	// Updating Discord Rich Presence.
 	public var autoUpdateRPC:Bool = true; //performance setting for custom RPC things
 	function resetRPC(?showTime:Bool = false)
