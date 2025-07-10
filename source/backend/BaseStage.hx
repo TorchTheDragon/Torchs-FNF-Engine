@@ -41,7 +41,7 @@ class BaseStage extends FlxBasic {
 	public var paused(get, never):Bool;
 	public var songName(get, never):String;
 	public var isStoryMode(get, never):Bool;
-	public var seenCutscene(get, never):Bool;
+	public var seenCutscene(get, set):Bool;
 	public var inCutscene(get, set):Bool;
 	public var canPause(get, set):Bool;
 	public var members(get, never):Array<FlxBasic>;
@@ -174,6 +174,10 @@ class BaseStage extends FlxBasic {
 	inline private function get_songName() return game.songName;
 	inline private function get_isStoryMode() return PlayState.isStoryMode;
 	inline private function get_seenCutscene() return PlayState.seenCutscene;
+	inline private function set_seenCutscene(value:Bool) {
+		PlayState.seenCutscene = value;
+		return value;
+	}
 	inline private function get_inCutscene() return game.inCutscene;
 	inline private function set_inCutscene(value:Bool) {
 		game.inCutscene = value;
@@ -211,6 +215,9 @@ class BaseStage extends FlxBasic {
 		return game.defaultCamZoom;
 	}
 	inline private function get_camFollow():FlxObject return game.camFollow;
+	inline public function camFollow_set(x:Float,y:Float) {
+		camFollow.setPosition(x,y);
+	}
 
 	function playWeekSound(name:String, ?modsAllowed:Bool = true) { // So you don't have to add the "true" to everything in case you forget
 		return Paths.sound(name, '', true, modsAllowed);

@@ -1,8 +1,10 @@
 package states.stages;
 
 import states.stages.objects.*;
+import states.stages.cutscenes.TwoPicos;
 import objects.Character;
 import torchsthings.shaders.RTXShader;
+import cutscenes.CutsceneHandler;
 import flash.display.BlendMode;
 import torchsthings.shaders.*;
 import torchsthings.shaders.AdjustColorShader;
@@ -58,7 +60,8 @@ class PhillyErect extends BaseStage
 		phillyStreet = new BGSprite('philly/erect/street', -40, 50);
 		add(phillyStreet);
 
-		
+		//Debería haber un !seenCutscene para esto, pero como los pico mixes aún no están implementados lo dejo así para testear 
+		if(PlayState.SONG.player1 == "pico-playable" && PlayState.SONG.player2 == "pico") setStartCallback(new TwoPicos(this).startCutscene);
 		/*
 		// Just leaving these here as the defaults
 		rtxTest.overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
@@ -81,6 +84,7 @@ class PhillyErect extends BaseStage
 			dad.shader = colorShader;
 			gf.shader = colorShader;
 			phillyTrain.shader = colorShader;
+			
 	}
 
 	override function eventPushed(event:objects.Note.EventNote)
@@ -227,6 +231,7 @@ class PhillyErect extends BaseStage
 								{
 									var particle:PhillyGlowParticle = phillyGlowParticles.recycle(PhillyGlowParticle);
 									particle.x = -400 + width * i + FlxG.random.float(-width / 5, width / 5);
+
 									particle.y = phillyGlowGradient.originalY + 200 + (FlxG.random.float(0, 125) + j * 40);
 									particle.color = color;
 									particle.start();
