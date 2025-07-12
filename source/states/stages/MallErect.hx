@@ -12,20 +12,15 @@ class MallErect extends BaseStage
 {
 	var upperBoppers:BGSprite;
 	var bottomBoppers:MallCrowdErect;
-	var santa:BGSprite;
+	public var santa:BGSprite;
 	var blanked:BGSprite;
 	var colorShader:AdjustColorShader;
-	var parentsCutscene:FlxAnimate;
-	var santaDead:FlxAnimate;
 	var blackScreen:FlxSprite;
 	var cutsceneHandler:CutsceneHandler;
 	var mallErectCutscene:CutsceneMallErect;
 
 	override function create()
 	{
-		mallErectCutscene = new CutsceneMallErect(this);
-        mallErectCutscene.preloadCutscene();
-
 		var bg:BGSprite = new BGSprite('christmas/erect/bgWalls', -1000, -500, 0.2, 0.2);
 		bg.setGraphicSize(Std.int(bg.width * 0.8));
 		bg.updateHitbox();
@@ -63,14 +58,13 @@ class MallErect extends BaseStage
 		playWeekSound('Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
-		if (!isStoryMode)
+		if (!isStoryMode && !seenCutscene)
+		{
 			if (PlayState.SONG.song.toLowerCase() == "eggnog")
 			{
-                setEndCallback(mallErectCutscene.playCutscene); // Usa la cutscene como callback
-
+                setEndCallback(new CutsceneMallErect(this).eggnogErectCutscene);
 			}
-		if(isStoryMode && !seenCutscene)
-			setEndCallback(eggnogEndCutscene);
+		}
 	}
 
 	override function createPost () 
