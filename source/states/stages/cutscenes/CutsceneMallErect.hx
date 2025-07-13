@@ -8,6 +8,7 @@ import flixel.util.FlxSignal;
 import flash.display.BlendMode;
 import flixel.FlxObject;
 import backend.BaseStage;
+import torchsthings.shaders.AdjustColorShader;
 class CutsceneMallErect {
     //PreloadCutscene
 
@@ -42,6 +43,8 @@ class CutsceneMallErect {
         santa.anim.addBySymbol("olaa2","santa whole scene", 24, false);
         santa.setPosition(stage.santa.x + 360, stage.santa.y + 350);
         dadmom.setPosition(stage.dadGroup.x -620, stage.dadGroup.y + 400);
+		santa.shader = stage.makecolorShader(-20,-15,0,-10);
+		dadmom.shader = stage.makecolorShader(-20,-15,0,-10);
 	
 		game.inCutscene = true;
 		game.isCameraOnForcedPos = true;
@@ -58,6 +61,7 @@ class CutsceneMallErect {
 
 		cutsceneHandler.finishCallback = function() {
 			game.inCutscene = false;
+			stage.seenCutscene = true;
 			stage.camHUD.fade(0xFF000000, 0.5, true, null, true);
 			new FlxTimer().start(0.5, function(tmr) {
 				game.endSong();

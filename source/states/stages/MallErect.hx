@@ -127,7 +127,7 @@ class MallErect extends BaseStage
 		}
 		else endSong();
 	}
-	function makecolorShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
+	public function makecolorShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
         colorShader = new AdjustColorShader();
         colorShader.hue = hue;
         colorShader.saturation = sat;
