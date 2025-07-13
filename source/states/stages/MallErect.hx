@@ -17,7 +17,6 @@ class MallErect extends BaseStage
 	var colorShader:AdjustColorShader;
 	var blackScreen:FlxSprite;
 	var cutsceneHandler:CutsceneHandler;
-	var mallErectCutscene:CutsceneMallErect;
 
 	override function create()
 	{
@@ -58,7 +57,7 @@ class MallErect extends BaseStage
 		playWeekSound('Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
-		if (!isStoryMode && !seenCutscene)
+		if (!isStoryMode) //Lol
 		{
 			if (PlayState.SONG.song.toLowerCase() == "eggnog")
 			{
