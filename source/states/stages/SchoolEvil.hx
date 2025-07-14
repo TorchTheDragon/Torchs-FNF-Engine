@@ -5,34 +5,17 @@ import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 import openfl.utils.Assets as OpenFlAssets;
+import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
-import torchsthings.shaders.CRT;
-import torchsthings.objects.effects.ShadowEffect;
 import openfl.filters.ShaderFilter;
 
-class SchoolEvil extends BaseStage {
-	// var glitch:GlitchEffect;
-	// var gfGlitch:GlitchEffect;
-	// var backgroundGlitch:GlitchEffect;
-	// var glitchFilter:ShaderFilter;
-	var crt:CRT;
-	var crtFilter:ShaderFilter;
+class SchoolEvil extends BaseStage
+{
+	var crt:CRT = new CRT(true);
+	var shaderFilter:ShaderFilter;
 
-	override function create() {
-		if (ClientPrefs.data.shaders) {
-			crt = new CRT(true);
-
-			// if (ClientPrefs.data.intenseShaders) {
-			// 	glitch = new GlitchEffect(true, true, true, true, true, true, false);
-			// 	gfGlitch = new GlitchEffect(true, true, true, true, true, false, false);
-			// 	backgroundGlitch = new GlitchEffect(true, true, true, true, true, false, false);
-			// }
-			// else {
-			// 	glitch = new GlitchEffect(true, false, false, false, true, false, false);
-			// 	gfGlitch = new GlitchEffect(true, false, false, false, true, false, false);
-			// }
-		}
-		
+	override function create()
+	{
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
@@ -50,7 +33,6 @@ class SchoolEvil extends BaseStage {
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
 		bg.antialiasing = false;
-		// if (ClientPrefs.data.shaders && ClientPrefs.data.intenseShaders && backgroundGlitch != null) bg.shader = backgroundGlitch;
 		add(bg);
 		setDefaultGF('gf-pixel');
 
@@ -62,53 +44,23 @@ class SchoolEvil extends BaseStage {
 			setStartCallback(schoolIntro);
 		}
 	}
+
+	override function update(elapsed:Float)
+	{
+		if (ClientPrefs.data.shaders) {
+		crt.update(elapsed);
+		}
+	}
 	override function createPost()
 	{
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
+		var trail:FlxTrail = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
+		addBehindDad(trail);
 		if (ClientPrefs.data.shaders) {
-			// crtFilter = new ShaderFilter(crt);
-			// glitchFilter = new ShaderFilter(glitch);
-			// gf.shader = gfGlitch;
-			ShaderUtils.applyFiltersToCams([camGame],  [crtFilter]);
-			ShaderUtils.applyFiltersToCams([camHUD], [crtFilter]);
-		}
-		
-		var changePos:Float = 200;
-		dad.cameras = boyfriend.cameras = [camHUD]; 
-		dad.y -= changePos;
-		trail.y -= changePos;
-		dad.cameraPosition[1] += changePos;
-		boyfriend.y -= changePos;
-		boyfriend.cameraPosition[1] += changePos;
-		
-		var shadows1 = ShadowEffect.createShadows(dad, 0xFF3C6E, 200, 'spirit', 4, 0.25, -(changePos));
-		PlayState.instance.shadowEffects.push(shadows1);
-		for (shadow in shadows1) {
-			addBehindDad(shadow);
-		}
-		var shadows2 = ShadowEffect.createShadows(boyfriend, 0x00F0FF, 200, 'boyfriend', 4, 0.25, -(changePos));
-		PlayState.instance.shadowEffects.push(shadows2);
-		for (shadow in shadows2) {
-			addBehindBF(shadow);
-		}
-	}
-	override function stepHit() {
-		// if (ClientPrefs.data.shaders) {
-		// 	if (curStep % 16 == 0) glitch.randomizeGlitches();
-		// 	if (curStep % 8 == 0) {
-		// 		gfGlitch.randomizeGlitches();
-		// 		if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.randomizeGlitches();
-		// 	}
-		// }
-	}
-	override function update(elapsed:Float) {
-		if (ClientPrefs.data.shaders) {
-			// glitch.update(elapsed);
-			// gfGlitch.update(elapsed);
-			// if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
-			
-			crt.update(elapsed);
+		shaderFilter = new ShaderFilter(crt);
+		ShaderUtils.applyFiltersToCams([camGame],  [shaderFilter]);
+		ShaderUtils.applyFiltersToCams([camHUD, camOther], [shaderFilter]);
 		}
 	}
 
@@ -119,7 +71,6 @@ class SchoolEvil extends BaseStage {
 		switch(eventName)
 		{
 			case "Trigger BG Ghouls":
-				PlayState.instance.eventExisted = true;
 				if(!ClientPrefs.data.lowQuality)
 				{
 					bgGhouls.dance(true);
@@ -140,7 +91,6 @@ class SchoolEvil extends BaseStage {
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
 					bgGhouls.antialiasing = false;
-					// if (ClientPrefs.data.shaders) bgGhouls.shader = gfGlitch;
 					bgGhouls.animation.finishCallback = function(name:String)
 					{
 						if(name == 'BG freaks glitch instance')

@@ -451,6 +451,7 @@ class PlayState extends MusicBeatState
 			case 'limoErect': new LimoErect();			//Limo Erect
 			case 'mallErect': new MallErect();			//Mall Erect
 			case 'schoolErect': new SchoolErect();		//School Erect
+			case 'schoolEvilErect': new SchoolEvilErect();	//School Evil Erect
 			case 'tankErect': new TankErect();			//Tank Erect
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
