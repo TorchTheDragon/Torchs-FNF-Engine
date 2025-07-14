@@ -6,6 +6,9 @@ import objects.NoteSplash;
 import objects.Alphabet;
 import torchsthings.objects.StrumCover;
 import torchsthings.utils.WindowUtils;
+import torchsthings.objects.ImageBar;
+import lime.utils.Assets;
+import openfl.utils.Assets as OpenFlAssets;
 
 class TorchsEngineSettingsState extends BaseOptionsMenu
 {
@@ -14,6 +17,10 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 	var splashes:FlxTypedGroup<NoteSplash>;
 	var strums:FlxTypedGroup<StrumCover>;
 	var noteY:Float = 90;
+	var healthBar:ImageBar;
+	var healthBarSettings:BarSettings = null;
+	var healthBarY:Float = -200;
+	var barGroup:FlxTypedGroup<ImageBar>;
 	public function new()
 	{
 		//title = Language.getPhrase('torchsoptions_menu', 'Torchs Engine Settings');
@@ -47,7 +54,8 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			splash.rgbShader.copyValues(Note.globalRgbShaders[i % Note.colArray.length]);
 		}
 
-
+		barGroup = new FlxTypedGroup<ImageBar>();
+		reloadHealthBar();
 
 		var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
 		if (strumSkins.length > 0) {
@@ -87,6 +95,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			STRING,
 			healthSkins);
 		addOption(option);
+		option.onChange = reloadHealthBar;
 
 		var option:Option = new Option('Speaker Skin:',
 			"What speaker skin do you want to use?",
@@ -145,9 +154,11 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 		add(notes);
 		add(splashes);
 		add(strums);
+        add(barGroup);
 	}
 	
 	var notesShown:Bool = false;
+	var barShown:Bool = false;
 	override function changeSelection(change:Int = 0)
 	{
 		super.changeSelection(change);
@@ -167,6 +178,31 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 				if(curOption.variable.startsWith('splash') && Math.abs(notes.members[0].y - noteY) < 25) playNoteSplashes();
 				if(curOption.variable.startsWith('strum') && Math.abs(notes.members[0].y - noteY) < 25) playStrumCovers();
 
+				if(barShown)
+				{
+					FlxTween.cancelTweensOf(healthBar);
+					FlxTween.tween(healthBar, {y: noteY}, 0.3, {ease: FlxEase.quadInOut});
+				}
+				barShown = false;
+
+			case 'healthBarSkin':
+				if(!barShown)
+				{
+					FlxTween.cancelTweensOf(healthBar);
+					FlxTween.tween(healthBar, {y: noteY}, 0.3, {ease: FlxEase.quadInOut});
+				}
+				barShown = true;
+				healthBarY = healthBar.y;
+				if(notesShown) 
+				{
+					for (note in notes.members)
+					{
+						FlxTween.cancelTweensOf(note);
+						FlxTween.tween(note, {y: -200}, Math.abs(note.y / (200 + noteY)) / 3, {ease: FlxEase.quadInOut});
+					}
+				}
+				notesShown = false;
+
 			default:
 				if(notesShown) 
 				{
@@ -177,6 +213,13 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 					}
 				}
 				notesShown = false;
+				if (barShown) {
+					if (healthBar != null) {
+						FlxTween.cancelTweensOf(healthBar);
+						FlxTween.tween(healthBar, {y: -200}, 0.3, {ease: FlxEase.quadInOut});
+					}
+				}
+				barShown = false;
 		}
 	}
 
@@ -274,6 +317,29 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			if (strums.members.length > 0) for (strum in strums) if (strum != null) strum.end();
 			strumTime = null;
 		});
+	}
+
+	function reloadHealthBar()
+	{
+		healthBarSettings = switch (ClientPrefs.data.healthBarSkin) {
+			case "Char Based":
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Default", "shared").replace("data", "images")));
+			case "Reanimated":
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Reanimated", "shared").replace("data", "images")));
+			case "Default":
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Default", "shared").replace("data", "images")));
+			default:
+				haxe.Json.parse(Assets.getText(Paths.json("healthbars/" + ClientPrefs.data.healthBarSkin, "shared").replace("data", "images")));
+		}
+		if (healthBar != null)
+		{
+			healthBarY = healthBar.y;
+			healthBar.destroy();
+		}
+		healthBar = new ImageBar(0, healthBarY, healthBarSettings, 0xFFAF66CE, 0xFF31AFD0);
+		healthBar.scrollFactor.set();
+		healthBar.screenCenter(X);
+		barGroup.add(healthBar);
 	}
 
 	override function destroy()
