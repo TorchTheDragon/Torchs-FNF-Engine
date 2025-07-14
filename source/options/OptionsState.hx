@@ -13,7 +13,8 @@ class OptionsState extends MusicBeatState
 		'Graphics',
 		'Visuals',
 		'Gameplay'
-		#if TRANSLATIONS_ALLOWED , 'Language' #end
+		#if TRANSLATIONS_ALLOWED , 'Language', #end
+		'Torchs Engine Settings'
 	];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
@@ -37,6 +38,8 @@ class OptionsState extends MusicBeatState
 				MusicBeatState.switchState(new options.NoteOffsetState());
 			case 'Language':
 				openSubState(new options.LanguageSubState());
+			case 'Torchs Engine Settings':
+				openSubState(new options.TorchsEngineSettingsState());
 		}
 	}
 

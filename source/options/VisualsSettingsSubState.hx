@@ -94,51 +94,51 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = playNoteSplashes;
 
-		var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
-		if (strumSkins.length > 0) {
-			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
-				ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
+		// var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
+		// if (strumSkins.length > 0) {
+		// 	if (!strumSkins.contains(ClientPrefs.data.strumSkin))
+		// 		ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
 
-			strumSkins.insert(0, ClientPrefs.defaultData.strumSkin);
-			var option:Option = new Option('Strum Covers:',
-				"Select your prefered Strum Cover variation.",
-				'strumSkin',
-				STRING,
-				strumSkins);
-			addOption(option);
-			option.onChange = playStrumCovers;
-		}
+		// 	strumSkins.insert(0, ClientPrefs.defaultData.strumSkin);
+		// 	var option:Option = new Option('Strum Covers:',
+		// 		"Select your prefered Strum Cover variation.",
+		// 		'strumSkin',
+		// 		STRING,
+		// 		strumSkins);
+		// 	addOption(option);
+		// 	option.onChange = playStrumCovers;
+		// }
 
-		var option:Option = new Option('Character Based Notes:',
-			"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
-			'characterNoteColors',
-			STRING,
-			['Enabled', 'Opponent\nOnly', 'Disabled']);
-		addOption(option);
+		// var option:Option = new Option('Character Based Notes:',
+		// 	"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
+		// 	'characterNoteColors',
+		// 	STRING,
+		// 	['Enabled', 'Opponent\nOnly', 'Disabled']);
+		// addOption(option);
 
-		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
-		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin)) {
-			healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
-		}
-		if (!healthSkins.contains('Char Based')) {
-			healthSkins.insert(1, 'Char Based');
-		}
-		if (!healthSkins.contains(ClientPrefs.data.healthBarSkin)) {
-			ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
-		}
-		var option:Option = new Option('Health Bar Skin:',
-			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
-			'healthBarSkin',
-			STRING,
-			healthSkins);
-		addOption(option);
+		// var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
+		// if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin)) {
+		// 	healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
+		// }
+		// if (!healthSkins.contains('Char Based')) {
+		// 	healthSkins.insert(1, 'Char Based');
+		// }
+		// if (!healthSkins.contains(ClientPrefs.data.healthBarSkin)) {
+		// 	ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
+		// }
+		// var option:Option = new Option('Health Bar Skin:',
+		// 	"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
+		// 	'healthBarSkin',
+		// 	STRING,
+		// 	healthSkins);
+		// addOption(option);
 
-		var option:Option = new Option('Speaker Skin:',
-			"What speaker skin do you want to use?",
-			'speakerSkin',
-			STRING,
-			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
-		addOption(option);
+		// var option:Option = new Option('Speaker Skin:',
+		// 	"What speaker skin do you want to use?",
+		// 	'speakerSkin',
+		// 	STRING,
+		// 	["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
+		// addOption(option);
 
 		#if desktop
 		var option:Option = new Option('Volume Bop',
@@ -148,51 +148,51 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		#end
 
-		var option:Option = new Option('Show Credits',
-			'Uncheck this if you dont want to see the credits on song start',
-			'showSongCredits',
-			'bool');
-		addOption(option);
+		// var option:Option = new Option('Show Credits',
+		// 	'Uncheck this if you dont want to see the credits on song start',
+		// 	'showSongCredits',
+		// 	'bool');
+		// addOption(option);
 
-		var option:Option = new Option('Dynamic Cam. Move Amount',
-			'The camera move depending on the note pressed using this value \nif the value is zero, it is disabled',
-			'extraCamMovementAmount',
-			INT);
-		option.scrollSpeed = 2.5;
-		option.minValue = 0;
-		option.maxValue = 100;
-		option.changeValue = 1;
-		option.decimals = 1;
-		addOption(option);
+		// var option:Option = new Option('Dynamic Cam. Move Amount',
+		// 	'The camera move depending on the note pressed using this value \nif the value is zero, it is disabled',
+		// 	'extraCamMovementAmount',
+		// 	INT);
+		// option.scrollSpeed = 2.5;
+		// option.minValue = 0;
+		// option.maxValue = 100;
+		// option.changeValue = 1;
+		// option.decimals = 1;
+		// addOption(option);
 
-		var option:Option = new Option('Icons Dance:',
-			"Combine up to 2 icon animations!",
-			'iconAnims',
-			ARRAY, 
-			[
-				'Default', 
-                'Arrow Funk', 
-                'GF Dance', 
-                'Zoom In And Out', 
-                'Bounce', 
-                'Heartbeat', 
-                'Spin', 
-                'Color Flash', 
-                'Stretch', 
-                'Mirror Flip', 
-                'Beat Drop', 
-                'Color Cycle', 
-                'Vertical Shake',
-                'Pulse',   
-                'Pop',        
-                'Tilt',         
-                'Glow',             
-                'Disabled'
-			],
-			null,
-			2 
-		);
-		addOption(option);
+		// var option:Option = new Option('Icons Dance:',
+		// 	"Combine up to 2 icon animations!",
+		// 	'iconAnims',
+		// 	ARRAY, 
+		// 	[
+		// 		'Default', 
+        //         'Arrow Funk', 
+        //         'GF Dance', 
+        //         'Zoom In And Out', 
+        //         'Bounce', 
+        //         'Heartbeat', 
+        //         'Spin', 
+        //         'Color Flash', 
+        //         'Stretch', 
+        //         'Mirror Flip', 
+        //         'Beat Drop', 
+        //         'Color Cycle', 
+        //         'Vertical Shake',
+        //         'Pulse',   
+        //         'Pop',        
+        //         'Tilt',         
+        //         'Glow',             
+        //         'Disabled'
+		// 	],
+		// 	null,
+		// 	2 
+		// );
+		// addOption(option);
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
