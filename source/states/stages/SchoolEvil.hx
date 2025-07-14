@@ -6,16 +6,15 @@ import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 import openfl.utils.Assets as OpenFlAssets;
 import torchsfunctions.functions.ShaderUtils;
-import torchsthings.shaders.GlitchEffect;
 import torchsthings.shaders.CRT;
 import torchsthings.objects.effects.ShadowEffect;
 import openfl.filters.ShaderFilter;
 
 class SchoolEvil extends BaseStage {
-	var glitch:GlitchEffect;
-	var gfGlitch:GlitchEffect;
-	var backgroundGlitch:GlitchEffect;
-	var glitchFilter:ShaderFilter;
+	// var glitch:GlitchEffect;
+	// var gfGlitch:GlitchEffect;
+	// var backgroundGlitch:GlitchEffect;
+	// var glitchFilter:ShaderFilter;
 	var crt:CRT;
 	var crtFilter:ShaderFilter;
 
@@ -23,15 +22,15 @@ class SchoolEvil extends BaseStage {
 		if (ClientPrefs.data.shaders) {
 			crt = new CRT(true);
 
-			if (ClientPrefs.data.intenseShaders) {
-				glitch = new GlitchEffect(true, true, true, true, true, true, false);
-				gfGlitch = new GlitchEffect(true, true, true, true, true, false, false);
-				backgroundGlitch = new GlitchEffect(true, true, true, true, true, false, false);
-			}
-			else {
-				glitch = new GlitchEffect(true, false, false, false, true, false, false);
-				gfGlitch = new GlitchEffect(true, false, false, false, true, false, false);
-			}
+			// if (ClientPrefs.data.intenseShaders) {
+			// 	glitch = new GlitchEffect(true, true, true, true, true, true, false);
+			// 	gfGlitch = new GlitchEffect(true, true, true, true, true, false, false);
+			// 	backgroundGlitch = new GlitchEffect(true, true, true, true, true, false, false);
+			// }
+			// else {
+			// 	glitch = new GlitchEffect(true, false, false, false, true, false, false);
+			// 	gfGlitch = new GlitchEffect(true, false, false, false, true, false, false);
+			// }
 		}
 		
 		var _song = PlayState.SONG;
@@ -51,7 +50,7 @@ class SchoolEvil extends BaseStage {
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
 		bg.antialiasing = false;
-		if (ClientPrefs.data.shaders && ClientPrefs.data.intenseShaders && backgroundGlitch != null) bg.shader = backgroundGlitch;
+		// if (ClientPrefs.data.shaders && ClientPrefs.data.intenseShaders && backgroundGlitch != null) bg.shader = backgroundGlitch;
 		add(bg);
 		setDefaultGF('gf-pixel');
 
@@ -68,10 +67,10 @@ class SchoolEvil extends BaseStage {
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
 		if (ClientPrefs.data.shaders) {
-			crtFilter = new ShaderFilter(crt);
-			glitchFilter = new ShaderFilter(glitch);
-			gf.shader = gfGlitch;
-			ShaderUtils.applyFiltersToCams([camGame],  [glitchFilter, crtFilter]);
+			// crtFilter = new ShaderFilter(crt);
+			// glitchFilter = new ShaderFilter(glitch);
+			// gf.shader = gfGlitch;
+			ShaderUtils.applyFiltersToCams([camGame],  [crtFilter]);
 			ShaderUtils.applyFiltersToCams([camHUD], [crtFilter]);
 		}
 		
@@ -95,19 +94,19 @@ class SchoolEvil extends BaseStage {
 		}
 	}
 	override function stepHit() {
-		if (ClientPrefs.data.shaders) {
-			if (curStep % 16 == 0) glitch.randomizeGlitches();
-			if (curStep % 8 == 0) {
-				gfGlitch.randomizeGlitches();
-				if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.randomizeGlitches();
-			}
-		}
+		// if (ClientPrefs.data.shaders) {
+		// 	if (curStep % 16 == 0) glitch.randomizeGlitches();
+		// 	if (curStep % 8 == 0) {
+		// 		gfGlitch.randomizeGlitches();
+		// 		if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.randomizeGlitches();
+		// 	}
+		// }
 	}
 	override function update(elapsed:Float) {
 		if (ClientPrefs.data.shaders) {
-			glitch.update(elapsed);
-			gfGlitch.update(elapsed);
-			if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
+			// glitch.update(elapsed);
+			// gfGlitch.update(elapsed);
+			// if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
 			
 			crt.update(elapsed);
 		}
@@ -141,7 +140,7 @@ class SchoolEvil extends BaseStage {
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
 					bgGhouls.antialiasing = false;
-					if (ClientPrefs.data.shaders) bgGhouls.shader = gfGlitch;
+					// if (ClientPrefs.data.shaders) bgGhouls.shader = gfGlitch;
 					bgGhouls.animation.finishCallback = function(name:String)
 					{
 						if(name == 'BG freaks glitch instance')

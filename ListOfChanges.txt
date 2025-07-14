@@ -96,3 +96,12 @@ Added a very small template for FlxRuntimeShaders, it is really basic...
 Added "addBehindSpeaker" function to BaseStage - JorgeX_YT
 Added Graphics setting for more intense shaders, in a sense allow people to choose between basic shaders or the more intense ones (Shaders will have to be enabled for this one to work)
 Edited Glitch Shader again to allow defining varaibles through the new function
+Pico Doppleganger Cinematic - Lawornot
+Eggnog Erect End Cutscene - Lawornot
+New Options Substate For Engine's Original Settings - Lawornot
+HealthBar Type Preview In Setting - Lawornot
+HealthBar in IconsDanceSubMenu and removing the “Cancel” option because it felt a bit unintuitive - Lawornot
+New menu to choose between different engine settings -Lawornot
+
+
+
