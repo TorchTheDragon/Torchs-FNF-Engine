@@ -322,11 +322,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 	function reloadHealthBar()
 	{
 		healthBarSettings = switch (ClientPrefs.data.healthBarSkin) {
-			case "Char Based":
-				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Default", "shared").replace("data", "images")));
-			case "Reanimated":
-				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Reanimated", "shared").replace("data", "images")));
-			case "Default":
+			case "Default" | "Char Based":
 				haxe.Json.parse(Assets.getText(Paths.json("healthbars/Default", "shared").replace("data", "images")));
 			default:
 				haxe.Json.parse(Assets.getText(Paths.json("healthbars/" + ClientPrefs.data.healthBarSkin, "shared").replace("data", "images")));
