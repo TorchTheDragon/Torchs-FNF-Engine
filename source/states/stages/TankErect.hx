@@ -71,7 +71,7 @@ class TankErect extends BaseStage
 							var tankBih = tankmanRun.recycle(TankmenBG);
                             applyShader(tankBih, "");
                             if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
-                            cast(tankBih.shader, DropShadowShader).threshold = 0.3;
+                            cast(tankBih.shader, DropShadowShader).threshold = 0.5;
                             }
 							tankBih.strumTime = TankmenBG.animationNotes[i][0];
 							tankBih.scale.set(1.05, 1.05);
@@ -97,7 +97,7 @@ class TankErect extends BaseStage
 							var tankBih = tankmanRun.recycle(TankmenBG);
                             applyShader(tankBih, "");
                             if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
-                            cast(tankBih.shader, DropShadowShader).threshold = 0.3;
+                            cast(tankBih.shader, DropShadowShader).threshold = 0.5;
                             }   
 							tankBih.strumTime = TankmenBG.animationNotes[i][0];
 							tankBih.scale.set(1.05, 1.05);

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="limoDrive.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Limo stage0000" x="0" y="0" width="2526" height="654" frameX="0" frameY="-3" frameWidth="2529" frameHeight="657"/>
+	<SubTexture name="Limo stage0001" x="0" y="654" width="2521" height="656" frameX="0" frameY="-1" frameWidth="2529" frameHeight="657"/>
+	<SubTexture name="Limo stage0002" x="0" y="1310" width="2529" height="656" frameX="0" frameY="-1" frameWidth="2529" frameHeight="657"/>
+	<SubTexture name="Limo stage0003" x="0" y="1966" width="2519" height="657" frameX="0" frameY="0" frameWidth="2529" frameHeight="657"/>
+</TextureAtlas>
