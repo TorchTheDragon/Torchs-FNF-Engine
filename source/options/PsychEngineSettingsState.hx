@@ -4,11 +4,16 @@ import states.MainMenuState;
 import backend.StageData;
 import torchsthings.utils.WindowUtils;
 
-class OptionsState extends MusicBeatState
+class PsychEngineSettingsState extends MusicBeatState
 {
 	var options:Array<String> = [
-		'Psych Engine Settings',
-		'Torchs Engine Settings'
+		'Note Colors',
+		'Controls',
+		'Adjust Delay and Combo',
+		'Graphics',
+		'Visuals',
+		'Gameplay'
+		#if TRANSLATIONS_ALLOWED , 'Language' #end
 	];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
@@ -18,10 +23,20 @@ class OptionsState extends MusicBeatState
 	function openSelectedSubstate(label:String) {
 		switch(label)
 		{
-			case 'Psych Engine Settings':
-				MusicBeatState.switchState(new options.PsychEngineSettingsState());
-			case 'Torchs Engine Settings':
-				openSubState(new options.TorchsEngineSettingsState());
+			case 'Note Colors':
+				openSubState(new options.NotesColorSubState());
+			case 'Controls':
+				openSubState(new options.ControlsSubState());
+			case 'Graphics':
+				openSubState(new options.GraphicsSettingsSubState());
+			case 'Visuals':
+				openSubState(new options.VisualsSettingsSubState());
+			case 'Gameplay':
+				openSubState(new options.GameplaySettingsSubState());
+			case 'Adjust Delay and Combo':
+				MusicBeatState.switchState(new options.NoteOffsetState());
+			case 'Language':
+				openSubState(new options.LanguageSubState());
 		}
 	}
 
@@ -31,7 +46,7 @@ class OptionsState extends MusicBeatState
 	override function create()
 	{
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
+		DiscordClient.changePresence("Psych Engine Settings", null);
 		#end
 
 		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
@@ -71,7 +86,7 @@ class OptionsState extends MusicBeatState
 		super.closeSubState();
 		ClientPrefs.saveSettings();
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
+		DiscordClient.changePresence("Psych Engine Settings", null);
 		#end
 		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
 	}
@@ -86,14 +101,7 @@ class OptionsState extends MusicBeatState
 
 		if (controls.BACK)
 		{
-			FlxG.sound.play(Paths.sound('cancelMenu'));
-			if(onPlayState)
-			{
-				StageData.loadDirectory(PlayState.SONG);
-				LoadingState.loadAndSwitchState(new PlayState());
-				FlxG.sound.music.volume = 0;
-			}
-			else MusicBeatState.switchState(new MainMenuState());
+			MusicBeatState.switchState(new options.OptionsState());
 		}
 		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
 	}
