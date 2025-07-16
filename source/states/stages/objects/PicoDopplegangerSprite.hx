@@ -12,7 +12,7 @@ class PicoDopplegangerSprite extends FlxAtlasSprite
 
   public function new(x:Float, y:Float)
   {
-    super(x, y, 'assets/week3/images/philly/erect/cutscenes/pico_doppleganger', {
+    super(x, y, 'assets/week3/images/philly/erect/cutscenes/picodopplegangereanimated', {
       FrameRate: 24.0,
       Reversed: false,
       // ?OnComplete:Void -> Void,
