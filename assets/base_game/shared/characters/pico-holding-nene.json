@@ -1,0 +1,168 @@
+{
+	"animations": [
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Pico Idle Dance0"
+		},
+		{
+			"offsets": [24, -16],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Pico NOTE LEFT0"
+		},
+		{
+			"offsets": [96, -75],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Pico Down Note0"
+		},
+		{
+			"offsets": [49, -5],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "pico Up note0"
+		},
+		{
+			"offsets": [-53, -22],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Pico Note Right0"
+		},
+		{
+			"offsets": [4, 7],
+			"loop": false,
+			"fps": 24,
+			"anim": "laugh",
+			"indices": [],
+			"name": "pico nene laughing full0"
+		},
+		{
+			"offsets": [13, 26],
+			"loop": false,
+			"fps": 24,
+			"anim": "attack",
+			"indices": [],
+			"name": "pico nene knife toss0"
+		},
+		{
+			"offsets": [25, -17],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "note miss left pico nene0"
+		},
+		{
+			"offsets": [101, -76],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "note miss down pico nene0"
+		},
+		{
+			"offsets": [56, -2],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "note miss up piconene0"
+		},
+		{
+			"offsets": [-49, -22],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "note miss right pico nene0"
+		},
+		{
+			"offsets": [0, -38],
+			"indices": [],
+			"fps": 24,
+			"anim": "alone",
+			"loop": false,
+			"name": "Pico Idle solo Dance0"
+		},
+		{
+			"offsets": [294, 39],
+			"indices": [],
+			"fps": 24,
+			"anim": "catch nene",
+			"loop": false,
+			"name": "pico catch nene full"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"useNoteSkin": false,
+	"image": "characters/picoAndNene",
+	"position": [0, 265],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "pico-nene",
+	"flip_x": true,
+	"healthbar_colors": [133, 230, 81],
+	"disableNoteRGB": false,
+	"camera_position": [240, 10],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"up": [
+			-41728,
+			-1,
+			-9297408
+		],
+		"down": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"left": [
+			-41728,
+			-1,
+			-9297408
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

@@ -1,0 +1,31 @@
+{
+	"storyName": "Tankman",
+	"difficulties": "hard",
+	"hideFreeplay": false,
+	"weekBackground": "tank",
+	"weekBefore": "weekend1",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Stress-Pico-Mix",
+			"tankman",
+			[
+				246,
+				182,
+				4
+			]
+		]
+	],
+	"weekCharacters": [
+		"tankman",
+		"bf",
+		"gf"
+	],
+	"weekName": "Week 7"
+}

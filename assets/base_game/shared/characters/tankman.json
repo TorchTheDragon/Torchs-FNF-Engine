@@ -87,11 +87,19 @@
 			"anim": "singRIGHTmiss",
 			"indices": [],
 			"name": "Tankman Note Left MISS"
+		},
+		{
+			"offsets": [110, 118],
+			"loop": false,
+			"fps": 24,
+			"anim": "redheads",
+			"indices": [],
+			"name": "redheads anim0"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"image": "characters/tankmanCaptain",
+	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody",
 	"position": [0, 240],
 	"healthicon": "tankman",
 	"flip_x": true,

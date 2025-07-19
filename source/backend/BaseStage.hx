@@ -264,6 +264,8 @@ class BaseStage extends FlxBasic {
 				"base-christmas";
 			case "nene":
 				"abot";
+			case "otis-speaker":
+				"abot";
 			case "nene-pixel":
 				"abot-pixel";
 			case 'default':

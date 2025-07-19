@@ -1,0 +1,432 @@
+{
+	"events": [
+		[
+			0,
+			[
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			8258.42696629213,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			10786.5168539326,
+			[
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"]
+			]
+		],
+		[
+			18202.2471910112,
+			[
+				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
+			]
+		],
+		[
+			19887.6404494382,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			20393.2584269663,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			21573.0337078652,
+			[
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"],
+				["Camera Follow Pos", "600", "500"]
+			]
+		],
+		[
+			24269.6629213483,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			26966.2921348315,
+			[
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"],
+				["Camera Follow Pos", "600", "500"]
+			]
+		],
+		[
+			29662.9213483146,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			32359.5505617978,
+			[
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			39438.202247191,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			40617.9775280899,
+			[
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"]
+			]
+		],
+		[
+			41629.2134831461,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			43146.0674157303,
+			[
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"]
+			]
+		],
+		[
+			50393.2584269663,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			51404.4943820225,
+			[
+				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
+			]
+		],
+		[
+			52752.808988764,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			53584.9719101124,
+			[
+				["Cinematics", "2, 7", "70"]
+			]
+		],
+		[
+			53595.5056179775,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			53930.4775280899,
+			[
+				["Color Transform", "0.5", "nocolor, 8"]
+			]
+		],
+		[
+			55112.3595505618,
+			[
+				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
+			]
+		],
+		[
+			55617.9775280899,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			56797.7528089888,
+			[
+				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
+			]
+		],
+		[
+			58651.6853932584,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			58988.7640449438,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			59662.9213483146,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,expoOut"]
+			]
+		],
+		[
+			60000,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			62022.4719101124,
+			[
+				["HUD Fade", "0", "0.5"],
+				["Play Animation", "redheads", "dad"],
+				["Set Property", "cameraSpeed", "2"],
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"]
+			]
+		],
+		[
+			63332.8651685393,
+			[
+				["Play Animation", "attack", "bf"]
+			]
+		],
+		[
+			63370.7865168539,
+			[
+				["Updated Camera Zoom", "Main", "0.8,2,expoOut"]
+			]
+		],
+		[
+			64213.4831460674,
+			[
+				["Updated Camera Zoom", "Main", "0.65,2,expoOut"],
+				["Camera Follow Pos", "300", "500"]
+			]
+		],
+		[
+			64466.2921348315,
+			[
+				["Change Character", "dad", "tankman-bloody"],
+				["Play Animation", "redheads-loop", "dad"]
+			]
+		],
+		[
+			64719.1011235955,
+			[
+				["HUD Fade", "1", "0.5"],
+				["Set Property", "cameraSpeed", "1"],
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
+			]
+		],
+		[
+			64803.3707865168,
+			[
+				["Color Transform", "0", ""]
+			]
+		],
+		[
+			72808.988764045,
+			[
+				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
+			]
+		],
+		[
+			75421.3483146068,
+			[
+				["Cinematics", "2,19", "60"],
+				["Color Transform", "0.5", "nocolor, 21"]
+			]
+		],
+		[
+			75505.6179775281,
+			[
+				["Updated Camera Zoom", "Main", "0.5,2,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			78539.3258426967,
+			[
+				["Updated Camera Zoom", "Main", "0.52,3,expoOut"]
+			]
+		],
+		[
+			79382.0224719102,
+			[
+				["Updated Camera Zoom", "Main", "0.54,3,expoOut"]
+			]
+		],
+		[
+			81235.9550561799,
+			[
+				["Updated Camera Zoom", "Main", "0.56,3,expoOut"]
+			]
+		],
+		[
+			82078.6516853933,
+			[
+				["Updated Camera Zoom", "Main", "0.58,3,expoOut"]
+			]
+		],
+		[
+			83932.584269663,
+			[
+				["Updated Camera Zoom", "Main", "0.6,3,expoOut"]
+			]
+		],
+		[
+			84775.2808988765,
+			[
+				["Updated Camera Zoom", "Main", "0.63,3,expoOut"]
+			]
+		],
+		[
+			86292.1348314608,
+			[
+				["Updated Camera Zoom", "Main", "0.7,3,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			88988.7640449439,
+			[
+				["Updated Camera Zoom", "Main", "0.72,3,expoOut"]
+			]
+		],
+		[
+			90337.0786516855,
+			[
+				["Updated Camera Zoom", "Main", "0.74,3,expoOut"]
+			]
+		],
+		[
+			91685.3932584271,
+			[
+				["Updated Camera Zoom", "Main", "0.76,3,expoOut"]
+			]
+		],
+		[
+			93033.7078651687,
+			[
+				["Updated Camera Zoom", "Main", "0.78,3,expoOut"]
+			]
+		],
+		[
+			97078.6516853934,
+			[
+				["Updated Camera Zoom", "Main", "0.55,3,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			98426.966292135,
+			[
+				["Updated Camera Zoom", "Main", "0.58,3,expoOut"]
+			]
+		],
+		[
+			99775.2808988766,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			99943.8202247193,
+			[
+				["Updated Camera Zoom", "Main", "0.64,3,expoOut"]
+			]
+		],
+		[
+			102471.91011236,
+			[
+				["Updated Camera Zoom", "Main", "0.55,3,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			103820.224719101,
+			[
+				["Updated Camera Zoom", "Main", "0.59,3,expoOut"]
+			]
+		],
+		[
+			105168.539325843,
+			[
+				["Updated Camera Zoom", "Main", "0.63,3,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			106516.853932584,
+			[
+				["Updated Camera Zoom", "Main", "0.69,3,expoOut"]
+			]
+		],
+		[
+			107865.168539326,
+			[
+				["Updated Camera Zoom", "Main", "0.55,3,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			109213.483146068,
+			[
+				["Updated Camera Zoom", "Main", "0.58,3,expoOut"]
+			]
+		],
+		[
+			110561.797752809,
+			[
+				["Updated Camera Zoom", "Main", "0.64,3,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			111910.112359551,
+			[
+				["Updated Camera Zoom", "Main", "0.67,3,expoOut"]
+			]
+		],
+		[
+			113258.426966292,
+			[
+				["Updated Camera Zoom", "Main", "0.62,3,expoOut"]
+			]
+		],
+		[
+			114606.741573034,
+			[
+				["Updated Camera Zoom", "Main", "0.55,3,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			115955.056179776,
+			[
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"],
+				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			115955.056179776,
+			[
+				["Play Animation", "pretty good-blody", "dad"],
+				["HUD Fade", "0.75", "0.5"]
+			]
+		],
+		[
+			117303.370786517,
+			[
+				["Updated Camera Zoom", "Main", "0.68,3,expoOut"]
+			]
+		],
+		[
+			118651.685393259,
+			[
+				["HUD Fade", "0", "2"],
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.72,3,expoOut"]
+			]
+		]
+	],
+	"format": "torch_v1_events"
+}

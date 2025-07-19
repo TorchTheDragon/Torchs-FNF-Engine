@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="picoAndNene.png">
+	<!-- Created with Adobe Animate version 24.0.9.74 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Pico Down Note0000" x="10" y="10" width="579" height="450" frameX="-13" frameY="-4" frameWidth="593" frameHeight="457"/>
+	<SubTexture name="Pico Down Note0001" x="10" y="10" width="579" height="450" frameX="-13" frameY="-4" frameWidth="593" frameHeight="457"/>
+	<SubTexture name="Pico Down Note0002" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0003" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0004" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0005" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0006" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0007" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0008" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0009" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Down Note0010" x="599" y="10" width="593" height="457"/>
+	<SubTexture name="Pico Idle Dance0000" x="1202" y="10" width="497" height="506" frameX="-18" frameY="-6" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0001" x="1202" y="10" width="497" height="506" frameX="-18" frameY="-6" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0002" x="1709" y="10" width="502" height="508" frameX="-11" frameY="-4" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0003" x="1709" y="10" width="502" height="508" frameX="-11" frameY="-4" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0004" x="2221" y="10" width="519" height="512" frameX="-1" frameY="-1" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0005" x="2750" y="10" width="519" height="512" frameX="-1" frameY="-1" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0006" x="3279" y="10" width="525" height="513" frameX="-1" frameY="0" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0007" x="3814" y="10" width="525" height="513" frameX="-1" frameY="0" frameWidth="528" frameHeight="513"/>
+	<SubTexture name="Pico Idle Dance0008" x="4349" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0009" x="4349" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0010" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0011" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0012" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0013" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0014" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0015" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0016" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0017" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0018" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle Dance0019" x="4887" y="10" width="528" height="513"/>
+	<SubTexture name="Pico Idle solo Dance0000" x="5425" y="10" width="435" height="461" frameX="-18" frameY="-13" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0001" x="5425" y="10" width="435" height="461" frameX="-18" frameY="-13" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0002" x="5870" y="10" width="442" height="468" frameX="-11" frameY="-6" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0003" x="5870" y="10" width="442" height="468" frameX="-11" frameY="-6" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0004" x="6322" y="10" width="448" height="469" frameX="-1" frameY="-6" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0005" x="6780" y="10" width="444" height="469" frameX="-1" frameY="-6" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0006" x="7234" y="10" width="444" height="474" frameX="-1" frameY="-1" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0007" x="7688" y="10" width="442" height="474" frameX="-1" frameY="-1" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0008" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0009" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0010" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0011" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0012" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico Idle solo Dance0013" x="10" y="533" width="443" height="475" frameX="0" frameY="0" frameWidth="453" frameHeight="475"/>
+	<SubTexture name="Pico NOTE LEFT0000" x="463" y="533" width="496" height="493" frameX="-7" frameY="-4" frameWidth="505" frameHeight="497"/>
+	<SubTexture name="Pico NOTE LEFT0001" x="463" y="533" width="496" height="493" frameX="-7" frameY="-4" frameWidth="505" frameHeight="497"/>
+	<SubTexture name="Pico NOTE LEFT0002" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0003" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0004" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0005" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0006" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0007" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0008" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0009" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0010" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0011" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0012" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0013" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0014" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0015" x="969" y="533" width="505" height="497"/>
+	<SubTexture name="Pico NOTE LEFT0016" x="1484" y="533" width="505" height="497"/>
+	<SubTexture name="Pico Note Right0000" x="1999" y="533" width="543" height="486" frameX="-1" frameY="-6" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0001" x="1999" y="533" width="543" height="486" frameX="-1" frameY="-6" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0002" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0003" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0004" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0005" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0006" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0007" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0008" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0009" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0010" x="2552" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0011" x="3096" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0012" x="3640" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0013" x="4184" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0014" x="4184" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0015" x="4728" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="Pico Note Right0016" x="5272" y="533" width="534" height="492" frameX="0" frameY="0" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="note miss down pico nene0000" x="10" y="10" width="579" height="450" frameX="-18" frameY="0" frameWidth="593" frameHeight="457"/>
+	<SubTexture name="note miss down pico nene0001" x="5816" y="533" width="603" height="446" frameX="-1" frameY="-12" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0002" x="5816" y="533" width="603" height="446" frameX="-1" frameY="-12" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0003" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0004" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0005" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0006" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0007" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0008" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss down pico nene0009" x="6429" y="533" width="606" height="442" frameX="0" frameY="-16" frameWidth="606" frameHeight="458"/>
+	<SubTexture name="note miss left pico nene0000" x="463" y="533" width="496" height="493" frameX="-10" frameY="-9" frameWidth="505" frameHeight="497"/>
+	<SubTexture name="note miss left pico nene0001" x="7045" y="533" width="505" height="501" frameX="-1" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0002" x="7045" y="533" width="505" height="501" frameX="-1" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0003" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0004" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0005" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0006" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0007" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0008" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss left pico nene0009" x="7560" y="533" width="506" height="501" frameX="0" frameY="0" frameWidth="506" frameHeight="503"/>
+	<SubTexture name="note miss right pico nene0000" x="1999" y="533" width="543" height="486" frameX="-7" frameY="-8" frameWidth="544" frameHeight="492"/>
+	<SubTexture name="note miss right pico nene0001" x="10" y="1044" width="545" height="495" frameX="0" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0002" x="10" y="1044" width="545" height="495" frameX="0" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0003" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0004" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0005" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0006" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0007" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0008" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss right pico nene0009" x="565" y="1044" width="548" height="495" frameX="-1" frameY="0" frameWidth="549" frameHeight="495"/>
+	<SubTexture name="note miss up piconene0000" x="2328" y="1044" width="566" height="506" frameX="-20" frameY="0" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="note miss up piconene0001" x="1123" y="1044" width="594" height="501" frameX="0" frameY="-10" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0002" x="1123" y="1044" width="594" height="501" frameX="0" frameY="-10" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0003" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0004" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0005" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0006" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0007" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="note miss up piconene0008" x="1727" y="1044" width="591" height="503" frameX="-1" frameY="-8" frameWidth="594" frameHeight="511"/>
+	<SubTexture name="pico Up note0000" x="2328" y="1044" width="566" height="506" frameX="-16" frameY="0" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0001" x="2328" y="1044" width="566" height="506" frameX="-16" frameY="0" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0002" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0003" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0004" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0005" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0006" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0007" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0008" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0009" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0010" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0011" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0012" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico Up note0013" x="2904" y="1044" width="583" height="505" frameX="0" frameY="-1" frameWidth="583" frameHeight="506"/>
+	<SubTexture name="pico catch nene full0000" x="3497" y="1044" width="727" height="514" frameX="-9" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0001" x="4234" y="1044" width="446" height="468" frameX="-325" frameY="-84" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0002" x="4690" y="1044" width="866" height="469" frameX="-363" frameY="-83" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0003" x="4690" y="1044" width="866" height="469" frameX="-363" frameY="-83" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0004" x="5566" y="1044" width="723" height="478" frameX="-356" frameY="-74" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0005" x="6299" y="1044" width="487" height="472" frameX="-315" frameY="-80" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0006" x="6796" y="1044" width="612" height="552" frameX="-112" frameY="0" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0007" x="7418" y="1044" width="724" height="489" frameX="0" frameY="-63" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0008" x="10" y="1606" width="481" height="461" frameX="-240" frameY="-91" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0009" x="10" y="1606" width="481" height="461" frameX="-240" frameY="-91" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0010" x="501" y="1606" width="446" height="455" frameX="-291" frameY="-97" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0011" x="501" y="1606" width="446" height="455" frameX="-291" frameY="-97" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0012" x="957" y="1606" width="718" height="455" frameX="-333" frameY="-97" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0013" x="957" y="1606" width="718" height="455" frameX="-333" frameY="-97" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0014" x="1685" y="1606" width="697" height="481" frameX="-337" frameY="-71" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0015" x="1685" y="1606" width="697" height="481" frameX="-337" frameY="-71" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0016" x="2392" y="1606" width="501" height="470" frameX="-315" frameY="-82" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0017" x="2392" y="1606" width="501" height="470" frameX="-315" frameY="-82" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0018" x="2903" y="1606" width="427" height="483" frameX="-293" frameY="-69" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0019" x="2903" y="1606" width="427" height="483" frameX="-293" frameY="-69" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0020" x="3340" y="1606" width="724" height="489" frameX="0" frameY="-63" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0021" x="3340" y="1606" width="724" height="489" frameX="0" frameY="-63" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0022" x="4074" y="1606" width="484" height="461" frameX="-237" frameY="-91" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0023" x="4074" y="1606" width="484" height="461" frameX="-237" frameY="-91" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0024" x="4568" y="1606" width="460" height="456" frameX="-274" frameY="-96" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0025" x="4568" y="1606" width="460" height="456" frameX="-274" frameY="-96" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0026" x="5038" y="1606" width="625" height="491" frameX="-312" frameY="-61" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0027" x="5038" y="1606" width="625" height="491" frameX="-312" frameY="-61" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0028" x="5673" y="1606" width="593" height="500" frameX="-311" frameY="-52" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0029" x="5673" y="1606" width="593" height="500" frameX="-311" frameY="-52" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0030" x="5673" y="1606" width="593" height="500" frameX="-311" frameY="-52" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0031" x="6276" y="1606" width="579" height="501" frameX="-311" frameY="-51" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0032" x="6276" y="1606" width="579" height="501" frameX="-311" frameY="-51" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0033" x="6276" y="1606" width="579" height="501" frameX="-311" frameY="-51" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0034" x="6865" y="1606" width="572" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0035" x="6865" y="1606" width="572" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0036" x="6865" y="1606" width="572" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0037" x="7447" y="1606" width="570" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0038" x="7447" y="1606" width="570" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0039" x="7447" y="1606" width="570" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0040" x="7447" y="1606" width="570" height="502" frameX="-312" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0041" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0042" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0043" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0044" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0045" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0046" x="10" y="2118" width="567" height="502" frameX="-313" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0047" x="587" y="2118" width="569" height="499" frameX="-313" frameY="-53" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0048" x="587" y="2118" width="569" height="499" frameX="-313" frameY="-53" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0049" x="1166" y="2118" width="562" height="520" frameX="-313" frameY="-32" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0050" x="1166" y="2118" width="562" height="520" frameX="-313" frameY="-32" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0051" x="1166" y="2118" width="562" height="520" frameX="-313" frameY="-32" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0052" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0053" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0054" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0055" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0056" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0057" x="1738" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0058" x="2310" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0059" x="2310" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0060" x="2882" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0061" x="2882" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0062" x="2882" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0063" x="3454" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0064" x="3454" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0065" x="3454" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0066" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0067" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0068" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0069" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0070" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0071" x="4026" y="2118" width="562" height="517" frameX="-313" frameY="-35" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0072" x="4598" y="2118" width="556" height="516" frameX="-316" frameY="-36" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0073" x="4598" y="2118" width="556" height="516" frameX="-316" frameY="-36" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0074" x="5164" y="2118" width="545" height="514" frameX="-319" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0075" x="5164" y="2118" width="545" height="514" frameX="-319" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0076" x="5164" y="2118" width="545" height="514" frameX="-319" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0077" x="5719" y="2118" width="505" height="507" frameX="-293" frameY="-45" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0078" x="6234" y="2118" width="506" height="501" frameX="-286" frameY="-51" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0079" x="6750" y="2118" width="506" height="501" frameX="-286" frameY="-51" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0080" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0081" x="10" y="2648" width="510" height="505" frameX="-281" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0082" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0083" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0084" x="1048" y="2648" width="507" height="503" frameX="-282" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0085" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0086" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0087" x="10" y="2648" width="510" height="505" frameX="-281" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0088" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0089" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0090" x="1048" y="2648" width="507" height="503" frameX="-282" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0091" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0092" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0093" x="10" y="2648" width="510" height="505" frameX="-281" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0094" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0095" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0096" x="1048" y="2648" width="507" height="503" frameX="-282" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0097" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0098" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0099" x="10" y="2648" width="510" height="505" frameX="-281" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0100" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0101" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0102" x="1048" y="2648" width="507" height="503" frameX="-282" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0103" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0104" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0105" x="10" y="2648" width="510" height="505" frameX="-281" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0106" x="7266" y="2118" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0107" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0108" x="1048" y="2648" width="507" height="503" frameX="-282" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0109" x="530" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0110" x="1565" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0111" x="2083" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0112" x="2601" y="2648" width="508" height="505" frameX="-282" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0113" x="3119" y="2648" width="509" height="503" frameX="-286" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0114" x="3638" y="2648" width="509" height="503" frameX="-286" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0115" x="4157" y="2648" width="510" height="503" frameX="-284" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0116" x="4157" y="2648" width="510" height="503" frameX="-284" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0117" x="4677" y="2648" width="517" height="504" frameX="-277" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0118" x="4677" y="2648" width="517" height="504" frameX="-277" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0119" x="5204" y="2648" width="535" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0120" x="5749" y="2648" width="535" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0121" x="6294" y="2648" width="532" height="503" frameX="-258" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0122" x="6294" y="2648" width="532" height="503" frameX="-258" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0123" x="6836" y="2648" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0124" x="6836" y="2648" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0125" x="7379" y="2648" width="536" height="503" frameX="-254" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0126" x="7379" y="2648" width="536" height="503" frameX="-254" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0127" x="10" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0128" x="10" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0129" x="551" y="3163" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0130" x="551" y="3163" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0131" x="1094" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0132" x="1094" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0133" x="1635" y="3163" width="532" height="503" frameX="-258" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0134" x="1635" y="3163" width="532" height="503" frameX="-258" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0135" x="2177" y="3163" width="536" height="504" frameX="-254" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0136" x="2723" y="3163" width="542" height="504" frameX="-247" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0137" x="2723" y="3163" width="542" height="504" frameX="-247" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0138" x="2723" y="3163" width="542" height="504" frameX="-247" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0139" x="3275" y="3163" width="529" height="503" frameX="-261" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0140" x="3814" y="3163" width="529" height="503" frameX="-261" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0141" x="4353" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0142" x="4353" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0143" x="4894" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0144" x="4894" y="3163" width="531" height="503" frameX="-259" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0145" x="5435" y="3163" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0146" x="5435" y="3163" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0147" x="5435" y="3163" width="533" height="503" frameX="-257" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0148" x="5978" y="3163" width="536" height="503" frameX="-254" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0149" x="5978" y="3163" width="536" height="503" frameX="-254" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0150" x="5978" y="3163" width="536" height="503" frameX="-254" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0151" x="6524" y="3163" width="538" height="503" frameX="-252" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0152" x="6524" y="3163" width="538" height="503" frameX="-252" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0153" x="6524" y="3163" width="538" height="503" frameX="-252" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0154" x="7072" y="3163" width="539" height="503" frameX="-251" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0155" x="7072" y="3163" width="539" height="503" frameX="-251" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0156" x="7072" y="3163" width="539" height="503" frameX="-251" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0157" x="7621" y="3163" width="540" height="504" frameX="-250" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0158" x="7621" y="3163" width="540" height="504" frameX="-250" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0159" x="7621" y="3163" width="540" height="504" frameX="-250" frameY="-48" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0160" x="10" y="3677" width="541" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0161" x="10" y="3677" width="541" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0162" x="10" y="3677" width="541" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0163" x="561" y="3677" width="540" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0164" x="561" y="3677" width="540" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0165" x="561" y="3677" width="540" height="503" frameX="-249" frameY="-49" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0166" x="1111" y="3677" width="540" height="502" frameX="-248" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0167" x="1111" y="3677" width="540" height="502" frameX="-248" frameY="-50" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0168" x="1661" y="3677" width="532" height="509" frameX="-286" frameY="-42" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0169" x="1661" y="3677" width="532" height="509" frameX="-286" frameY="-42" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0170" x="1661" y="3677" width="532" height="509" frameX="-286" frameY="-42" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0171" x="2203" y="3677" width="534" height="511" frameX="-287" frameY="-41" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0172" x="2203" y="3677" width="534" height="511" frameX="-287" frameY="-41" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0173" x="2203" y="3677" width="534" height="511" frameX="-287" frameY="-41" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0174" x="2747" y="3677" width="536" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0175" x="2747" y="3677" width="536" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0176" x="2747" y="3677" width="536" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0177" x="3293" y="3677" width="537" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0178" x="3840" y="3677" width="537" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0179" x="3840" y="3677" width="537" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0180" x="4387" y="3677" width="538" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0181" x="4387" y="3677" width="538" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0182" x="4935" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0183" x="4935" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0184" x="4935" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0185" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0186" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0187" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0188" x="6585" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0189" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0190" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0191" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0192" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0193" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0194" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0195" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0196" x="10" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0197" x="561" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0198" x="1112" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0199" x="1663" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0200" x="2212" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0201" x="2761" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0202" x="3310" y="4199" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0203" x="3862" y="4199" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0204" x="4414" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0205" x="4965" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0206" x="5516" y="4199" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0207" x="6067" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0208" x="6616" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0209" x="6616" y="4199" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0210" x="7165" y="4199" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0211" x="10" y="4721" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0212" x="562" y="4721" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0213" x="1113" y="4721" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0214" x="1664" y="4721" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0215" x="2215" y="4721" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0216" x="2215" y="4721" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0217" x="2215" y="4721" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0218" x="2764" y="4721" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0219" x="2764" y="4721" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0220" x="3316" y="4721" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0221" x="3867" y="4721" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0222" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0223" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0224" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0225" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0226" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0227" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0228" x="6585" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0229" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0230" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0231" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0232" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0233" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0234" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0235" x="6033" y="3677" width="542" height="505" frameX="-286" frameY="-47" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0236" x="6585" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0237" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0238" x="7136" y="3677" width="541" height="508" frameX="-286" frameY="-44" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0239" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0240" x="5484" y="3677" width="539" height="512" frameX="-286" frameY="-40" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0241" x="4418" y="4721" width="539" height="513" frameX="-286" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0242" x="4418" y="4721" width="539" height="513" frameX="-286" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0243" x="4418" y="4721" width="539" height="513" frameX="-286" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0244" x="4418" y="4721" width="539" height="513" frameX="-286" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0245" x="4967" y="4721" width="538" height="514" frameX="-286" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0246" x="4967" y="4721" width="538" height="514" frameX="-286" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0247" x="4967" y="4721" width="538" height="514" frameX="-286" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0248" x="5515" y="4721" width="538" height="515" frameX="-286" frameY="-37" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0249" x="5515" y="4721" width="538" height="515" frameX="-286" frameY="-37" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0250" x="5515" y="4721" width="538" height="515" frameX="-286" frameY="-37" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0251" x="6063" y="4721" width="538" height="514" frameX="-285" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0252" x="6063" y="4721" width="538" height="514" frameX="-285" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0253" x="6611" y="4721" width="537" height="515" frameX="-285" frameY="-37" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0254" x="6611" y="4721" width="537" height="515" frameX="-285" frameY="-37" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0255" x="7158" y="4721" width="529" height="513" frameX="-292" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0256" x="7158" y="4721" width="529" height="513" frameX="-292" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0257" x="7158" y="4721" width="529" height="513" frameX="-292" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0258" x="10" y="5246" width="527" height="514" frameX="-294" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0259" x="10" y="5246" width="527" height="514" frameX="-294" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0260" x="10" y="5246" width="527" height="514" frameX="-294" frameY="-38" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0261" x="547" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0262" x="547" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0263" x="547" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0264" x="547" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0265" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0266" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0267" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0268" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0269" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0270" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0271" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0272" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0273" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0274" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0275" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0276" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0277" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico catch nene full0278" x="1085" y="5246" width="528" height="513" frameX="-294" frameY="-39" frameWidth="1229" frameHeight="553"/>
+	<SubTexture name="pico nene knife toss0000" x="1623" y="5246" width="529" height="514" frameX="-12" frameY="-26" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0001" x="2162" y="5246" width="521" height="540" frameX="-6" frameY="0" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0002" x="2162" y="5246" width="521" height="540" frameX="-6" frameY="0" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0003" x="2693" y="5246" width="521" height="535" frameX="-7" frameY="-5" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0004" x="2693" y="5246" width="521" height="535" frameX="-7" frameY="-5" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0005" x="2693" y="5246" width="521" height="535" frameX="-7" frameY="-5" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0006" x="2693" y="5246" width="521" height="535" frameX="-7" frameY="-5" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0007" x="3224" y="5246" width="522" height="536" frameX="-7" frameY="-4" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0008" x="3224" y="5246" width="522" height="536" frameX="-7" frameY="-4" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0009" x="3756" y="5246" width="622" height="531" frameX="-13" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0010" x="3756" y="5246" width="622" height="531" frameX="-13" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0011" x="4388" y="5246" width="677" height="531" frameX="-16" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0012" x="4388" y="5246" width="677" height="531" frameX="-16" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0013" x="4388" y="5246" width="677" height="531" frameX="-16" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0014" x="5075" y="5246" width="734" height="531" frameX="-16" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0015" x="5075" y="5246" width="734" height="531" frameX="-16" frameY="-9" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0016" x="5819" y="5246" width="746" height="529" frameX="-16" frameY="-11" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0017" x="6575" y="5246" width="514" height="507" frameX="0" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0018" x="6575" y="5246" width="514" height="507" frameX="0" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0019" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0020" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0021" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0022" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0023" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0024" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0025" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0026" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0027" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0028" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0029" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0030" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0031" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene knife toss0032" x="7099" y="5246" width="510" height="507" frameX="-1" frameY="-33" frameWidth="762" frameHeight="540"/>
+	<SubTexture name="pico nene laughing full0000" x="7619" y="5246" width="528" height="514" frameX="-5" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0001" x="7619" y="5246" width="528" height="514" frameX="-5" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0002" x="7619" y="5246" width="528" height="514" frameX="-5" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0003" x="7619" y="5246" width="528" height="514" frameX="-5" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0004" x="10" y="5796" width="522" height="495" frameX="0" frameY="-24" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0005" x="10" y="5796" width="522" height="495" frameX="0" frameY="-24" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0006" x="10" y="5796" width="522" height="495" frameX="0" frameY="-24" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0007" x="542" y="5796" width="525" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0008" x="542" y="5796" width="525" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0009" x="542" y="5796" width="525" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0010" x="542" y="5796" width="525" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0011" x="1077" y="5796" width="528" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0012" x="1077" y="5796" width="528" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0013" x="1077" y="5796" width="528" height="502" frameX="0" frameY="-18" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0014" x="1615" y="5796" width="532" height="520" frameX="-11" frameY="0" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0015" x="1615" y="5796" width="532" height="520" frameX="-11" frameY="0" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0016" x="2157" y="5796" width="535" height="514" frameX="-9" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0017" x="2157" y="5796" width="535" height="514" frameX="-9" frameY="-6" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0018" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0019" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0020" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0021" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0022" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0023" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0024" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0025" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0026" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0027" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0028" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0029" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0030" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0031" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0032" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0033" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0034" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0035" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0036" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0037" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0038" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0039" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0040" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0041" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0042" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0043" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0044" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0045" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0046" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0047" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0048" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0049" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0050" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0051" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0052" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0053" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0054" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0055" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0056" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0057" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0058" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0059" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0060" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0061" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0062" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0063" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0064" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0065" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0066" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0067" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0068" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0069" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0070" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0071" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0072" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0073" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0074" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0075" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0076" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0077" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0078" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0079" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0080" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0081" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0082" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0083" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0084" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0085" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0086" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0087" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0088" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0089" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0090" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0091" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0092" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0093" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0094" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0095" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0096" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0097" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0098" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0099" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0100" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0101" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0102" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0103" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0104" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0105" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0106" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0107" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0108" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0109" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0110" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0111" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0112" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0113" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0114" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0115" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0116" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0117" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0118" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0119" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0120" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0121" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0122" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0123" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0124" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0125" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0126" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0127" x="4342" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0128" x="4889" y="5796" width="537" height="505" frameX="-3" frameY="-15" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0129" x="5436" y="5796" width="537" height="510" frameX="-3" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0130" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0131" x="2702" y="5796" width="536" height="510" frameX="-4" frameY="-10" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0132" x="3248" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0133" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+	<SubTexture name="pico nene laughing full0134" x="3795" y="5796" width="537" height="512" frameX="-3" frameY="-8" frameWidth="544" frameHeight="520"/>
+</TextureAtlas>

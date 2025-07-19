@@ -8,7 +8,7 @@ import torchsthings.shaders.AdjustColorShader;
 import flash.display.BlendMode;
 import flixel.util.FlxSignal;
 import objects.Character;
-
+import states.stages.cutscenes.CutsceneTankErect;
 
 class TankErect extends BaseStage
 {
@@ -46,6 +46,19 @@ class TankErect extends BaseStage
         tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
 
+		defaultSpeaker = 'abot';
+        addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
+
+		if (!isStoryMode) //Lol
+		{
+			if (PlayState.SONG.song.toLowerCase() == "stress-pico-mix")
+			{
+				{
+				setStartCallback(videoCutscene.bind('stressPicoCutscene'));
+				}
+                setEndCallback(new CutsceneTankErect(this).stressPicoCutscene);
+			}
+		}
     }	
     override function createPost()
     {
@@ -117,7 +130,45 @@ class TankErect extends BaseStage
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
+		//for the speaker lol
+		var colorShader = new AdjustColorShader();
+        colorShader.hue = -38;
+        colorShader.saturation = -20;
+        colorShader.contrast = -25;
+        colorShader.brightness = -46;
+		if (speaker != null) speaker.setShader(colorShader);
+
     }
+
+	var videoEnded:Bool = false;
+	function videoCutscene(?videoName:String = null)
+	{
+		game.inCutscene = true;
+		if(!videoEnded && videoName != null)
+		{
+			#if VIDEOS_ALLOWED
+			game.startVideo(videoName);
+			game.videoCutscene.finishCallback = game.videoCutscene.onSkip = function()
+			{
+				videoEnded = true;
+				game.videoCutscene = null;
+            	game.inCutscene = false;
+				startCountdown();
+			};
+
+			#else //Make a timer to prevent it from crashing due to sprites not being ready yet.
+			new FlxTimer().start(0.0, function(tmr:FlxTimer)
+			{
+				videoEnded = true;
+				game.inCutscene = false;
+				startCountdown();
+			});
+			#end
+			return;
+		}
+		
+	}
+
     var isSipping:Bool = false;
 
     override function beatHit() {
@@ -142,6 +193,18 @@ class TankErect extends BaseStage
             isSipping = false;
         });
     }
+	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+		if(eventName == "Change Character" && ClientPrefs.data.shaders){
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					applyShader(gf, gf.curCharacter);
+				case 'dad' | 'opponent' | '1':
+					applyShader(dad, dad.curCharacter);
+				default:
+					applyShader(boyfriend, boyfriend.curCharacter);
+			}
+		}
+	}
     function applyAbotShader(sprite:FlxSprite){
 		var rim = new DropShadowScreenspace();
 		rim.setAdjustColor(-46, -38, -25, -20);
