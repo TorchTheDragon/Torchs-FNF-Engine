@@ -144,6 +144,12 @@ class BaseStage extends FlxBasic {
 		else
 			return addBehindGF(obj); // to leave objects behind the speaker
 	}
+	public function addBehindDadAndBF(obj:FlxBasic) {
+    var dadIndex = members.indexOf(game.dadGroup);
+    var bfIndex = members.indexOf(game.boyfriendGroup);
+    var insertIndex = Std.int(Math.min(dadIndex, bfIndex));
+    return insert(insertIndex, obj); // This is to leave it for both dad and bf at the same time without needing to add 1 x 1
+	}
 	public function setDefaultGF(name:String) { //Fix for the Chart Editor on Base Game stages
 		var gfVersion:String = PlayState.SONG.gfVersion;
 		if(gfVersion == null || gfVersion.length < 1) {

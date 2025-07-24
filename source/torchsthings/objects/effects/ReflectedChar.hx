@@ -38,6 +38,7 @@ class ReflectedChar extends Character {
     }
 
     override function update(elapsed:Float) {
+        this.shader = charRef.shader;
         this.offset.x = charRef.offset.x;
         this.offset.y = (charRef.frameHeight*charRef.scale.y) - charRef.offset.y;
         if (charRef.isAnimateAtlas == true && charRef.atlas.anim.curSymbol != null) {

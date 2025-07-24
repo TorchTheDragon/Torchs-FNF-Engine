@@ -104,6 +104,8 @@ HealthBar in IconsDanceSubMenu and removing the “Cancel” option because it f
 New menu to choose between different engine settings -Lawornot
 added 7 Stages Erects -JorgeX_YT
 Added DropshadowShader and Fixed for games 2D -JorgeX_YT
-
-
-
+Added OtisSpeaker with a funtcion "forceIdle" and Reload Animation by ImSnax - JorgeX_YT
+Added Intro Video for Songs in the Freeplay "Stress Pico Mix" -JorgeX_YT
+Added Tankmens with the speaker "temporary" -JorgeX_YT
+Added Philly Stress Erect (will add with the paper random later lol) -JorgeX_YT
+Added the "this.shader = charRef.shader;" for the ReflectedChar for concert with the AdjustColorShader- JorgeX_YT

@@ -453,6 +453,7 @@ class PlayState extends MusicBeatState
 			case 'schoolErect': new SchoolErect();		//School Erect
 			case 'schoolEvilErect': new SchoolEvilErect();	//School Evil Erect
 			case 'tankErect': new TankErect();			//Tank Erect
+			case 'phillyStreetsErect': new PhillyStreetsErect(); //Philly Streets Erect
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -467,7 +468,7 @@ class PlayState extends MusicBeatState
 			if(SONG.gfVersion == null || SONG.gfVersion.length < 1) SONG.gfVersion = 'gf'; //Fix for the Chart Editor
 			gf = new Character(0, 0, SONG.gfVersion);
 			startCharacterPos(gf);
-			gfGroup.scrollFactor.set(0.95, 0.95);
+			//gfGroup.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 		}
 

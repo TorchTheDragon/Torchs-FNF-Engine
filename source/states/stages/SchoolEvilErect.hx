@@ -175,18 +175,18 @@ class SchoolEvilErect extends BaseStage
 					};
 				}
 
-			case "senpai" | "senpai-angry":
-				{
-					rim.angle = 90;
-					sprite.shader = rim;
-					//rim.altMaskImage = Paths.image("weeb/erect/masks/senpai_mask").bitmap;
-					rim.maskThreshold = 1;
-
-					sprite.animation.callback = function(anim, frame, index)
+			case "spirit":
 					{
-						rim.updateFrameInfo(sprite.frame);
-					};
-				}
+						rim.angle = 90;
+						sprite.shader = rim;
+						rim.setAdjustColor(0, -10, 44, -13);
+						rim.useAltMask = false;
+	
+						sprite.animation.callback = function(anim, frame, index)
+						{
+							rim.updateFrameInfo(sprite.frame);
+						};
+					}
 			default:
 				{
 					rim.angle = 90;

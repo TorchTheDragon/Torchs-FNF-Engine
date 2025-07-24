@@ -8,7 +8,7 @@ import openfl.utils.Assets as OpenFlAssets;
 import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
-
+import objects.Note;
 class SchoolEvil extends BaseStage
 {
 	var crt:CRT = new CRT(true);
@@ -63,7 +63,9 @@ class SchoolEvil extends BaseStage
 		ShaderUtils.applyFiltersToCams([camHUD, camOther], [shaderFilter]);
 		}
 	}
-
+	override function opponentNoteHit(note:Note) {
+        FlxG.camera.shake(0.005, 0.1);
+    }
 	// Ghouls event
 	var bgGhouls:BGSprite;
 	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)

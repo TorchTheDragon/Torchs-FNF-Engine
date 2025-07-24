@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Thugmen_Head.png">
+	<!-- Created with Adobe Animate version 24.0.9.74 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Thugmen0000" x="10" y="10" width="367" height="280" frameX="0" frameY="-14" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0001" x="10" y="10" width="367" height="280" frameX="0" frameY="-14" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0002" x="387" y="10" width="366" height="281" frameX="0" frameY="-9" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0003" x="387" y="10" width="366" height="281" frameX="0" frameY="-9" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0004" x="10" y="301" width="367" height="280" frameX="-2" frameY="-4" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0005" x="10" y="301" width="367" height="280" frameX="-2" frameY="-4" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0006" x="387" y="301" width="367" height="282" frameX="-2" frameY="-1" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0007" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0008" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0009" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0010" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0011" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0012" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0013" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0014" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0015" x="10" y="10" width="367" height="280" frameX="0" frameY="-14" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0016" x="10" y="10" width="367" height="280" frameX="0" frameY="-14" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0017" x="387" y="10" width="366" height="281" frameX="0" frameY="-9" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0018" x="387" y="10" width="366" height="281" frameX="0" frameY="-9" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0019" x="10" y="301" width="367" height="280" frameX="-2" frameY="-4" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0020" x="10" y="301" width="367" height="280" frameX="-2" frameY="-4" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0021" x="387" y="301" width="367" height="282" frameX="-2" frameY="-1" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0022" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0023" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0024" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0025" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0026" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0027" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0028" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+	<SubTexture name="Thugmen0029" x="10" y="593" width="366" height="282" frameX="-3" frameY="0" frameWidth="369" frameHeight="294"/>
+</TextureAtlas>

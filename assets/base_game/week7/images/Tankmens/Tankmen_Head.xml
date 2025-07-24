@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Tankmen_Head.png">
+	<!-- Created with Adobe Animate version 24.0.9.74 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Tankmen0000" x="10" y="10" width="366" height="280" frameX="-2" frameY="-14" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0001" x="10" y="10" width="366" height="280" frameX="-2" frameY="-14" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0002" x="386" y="10" width="365" height="281" frameX="-3" frameY="-9" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0003" x="386" y="10" width="365" height="281" frameX="-3" frameY="-9" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0004" x="10" y="301" width="366" height="280" frameX="0" frameY="-4" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0005" x="10" y="301" width="366" height="280" frameX="0" frameY="-4" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0006" x="386" y="301" width="366" height="282" frameX="0" frameY="-1" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0007" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0008" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0009" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0010" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0011" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0012" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0013" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0014" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0015" x="10" y="10" width="366" height="280" frameX="-2" frameY="-14" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0016" x="10" y="10" width="366" height="280" frameX="-2" frameY="-14" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0017" x="386" y="10" width="365" height="281" frameX="-3" frameY="-9" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0018" x="386" y="10" width="365" height="281" frameX="-3" frameY="-9" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0019" x="10" y="301" width="366" height="280" frameX="0" frameY="-4" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0020" x="10" y="301" width="366" height="280" frameX="0" frameY="-4" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0021" x="386" y="301" width="366" height="282" frameX="0" frameY="-1" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0022" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0023" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0024" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0025" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0026" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0027" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0028" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+	<SubTexture name="Tankmen0029" x="10" y="593" width="365" height="282" frameX="0" frameY="0" frameWidth="368" frameHeight="294"/>
+</TextureAtlas>
