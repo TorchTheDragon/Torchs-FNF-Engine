@@ -1,5 +1,6 @@
 package states.stages;
 
+import backend.StageData;
 import states.stages.objects.*;
 import cutscenes.CutsceneHandler;
 import shaders.DropShadowShader;
@@ -24,6 +25,7 @@ class TankErect extends BaseStage
 
     override function create()
     {
+		var stageData:StageFile = StageData.getStageFile(game.curStage);
         bg = new BGSprite('Erect/bg', -1085, -805);
         bg.setGraphicSize(Std.int(bg.width * 1.15));
         bg.updateHitbox();
@@ -50,7 +52,7 @@ class TankErect extends BaseStage
         tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
 
-		tankmen = new FlxSprite(300, 330);
+		tankmen = new FlxSprite(300 + stageData.tankmen[0], 330 + stageData.tankmen[1]);
 		tankmen.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Body"); // Use the correct extension
 		tankmen.animation.addByPrefix('idle','Tankmen', 24, false);
 		tankmen.animation.play('idle', true);
@@ -62,7 +64,7 @@ class TankErect extends BaseStage
 		headtank.animation.play('idle');
 		headtank.antialiasing = ClientPrefs.data.antialiasing;
 
-		thugmen = new FlxSprite(970, 330);
+		thugmen = new FlxSprite(970 + stageData.tankmen[0], 330 + stageData.tankmen[1]);
 		thugmen.frames = Paths.getSparrowAtlas("Tankmens/Thugmen_Body"); // Use the correct extension
 		thugmen.animation.addByPrefix('idle','Thugmen', 24, false);
 		thugmen.animation.play('idle', true);
