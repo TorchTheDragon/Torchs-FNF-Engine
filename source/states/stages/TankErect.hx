@@ -71,7 +71,7 @@ class TankErect extends BaseStage
             for (daGf in gfGroup)
 			{
                 var gf:Character = cast daGf;
-				if (gf.curCharacter == 'pico-speaker')
+				if (gf.curCharacter == 'pico-speaker' || gf.curCharacter ==  'otis-speaker')
 				{
 					//GameOverSubstate.characterName = 'pico-holding-nene-dead';
 					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
@@ -99,40 +99,14 @@ class TankErect extends BaseStage
 						}
 					}
 					break;
-				} else if (gf.curCharacter == 'otis-speaker') {
-					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
-					firstTank.resetShit(30, 1900, true,false);
-					firstTank.strumTime = 10;
-					firstTank.visible = false;
-					tankmanRun.add(firstTank);
-
-					for (i in 0...TankmenBG.animationNotes.length)
-					{
-						if (FlxG.random.bool(16))
-						{
-							var tankBih = tankmanRun.recycle(TankmenBG);
-                            applyShader(tankBih, "");
-                            if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
-                            cast(tankBih.shader, DropShadowShader).threshold = 0.5;
-                            }   
-							tankBih.strumTime = TankmenBG.animationNotes[i][0];
-							tankBih.scale.set(1.05, 1.05);
-							tankBih.updateHitbox();
-							tankBih.resetShit(600, 300, TankmenBG.animationNotes[i][1] < 2,false);
-							// @:privateAccess
-							// tankBih.endingOffset = 
-							tankmanRun.add(tankBih);
-						}
-					}
-					break;
-				}
+				} 
+				
             }
         }
 
         super.createPost();
-		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this, false);
+		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this);
 		addBehindDadAndBF(tankmenSpeaker);
-		
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);

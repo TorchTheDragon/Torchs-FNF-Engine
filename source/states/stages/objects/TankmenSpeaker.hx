@@ -56,6 +56,14 @@ class TankmenSpeaker extends FlxGroup
 		add(headtank);
 		thestage.addBehindSpeaker(thugmen);
 		add(headthugmen);
+		switch (thestage.songName)
+			{
+				case 'stress-pico-mix' | 'stress':
+					tankmen.visible = false;
+					headtank.visible = false;
+					thugmen.visible = false;
+					headthugmen.visible = false;
+			}
 	}
 
 	public function dance()
@@ -71,7 +79,7 @@ class TankmenSpeaker extends FlxGroup
 		var rim = new DropShadowShader();
 		rim.setAdjustColor(-46, -38, -25, -20);
 		rim.color = 0xFFDFEF3C;
-		rim.threshold = 0.7;
+		rim.threshold = 0.4;
 		rim.antialiasAmt = 0;
 		rim.attachedSprite = sprite;
 		rim.angle = 90;
