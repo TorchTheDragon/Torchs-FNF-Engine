@@ -23,7 +23,6 @@ class TankErect extends BaseStage
 	var tankmenSpeaker:TankmenSpeaker;
     override function create()
     {
-		var stageData:StageFile = StageData.getStageFile("tankErect");
         bg = new BGSprite('Erect/bg', -1085, -805);
         bg.setGraphicSize(Std.int(bg.width * 1.15));
         bg.updateHitbox();

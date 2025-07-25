@@ -8,12 +8,10 @@ import shaders.DropShadowScreenspace;
 
 class TankmenSpeaker extends FlxGroup
 {
-    private var tankmen:FlxSprite;
-    private var headtank:FlxSprite;
     private var thugmen:FlxSprite;
     private var headthugmen:FlxSprite;
 	public var thestage:BaseStage;
-	public var shader:Bool = true;
+	public var doShader:Bool = true;
 
 	public function new (tankmenCords:Array<Float>, thugmenCords:Array<Float>, stage:BaseStage, ?shader:Bool = true)
 	{
@@ -43,14 +41,14 @@ class TankmenSpeaker extends FlxGroup
 		headthugmen.animation.play('idle');
 		headthugmen.antialiasing = ClientPrefs.data.antialiasing;
 
-		this.shader = shader;
+		doShader = shader;
 
-		if (shader)
+		if (doShader)
 		{
-		applyShader(tankmen, "");
-		applyShader(headtank, "");
-		applyShader(thugmen, "");
-		applyShader(headthugmen, "");
+			applyShader(tankmen);
+		    applyShader(headtank);
+			applyShader(thugmen);
+			applyShader(headthugmen);
 		}
 		thestage.addBehindSpeaker(tankmen);
 		add(headtank);
@@ -66,22 +64,20 @@ class TankmenSpeaker extends FlxGroup
 		headthugmen.animation.play("idle", false);
 	}
 
-	  function applyShader(sprite:FlxSprite, char_name:String)
+	function applyShader(sprite:FlxSprite)
 	{
-		if (shader) {
-			var rim = new DropShadowShader();
-			rim.setAdjustColor(-46, -38, -25, -20);
-			rim.color = 0xFFDFEF3C;
-			rim.threshold = 0.7;
-			rim.antialiasAmt = 0;
-			rim.attachedSprite = sprite;
-			rim.angle = 90;
-			sprite.shader = rim;
-			sprite.animation.callback = function(anim, frame, index)
-			{
-				rim.updateFrameInfo(sprite.frame);
+		var rim = new DropShadowShader();
+		rim.setAdjustColor(-46, -38, -25, -20);
+		rim.color = 0xFFDFEF3C;
+		rim.threshold = 0.7;
+		rim.antialiasAmt = 0;
+		rim.attachedSprite = sprite;
+		rim.angle = 90;
+		sprite.shader = rim;
+		sprite.animation.callback = function(anim, frame, index)
+		{
+			rim.updateFrameInfo(sprite.frame);
 
-			};
-		}
+		};
 	}
 }

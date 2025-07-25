@@ -14,6 +14,7 @@ class Tank extends BaseStage
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
 	var picoStress:FlxSignal = new FlxSignal();
+    var tankmenSpeaker:TankmenSpeaker;
 
 	override function create()
 	{
@@ -148,6 +149,10 @@ class Tank extends BaseStage
 				}
 			}
 		}
+		super.createPost():
+		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this, false);
+		addBehindDadAndBF(tankmenSpeaker);
+
 	}
 
 	override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
