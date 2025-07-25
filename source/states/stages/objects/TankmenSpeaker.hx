@@ -13,9 +13,10 @@ class TankmenSpeaker extends FlxGroup
     private var headthugmen:FlxSprite;
 	public var thestage:BaseStage;
 
-	public function new (tankmenCords:Array<Float>, thugmenCords:Array<Float>)
+	public function new (tankmenCords:Array<Float>, thugmenCords:Array<Float>, stage:BaseStage)
 	{
 		super();
+		thestage = stage;
 		tankmen = new FlxSprite(300 + tankmenCords[0], 330 + tankmenCords[1]);
 		tankmen.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Body"); // Use the correct extension
 		tankmen.animation.addByPrefix('idle','Tankmen', 24, false);
@@ -40,9 +41,9 @@ class TankmenSpeaker extends FlxGroup
 		headthugmen.animation.play('idle');
 		headthugmen.antialiasing = ClientPrefs.data.antialiasing;
 
-		add(tankmen);
+		thestage.addBehindSpeaker(tankmen);
 		add(headtank);
-		add(thugmen);
+		thestage.addBehindSpeaker(thugmen);
 		add(headthugmen);
 	}
 

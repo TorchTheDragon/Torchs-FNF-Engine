@@ -76,7 +76,7 @@ class TankErect extends BaseStage
 		// headthugmen.animation.play('idle');
 		// headthugmen.antialiasing = ClientPrefs.data.antialiasing;
 
-		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen);
+		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this);
 		addBehindDadAndBF(tankmenSpeaker);
 
 		defaultSpeaker = 'abot';
