@@ -3,7 +3,8 @@ package states.stages.objects;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import backend.BaseStage;
-//import torchsthings.shaders.AdjustColorShader;
+import shaders.DropShadowShader;
+import shaders.DropShadowScreenspace;
 
 class TankmenSpeaker extends FlxGroup
 {
@@ -12,8 +13,9 @@ class TankmenSpeaker extends FlxGroup
     private var thugmen:FlxSprite;
     private var headthugmen:FlxSprite;
 	public var thestage:BaseStage;
+	public var shader:Bool = true;
 
-	public function new (tankmenCords:Array<Float>, thugmenCords:Array<Float>, stage:BaseStage)
+	public function new (tankmenCords:Array<Float>, thugmenCords:Array<Float>, stage:BaseStage, ?shader:Bool = true)
 	{
 		super();
 		thestage = stage;
@@ -22,7 +24,7 @@ class TankmenSpeaker extends FlxGroup
 		tankmen.animation.addByPrefix('idle','Tankmen', 24, false);
 		tankmen.animation.play('idle', true);
 		tankmen.antialiasing = ClientPrefs.data.antialiasing;
-			
+
 		headtank = new FlxSprite(tankmen.x + -30, tankmen.y + -120);
 		headtank.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Head");
 		headtank.animation.addByPrefix('idle','Tankmen', 24, false);
@@ -41,6 +43,15 @@ class TankmenSpeaker extends FlxGroup
 		headthugmen.animation.play('idle');
 		headthugmen.antialiasing = ClientPrefs.data.antialiasing;
 
+		this.shader = shader;
+
+		if (shader)
+		{
+		applyShader(tankmen, "");
+		applyShader(headtank, "");
+		applyShader(thugmen, "");
+		applyShader(headthugmen, "");
+		}
 		thestage.addBehindSpeaker(tankmen);
 		add(headtank);
 		thestage.addBehindSpeaker(thugmen);
@@ -55,4 +66,22 @@ class TankmenSpeaker extends FlxGroup
 		headthugmen.animation.play("idle", false);
 	}
 
-} 
+	  function applyShader(sprite:FlxSprite, char_name:String)
+	{
+		if (shader) {
+			var rim = new DropShadowShader();
+			rim.setAdjustColor(-46, -38, -25, -20);
+			rim.color = 0xFFDFEF3C;
+			rim.threshold = 0.7;
+			rim.antialiasAmt = 0;
+			rim.attachedSprite = sprite;
+			rim.angle = 90;
+			sprite.shader = rim;
+			sprite.animation.callback = function(anim, frame, index)
+			{
+				rim.updateFrameInfo(sprite.frame);
+
+			};
+		}
+	}
+}
