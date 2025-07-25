@@ -22,10 +22,10 @@ class TankErect extends BaseStage
     var headtank:FlxSprite;
     var thugmen:FlxSprite;
     var headthugmen:FlxSprite;
-
+	var tankmenSpeaker:TankmenSpeaker;
     override function create()
     {
-		var stageData:StageFile = StageData.getStageFile(game.curStage);
+		var stageData:StageFile = StageData.getStageFile("tankErect");
         bg = new BGSprite('Erect/bg', -1085, -805);
         bg.setGraphicSize(Std.int(bg.width * 1.15));
         bg.updateHitbox();
@@ -75,6 +75,9 @@ class TankErect extends BaseStage
 		headthugmen.animation.addByPrefix('idle','Thugmen', 24, false);
 		headthugmen.animation.play('idle');
 		headthugmen.antialiasing = ClientPrefs.data.antialiasing;
+
+		tankmenSpeaker = new TankmenSpeaker(0, 0);
+		add(tankmenSpeaker);
 
 		defaultSpeaker = 'abot';
         addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
