@@ -364,4 +364,7 @@ typedef SpeakerSettings = {
     @:optional var library:String;
     @:optional var offsets:Array<Float>;
     @:optional var isAnimateAtlas:Bool;
+    @:optional var thugmen:Array<Float>;
+    @:optional var tankmen:Array<Float>;
+    
 }
