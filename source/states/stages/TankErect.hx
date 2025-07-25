@@ -20,8 +20,8 @@ class TankErect extends BaseStage
     var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var tankmen:FlxSprite;
     var headtank:FlxSprite;
-    var thugmen:FlxSprite;
-    var headthugmen:FlxSprite;
+    // var thugmen:FlxSprite;
+    // var headthugmen:FlxSprite;
 	var tankmenSpeaker:TankmenSpeaker;
     override function create()
     {
@@ -52,32 +52,32 @@ class TankErect extends BaseStage
         tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
 
-		tankmen = new FlxSprite(300 + stageData.tankmen[0], 330 + stageData.tankmen[1]);
-		tankmen.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Body"); // Use the correct extension
-		tankmen.animation.addByPrefix('idle','Tankmen', 24, false);
-		tankmen.animation.play('idle', true);
-		tankmen.antialiasing = ClientPrefs.data.antialiasing;
+		// tankmen = new FlxSprite(300, 330);
+		// tankmen.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Body"); // Use the correct extension
+		// tankmen.animation.addByPrefix('idle','Tankmen', 24, false);
+		// tankmen.animation.play('idle', true);
+		// tankmen.antialiasing = ClientPrefs.data.antialiasing;
 		
-		headtank = new FlxSprite(tankmen.x + -30, tankmen.y + -120);
-		headtank.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Head");
-		headtank.animation.addByPrefix('idle','Tankmen', 24, false);
-		headtank.animation.play('idle');
-		headtank.antialiasing = ClientPrefs.data.antialiasing;
+		// headtank = new FlxSprite(tankmen.x + -30, tankmen.y + -120);
+		// headtank.frames = Paths.getSparrowAtlas("Tankmens/Tankmen_Head");
+		// headtank.animation.addByPrefix('idle','Tankmen', 24, false);
+		// headtank.animation.play('idle');
+		// headtank.antialiasing = ClientPrefs.data.antialiasing;
 
-		thugmen = new FlxSprite(970 + stageData.tankmen[0], 330 + stageData.tankmen[1]);
-		thugmen.frames = Paths.getSparrowAtlas("Tankmens/Thugmen_Body"); // Use the correct extension
-		thugmen.animation.addByPrefix('idle','Thugmen', 24, false);
-		thugmen.animation.play('idle', true);
-		thugmen.antialiasing = ClientPrefs.data.antialiasing;
+		// thugmen = new FlxSprite(970, 330);
+		// thugmen.frames = Paths.getSparrowAtlas("Tankmens/Thugmen_Body"); // Use the correct extension
+		// thugmen.animation.addByPrefix('idle','Thugmen', 24, false);
+		// thugmen.animation.play('idle', true);
+		// thugmen.antialiasing = ClientPrefs.data.antialiasing;
 
-		headthugmen = new FlxSprite(thugmen.x + -60, thugmen.y + -120);
-		headthugmen.frames = Paths.getSparrowAtlas("Tankmens/Thugmen_Head");
-		headthugmen.animation.addByPrefix('idle','Thugmen', 24, false);
-		headthugmen.animation.play('idle');
-		headthugmen.antialiasing = ClientPrefs.data.antialiasing;
+		// headthugmen = new FlxSprite(thugmen.x + -60, thugmen.y + -120);
+		// headthugmen.frames = Paths.getSparrowAtlas("Tankmens/Thugmen_Head");
+		// headthugmen.animation.addByPrefix('idle','Thugmen', 24, false);
+		// headthugmen.animation.play('idle');
+		// headthugmen.antialiasing = ClientPrefs.data.antialiasing;
 
-		tankmenSpeaker = new TankmenSpeaker(0, 0);
-		add(tankmenSpeaker);
+		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen);
+		addBehindDadAndBF(tankmenSpeaker);
 
 		defaultSpeaker = 'abot';
         addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
@@ -160,27 +160,27 @@ class TankErect extends BaseStage
         }
 
         super.createPost();
-		applyShader(tankmen,"");
-		if (tankmen.shader != null && Std.isOfType(tankmen.shader, DropShadowShader)) {
-			cast(tankmen.shader, DropShadowShader).threshold = 0.4;
-		}
-		applyShader(thugmen,"");
-		if (thugmen.shader != null && Std.isOfType(thugmen.shader, DropShadowShader)) {
-			cast(thugmen.shader, DropShadowShader).threshold = 0.4;
-		}
-		applyShader(headtank,"");
-		if (headtank.shader != null && Std.isOfType(headtank.shader, DropShadowShader)) {
-			cast(headtank.shader, DropShadowShader).threshold = 0.4;
-		}
-		applyShader(headthugmen,"");
-		if (headthugmen.shader != null && Std.isOfType(headthugmen.shader, DropShadowShader)) {
-			cast(headthugmen.shader, DropShadowShader).threshold = 0.4;
-		}
+		// applyShader(tankmen,"");
+		// if (tankmen.shader != null && Std.isOfType(tankmen.shader, DropShadowShader)) {
+		// 	cast(tankmen.shader, DropShadowShader).threshold = 0.4;
+		// }
+		// applyShader(thugmen,"");
+		// if (thugmen.shader != null && Std.isOfType(thugmen.shader, DropShadowShader)) {
+		// 	cast(thugmen.shader, DropShadowShader).threshold = 0.4;
+		// }
+		// applyShader(headtank,"");
+		// if (headtank.shader != null && Std.isOfType(headtank.shader, DropShadowShader)) {
+		// 	cast(headtank.shader, DropShadowShader).threshold = 0.4;
+		// }
+		// applyShader(headthugmen,"");
+		// if (headthugmen.shader != null && Std.isOfType(headthugmen.shader, DropShadowShader)) {
+		// 	cast(headthugmen.shader, DropShadowShader).threshold = 0.4;
+		// }
 
-		addBehindSpeaker(tankmen);
-		addBehindSpeaker(thugmen);
-		addBehindDadAndBF(headtank);
-    	addBehindDadAndBF(headthugmen);
+		// addBehindSpeaker(tankmen);
+		// addBehindSpeaker(thugmen);
+		// addBehindDadAndBF(headtank);
+    	// addBehindDadAndBF(headthugmen);
 
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
@@ -232,10 +232,11 @@ class TankErect extends BaseStage
             sniper.animation.play("idle", false);
         }
         guy.animation.play("idle", false);
-		tankmen.animation.play("idle", false);
-		headtank.animation.play("idle", false);
-		thugmen.animation.play("idle", false);
-		headthugmen.animation.play("idle", false);
+		// tankmen.animation.play("idle", false);
+		// headtank.animation.play("idle", false);
+		// thugmen.animation.play("idle", false);
+		// headthugmen.animation.play("idle", false);
+		tankmenSpeaker.dance();
     
         if (!isSipping && FlxG.random.bool(2)) {  
             sipAnimation();

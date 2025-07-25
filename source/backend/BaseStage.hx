@@ -69,6 +69,8 @@ class BaseStage extends FlxBasic {
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
 
+    public var speaker:SpeakerSkin;
+
 	public function new() {
 		if(game == null) {
 			FlxG.log.error('Invalid state for the stage added!');
@@ -256,7 +258,7 @@ class BaseStage extends FlxBasic {
 	PlayState.instance.iconP2.visible = false;*/ //and this one in case you want to deactivate the icons or just the opponent's, It has to be in "createPost"
 
 	// New Speaker Shits
-	var speaker:SpeakerSkin;
+
 	var reflected:SpeakerSkin;
 	public var defaultSpeaker:String = 'base'; // This is only used for setting a default speaker per stage if someone doesn't change the speaker themselves
 
