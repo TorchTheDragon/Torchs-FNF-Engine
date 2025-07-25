@@ -77,7 +77,7 @@ class Tank extends BaseStage
 		// Default GFs
 		if(songName == 'stress') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
-		
+			
 		if (isStoryMode && !seenCutscene)
 		{
 			switch (songName)
@@ -149,9 +149,12 @@ class Tank extends BaseStage
 				}
 			}
 		}
-		super.createPost():
-		tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this, false);
-		addBehindDadAndBF(tankmenSpeaker);
+		super.createPost();
+		if (speaker != null)
+        {
+            tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this, false);
+            addBehindDadAndBF(tankmenSpeaker);
+        }
 
 	}
 

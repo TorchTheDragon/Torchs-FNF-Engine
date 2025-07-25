@@ -8,6 +8,8 @@ import shaders.DropShadowScreenspace;
 
 class TankmenSpeaker extends FlxGroup
 {
+	private var tankmen:FlxSprite;
+    private var headtank:FlxSprite;
     private var thugmen:FlxSprite;
     private var headthugmen:FlxSprite;
 	public var thestage:BaseStage;
