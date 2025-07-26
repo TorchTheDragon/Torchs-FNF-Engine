@@ -2,7 +2,6 @@ package states.stages;
 
 import states.stages.objects.*;
 import objects.Character;
-import torchsthings.shaders.RTXShader;
 import openfl.filters.ShaderFilter;
 import flixel.util.typeLimit.*;
 
@@ -22,73 +21,43 @@ class Philly extends BaseStage
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
 
-	var rtxTest:RTXShader;
 
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality) {
-			var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
+			var bg:BGSprite = new BGSprite('philly/sky', -330, -50, 0.1, 0.1);
 			add(bg);
 		}
 
-		var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
+		var city:BGSprite = new BGSprite('philly/city', -240, 50, 0.3, 0.3);
 		city.setGraphicSize(Std.int(city.width * 0.85));
 		city.updateHitbox();
 		add(city);
 
 		phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
-		phillyWindow = new BGSprite('philly/window', city.x, city.y, 0.3, 0.3);
+		phillyWindow = new BGSprite('philly/windows', city.x, city.y, 0.3, 0.3);
 		phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
 		phillyWindow.updateHitbox();
 		add(phillyWindow);
 		phillyWindow.alpha = 0;
 
 		if(!ClientPrefs.data.lowQuality) {
-			streetBehind = new BGSprite('philly/behindTrain', -40, 50);
+			streetBehind = new BGSprite('philly/behindTrain', -320, 150);
 			add(streetBehind);
 		}
 
 		phillyTrain = new PhillyTrain(2000, 360);
 		add(phillyTrain);
 
-		phillyStreet = new BGSprite('philly/street', -40, 50);
+		phillyStreet = new BGSprite('philly/street', -320, 150);
 		add(phillyStreet);
 
-		rtxTest = new RTXShader();
 		
-		/*
-		// Just leaving these here as the defaults
-		rtxTest.overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
-		rtxTest.satinColor = FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43);
-		rtxTest.shadowColor = FlxColor.fromRGBFloat(0.83, 0.85, 0.0, 0.22);
-		rtxTest.shadowAngle = -90.0;
-		rtxTest.shadowDistance = 25.0;
-		*/
-		rtxTest.setShaderValues(FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0), FlxColor.fromRGBFloat(0.08, 0.22, 0.27, 0.43), FlxColor.fromRGBFloat(112/255, 0, 176/255, 0.45), 0, 45.0, true);
 	}
 	override function createPost() {
 		super.createPost();
-		var list:Array<OneOfTwo<Character, FlxSprite>> = [boyfriend, gf, dad, phillyTrain, phillyStreet];
-		if (streetBehind != null) list.push(streetBehind);
-		for (obj in list) {
-			var tempShader:RTXShader;
-			var char:Character = null;
-			var sprite:FlxSprite = null;
-			if (obj is Character) {
-				char = obj;
-				tempShader = new RTXShader(char); 
-			} else {
-				sprite = obj;
-				tempShader = new RTXShader();
-			} 
-			tempShader.copyShader(rtxTest);
-			if (char != null) char.shader = tempShader;
-			if (sprite != null) sprite.shader = tempShader;
-			shaderList.push(tempShader);
-		}
 		addReflectedChar(boyfriend);
 	}
-	var shaderList:Array<RTXShader> = [];
 
 	override function eventPushed(event:objects.Note.EventNote)
 	{
@@ -100,7 +69,7 @@ class Philly extends BaseStage
 				blammedLightsBlack.visible = false;
 				insert(members.indexOf(phillyStreet), blammedLightsBlack);
 
-				phillyWindowEvent = new BGSprite('philly/window', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
+				phillyWindowEvent = new BGSprite('philly/windows', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
 				phillyWindowEvent.setGraphicSize(Std.int(phillyWindowEvent.width * 0.85));
 				phillyWindowEvent.updateHitbox();
 				phillyWindowEvent.visible = false;
@@ -128,9 +97,6 @@ class Philly extends BaseStage
 				if(particle.alpha <= 0)
 					particle.kill();
 			});
-		}
-		for (shader in shaderList) {
-			shader.update();
 		}
 	}
 

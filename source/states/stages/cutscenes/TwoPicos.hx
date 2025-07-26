@@ -214,6 +214,15 @@ class TwoPicos {
         {
             cutsceneHandler.timer(0.01, () ->
             {
+                host.gf.animation.finishCallback = function(name:String)
+		        {
+			        switch(name)
+			        {
+				    case 'danceLeft', 'danceRight':
+					    host.gf.dance();
+			        }
+		        }
+		        host.gf.dance();
                 pico.shader = shader;
                 imposterPico.shader = shader;
                 bloodPool.shader = shader;

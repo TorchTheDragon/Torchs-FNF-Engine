@@ -33,35 +33,37 @@ class PhillyErect extends BaseStage
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality) {
-			var bg:BGSprite = new BGSprite('philly/erect/sky', -100, 0, 0.1, 0.1);
+			var bg:BGSprite = new BGSprite('philly/erect/sky', -230, -50, 0.1, 0.1);
 			add(bg);
 		}
 
-		var city:BGSprite = new BGSprite('philly/erect/city', -10, 0, 0.3, 0.3);
+		var city:BGSprite = new BGSprite('philly/erect/city', -240, 50, 0.3, 0.3);
 		city.setGraphicSize(Std.int(city.width * 0.85));
 		city.updateHitbox();
 		add(city);
 
 		phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
-		phillyWindow = new BGSprite('philly/window', city.x, city.y, 0.3, 0.3);
+		phillyWindow = new BGSprite('philly/erect/windows', city.x, city.y, 0.3, 0.3);
 		phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
 		phillyWindow.updateHitbox();
 		add(phillyWindow);
 		phillyWindow.alpha = 0;
 
 		if(!ClientPrefs.data.lowQuality) {
-			streetBehind = new BGSprite('philly/erect/behindTrain', -40, 50);
+			streetBehind = new BGSprite('philly/erect/behindTrain', -320, 150);
 			add(streetBehind);
 		}
 
 		phillyTrain = new PhillyTrain(2000, 360);
 		add(phillyTrain);
 
-		phillyStreet = new BGSprite('philly/erect/street', -40, 50);
+		phillyStreet = new BGSprite('philly/erect/street', -320, 150);
 		add(phillyStreet);
 
 		//Debería haber un !seenCutscene para esto, pero como los pico mixes aún no están implementados lo dejo así para testear 
 		if(PlayState.SONG.player1 == "pico-playable" && PlayState.SONG.player2 == "pico") setStartCallback(new TwoPicos(this).startCutscene);
+		defaultSpeaker = 'abot';
+        addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
 		/*
 		// Just leaving these here as the defaults
 		rtxTest.overlayColor = FlxColor.fromRGBFloat(0.0, 0.0, 0.0, 0.0);
@@ -84,7 +86,8 @@ class PhillyErect extends BaseStage
 			dad.shader = colorShader;
 			gf.shader = colorShader;
 			phillyTrain.shader = colorShader;
-			
+			if (speaker != null) speaker.setShader(colorShader);
+
 	}
 
 	override function eventPushed(event:objects.Note.EventNote)
@@ -97,7 +100,7 @@ class PhillyErect extends BaseStage
 				blammedLightsBlack.visible = false;
 				insert(members.indexOf(phillyStreet), blammedLightsBlack);
 
-				phillyWindowEvent = new BGSprite('philly/window', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
+				phillyWindowEvent = new BGSprite('philly/erect/windows', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
 				phillyWindowEvent.setGraphicSize(Std.int(phillyWindowEvent.width * 0.85));
 				phillyWindowEvent.updateHitbox();
 				phillyWindowEvent.visible = false;
