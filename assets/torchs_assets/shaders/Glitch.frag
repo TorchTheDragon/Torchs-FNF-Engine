@@ -16,8 +16,8 @@ uniform float chunkInvertScale;
 
 vec2 getNoise(vec2 uv) {
     return vec2(
-        fract(sin(dot(uv.xy, vec2(12.9898, 78.233))) * 43758.5453),
-        fract(sin(dot(uv.xy, vec2(43.2321, 12.321))) * 12345.6789)
+        fract(sin(dot(uv.xy, vec2(12.23, 23.123))) * 12.452),
+        fract(sin(dot(uv.xy, vec2(43.564, 12.54))) * 54.12)
     );
 }
 
@@ -29,7 +29,7 @@ void main() {
 
     if (enableInvert) {
         vec2 invertChunkUV = floor(originalUV * chunkInvertScale); 
-        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(91.123, 42.456))) * 9031.421);
+        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(13.123, 24.456))) * 8.421);
 
         if (invertHash > 0.75) {
             baseCol.rgb = vec3(1.0) - baseCol.rgb;
@@ -38,7 +38,7 @@ void main() {
 
     if (enableChunkShift) {
         vec2 shiftChunkUV = floor(originalUV * chunkShiftScale);
-        float shiftHash = fract(sin(dot(shiftChunkUV + glitchSeed * 1.5, vec2(37.119, 91.733))) * 15731.234);
+        float shiftHash = fract(sin(dot(shiftChunkUV + glitchSeed * 1.5, vec2(25.324, 26.113))) * 12.1324);
         
         if (shiftHash > 0.8) {
             float shiftAngle = shiftHash * 6.2831;
@@ -60,7 +60,7 @@ void main() {
 
     if (enableChromatic) {
         vec2 chunkUV = floor(originalUV * chunkScale);
-        float chunkHash = fract(sin(dot(chunkUV + glitchSeed, vec2(12.9898, 78.233))) * 43758.5453);
+        float chunkHash = fract(sin(dot(chunkUV + glitchSeed, vec2(1.4, 54.233))) * 12.31);
 
         if (chunkHash > 0.5) {
             float angle = chunkHash * 6.2831;
