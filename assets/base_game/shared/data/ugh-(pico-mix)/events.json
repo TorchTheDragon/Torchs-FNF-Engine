@@ -83,15 +83,29 @@
 			]
 		],
 		[
+			49125,
+			[
+				["Camera Follow Pos", "1000", "500"],
+				["Play Animation", "burpSmile", "BF"]
+			]
+		],
+		[
 			49500,
 			[
-				["Play Animation", "argh", "Dad"]
+				["Play Animation", "argh", "Dad"],
+				["Camera Follow Pos", "", ""]
 			]
 		],
 		[
 			50250,
 			[
 				["Play Animation", "beatit", "Dad"]
+			]
+		],
+		[
+			77625,
+			[
+				["Play Animation", "ugh", "Dad"]
 			]
 		]
 	],
