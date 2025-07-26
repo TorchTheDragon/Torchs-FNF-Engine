@@ -1,0 +1,157 @@
+{
+	"events": [
+		[
+			3200,
+			[
+				["Updated Camera Zoom", "Main", "0.8,2,cubeOut"]
+			]
+		],
+		[
+			27200,
+			[
+				["Updated Camera Zoom", "Main", "0.85,2,cubeOut"]
+			]
+		],
+		[
+			28800,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,cubeOut"],
+				["Camera Follow Pos", "500", "550"]
+			]
+		],
+		[
+			35200,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			38400,
+			[
+				["Updated Camera Zoom", "Main", "0.8,2,backOut"]
+			]
+		],
+		[
+			40800,
+			[
+				["Updated Camera Zoom", "Main", "0.85,2,backOut"]
+			]
+		],
+		[
+			41600,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,cubeOut"],
+				["Camera Follow Pos", "500", "550"]
+			]
+		],
+		[
+			44400,
+			[
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			44800,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,backOut"]
+			]
+		],
+		[
+			48000,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			50800,
+			[
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			51200,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,backOut"]
+			]
+		],
+		[
+			54400,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,cubeOut"],
+				["Camera Follow Pos", "500", "550"]
+			]
+		],
+		[
+			57200,
+			[
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			57600,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,backOut"]
+			]
+		],
+		[
+			60800,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			63600,
+			[
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			64000,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,backOut"]
+			]
+		],
+		[
+			67200,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,cubeOut"],
+				["Camera Follow Pos", "500", "550"]
+			]
+		],
+		[
+			73600,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.75,2,backOut"]
+			]
+		],
+		[
+			75400,
+			[
+				["Updated Camera Zoom", "Main", "0.8,2,backOut"]
+			]
+		],
+		[
+			77000,
+			[
+				["Updated Camera Zoom", "Main", "0.85,2,backOut"]
+			]
+		],
+		[
+			78400,
+			[
+				["Updated Camera Zoom", "Main", "0.9,2,backOut"]
+			]
+		],
+		[
+			80000,
+			[
+				["Updated Camera Zoom", "Main", "0.7,4,expoOut"]
+			]
+		]
+	],
+	"format": "psych_v1"
+}

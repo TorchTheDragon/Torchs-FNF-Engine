@@ -128,7 +128,7 @@ class PhillyStreets extends BaseStage {
 
 		setDefaultGF('nene');
 		defaultSpeaker = 'abot';
-		addSpeaker(gfGroup.x, gfGroup.y + 550);
+		addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();

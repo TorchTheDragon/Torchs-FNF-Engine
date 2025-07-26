@@ -1,0 +1,32 @@
+{
+	"storyName": "are you here darnell?",
+	"difficulties": "hard",
+	"hideFreeplay": false,
+	"weekBackground": "phillystreets",
+	"weekBefore": "weekend1",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": false,
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Darnell-Erect",
+			"darnell",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"weekCharacters": [
+		"darnell",
+		"pico-player",
+		"nene"
+	],
+	"hiddenUntilUnlocked": false,
+	"weekName": "weekend1"
+}
