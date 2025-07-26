@@ -14,16 +14,9 @@ class SchoolEvil extends BaseStage
 {
 	var crt:CRT = new CRT(true);
 	var shaderFilter:ShaderFilter;
-	var glitchTest:GlitchEffect;
 
 	override function create()
 	{
-		if (ClientPrefs.data.intenseShaders) {
-			glitchTest = new GlitchEffect(true, true, true, false, true, true, true);
-			glitchTest.chunkScaleInt = [2, 3, 3, 5];
-			glitchTest.chunkShiftScaleInt = [4, 6, 6, 8];
-			glitchTest.chunkInvertScaleInt = [2, 3, 3, 5];
-		}
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
@@ -57,23 +50,10 @@ class SchoolEvil extends BaseStage
 	{
 		if (ClientPrefs.data.shaders) {
 			crt.update(elapsed);
-			if (ClientPrefs.data.intenseShaders) glitchTest.update(elapsed);
 		}
 	}
 	override function createPost()
 	{
-		if (ClientPrefs.data.intenseShaders) {
-			if (unspawnNotes != null) {
-				for (note in unspawnNotes) {
-					if (!note.mustPress) note.shader = glitchTest;
-				}
-				PlayState.instance.dontChangeOppRGB = true;
-				for (note in PlayState.instance.opponentStrums) {
-					note.useRGBShader = false;
-					note.shader = glitchTest;
-				}
-			}
-		}
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
 		var trail:FlxTrail = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
@@ -82,11 +62,6 @@ class SchoolEvil extends BaseStage
 			shaderFilter = new ShaderFilter(crt);
 			ShaderUtils.applyFiltersToCams([camGame],  [shaderFilter]);
 			ShaderUtils.applyFiltersToCams([camHUD, camOther], [shaderFilter]);
-		}
-	}
-	override function stepHit() {
-		if ((curStep % 3 == 0 || curStep % 5 == 0) && ClientPrefs.data.intenseShaders) {
-			glitchTest.randomizeGlitches();
 		}
 	}
 	override function opponentNoteHit(note:Note) {
