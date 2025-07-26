@@ -16,8 +16,8 @@ uniform float chunkInvertScale;
 
 vec2 getNoise(vec2 uv) {
     return vec2(
-        fract(sin(dot(uv.xy, vec2(12.23, 23.123))) * 12.452),
-        fract(sin(dot(uv.xy, vec2(43.564, 12.54))) * 54.12)
+        fract(sin(dot(uv.xy, vec2(4.12, 7.123))) * 7.12),
+        fract(sin(dot(uv.xy, vec2(6.1, 6.12))) * 9.12)
     );
 }
 
@@ -29,7 +29,7 @@ void main() {
 
     if (enableInvert) {
         vec2 invertChunkUV = floor(originalUV * chunkInvertScale); 
-        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(13.123, 24.456))) * 8.421);
+        float invertHash = fract(sin(dot(invertChunkUV + glitchSeed * 0.33, vec2(5.123, 2.1223))) * 8.421);
 
         if (invertHash > 0.75) {
             baseCol.rgb = vec3(1.0) - baseCol.rgb;
@@ -38,18 +38,20 @@ void main() {
 
     if (enableChunkShift) {
         vec2 shiftChunkUV = floor(originalUV * chunkShiftScale);
-        float shiftHash = fract(sin(dot(shiftChunkUV + glitchSeed * 1.5, vec2(25.324, 26.113))) * 12.1324);
+        float shiftHash = fract(sin(dot(shiftChunkUV + glitchSeed * 1.5, vec2(3.34, 2.65))) * 1.654);
         
         if (shiftHash > 0.8) {
-            float shiftAngle = shiftHash * 6.2831;
-            float shiftAmount = 0.005 + 0.02 * sin(iTime * 1.5 + shiftHash * 10.0);
-            vec2 offset = vec2(cos(shiftAngle), sin(shiftAngle)) * shiftAmount;
+            //float shiftAngle = shiftHash * 6.2831;
+            //float shiftAmount = 0.005 + 0.02 * sin(iTime * 1.5 + shiftHash * 10.0);
+            float shiftAmount = 0.005 + 0.02 * sin(iTime * 1.5);
+            //vec2 offset = vec2(cos(shiftAngle), sin(shiftAngle)) * shiftAmount;
+            vec2 offset = vec2(cos(shiftHash), sin(shiftHash)) * shiftAmount;
             uv += offset;
         }
     }
 
     if (enableWave) {
-        float wave = sin((uv.y + glitchSeed) * 20.0 + iTime * 6.0) * 0.005;
+        float wave = sin((uv.y + glitchSeed) * 5.0 + iTime * 6.0) * 0.005;
         uv += vec2(wave, 0.0);
     }
 
@@ -60,12 +62,13 @@ void main() {
 
     if (enableChromatic) {
         vec2 chunkUV = floor(originalUV * chunkScale);
-        float chunkHash = fract(sin(dot(chunkUV + glitchSeed, vec2(1.4, 54.233))) * 12.31);
+        float chunkHash = fract(sin(dot(chunkUV + glitchSeed, vec2(1.4, 2.645))) * 12.31);
 
         if (chunkHash > 0.5) {
-            float angle = chunkHash * 6.2831;
+            //float angle = chunkHash * 6.2831;
             float magnitude = 0.005 + 0.005 * sin(iTime * 2.0 + glitchSeed);
-            vec2 dir = vec2(cos(angle), sin(angle)) * magnitude;
+            //vec2 dir = vec2(cos(angle), sin(angle)) * magnitude;
+            vec2 dir = vec2(cos(chunkHash), sin(chunkHash)) * magnitude;
 
             float r = flixel_texture2D(bitmap, originalUV + dir).r;
             float g = flixel_texture2D(bitmap, originalUV).g;

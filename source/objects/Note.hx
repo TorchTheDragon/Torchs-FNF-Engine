@@ -43,6 +43,7 @@ class Note extends FlxSprite
 	public static final defaultNoteTypes:Array<String> = [
 		'', //Always leave this one empty pls
 		'Alt Animation',
+		'Censored Animation',
 		'Hey!',
 		'Hurt Note',
 		'GF Sing',
@@ -225,6 +226,8 @@ class Note extends FlxSprite
 					noCharShader = true;
 				case 'Alt Animation' | 'Ghost Effect Alt':
 					animSuffix = '-alt';
+				case 'Censored Animation':
+					animSuffix = '-censored';
 				case 'No Animation':
 					noAnimation = true;
 					noMissAnimation = true;
