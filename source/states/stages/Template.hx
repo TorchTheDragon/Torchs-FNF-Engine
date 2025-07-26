@@ -91,6 +91,7 @@ class Template extends BaseStage
 		// used for preloading assets used on events that doesn't need different assets based on its values
 		switch(event.event) {
 			case "My Event":
+				if (!torchsthings.objects.CustomEvents.stageEvents.contains("My Event")) torchsthings.objects.CustomEvents.stageEvents.push("My Event");
 				//precacheImage('myImage') //preloads images/myImage.png
 				//precacheSound('mySound') //preloads sounds/mySound.ogg
 				//precacheMusic('myMusic') //preloads music/myMusic.ogg

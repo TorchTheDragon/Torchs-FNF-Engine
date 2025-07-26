@@ -11,6 +11,7 @@ import torchsthings.objects.effects.*;
 class CustomEvents {
     static var cinematicUpperY:Float = -350.0;
     static var cinematicLowerY:Float = 720.0;
+    public static var stageEvents:Array<String> = [];
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
@@ -83,7 +84,7 @@ class CustomEvents {
                 }
 
             default: 
-                trace('Event $eventName doesn\'t exist.');
+                if (!stageEvents.contains (eventName)) trace('Event $eventName doesn\'t exist.');
         }
     }
 }

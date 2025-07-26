@@ -44,6 +44,7 @@ class StageWeek1 extends BaseStage
 		switch(event.event)
 		{
 			case "Dadbattle Spotlight":
+				if (!torchsthings.objects.CustomEvents.stageEvents.contains("Dadbattle Spotlight")) torchsthings.objects.CustomEvents.stageEvents.push("Dadbattle Spotlight");
 				dadbattleBlack = new BGSprite(null, -800, -400, 0, 0);
 				dadbattleBlack.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 				dadbattleBlack.alpha = 0.25;
