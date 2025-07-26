@@ -3791,6 +3791,8 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 	}
 
+	public var dontChangeOppRGB:Bool = false;
+
 	function opponentNoteHit(note:Note):Void
 	{
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
@@ -3842,7 +3844,7 @@ class PlayState extends MusicBeatState
 		var result:Dynamic = callOnLuas('opponentNoteHit', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) callOnHScript('opponentNoteHit', [note]);
 
-		if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+		if (ClientPrefs.data.characterNoteColors != 'Disabled' && !dontChangeOppRGB) {
 			switch (note.noteData) {
 				case 0:
 					if ((note.noteType == 'Alt Animation' || note.animSuffix == '-alt') && dad.hasAltColors) {

@@ -26,7 +26,6 @@ class GlitchEffect extends FlxRuntimeShader {
         this.invert = invert;
         glitchTimer = new FlxTimer();
         this.doTimer = doTimer;
-        //scheduleGlitchRefresh();
         randomizeGlitches();
     }
 
@@ -41,21 +40,36 @@ class GlitchEffect extends FlxRuntimeShader {
     }
 
     function superRandom():Float {
-        return FlxG.random.float(FlxG.random.float(FlxG.random.float(0, 1), FlxG.random.float(0, 1)), FlxG.random.float(FlxG.random.float(0, 1), FlxG.random.float(0, 1)));
+        // Old, might be lag cause
+        //return FlxG.random.float(FlxG.random.float(FlxG.random.float(0, 1), FlxG.random.float(0, 1)), FlxG.random.float(FlxG.random.float(0, 1), FlxG.random.float(0, 1)));
+        return FlxG.random.float(FlxG.random.float(0, 1), FlxG.random.float(0, 1)); //Reduced Amount, hopefully this helps.
     }
 
+    public var chunkScaleInt:Array<Int> = [5, 10, 10, 20];
+    public var chunkShiftScaleInt:Array<Int> = [2, 5, 5, 20];
+    public var chunkInvertScaleInt:Array<Int> = [4, 8, 8, 24];
+
     public function randomizeGlitches():Void {
+        /*
+        // Old, might be lag cause
         if (chromatic == true) setBool("enableChromatic", FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
         if (jitter == true) setBool("enableJitter", FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
         if (wave == true) setBool("enableWave", FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
         if (scanlines == true) setBool("enableScanlines", FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
         if (chunkShift == true) setBool("enableChunkShift",  FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
         if (invert == true) setBool("enableInvert", FlxG.random.bool(intFromPercent(FlxG.random.float(superRandom(), superRandom()))));
+        */
+        if (chromatic == true) setBool("enableChromatic", FlxG.random.bool(intFromPercent(superRandom())));
+        if (jitter == true) setBool("enableJitter", FlxG.random.bool(intFromPercent(superRandom())));
+        if (wave == true) setBool("enableWave", FlxG.random.bool(intFromPercent(superRandom())));
+        if (scanlines == true) setBool("enableScanlines", FlxG.random.bool(intFromPercent(superRandom())));
+        if (chunkShift == true) setBool("enableChunkShift",  FlxG.random.bool(intFromPercent(superRandom())));
+        if (invert == true) setBool("enableInvert", FlxG.random.bool(intFromPercent(superRandom())));
 
         setFloat("glitchSeed", FlxG.random.float(0, superRandom() * 100));
-        setFloat("chunkScale", FlxG.random.float(FlxG.random.int(5, 10), FlxG.random.int(10, 20)));
-        setFloat("chunkShiftScale", FlxG.random.float(FlxG.random.int(2, 5), FlxG.random.int(5, 20)));
-        setFloat("chunkInvertScale", FlxG.random.float(FlxG.random.int(4, 8), FlxG.random.int(8, 24)));
+        setFloat("chunkScale", FlxG.random.float(FlxG.random.int(chunkScaleInt[0], chunkScaleInt[1]), FlxG.random.int(chunkScaleInt[2], chunkScaleInt[3])));
+        setFloat("chunkShiftScale", FlxG.random.float(FlxG.random.int(chunkShiftScaleInt[0], chunkShiftScaleInt[1]), FlxG.random.int(chunkShiftScaleInt[2], chunkShiftScaleInt[3])));
+        setFloat("chunkInvertScale", FlxG.random.float(FlxG.random.int(chunkInvertScaleInt[0], chunkInvertScaleInt[1]), FlxG.random.int(chunkInvertScaleInt[2], chunkInvertScaleInt[3])));
     }
 
     function set_doTimer(value:Bool):Bool {
