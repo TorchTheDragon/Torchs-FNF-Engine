@@ -1,0 +1,99 @@
+{
+	"events": [
+		[
+			0,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2,expoOut"]
+			]
+		],
+		[
+			1500,
+			[
+				["Play Animation", "argh", "Dad"]
+			]
+		],
+		[
+			5625,
+			[
+				["Play Animation", "ugh", "Dad"]
+			]
+		],
+		[
+			6000,
+			[
+				["Camera Follow Pos", "700", "490"],
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"]
+			]
+		],
+		[
+			10500,
+			[
+				["Play Animation", "laugh", "Dad"],
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.7,0.75,expoOut"]
+			]
+		],
+		[
+			12000,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1.5,expoOut"],
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			13500,
+			[
+				["Camera Follow Pos", "700", "490"]
+			]
+		],
+		[
+			15000,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			19500,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			21000,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1.5,expoOut"]
+			]
+		],
+		[
+			22500,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			36000,
+			[
+				["Enemy Splashes", "false", "true"]
+			]
+		],
+		[
+			37500,
+			[
+				["Play Animation", "argh", "Dad"]
+			]
+		],
+		[
+			49500,
+			[
+				["Play Animation", "argh", "Dad"]
+			]
+		],
+		[
+			50250,
+			[
+				["Play Animation", "beatit", "Dad"]
+			]
+		]
+	],
+	"format": "torch_v1_events"
+}

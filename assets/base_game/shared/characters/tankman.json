@@ -95,16 +95,74 @@
 			"anim": "redheads",
 			"indices": [],
 			"name": "redheads anim0"
+		},
+		{
+			"loop": false,
+			"offsets": [50, 0],
+			"anim": "argh",
+			"fps": 24,
+			"name": "tankman ARGH",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [83, -17],
+			"anim": "beatit",
+			"fps": 24,
+			"name": "tankman beat it",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-25, 13],
+			"anim": "laugh",
+			"fps": 24,
+			"name": "tankman laugh",
+			"indices": []
+		},
+		{
+			"offsets": [-15, -8],
+			"indices": [],
+			"fps": 24,
+			"anim": "ugh",
+			"loop": false,
+			"name": "TANKMAN UGH"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody",
+	"useNoteSkin": false,
+	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody,characters/tankmanPico",
 	"position": [0, 240],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "tankman",
 	"flip_x": true,
 	"healthbar_colors": [225, 225, 225],
+	"disableNoteRGB": false,
 	"camera_position": [0, 0],
+	"noteSkin": "",
 	"noteColors": {
 		"right": [
 			-2631721,
@@ -128,6 +186,7 @@
 		]
 	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false
 }
