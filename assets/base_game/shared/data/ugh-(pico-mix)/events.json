@@ -26,6 +26,24 @@
 			]
 		],
 		[
+			6750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			8250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			9750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
 			10500,
 			[
 				["Play Animation", "laugh", "Dad"],
@@ -36,7 +54,7 @@
 		[
 			12000,
 			[
-				["Updated Camera Zoom", "Main", "0.65,1.5,expoOut"],
+				["Updated Camera Zoom", "Main", "0.65,2.5,expoOut"],
 				["Enemy Splashes", "true", "true"]
 			]
 		],
@@ -53,9 +71,33 @@
 			]
 		],
 		[
+			15750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			17250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			18750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
 			19500,
 			[
 				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			20250,
+			[
+				["Add Camera Zoom", "", ""]
 			]
 		],
 		[
@@ -65,15 +107,102 @@
 			]
 		],
 		[
+			21750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
 			22500,
 			[
 				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
 			]
 		],
 		[
+			23250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			24000,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1.5,expoOut"]
+			]
+		],
+		[
+			24750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			26250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			27000,
+			[
+				["Camera Follow Pos", "700", "490"]
+			]
+		],
+		[
+			27750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			29250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			30000,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			30750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			32250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			33000,
+			[
+				["Camera Follow Pos", "700", "490"]
+			]
+		],
+		[
+			33750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			35250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
 			36000,
 			[
-				["Enemy Splashes", "false", "true"]
+				["Enemy Splashes", "false", "true"],
+				["Updated Camera Zoom", "Main", "0.7,2.5,expoOut"],
+				["Enemy Splashes", "false", "true"],
+				["Camera Follow Pos", "", ""]
 			]
 		],
 		[
@@ -83,7 +212,33 @@
 			]
 		],
 		[
-			49125,
+			43500,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1.5,expoOut"]
+			]
+		],
+		[
+			45000,
+			[
+				["Camera Follow Pos", "700", "490"],
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"]
+			]
+		],
+		[
+			48000,
+			[
+				["Updated Camera Zoom", "Main", "0.7,2.5,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			48750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			49031.25,
 			[
 				["Camera Follow Pos", "1000", "500"],
 				["Play Animation", "burpSmile", "BF"]
@@ -97,15 +252,183 @@
 			]
 		],
 		[
+			49875,
+			[
+				["Updated Camera Zoom", "Main", "0.65,0.75,expoOut"]
+			]
+		],
+		[
 			50250,
 			[
-				["Play Animation", "beatit", "Dad"]
+				["Play Animation", "beatit", "Dad"],
+				["Updated Camera Zoom", "Main", "0.75,0.75,expoOut"]
+			]
+		],
+		[
+			50625,
+			[
+				["Updated Camera Zoom", "Main", "0.7,0.75,expoOut"]
+			]
+		],
+		[
+			51750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			53250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			54000,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1.5,expoOut"]
+			]
+		],
+		[
+			54750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			55500,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			56250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			57000,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1.5,expoOut"]
+			]
+		],
+		[
+			57750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			58500,
+			[
+				["Updated Camera Zoom", "Main", "0.8,1.5,expoOut"]
+			]
+		],
+		[
+			59250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			60000,
+			[
+				["Camera Follow Pos", "700", "490"],
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"]
+			]
+		],
+		[
+			63000,
+			[
+				["Updated Camera Zoom", "Main", "0.6,2.5,expoOut"]
+			]
+		],
+		[
+			66000,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			66750,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1.5,expoOut"],
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			68250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			69000,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			69750,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			70500,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1.5,expoOut"]
+			]
+		],
+		[
+			71250,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			72000,
+			[
+				["Camera Follow Pos", "700", "490"],
+				["Updated Camera Zoom", "Main", "0.65,3,expoOut"]
 			]
 		],
 		[
 			77625,
 			[
 				["Play Animation", "ugh", "Dad"]
+			]
+		],
+		[
+			78000,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.7,1.5,expoOut"]
+			]
+		],
+		[
+			79500,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1.5,expoOut"]
+			]
+		],
+		[
+			81000,
+			[
+				["Updated Camera Zoom", "Main", "0.8,1.5,expoOut"]
+			]
+		],
+		[
+			82500,
+			[
+				["Updated Camera Zoom", "Main", "0.85,1.5,expoOut"]
+			]
+		],
+		[
+			84000,
+			[
+				["Updated Camera Zoom", "Main", "0.65,2.5,expoOut"]
 			]
 		]
 	],
