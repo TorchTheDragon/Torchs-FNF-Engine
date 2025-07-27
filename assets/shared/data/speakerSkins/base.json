@@ -2,7 +2,7 @@
     "beatAnim": "speakers",
     "library": "shared",
     "isAnimateAtlas": false,
-    "offsets": [-25.0, -5.0],
-    "tankmen": [0, 40],
-    "thugmen" : [-85, 40]
+    "offsets": [-20.0, -5.0],
+    "tankmen": [10, 40],
+    "thugmen" : [-40, 40]
 }

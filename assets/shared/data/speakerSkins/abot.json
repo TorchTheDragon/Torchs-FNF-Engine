@@ -3,6 +3,6 @@
     "library": "shared",
     "isAnimateAtlas": false,
     "offsets": [0, 0],
-    "tankmen": [-50, 0],
-    "thugmen" : [-60, 0]
+    "tankmen": [-10, -10],
+    "thugmen" : [10, -10]
 }

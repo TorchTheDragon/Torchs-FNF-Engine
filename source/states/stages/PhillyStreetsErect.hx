@@ -157,7 +157,7 @@ class PhillyStreetsErect extends BaseStage {
 		}
 
 		setDefaultGF('nene');
-		defaultSpeaker = 'abot';
+		defaultSpeaker = '';
 		addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 		
 		if(ClientPrefs.data.shaders)
@@ -221,6 +221,7 @@ class PhillyStreetsErect extends BaseStage {
 		}
 
 		spraycanPile = new BGSprite('SpraycanPile', 920, 1045, 1, 1);
+		spraycanPile.visible = false;
 		precache();
 		add(spraycanPile);
 		darkenable.push(spraycanPile);
