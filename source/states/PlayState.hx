@@ -455,7 +455,7 @@ class PlayState extends MusicBeatState
 			case 'tankErect': new TankErect();			//Tank Erect
 			case 'phillyStreetsErect': new PhillyStreetsErect(); //Philly Streets Erect
 
-			default: new White(); // Base white stage for visibility
+			default: new Gray(); // Base Gray stage for visibility
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
