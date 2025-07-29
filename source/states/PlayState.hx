@@ -3357,7 +3357,24 @@ class PlayState extends MusicBeatState
 	}
 
 	var notesHit:Int = 0;
+	var minNotesHit:Int = 10;
 	var resetTimer:FlxTimer;
+
+	function endCombo(miss:Bool = false) {
+		var endComboTxt:FlxText = new FlxText(0, 0, 600, miss ? 'Combo Break: $notesHit' : 'Notes Combo: $notesHit', 50);
+		endComboTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 40 : 50, miss ? FlxColor.RED : FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		endComboTxt.screenCenter();
+		endComboTxt.borderSize = 2;
+		endComboTxt.updateHitbox();
+		comboGroup.add(endComboTxt);
+		FlxTween.tween(endComboTxt, {y: endComboTxt.y - (FlxG.random.int(50, 70) * playbackRate), alpha: 0}, 0.2 / playbackRate, {
+			onComplete: __ -> {
+				endComboTxt.kill();
+				endComboTxt.destroy();
+			},
+			startDelay: Conductor.crochet * 0.002 / playbackRate
+		});
+	}
 
 	private function popUpScore(note:Note = null):Void
 	{
@@ -3367,6 +3384,7 @@ class PlayState extends MusicBeatState
 
 		if (resetTimer != null) resetTimer.cancel();
 		resetTimer = new FlxTimer().start(2, _ -> {
+			if (notesHit >= minNotesHit) endCombo();
 			notesHit = 0;
 			// You can do more here but I am just making this basic for now.
 			// For example, you could have an image pop up that says 
@@ -3469,7 +3487,7 @@ class PlayState extends MusicBeatState
 
 		var daLoop:Int = 0;
 		var xThing:Float = 0;
-		if (showCombo && notesHit >= 10)
+		if (showCombo && notesHit >= minNotesHit)
 			comboGroup.add(comboSpr);
 
 		var separatedScore:String = Std.string(combo).lpad('0', 3);
@@ -3734,6 +3752,7 @@ class PlayState extends MusicBeatState
 		var subtract:Float = pressMissDamage;
 		if(note != null) subtract = note.missHealth;
 
+		if(notesHit >= minNotesHit) endCombo(true);
 		notesHit = 0;
 		if (resetTimer != null) resetTimer.cancel();
 
