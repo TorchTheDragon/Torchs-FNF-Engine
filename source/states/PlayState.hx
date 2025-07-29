@@ -454,6 +454,8 @@ class PlayState extends MusicBeatState
 			case 'schoolEvilErect': new SchoolEvilErect();	//School Evil Erect
 			case 'tankErect': new TankErect();			//Tank Erect
 			case 'phillyStreetsErect': new PhillyStreetsErect(); //Philly Streets Erect
+
+			default: new White(); // Base white stage for visibility
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
