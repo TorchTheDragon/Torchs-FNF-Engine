@@ -49,13 +49,11 @@ class HealthIcon extends FlxSprite
 				iconOffsets[1] = (height - 150) / iSize;
 				updateHitbox();
 				animation.add(char, [0, 1, 2], 0, false, isPlayer);
-			} else { // This is just an attempt for other icon support, will detect is less than 300 or more than 300. If 300 or less, only 2 icons, if more, 3 icons.
+			} else { // This is just an attempt for other icon support, will detect is less than 450 or more than or equal to 450. If 450 or less, only 2 icons, if more or equal, 3 icons.
 				var num:Int = 2;
-				if (graphic.width < 300) {
-					num = 2;
-				} else if (graphic.width >= 300) {
+				if (graphic.width >= 450) {
 					num = 3;
-				}
+				} else if (graphic.width < 450) num = 2;
 
 				loadGraphic(graphic, true, Math.floor(graphic.width / num), Math.floor(graphic.height));
 				iconOffsets[0] = (width - 150) / iSize;
