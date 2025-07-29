@@ -68,6 +68,7 @@ class BaseStage extends FlxBasic {
 
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
+	public var comboPos:FlxPoint = new FlxPoint(0, 0);
 
     public var speaker:SpeakerSkin;
 

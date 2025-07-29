@@ -3426,13 +3426,13 @@ class PlayState extends MusicBeatState
 		rating.velocity.y -= FlxG.random.int(140, 175) * playbackRate;
 		rating.velocity.x -= FlxG.random.int(0, 10) * playbackRate;
 		rating.visible = (!ClientPrefs.data.hideHud && showRating);
-		var tempPoint:FlxPoint = new FlxPoint(0, 0);
 		stagesFunc(function(stage:BaseStage) {
+			var tempPoint:FlxPoint = new FlxPoint(0, 0);
 			tempPoint.x = stage.ratingPos.x;
 			tempPoint.y = stage.ratingPos.y;
+			if (tempPoint.x != 0) rating.x = tempPoint.x; else rating.x += ClientPrefs.data.comboOffset[0];
+			if (tempPoint.y != 0) rating.y = tempPoint.y; else rating.y -= ClientPrefs.data.comboOffset[1];
 		});
-		if (tempPoint.x != 0) rating.x = tempPoint.x; else rating.x += ClientPrefs.data.comboOffset[0];
-		if (tempPoint.y != 0) rating.y = tempPoint.y; else rating.y -= ClientPrefs.data.comboOffset[1];
 		rating.antialiasing = antialias;
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'combo' + uiPostfix));
@@ -3441,8 +3441,13 @@ class PlayState extends MusicBeatState
 		comboSpr.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
 		comboSpr.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
 		comboSpr.visible = (!ClientPrefs.data.hideHud && showCombo);
-		comboSpr.x += ClientPrefs.data.comboOffset[0];
-		comboSpr.y -= ClientPrefs.data.comboOffset[1];
+		stagesFunc(function(stage:BaseStage) {
+			var tempPoint:FlxPoint = new FlxPoint(0, 0);
+			tempPoint.x = stage.comboPos.x;
+			tempPoint.y = stage.comboPos.y;
+			if (tempPoint.x != 0) comboSpr.x = tempPoint.x; else comboSpr.x += ClientPrefs.data.comboOffset[0];
+			if (tempPoint.y != 0) comboSpr.y = tempPoint.y; else comboSpr.y -= ClientPrefs.data.comboOffset[1];
+		});
 		comboSpr.antialiasing = antialias;
 		comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
@@ -3468,14 +3473,13 @@ class PlayState extends MusicBeatState
 			comboGroup.add(comboSpr);
 
 		var separatedScore:String = Std.string(combo).lpad('0', 3);
+		var comboPoint:FlxPoint = new FlxPoint(0, 0);
+		stagesFunc(function(stage:BaseStage) {
+			comboPoint.x = stage.comboCountPos.x;
+			comboPoint.y = stage.comboCountPos.y;
+		});
 		for (i in 0...separatedScore.length)
 		{
-			var comboPoint:FlxPoint = new FlxPoint(0, 0);
-			stagesFunc(function(stage:BaseStage) {
-				comboPoint.x = stage.comboCountPos.x;
-				comboPoint.y = stage.comboCountPos.y;
-			});
-
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'num' + Std.parseInt(separatedScore.charAt(i)) + uiPostfix));
 			numScore.screenCenter();
 			if (comboPoint.x != 0) numScore.x = (43 * daLoop) + comboPoint.x; else numScore.x = placement + (43 * daLoop) - 90 + ClientPrefs.data.comboOffset[2];
