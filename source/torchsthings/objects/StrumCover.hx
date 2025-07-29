@@ -75,7 +75,7 @@ class StrumCover extends FlxSprite {
         }
         var noteColor:String = colArray[strumNote.noteData].toTitleCase();
         var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';
-        trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
+        //trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
     }
 
     override function update(elapsed:Float) {
