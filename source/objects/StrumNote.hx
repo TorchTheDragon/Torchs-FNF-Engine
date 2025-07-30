@@ -28,6 +28,7 @@ class StrumNote extends FlxSprite
 	public var library:String = 'shared';
 
 	public var useRGBShader:Bool = true;
+	public var pixelNote:Bool = false;
 	public function new(x:Float, y:Float, leData:Int, player:Int, ?customTexture:String = '', ?customLibrary:String = 'shared') {
 		animation = new PsychAnimationController(this);
 
@@ -36,7 +37,7 @@ class StrumNote extends FlxSprite
 		if(PlayState.SONG != null && PlayState.SONG.disableNoteRGB) useRGBShader = false;
 		
 		var arr:Array<FlxColor> = ClientPrefs.data.arrowRGB[leData];
-		if(PlayState.isPixelStage) arr = ClientPrefs.data.arrowRGBPixel[leData];
+		if(PlayState.isPixelStage || pixelNote) arr = ClientPrefs.data.arrowRGBPixel[leData];
 		
 		if(leData <= arr.length)
 		{
@@ -76,13 +77,14 @@ class StrumNote extends FlxSprite
 		var lastAnim:String = null;
 		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-		if (!Paths.fileExists('images/pixelUI/$texture.png', IMAGE, false, library) && PlayState.isPixelStage) {
+		if (!Paths.fileExists('images/pixelUI/$texture.png', IMAGE, false, library) && (PlayState.isPixelStage || pixelNote)) {
 			texture = Note.defaultNoteSkin;
 			library = 'shared';
 		}
 
-		if(PlayState.isPixelStage)
+		if(PlayState.isPixelStage || pixelNote)
 		{
+			pixelNote = true;
 			loadGraphic(Paths.image('pixelUI/' + texture, library));
 			width = width / 4;
 			height = height / 5;

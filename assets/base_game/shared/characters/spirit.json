@@ -76,5 +76,6 @@
 	"_editor_isPlayer": false,
 	"healthBar": "default",
 	"animatedHealthBar": false,
-	"healthBarAnimation": ""
+	"healthBarAnimation": "",
+	"usesPixelNotesSpecifically": true
 }

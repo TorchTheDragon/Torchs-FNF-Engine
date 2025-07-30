@@ -1572,7 +1572,9 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-				var swagNote:Note = new Note(spawnTime, noteColumn, oldNote);
+				var swagNote:Note;
+				if (gottaHitNote) swagNote = new Note(spawnTime, noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically);
+				else swagNote = new Note(spawnTime, noteColumn, oldNote, dad.usesPixelNotesSpecifically);
 				var isAlt: Bool = section.altAnim && !gottaHitNote;
 				swagNote.gfNote = (section.gfSection && gottaHitNote == section.mustHitSection);
 				swagNote.animSuffix = isAlt ? "-alt" : "";
@@ -1580,8 +1582,10 @@ class PlayState extends MusicBeatState
 				swagNote.sustainLength = holdLength;
 				swagNote.noteType = noteType;
 				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(swagNote.noteType)) {
+					//swagNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
 					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
 				} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(swagNote.noteType)) {
+					//swagNote.setNotePixel(dad.usesPixelNotesSpecifically);
 					swagNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
 				}
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
@@ -1656,15 +1660,19 @@ class PlayState extends MusicBeatState
 					{
 						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-						var sustainNote:Note = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, true);
+						var sustainNote:Note;
+						if (gottaHitNote) sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically, true);
+						else sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, dad.usesPixelNotesSpecifically, true);
 						sustainNote.animSuffix = swagNote.animSuffix;
 						sustainNote.mustPress = swagNote.mustPress;
 						sustainNote.gfNote = swagNote.gfNote;
 						sustainNote.noteType = swagNote.noteType;
 
 						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
+							//sustainNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
 							sustainNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
 						} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
+							//sustainNote.setNotePixel(dad.usesPixelNotesSpecifically);
 							sustainNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
 						}
 
@@ -1735,7 +1743,8 @@ class PlayState extends MusicBeatState
 						swagNote.tail.push(sustainNote);
 
 						sustainNote.correctionOffset = swagNote.height / 2;
-						if(!PlayState.isPixelStage)
+						var isPixel:Bool = PlayState.isPixelStage || swagNote.isNotePixel();
+						if(!isPixel)
 						{
 							if(oldNote.isSustainNote)
 							{
@@ -1896,6 +1905,8 @@ class PlayState extends MusicBeatState
 			else babyArrow.alpha = targetAlpha;
 
 			if (player == 1) {
+				babyArrow.pixelNote = boyfriend.usesPixelNotesSpecifically;
+				babyArrow.reloadNote();
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 					if (boyfriend.disableNoteRGB) {
 						babyArrow.disableRGB = true;
@@ -1925,6 +1936,8 @@ class PlayState extends MusicBeatState
 				playerStrums.add(babyArrow);
 				playerCovers.add(strumCover);
 			} else {
+				babyArrow.pixelNote = dad.usesPixelNotesSpecifically;
+				babyArrow.reloadNote();
 				if(ClientPrefs.data.middleScroll)
 				{
 					babyArrow.x += 310;

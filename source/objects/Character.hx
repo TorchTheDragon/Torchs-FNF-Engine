@@ -49,6 +49,8 @@ typedef CharacterFile = {
 	@:optional var healthBarAnimation:String;
 	@:optional var animatedHealthBarOverlay:Bool;
 	@:optional var healthBarOverlayAnimation:String;
+
+	@:optional var usesPixelNotesSpecifically:Bool;
 }
 
 typedef NoteColors = {
@@ -143,6 +145,8 @@ class Character extends FlxSprite
 	public var healthBarAnimation:String = '';
 	public var animatedOverlay:Bool = false;
 	public var healthBarOverlayAnimation:String = '';
+
+	public var usesPixelNotesSpecifically:Bool = false;
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
@@ -321,6 +325,7 @@ class Character extends FlxSprite
 		if (json.useNoteSkin != null) useNoteSkin = json.useNoteSkin;
 		if (json.useSplashSkin != null) useSplashSkin = json.useSplashSkin;
 		if (json.useStrumSkin != null) useStrumSkin = json.useStrumSkin;
+		if (json.usesPixelNotesSpecifically != null) usesPixelNotesSpecifically = json.usesPixelNotesSpecifically;
 	}
 
 	override function update(elapsed:Float)

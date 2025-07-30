@@ -104,7 +104,7 @@ class Note extends FlxSprite
 	public var noteSplashData:NoteSplashData = {
 		disabled: false,
 		texture: null,
-		antialiasing: !PlayState.isPixelStage,
+		antialiasing: !(PlayState.isPixelStage || pixelNote),
 		useGlobalShader: false,
 		useRGBShader: (PlayState.SONG != null) ? !(PlayState.SONG.disableNoteRGB == true) : true,
 		r: -1,
@@ -131,6 +131,7 @@ class Note extends FlxSprite
 	public var ratingDisabled:Bool = false;
 
 	public var texture(default, set):String = null;
+	public static var pixelNote:Bool = false;
 
 	public var noAnimation:Bool = false;
 	public var noMissAnimation:Bool = false;
@@ -158,6 +159,9 @@ class Note extends FlxSprite
 		return value;
 	}
 
+	public function isNotePixel() {return pixelNote;}
+	// Had to make "pixelNote" static for some functions, yet other places now cant access it so I have to use this function as a workaround
+
 	public function resizeByRatio(ratio:Float) //haha funny twitter shit
 	{
 		if(isSustainNote && animation.curAnim != null && !animation.curAnim.name.endsWith('end'))
@@ -177,7 +181,7 @@ class Note extends FlxSprite
 	public function defaultRGB()
 	{
 		var arr:Array<FlxColor> = ClientPrefs.data.arrowRGB[noteData];
-		if(PlayState.isPixelStage) arr = ClientPrefs.data.arrowRGBPixel[noteData];
+		if(PlayState.isPixelStage || pixelNote) arr = ClientPrefs.data.arrowRGBPixel[noteData];
 
 		if (arr != null && noteData > -1 && noteData <= arr.length)
 		{
@@ -244,9 +248,11 @@ class Note extends FlxSprite
 		'Shoot Note'
 	];
 	
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?pixelMode:Bool = false, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
 	{
 		super();
+		pixelNote = pixelMode;
+		var isPixel:Bool = (PlayState.isPixelStage || pixelMode);
 
 		animation = new PsychAnimationController(this);
 
@@ -304,7 +310,7 @@ class Note extends FlxSprite
 
 			offsetX -= width / 2;
 
-			if (PlayState.isPixelStage)
+			if (isPixel)
 				offsetX += 30;
 
 			if (prevNote.isSustainNote)
@@ -314,7 +320,7 @@ class Note extends FlxSprite
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
 				if(createdFrom != null && createdFrom.songSpeed != null) prevNote.scale.y *= createdFrom.songSpeed;
 
-				if(PlayState.isPixelStage) {
+				if(isPixel) {
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
@@ -322,7 +328,7 @@ class Note extends FlxSprite
 				// prevNote.setGraphicSize();
 			}
 
-			if(PlayState.isPixelStage)
+			if(isPixel)
 			{
 				scale.y *= PlayState.daPixelZoom;
 				updateHitbox();
@@ -342,7 +348,7 @@ class Note extends FlxSprite
 		if(globalRgbShaders[noteData] == null)
 		{
 			var newRGB:RGBPalette = new RGBPalette();
-			var arr:Array<FlxColor> = (!PlayState.isPixelStage) ? ClientPrefs.data.arrowRGB[noteData] : ClientPrefs.data.arrowRGBPixel[noteData];
+			var arr:Array<FlxColor> = (!PlayState.isPixelStage || !pixelNote) ? ClientPrefs.data.arrowRGB[noteData] : ClientPrefs.data.arrowRGBPixel[noteData];
 			
 			if (arr != null && noteData > -1 && noteData <= arr.length)
 			{
@@ -389,7 +395,8 @@ class Note extends FlxSprite
 		var lastScaleY:Float = scale.y;
 		var skinPostfix:String = getNoteSkinPostfix();
 		var customSkin:String = skin + skinPostfix;
-		var path:String = PlayState.isPixelStage ? 'pixelUI/' : '';
+		var isPixel:Bool = PlayState.isPixelStage || pixelNote;
+		var path:String = (isPixel) ? 'pixelUI/' : '';
 
 		// This kept crashing the game, time to rewrite it to work better for those skins WITHOUT pixel variants.
 		/*
@@ -407,7 +414,8 @@ class Note extends FlxSprite
 			_lastValidChecked = customSkin;
 		}
 
-		if(PlayState.isPixelStage) {
+		if(isPixel) {
+			pixelNote = true;
 			if(isSustainNote) {
 				var graphic = Paths.image('pixelUI/' + skinPixel + 'ENDS' + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 2));
@@ -551,7 +559,7 @@ class Note extends FlxSprite
 			y = strumY + offsetY + correctionOffset + Math.sin(angleDir) * distance;
 			if(myStrum.downScroll && isSustainNote)
 			{
-				if(PlayState.isPixelStage)
+				if(PlayState.isPixelStage || pixelNote)
 				{
 					y -= PlayState.daPixelZoom * 9.5;
 				}

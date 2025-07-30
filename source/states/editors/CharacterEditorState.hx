@@ -780,7 +780,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		noteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in noteColorNotes) {
 			note.y = 15;
-			note.scale.set(0.5, 0.5);
+			if (note.isNotePixel()) note.scale.set(3, 3);
+			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
 			switch (i) {
@@ -806,7 +807,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altNoteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in altNoteColorNotes) {
 			note.y = 15;
-			note.scale.set(0.5, 0.5);
+			if (note.isNotePixel()) note.scale.set(3, 3);
+			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
 			switch (i) {
@@ -1209,7 +1211,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 
 	function reloadNote(note:Note) {
 		note.reloadNote(character.noteSkin, character.noteSkinLib);
-		note.scale.set(0.5, 0.5);
+		if (note.isNotePixel()) note.scale.set(3, 3);
+		else note.scale.set(0.5, 0.5);
 		note.updateHitbox();
 	}
 
@@ -1807,7 +1810,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			"noteSkin": character.noteSkin,
 			"noteSkinLib": character.noteSkinLib,
 			"disableNoteRGB": character.disableNoteRGB,
-			"useNoteSkin": character.useNoteSkin
+			"useNoteSkin": character.useNoteSkin,
+			"usesPixelNotesSpecifically": character.usesPixelNotesSpecifically
 		};
 
 		var data:String = PsychJsonPrinter.print(json, ['offsets', 'position', 'healthbar_colors', 'camera_position', 'indices']);
