@@ -3361,12 +3361,49 @@ class PlayState extends MusicBeatState
 	var resetTimer:FlxTimer;
 
 	function endCombo(miss:Bool = false) {
-		var endComboTxt:FlxText = new FlxText(0, 0, 600, miss ? 'Combo Break: $notesHit' : 'Notes Combo: $notesHit', 50);
+		var uiFolder:String = "";
+		var antialias:Bool = ClientPrefs.data.antialiasing;
+		if (stageUI != "normal")
+		{
+			uiFolder = uiPrefix + "UI/";
+			antialias = !isPixelStage;
+		}
+
+		var endComboTxt:FlxText = new FlxText(0, 0, 600, miss ? 'Combo Break:' : 'Note Combo:', 50);
 		endComboTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 40 : 50, miss ? FlxColor.RED : FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		endComboTxt.screenCenter();
 		endComboTxt.borderSize = 2;
 		endComboTxt.updateHitbox();
 		comboGroup.add(endComboTxt);
+
+		var seperatedHits:String = Std.string(notesHit);
+		var hitLoop:Int = 0;
+		for (i in 0...seperatedHits.length) {
+			var num:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'num' + Std.parseInt(seperatedHits.charAt(i)) + uiPostfix));
+			num.screenCenter();
+			num.x = endComboTxt.x  + (endComboTxt.width * 0.8) + (43 * hitLoop) + ClientPrefs.data.comboOffset[2];
+			num.y += 80 - ClientPrefs.data.comboOffset[3];
+			if (!PlayState.isPixelStage) num.setGraphicSize(Std.int(num.width * 0.5));
+			else num.setGraphicSize(Std.int(num.width * daPixelZoom));
+			num.updateHitbox();
+
+			num.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
+			num.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
+			num.velocity.x = FlxG.random.float(-5, 5) * playbackRate;
+			num.visible = !ClientPrefs.data.hideHud;
+			num.antialiasing = antialias;
+			if (miss) num.color = FlxColor.RED;
+
+			comboGroup.add(num);
+
+			FlxTween.tween(num, {alpha: 0}, 0.2 / playbackRate, {
+				onComplete: function(tween:FlxTween) {num.destroy();},
+				startDelay: Conductor.crochet * 0.002 / playbackRate
+			});
+
+			hitLoop++;
+		}
+
 		FlxTween.tween(endComboTxt, {y: endComboTxt.y - (FlxG.random.int(50, 70) * playbackRate), alpha: 0}, 0.2 / playbackRate, {
 			onComplete: __ -> {
 				endComboTxt.kill();
@@ -3383,7 +3420,7 @@ class PlayState extends MusicBeatState
 		notesHit += 1;
 
 		if (resetTimer != null) resetTimer.cancel();
-		resetTimer = new FlxTimer().start(2, _ -> {
+		resetTimer = new FlxTimer().start(1.5, _ -> {
 			if (notesHit >= minNotesHit) endCombo();
 			notesHit = 0;
 			// You can do more here but I am just making this basic for now.
@@ -3490,7 +3527,7 @@ class PlayState extends MusicBeatState
 		if (showCombo && notesHit >= minNotesHit)
 			comboGroup.add(comboSpr);
 
-		var separatedScore:String = Std.string(combo).lpad('0', 3);
+		var separatedScore:String = Std.string(combo);
 		var comboPoint:FlxPoint = new FlxPoint(0, 0);
 		stagesFunc(function(stage:BaseStage) {
 			comboPoint.x = stage.comboCountPos.x;
