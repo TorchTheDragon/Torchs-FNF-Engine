@@ -4243,38 +4243,45 @@ class PlayState extends MusicBeatState
 	}
 
 	var lastStepHit:Int = -1;
-	override function stepHit()
-	{
-		switch(curStep)
-		{
+	var creditsTweens:Array<FlxTween> = []; //This might end up being a bit of tweens but at the very least it will allow me to cancel or finish one to start the next faster
+	override function stepHit() {
+		switch(curStep) {
 			case 3:
-				FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
-				FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsDisk, {angle: 2000}, 15, 
-				{   ease:FlxEase.expoOut, 
+				creditsTweens[0] = FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[1] = FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
+				creditsTweens[2] = FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
+				creditsTweens[3] = FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsDisk, {angle: 2000}, 15, {   
+					ease:FlxEase.expoOut, 
 					onComplete: 
-					function(twn:FlxTween)
-					{
+					function(twn:FlxTween) {
 						remove(creditsGroup);
 					}
 				});
-				FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[4] = FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[5] = FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[6] = FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
 			case 7:
-				FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
+				creditsTweens[7] = FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
 			case 25:
-				FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				if (creditsTweens[2] != null) creditsTweens[2].cancel();
+				creditsTweens[2] = FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
 			case 26:
-				FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				if (creditsTweens[0] != null) creditsTweens[0].cancel();
+				if (creditsTweens[1] != null) creditsTweens[1].cancel();
+				if (creditsTweens[3] != null) creditsTweens[3].cancel();
+				if (creditsTweens[4] != null) creditsTweens[4].cancel();
+				if (creditsTweens[5] != null) creditsTweens[5].cancel();
+				if (creditsTweens[6] != null) creditsTweens[6].cancel();
+				if (creditsTweens[7] != null) creditsTweens[7].cancel();
+
+				creditsTweens[0] = FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
+				creditsTweens[1] = FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
+				creditsTweens[7] = FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				creditsTweens[3] = FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
+				creditsTweens[4] = FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				creditsTweens[5] = FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				creditsTweens[6] = FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
 			}
 
 		super.stepHit();
