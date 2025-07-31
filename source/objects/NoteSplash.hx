@@ -45,7 +45,7 @@ class NoteSplash extends FlxSprite
 	public static var defaultNoteSplash(default, never):String = "noteSplashes/noteSplashes";
 	public static var configs:Map<String, NoteSplashConfig> = new Map();
 
-	public function new(?x:Float = 0, ?y:Float = 0, ?splash:String)
+	public function new(?x:Float = 0, ?y:Float = 0, ?splash:String, ?library:String = 'shared')
 	{
 		super(x, y);
 
@@ -54,11 +54,11 @@ class NoteSplash extends FlxSprite
 		rgbShader = new PixelSplashShaderRef(PlayState.isPixelStage);
 		shader = rgbShader.shader;
 
-		loadSplash(splash);
+		loadSplash(splash, library);
 	}
 
 	public var maxAnims(default, set):Int = 0;
-	public function loadSplash(?splash:String)
+	public function loadSplash(?splash:String, ?library:String = 'shared')
 	{
 		config = null;
 		maxAnims = 0;
@@ -70,15 +70,15 @@ class NoteSplash extends FlxSprite
 		}
 
 		texture = splash;
-		frames = Paths.getSparrowAtlas(texture);
+		frames = Paths.getSparrowAtlas(texture, library);
 		if (frames == null)
 		{
 			texture = defaultNoteSplash + getSplashSkinPostfix();
-			frames = Paths.getSparrowAtlas(texture);
+			frames = Paths.getSparrowAtlas(texture, library);
 			if (frames == null)
 			{
 				texture = defaultNoteSplash;
-				frames = Paths.getSparrowAtlas(texture);
+				frames = Paths.getSparrowAtlas(texture, library);
 			}
 		}
 
@@ -93,9 +93,9 @@ class NoteSplash extends FlxSprite
 			}
 			return;
 		}
-		else if (Paths.fileExists('$path.json', TEXT))
+		else if (Paths.fileExists('$path.json', TEXT, false, library))
 		{
-			var config:Dynamic = haxe.Json.parse(Paths.getTextFromFile('$path.json'));
+			var config:Dynamic = haxe.Json.parse(Paths.getTextFromFile('$path.json', false, library));
 			if (config != null)
 			{
 				var tempConfig:NoteSplashConfig = {
@@ -125,9 +125,9 @@ class NoteSplash extends FlxSprite
 		var anim:String = 'note splash';
 		var fps:Array<Null<Int>> = [22, 26];
 		var offsets:Array<Array<Float>> = [[0, 0]];
-		if (Paths.fileExists('$path.txt', TEXT)) // Backwards compatibility with 0.7 splash txts
+		if (Paths.fileExists('$path.txt', TEXT, false, library)) // Backwards compatibility with 0.7 splash txts
 		{
-			var configFile:Array<String> = CoolUtil.listFromString(Paths.getTextFromFile('$path.txt'));
+			var configFile:Array<String> = CoolUtil.listFromString(Paths.getTextFromFile('$path.txt', false, library));
 			if (configFile.length > 0)
 			{
 				anim = configFile[0];
@@ -188,7 +188,7 @@ class NoteSplash extends FlxSprite
 		configs.set(path, this.config);
 	}
 
-	public function spawnSplashNote(?x:Float = 0, ?y:Float = 0, ?noteData:Int = 0, ?note:Note, ?randomize:Bool = true)
+	public function spawnSplashNote(?x:Float = 0, ?y:Float = 0, ?noteData:Int = 0, ?note:Note, ?randomize:Bool = true, ?skin:String = null, ?library:String = null)
 	{
 		if (note != null && note.noteSplashData.disabled)
 			return;
@@ -197,11 +197,15 @@ class NoteSplash extends FlxSprite
 
 		if (!inEditor)
 		{
+			if (skin.length < 1 && skin != null) skin = defaultNoteSplash;
+			if (library.length < 1 || library == null) library = 'shared';
+
 			var loadedTexture:String = defaultNoteSplash + getSplashSkinPostfix();
 			if (note != null && note.noteSplashData.texture != null) loadedTexture = note.noteSplashData.texture;
 			else if (PlayState.SONG != null && PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) loadedTexture = PlayState.SONG.splashSkin;
 
-			if (texture != loadedTexture) loadSplash(loadedTexture);
+			if (skin != null) loadSplash(skin, library);
+			else if (texture != loadedTexture) loadSplash(loadedTexture); 
 		}
 
 		setPosition(x, y);

@@ -160,6 +160,7 @@ class Note extends FlxSprite
 	}
 
 	public function isNotePixel() {return pixelNote;}
+	public function setNotePixel(isPixel:Bool) {pixelNote = isPixel;}
 	// Had to make "pixelNote" static for some functions, yet other places now cant access it so I have to use this function as a workaround
 
 	public function resizeByRatio(ratio:Float) //haha funny twitter shit
@@ -294,12 +295,11 @@ class Note extends FlxSprite
 		if(prevNote != null)
 			prevNote.nextNote = this;
 
-		if (isSustainNote && prevNote != null)
-		{
+		if (isSustainNote && prevNote != null) {
 			alpha = 0.6;
 			multAlpha = 0.6;
 			hitsoundDisabled = true;
-			if(ClientPrefs.data.downScroll) flipY = true;
+			if (ClientPrefs.data.downScroll) flipY = true;
 
 			offsetX += width / 2;
 			copyAngle = false;
@@ -313,14 +313,13 @@ class Note extends FlxSprite
 			if (isPixel)
 				offsetX += 30;
 
-			if (prevNote.isSustainNote)
-			{
+			if (prevNote.isSustainNote) {
 				prevNote.animation.play(colArray[prevNote.noteData % colArray.length] + 'hold');
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
-				if(createdFrom != null && createdFrom.songSpeed != null) prevNote.scale.y *= createdFrom.songSpeed;
+				if (createdFrom != null && createdFrom.songSpeed != null) prevNote.scale.y *= createdFrom.songSpeed;
 
-				if(isPixel) {
+				if (isPixel) {
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
@@ -328,15 +327,13 @@ class Note extends FlxSprite
 				// prevNote.setGraphicSize();
 			}
 
-			if(isPixel)
-			{
+			if (isPixel) {
 				scale.y *= PlayState.daPixelZoom;
 				updateHitbox();
 			}
 			earlyHitMult = 0;
 		}
-		else if(!isSustainNote)
-		{
+		else if (!isSustainNote) {
 			centerOffsets();
 			centerOrigin();
 		}
@@ -415,13 +412,13 @@ class Note extends FlxSprite
 		}
 
 		if(isPixel) {
-			pixelNote = true;
+			//pixelNote = true;
 			if(isSustainNote) {
-				var graphic = Paths.image('pixelUI/' + skinPixel + 'ENDS' + skinPostfix, library);
+				var graphic = Paths.image((pixelNote ? '' : 'pixelUI/') + skinPixel + 'ENDS' + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 2));
 				originalHeight = graphic.height / 2;
 			} else {
-				var graphic = Paths.image('pixelUI/' + skinPixel + skinPostfix, library);
+				var graphic = Paths.image((pixelNote ? '' : 'pixelUI/') + skinPixel + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 5));
 			}
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));

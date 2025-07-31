@@ -308,9 +308,9 @@ class Character extends FlxSprite
 		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin;
 		if (json.noteSkinLib != null && json.noteSkinLib != '') noteSkinLib = json.noteSkinLib; else noteSkinLib = 'shared';
 		if (json.splashSkin != null && json.splashSkin != '') splashSkin = json.splashSkin;
-		if (json.splashSkinLib != null && json.splashSkinLib != '') splashSkinLib = json.splashSkinLib;
+		if (json.splashSkinLib != null && json.splashSkinLib != '') splashSkinLib = json.splashSkinLib; else splashSkinLib = 'shared';
 		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
-		if (json.strumSkinLib != null && json.strumSkinLib != '') strumSkinLib = json.strumSkinLib;
+		if (json.strumSkinLib != null && json.strumSkinLib != '') strumSkinLib = json.strumSkinLib; else strumSkinLib = 'shared';
 		if (json.noteColors != null) noteColors = json.noteColors;
 		if (json.healthBar != null && json.healthBar != '') healthBar = json.healthBar;
 		if (json.healthBarLibrary != null && json.healthBarLibrary != '') healthBarLibrary = json.healthBarLibrary;

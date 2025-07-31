@@ -1907,6 +1907,7 @@ class PlayState extends MusicBeatState
 			if (player == 1) {
 				babyArrow.pixelNote = boyfriend.usesPixelNotesSpecifically;
 				babyArrow.reloadNote();
+				strumCover.reloadCover(boyfriend.strumSkin, boyfriend.strumSkinLib);
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 					if (boyfriend.disableNoteRGB) {
 						babyArrow.disableRGB = true;
@@ -1938,6 +1939,7 @@ class PlayState extends MusicBeatState
 			} else {
 				babyArrow.pixelNote = dad.usesPixelNotesSpecifically;
 				babyArrow.reloadNote();
+				strumCover.reloadCover(dad.strumSkin, dad.strumSkinLib);
 				if(ClientPrefs.data.middleScroll)
 				{
 					babyArrow.x += 310;
@@ -4145,11 +4147,19 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function spawnNoteSplash(x:Float = 0, y:Float = 0, ?data:Int = 0, ?note:Note, ?strum:StrumNote) {
+	public function spawnNoteSplash(x:Float = 0, y:Float = 0, ?data:Int = 0, ?note:Note, ?strum:StrumNote, ?player:Int = 0) {
 		//var splash:NoteSplash = new NoteSplash();
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
 		splash.babyArrow = strum;
-		splash.spawnSplashNote(x, y, data, note);
+		/*
+		if ((boyfriend.splashSkin != '' && boyfriend.splashSkin != null) && player == 1) {
+			splash.spawnSplashNote(x, y, data, note, true, boyfriend.splashSkin, boyfriend.splashSkinLib);
+			trace('boyfie sing... ye');
+		} else if ((dad.splashSkin != '' && dad.splashSkin != null) && player == 0) {
+			splash.spawnSplashNote(x, y, data, note, true, dad.splashSkin, dad.splashSkinLib);
+		} else splash.spawnSplashNote(x, y, data, note);
+		*/
+		splash.spawnSplashNote(x, y, data, note, true, player == 1 ? boyfriend.splashSkin : dad.splashSkin, player == 1 ? boyfriend.splashSkinLib : dad.splashSkinLib);
 		if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 			switch (note.noteData) {
 				case 0:

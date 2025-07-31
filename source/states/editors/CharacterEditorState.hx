@@ -780,7 +780,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		noteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in noteColorNotes) {
 			note.y = 15;
-			if (note.isNotePixel()) note.scale.set(3, 3);
+			if (note.isNotePixel()) note.scale.set(4.5, 4.5);
 			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
@@ -807,7 +807,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altNoteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in altNoteColorNotes) {
 			note.y = 15;
-			if (note.isNotePixel()) note.scale.set(3, 3);
+			if (note.isNotePixel()) note.scale.set(4.5, 4.5);
 			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
@@ -982,6 +982,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (note in allNotes) {
 				note.rgbShader.enabled = !character.disableNoteRGB; // Yeah yeah, I know I am swapping it, but if "disableNoteRGB" is true, then if I didn't swap it, the notes would be showing the RGB shader in the preview
 				//trace(Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib));
+				note.setNotePixel(character.usesPixelNotesSpecifically);
+				//trace(note.isNotePixel());
 				if (character.useNoteSkin && Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib)) {
 					reloadNote(note);
 				}
@@ -1020,6 +1022,14 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 	var charNoteSkin:PsychUIInputText;
 	var noteSkinLibText:FlxText;
 	var charNoteSkinLib:PsychUIInputText;
+	var splashSkinText:FlxText;
+	var charSplashSkin:PsychUIInputText;
+	var splashSkinLibText:FlxText;
+	var charSplashSkinLib:PsychUIInputText;
+	var strumSkinText:FlxText;
+	var charStrumSkin:PsychUIInputText;
+	var strumSkinLibText:FlxText;
+	var charStrumSkinLib:PsychUIInputText;
 	var usingNoteSkin:PsychUICheckBox;
 	var usePixelSpecific:PsychUICheckBox;
 
@@ -1029,17 +1039,43 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		charNoteSkin = new PsychUIInputText(noteSkinText.x, noteSkinText.y + 12, 150, character.noteSkin != null ? character.noteSkin : '', 8);
 		noteSkinLibText = new FlxText(charNoteSkin.x, charNoteSkin.y + 18, 150, "Note Skin Library:");
 		charNoteSkinLib = new PsychUIInputText(noteSkinLibText.x, noteSkinLibText.y + 12, 150, character.noteSkinLib != null ? character.noteSkinLib : '', 8);
+		splashSkinText = new FlxText(charNoteSkinLib.x, charNoteSkinLib.y + 18, 150, "Note Splash Skin:");
+		charSplashSkin = new PsychUIInputText(splashSkinText.x, splashSkinText.y + 12, 150, character.splashSkin != null ? character.splashSkin : '', 8);
+		splashSkinLibText = new FlxText(charSplashSkin.x, charSplashSkin.y + 18, 150, "Note Splash Library:");
+		charSplashSkinLib = new PsychUIInputText(splashSkinLibText.x, splashSkinLibText.y + 12, 150, character.splashSkinLib != null ? character.splashSkinLib : '', 8);
+		strumSkinText = new FlxText(charSplashSkinLib.x, charSplashSkinLib.y + 18, 150, "Strum Cover Skin:");
+		charStrumSkin = new PsychUIInputText(strumSkinText.x, strumSkinText.y + 12, 150, character.strumSkin != null ? character.strumSkin : '', 8);
+		strumSkinLibText = new FlxText(charStrumSkin.x, charStrumSkin.y + 18, 150, "Strum Cover Library:");
+		charStrumSkinLib = new PsychUIInputText(strumSkinLibText.x, strumSkinLibText.y + 12, 150, character.strumSkinLib != null ? character.strumSkinLib : '', 8);
+		var warningText:FlxText = new FlxText(175, 10, 150, 
+			"Hey, make sure you type the file name and library correctly, if you don't... the game WILL crash. It's not intentional but I don't have a workaround implemented yet, sorry."
+		);
 
-		usingNoteSkin = new PsychUICheckBox(10, 240, "Custom Note Skin?", 150);
+		usingNoteSkin = new PsychUICheckBox(10, 240, "Custom Note Skin?", 100);
 		usingNoteSkin.onClick = function() {
 			character.useNoteSkin = usingNoteSkin.checked;
+		};
+
+		usePixelSpecific = new PsychUICheckBox(usingNoteSkin.x + 135, usingNoteSkin.y, "Pixel Note Skin?", 100);
+		usePixelSpecific.onClick = function() {
+			character.usesPixelNotesSpecifically = usePixelSpecific.checked;
 		};
 
 		tab_group.add(noteSkinText);
 		tab_group.add(charNoteSkin);
 		tab_group.add(noteSkinLibText);
 		tab_group.add(charNoteSkinLib);
+		tab_group.add(splashSkinText);
+		tab_group.add(charSplashSkin);
+		tab_group.add(splashSkinLibText);
+		tab_group.add(charSplashSkinLib);
+		tab_group.add(strumSkinText);
+		tab_group.add(charStrumSkin);
+		tab_group.add(strumSkinLibText);
+		tab_group.add(charStrumSkinLib);
 		tab_group.add(usingNoteSkin);
+		tab_group.add(usePixelSpecific);
+		tab_group.add(warningText);
 	}
 
 	function altButton() {
@@ -1129,6 +1165,18 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			} else if (sender == charNoteSkinLib) {
 				character.noteSkinLib = charNoteSkinLib.text;
 				unsavedProgress = true;
+			} else if (sender == charSplashSkin) {
+				character.splashSkin = charSplashSkin.text;
+				unsavedProgress = true;
+			} else if (sender == charSplashSkinLib) {
+				character.splashSkinLib = charSplashSkinLib.text;
+				unsavedProgress = true;
+			} else if (sender == charStrumSkin) {
+				character.strumSkin = charStrumSkin.text;
+				unsavedProgress = true;
+			} else if (sender == charStrumSkinLib) {
+				character.strumSkinLib = charStrumSkinLib.text;
+				unsavedProgress = true;
 			}
 		}
 		else if(id == PsychUINumericStepper.CHANGE_EVENT)
@@ -1211,7 +1259,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 
 	function reloadNote(note:Note) {
 		note.reloadNote(character.noteSkin, character.noteSkinLib);
-		if (note.isNotePixel()) note.scale.set(3, 3);
+		if (note.isNotePixel()) note.scale.set(4.5, 4.5);
 		else note.scale.set(0.5, 0.5);
 		note.updateHitbox();
 	}
@@ -1307,8 +1355,14 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altColors = false;
 		disableNoteRGB.checked = character.disableNoteRGB;
 		usingNoteSkin.checked = character.useNoteSkin;
+		usePixelSpecific.checked = character.usesPixelNotesSpecifically;
 		charNoteSkin.text = character.noteSkin;
 		charNoteSkinLib.text = character.noteSkinLib;
+		charSplashSkin.text = character.splashSkin;
+		charSplashSkinLib.text = character.splashSkinLib;
+		charStrumSkin.text = character.strumSkin;
+		charStrumSkinLib.text = character.strumSkinLib;
+		
 		reloadAnimationDropDown();
 		updateHealthBar();
 		updateAllNotes();
@@ -1809,6 +1863,10 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			"hasAltColors": character.hasAltColors,
 			"noteSkin": character.noteSkin,
 			"noteSkinLib": character.noteSkinLib,
+			"splashSkin": character.splashSkin,
+			"splashSkinLib": character.splashSkinLib,
+			"strumSkin": character.strumSkin,
+			"strumSkinLib": character.strumSkinLib,
 			"disableNoteRGB": character.disableNoteRGB,
 			"useNoteSkin": character.useNoteSkin,
 			"usesPixelNotesSpecifically": character.usesPixelNotesSpecifically
