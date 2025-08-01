@@ -88,6 +88,7 @@ class TankErect extends BaseStage
                             applyShader(tankBih, "");
                             if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
                             cast(tankBih.shader, DropShadowShader).threshold = 0.5;
+							cast(tankBih.shader, DropShadowShader).angle = 135;
                             }
 							tankBih.strumTime = TankmenBG.animationNotes[i][0];
 							tankBih.scale.set(1.05, 1.05);
@@ -233,7 +234,7 @@ class TankErect extends BaseStage
             case "tankman":
 				{
 					rim.threshold = 0.3;
-					rim.angle = 90;
+					rim.angle = 135;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
@@ -241,7 +242,7 @@ class TankErect extends BaseStage
 				}
             case "tankman-bloody":
 				{
-					rim.angle = 90;
+					rim.angle = 135;
 					rim.altMaskImage = Paths.image("Erect/masks/tankmanCaptainBloody_mask").bitmap;
 					rim.maskThreshold = 1;
 					rim.threshold = 0.3;
