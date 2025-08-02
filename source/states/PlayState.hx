@@ -1573,14 +1573,14 @@ class PlayState extends MusicBeatState
 				}
 
 				var swagNote:Note;
-				if (gottaHitNote) swagNote = new Note(spawnTime, noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically);
-				else swagNote = new Note(spawnTime, noteColumn, oldNote, dad.usesPixelNotesSpecifically);
+				if (gottaHitNote) swagNote = new Note(spawnTime, noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically, noteType);
+				else swagNote = new Note(spawnTime, noteColumn, oldNote, dad.usesPixelNotesSpecifically, noteType);
 				var isAlt: Bool = section.altAnim && !gottaHitNote;
 				swagNote.gfNote = (section.gfSection && gottaHitNote == section.mustHitSection);
 				swagNote.animSuffix = isAlt ? "-alt" : "";
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = holdLength;
-				swagNote.noteType = noteType;
+				//swagNote.noteType = noteType;
 				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(swagNote.noteType)) {
 					//swagNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
 					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
@@ -1661,12 +1661,12 @@ class PlayState extends MusicBeatState
 						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
 						var sustainNote:Note;
-						if (gottaHitNote) sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically, true);
-						else sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, dad.usesPixelNotesSpecifically, true);
+						if (gottaHitNote) sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically, swagNote.noteType, true);
+						else sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, dad.usesPixelNotesSpecifically, swagNote.noteType, true);
 						sustainNote.animSuffix = swagNote.animSuffix;
 						sustainNote.mustPress = swagNote.mustPress;
 						sustainNote.gfNote = swagNote.gfNote;
-						sustainNote.noteType = swagNote.noteType;
+						//sustainNote.noteType = swagNote.noteType;
 
 						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
 							//sustainNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
