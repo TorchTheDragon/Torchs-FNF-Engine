@@ -414,11 +414,11 @@ class Note extends FlxSprite
 		if(isPixel) {
 			//pixelNote = true;
 			if(isSustainNote) {
-				var graphic = Paths.image((pixelNote ? '' : 'pixelUI/') + skinPixel + 'ENDS' + skinPostfix, library);
+				var graphic = Paths.image((pixelNote && !(texture.length < 1) ? '' : 'pixelUI/') + skinPixel + 'ENDS' + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 2));
 				originalHeight = graphic.height / 2;
 			} else {
-				var graphic = Paths.image((pixelNote ? '' : 'pixelUI/') + skinPixel + skinPostfix, library);
+				var graphic = Paths.image((pixelNote && !(texture.length < 1) ? '' : 'pixelUI/') + skinPixel + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 5));
 			}
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));
