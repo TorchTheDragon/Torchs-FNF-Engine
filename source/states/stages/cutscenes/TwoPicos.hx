@@ -272,4 +272,27 @@ class TwoPicos {
         point.y += char.cameraPosition[1] + camOffset[1];
         return [point.x, point.y];
     }
+
+    public function glowEvent(end:Bool)
+    {
+        var char:PicoDopplegangerSprite;
+        if(!end)
+        {
+            if (cigarette != null) cigarette.color = host.boyfriend.color;
+            if (explode)
+            {
+                char = playerShoots ? imposterPico : pico;
+                char.color = host.boyfriend.color;
+            }
+        }
+        else 
+        {
+            if (explode)
+            {
+                char = playerShoots ? imposterPico : pico;
+                char.color = 0xFFFFFFFF;
+            }
+            cigarette.color = 0xFFFFFFFF;
+        }
+    }
 }

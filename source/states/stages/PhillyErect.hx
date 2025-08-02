@@ -30,6 +30,8 @@ class PhillyErect extends BaseStage
 	var rtxTest:RTXShader;
 	var colorShader:AdjustColorShader;
 
+	var cutscene:TwoPicos;
+
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality) {
@@ -61,7 +63,8 @@ class PhillyErect extends BaseStage
 		add(phillyStreet);
 
 		//Debería haber un !seenCutscene para esto, pero como los pico mixes aún no están implementados lo dejo así para testear 
-		if(PlayState.SONG.player1 == "pico-playable" && PlayState.SONG.player2 == "pico") setStartCallback(new TwoPicos(this).startCutscene);
+		cutscene = new TwoPicos(this);
+		if(PlayState.SONG.player1 == "pico-playable" && PlayState.SONG.player2 == "pico") setStartCallback(cutscene.startCutscene);
 		defaultSpeaker = 'abot';
         addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
 		/*
@@ -147,6 +150,7 @@ class PhillyErect extends BaseStage
 		switch(eventName)
 		{
 			case "Philly Glow":
+				cutscene.glowEvent(false);
 				PlayState.instance.eventExisted = true;
 				if(flValue1 == null || flValue1 <= 0) flValue1 = 0;
 				var lightId:Int = Math.round(flValue1);
@@ -159,6 +163,7 @@ class PhillyErect extends BaseStage
 					case 0:
 						if(phillyGlowGradient.visible)
 						{
+							cutscene.glowEvent(true);
 							doFlash();
 							if(ClientPrefs.data.camZooms)
 							{
