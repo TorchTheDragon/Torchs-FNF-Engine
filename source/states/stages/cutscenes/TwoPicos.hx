@@ -146,7 +146,7 @@ class TwoPicos {
         seenOutcome = false;
         //Testing variables
         // explode = true;
-        // playerShoots = false;
+        // playerShoots = true;
         //50/50 chance for who shoots
         if (FlxG.random.bool(50))
         {
@@ -275,24 +275,11 @@ class TwoPicos {
 
     public function glowEvent(end:Bool)
     {
-        var char:PicoDopplegangerSprite;
-        if(!end)
+        if(explode && playerShoots)
         {
-            if (cigarette != null) cigarette.color = host.boyfriend.color;
-            if (explode)
-            {
-                char = playerShoots ? imposterPico : pico;
-                char.color = host.boyfriend.color;
-            }
-        }
-        else 
-        {
-            if (explode)
-            {
-                char = playerShoots ? imposterPico : pico;
-                char.color = 0xFFFFFFFF;
-            }
-            cigarette.color = 0xFFFFFFFF;
+            cigarette.color = imposterPico.color = bloodPool.color = host.boyfriend.color;
+            if (!end) return;
+            cigarette.color = imposterPico.color = bloodPool.color = 0xFFFFFFFF;
         }
     }
 }

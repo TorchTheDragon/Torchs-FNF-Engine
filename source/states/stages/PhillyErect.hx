@@ -102,7 +102,6 @@ class PhillyErect extends BaseStage
 				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 				blammedLightsBlack.visible = false;
 				insert(members.indexOf(phillyStreet), blammedLightsBlack);
-
 				phillyWindowEvent = new BGSprite('philly/erect/windows', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
 				phillyWindowEvent.setGraphicSize(Std.int(phillyWindowEvent.width * 0.85));
 				phillyWindowEvent.updateHitbox();
