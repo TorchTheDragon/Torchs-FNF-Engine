@@ -281,5 +281,8 @@ class TwoPicos {
             if (!end) return;
             cigarette.color = imposterPico.color = bloodPool.color = 0xFFFFFFFF;
         }
+        cigarette.color = host.boyfriend.color;
+        if (!end) return;
+        cigarette.color = 0xFFFFFFFF;
     }
 }
