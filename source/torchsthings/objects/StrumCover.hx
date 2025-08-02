@@ -79,7 +79,7 @@ class StrumCover extends FlxSprite {
     }
 
     override function update(elapsed:Float) {
-        if (strumNote == null) {destroy();}
+        if (strumNote == null) destroy();
         setOffset();
         super.update(elapsed);
     }
@@ -91,6 +91,7 @@ class StrumCover extends FlxSprite {
     }
 
     public function start(?note:Note = null) {
+        if (strumNote.pixelNote && rgbShader.pixelAmount != PlayState.daPixelZoom) rgbShader.pixelAmount = PlayState.daPixelZoom;
         if (!enemySplash) showSplash = (ratingsToShowUpOn.contains(getRatingFromNote(note)));
         visible = showSplash;
         setOffset(0);

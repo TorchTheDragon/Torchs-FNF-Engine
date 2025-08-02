@@ -279,7 +279,7 @@ class NoteSplash extends FlxSprite
 		}
 		rgbShader.copyValues(tempShader);
 		if (!config.allowPixel) rgbShader.pixelAmount = 1;
-		else if (PlayState.isPixelStage) rgbShader.pixelAmount = 6;
+		else if (PlayState.isPixelStage || note.isNotePixel()) rgbShader.pixelAmount = 6;
 
 		offset.set(10, 10);
 		var conf:NoteSplashAnim = config.animations.get(anim);
