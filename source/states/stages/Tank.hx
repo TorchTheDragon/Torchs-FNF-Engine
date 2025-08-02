@@ -15,6 +15,7 @@ class Tank extends BaseStage
 
 	var picoStress:FlxSignal = new FlxSignal();
     var tankmenSpeaker:TankmenSpeaker;
+	var bricks:BGSprite;
 
 	override function create()
 	{

@@ -2927,18 +2927,34 @@ class PlayState extends MusicBeatState
 				}
 
 			case 'Camera Follow Pos':
-				if(camFollow != null)
-				{
-					isCameraOnForcedPos = false;
-					if(flValue1 != null || flValue2 != null)
-					{
-						isCameraOnForcedPos = true;
-						if(flValue1 == null) flValue1 = 0;
-						if(flValue2 == null) flValue2 = 0;
-						camFollow.x = flValue1;
-						camFollow.y = flValue2;
-					}
-				}
+                if(camFollow != null)
+                {
+                    isCameraOnForcedPos = false;
+                    if(flValue1 != null || flValue2 != null)
+                    {
+                        isCameraOnForcedPos = true;
+                        if(flValue1 == null) flValue1 = 0;
+                        if(flValue2 == null) flValue2 = 0;
+
+                   
+                        var tweenDuration:Float = 0;
+                        var tweenEase:Null<Float->Float> = null;
+                        var vals:Array<String> = value2.split(",");
+                        if (vals.length >= 3) {
+
+                            var dur = Std.parseFloat(vals[1].trim());
+                            if (!Math.isNaN(dur)) tweenDuration = dur;
+                            var easeStr = vals[2].trim();
+                            if (easeStr != "") tweenEase = Extras.stringToEase(easeStr);
+                        }
+                        if (tweenDuration > 0) {
+                            FlxTween.tween(camFollow, {x: flValue1, y: flValue2}, tweenDuration, {ease: tweenEase});
+                        } else {
+                            camFollow.x = flValue1;
+                            camFollow.y = flValue2;
+                        }
+                    }
+                }
 
 			case 'Alt Idle Animation':
 				var char:Character = dad;

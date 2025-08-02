@@ -21,6 +21,7 @@ class TankErect extends BaseStage
 	var tankmen:FlxSprite;
     var headtank:FlxSprite;
 	var tankmenSpeaker:TankmenSpeaker;
+	var bricks:BGSprite;
     override function create()
     {
         bg = new BGSprite('Erect/bg', -1085, -805);
@@ -52,6 +53,9 @@ class TankErect extends BaseStage
 		defaultSpeaker = 'abot';
         addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
 
+		bricks = new BGSprite('Erect/bricksGround', 525, 760);
+		bricks.setGraphicSize(Std.int(bricks.width * 1.15));
+		bricks.updateHitbox();
 		if (!isStoryMode) //Lol
 		{
 			if (PlayState.SONG.song.toLowerCase() == "stress-pico-mix")
@@ -66,6 +70,8 @@ class TankErect extends BaseStage
     override function createPost()
     {
         super.createPost();
+		add(bricks);
+
 
      if(!ClientPrefs.data.lowQuality) {
             for (daGf in gfGroup)
