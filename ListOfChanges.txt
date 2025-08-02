@@ -101,11 +101,26 @@ Eggnog Erect End Cutscene - Lawornot
 New Options Substate For Engine's Original Settings - Lawornot
 HealthBar Type Preview In Setting - Lawornot
 HealthBar in IconsDanceSubMenu and removing the “Cancel” option because it felt a bit unintuitive - Lawornot
-New menu to choose between different engine settings -Lawornot
-added 7 Stages Erects -JorgeX_YT
-Added DropshadowShader and Fixed for games 2D -JorgeX_YT
+New menu to choose between different engine settings - Lawornot
+added 7 Stages Erects - JorgeX_YT
+Added DropshadowShader and Fixed for games 2D - JorgeX_YT
 Added OtisSpeaker with a funtcion "forceIdle" and Reload Animation by ImSnax - JorgeX_YT
-Added Intro Video for Songs in the Freeplay "Stress Pico Mix" -JorgeX_YT
-Added Tankmens with the speaker "temporary" -JorgeX_YT
-Added Philly Stress Erect (will add with the paper random later lol) -JorgeX_YT
-Added the "this.shader = charRef.shader;" for the ReflectedChar for concert with the AdjustColorShader- JorgeX_YT
+Added Intro Video for Songs in the Freeplay "Stress Pico Mix" - JorgeX_YT
+Added Tankmens with the speaker "temporary" - JorgeX_YT
+Added Philly Stress Erect (will add with the paper random later lol) - JorgeX_YT
+Added the "this.shader = charRef.shader;" for the ReflectedChar for concert with the AdjustColorShader - JorgeX_YT
+Added Tankmen stageData for positioning - JorgeX_YT & Lawornot
+Fixed a bit of code in Otis and Pico speaker - JorgeX_YT
+Disable Glitch Shader, it works... but seems to really not like lower end devices I guess... recompile it in if you desire - TorchTheDragon
+Added Pico Mixes (Part 1) - JorgeX_YT
+Added more Pico Animations - JorgeX_YT
+Pico Mix Recharts (Part 1 & 2) - ImSnax
+Added Tankman Animations - ImSnax
+Week 3 Stage (Philly) edits - JorgeX_YT
+Made a small Combo update - TorchTheDragon
+Darnell BF Mix Added - JorgeX_YT
+New Default Stage, it's grey - TorchTheDragon
+Changed HealthIcon graphic sizing code, maybe it'll be more acceptable for bigger images? - TorchTheDragon
+Proof Of Concept - Notes Hit and Combo Break with Note Count, added but missing sprites - TorchTheDragon
+Got more Customization for Characters created and implemented, Character menu updated to accomodate the changes - TorchTheDragon
+Fixed Credit Tweens, stopped improper stops - TorchTheDragon
