@@ -93,8 +93,7 @@ class TankErect extends BaseStage
 							var tankBih = tankmanRun.recycle(TankmenBG);
                             applyShader(tankBih, "");
                             if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
-                            cast(tankBih.shader, DropShadowShader).threshold = 0.5;
-							cast(tankBih.shader, DropShadowShader).angle = 135;
+							var s = cast(tankBih.shader, DropShadowShader); s.threshold = 0.5; s.angle = 135; // I did not occur to me from before lmao
                             }
 							tankBih.strumTime = TankmenBG.animationNotes[i][0];
 							tankBih.scale.set(1.05, 1.05);
