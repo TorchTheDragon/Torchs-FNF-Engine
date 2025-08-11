@@ -1580,7 +1580,7 @@ class PlayState extends MusicBeatState
 				swagNote.animSuffix = isAlt ? "-alt" : "";
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = holdLength;
-				//swagNote.noteType = noteType;
+				swagNote.noteType = noteType;
 				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(swagNote.noteType)) {
 					//swagNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
 					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
@@ -1666,7 +1666,7 @@ class PlayState extends MusicBeatState
 						sustainNote.animSuffix = swagNote.animSuffix;
 						sustainNote.mustPress = swagNote.mustPress;
 						sustainNote.gfNote = swagNote.gfNote;
-						//sustainNote.noteType = swagNote.noteType;
+						sustainNote.noteType = swagNote.noteType;
 
 						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
 							//sustainNote.setNotePixel(boyfriend.usesPixelNotesSpecifically);
