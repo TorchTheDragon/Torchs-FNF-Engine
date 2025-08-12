@@ -71,8 +71,8 @@ class ABotSpeaker extends FlxSpriteGroup
 			viz.animation.curAnim.finish(); //make it go to the lowest point
 			viz.antialiasing = antialias;
 			vizSprites.push(viz);
-			//viz.updateHitbox();
-			viz.centerOffsets(true);
+			viz.updateHitbox();
+			viz.centerOffsets();
 			add(viz);
 		}
 

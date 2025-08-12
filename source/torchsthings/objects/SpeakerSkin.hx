@@ -272,6 +272,18 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
     }
 
+    public function reflectionOffset(speak:String) {
+        switch (speak) { // Defaulting these to 0 for now until I figure out specific distances
+            case "base" | "base-christmas":
+                return 0;
+            case "abot" | "nene":
+                return 50;
+            default:
+                if (customSpeaker != null && Reflect.hasField(customSpeaker, "reflectOffset")) return Reflect.field(customSpeaker, "reflectOffset");
+                else return 0;
+        }
+    }
+
 
     // Abot Stuff
 	var blinkCountdown:Int = 3;
