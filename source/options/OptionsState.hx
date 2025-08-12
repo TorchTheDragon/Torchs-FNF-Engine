@@ -6,121 +6,119 @@ import torchsthings.utils.WindowUtils;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = [
-		'Psych Engine Settings',
-		'Torchs Engine Settings'
-	];
-	private var grpOptions:FlxTypedGroup<Alphabet>;
-	private static var curSelected:Int = 0;
-	public static var menuBG:FlxSprite;
-	public static var onPlayState:Bool = false;
+    public static var menuBG:FlxSprite;
+    public static var onPlayState:Bool = false;
+    public static var curSelected:Int = 0;
 
-	function openSelectedSubstate(label:String) {
-		switch(label)
-		{
-			case 'Psych Engine Settings':
-				MusicBeatState.switchState(new options.PsychEngineSettingsState());
-			case 'Torchs Engine Settings':
-				openSubState(new options.TorchsEngineSettingsState());
-		}
-	}
+    var menuItems:FlxTypedGroup<FlxSprite>;
 
-	var selectorLeft:Alphabet;
-	var selectorRight:Alphabet;
+    var optionShit:Array<String> = [
+        'psych',
+        'torch'
+    ];
 
-	override function create()
+    function openSelectedSubstate(label:String) {
+        switch(label)
+        {
+            case 'psych':
+                MusicBeatState.switchState(new options.PsychEngineSettingsState());
+            case 'torch':
+                openSubState(new options.TorchsEngineSettingsState());
+        }
+    }
+
+    function createMenuItem(name:String, x:Float, y:Float):FlxSprite
+    {
+        var menuItem:FlxSprite = new FlxSprite(x, y);
+        menuItem.frames = Paths.getSparrowAtlas('options/menu_$name');
+        menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
+        menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
+        menuItem.animation.play('idle');
+        menuItem.updateHitbox();
+        menuItem.antialiasing = ClientPrefs.data.antialiasing;
+        menuItem.scrollFactor.set();
+        menuItems.add(menuItem);
+        return menuItem;
+    }
+
+    override function create()
+    {
+        #if DISCORD_ALLOWED
+        DiscordClient.changePresence("Options Menu", null);
+        #end
+
+        WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
+
+        var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+        bg.antialiasing = ClientPrefs.data.antialiasing;
+        bg.color = 0xFFea71fd;
+        bg.updateHitbox();
+        bg.screenCenter();
+        add(bg);
+
+        menuItems = new FlxTypedGroup<FlxSprite>();
+        add(menuItems);
+
+	var spacing:Float = 180;
+	for (num => option in optionShit)
 	{
-		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
-		#end
-
-		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
-
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.color = 0xFFea71fd;
-		bg.updateHitbox();
-
-		bg.screenCenter();
-		add(bg);
-
-		grpOptions = new FlxTypedGroup<Alphabet>();
-		add(grpOptions);
-
-		for (num => option in options)
-		{
-			var optionText:Alphabet = new Alphabet(0, 0, Language.getPhrase('options_$option', option), true);
-			optionText.screenCenter();
-			optionText.y += (92 * (num - (options.length / 2))) + 45;
-			grpOptions.add(optionText);
-		}
-
-		selectorLeft = new Alphabet(0, 0, '>', true);
-		add(selectorLeft);
-		selectorRight = new Alphabet(0, 0, '<', true);
-		add(selectorRight);
-
-		changeSelection();
-		ClientPrefs.saveSettings();
-
-		super.create();
+		var item:FlxSprite = createMenuItem(option, 0, (num * spacing) + 150);
+		item.y += (2 - optionShit.length) * 90;
+		item.screenCenter(X);
 	}
 
-	override function closeSubState()
-	{
-		super.closeSubState();
-		ClientPrefs.saveSettings();
-		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
-		#end
-		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Options");
-	}
+        changeItem();
+        ClientPrefs.saveSettings();
 
-	override function update(elapsed:Float) {
-		super.update(elapsed);
+        super.create();
+    }
 
-		if (controls.UI_UP_P)
-			changeSelection(-1);
-		if (controls.UI_DOWN_P)
-			changeSelection(1);
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
 
-		if (controls.BACK)
-		{
-			FlxG.sound.play(Paths.sound('cancelMenu'));
-			if(onPlayState)
-			{
-				StageData.loadDirectory(PlayState.SONG);
-				LoadingState.loadAndSwitchState(new PlayState());
-				FlxG.sound.music.volume = 0;
-			}
-			else MusicBeatState.switchState(new MainMenuState());
-		}
-		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
-	}
-	
-	function changeSelection(change:Int = 0)
-	{
-		curSelected = FlxMath.wrap(curSelected + change, 0, options.length - 1);
+        if (controls.UI_UP_P)
+            changeItem(-1);
+        if (controls.UI_DOWN_P)
+            changeItem(1);
 
-		for (num => item in grpOptions.members)
-		{
-			item.targetY = num - curSelected;
-			item.alpha = 0.6;
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				selectorLeft.x = item.x - 63;
-				selectorLeft.y = item.y;
-				selectorRight.x = item.x + item.width + 15;
-				selectorRight.y = item.y;
-			}
-		}
-		FlxG.sound.play(Paths.sound('scrollMenu'));
-	}
+        if (controls.BACK)
+        {
+            FlxG.sound.play(Paths.sound('cancelMenu'));
+            if(onPlayState)
+            {
+                StageData.loadDirectory(PlayState.SONG);
+                LoadingState.loadAndSwitchState(new PlayState());
+                FlxG.sound.music.volume = 0;
+            }
+            else MusicBeatState.switchState(new MainMenuState());
+        }
+        else if (controls.ACCEPT)
+        {
+            FlxG.sound.play(Paths.sound('confirmMenu'));
+            openSelectedSubstate(optionShit[curSelected]);
+        }
+    }
 
-	override function destroy()
-	{
-		ClientPrefs.loadPrefs();
-		super.destroy();
-	}
+    function changeItem(change:Int = 0)
+    {
+        curSelected = FlxMath.wrap(curSelected + change, 0, optionShit.length - 1);
+        FlxG.sound.play(Paths.sound('scrollMenu'));
+
+        for (item in menuItems)
+        {
+            item.animation.play('idle');
+            item.centerOffsets();
+        }
+
+        var selectedItem = menuItems.members[curSelected];
+        selectedItem.animation.play('selected');
+        selectedItem.centerOffsets();
+    }
+
+    override function destroy()
+    {
+        ClientPrefs.loadPrefs();
+        super.destroy();
+    }
 }
