@@ -1894,7 +1894,7 @@ class PlayState extends MusicBeatState
 
 			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player, skinChosen(player, false), skinChosen(player, true));
 
-			var strumCover:StrumCover = new StrumCover(babyArrow);
+			var strumCover:StrumCover;
 			babyArrow.downScroll = ClientPrefs.data.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
 			{
@@ -1907,10 +1907,11 @@ class PlayState extends MusicBeatState
 			if (player == 1) {
 				babyArrow.pixelNote = boyfriend.usesPixelNotesSpecifically;
 				babyArrow.reloadNote();
-				strumCover.reloadCover(boyfriend.strumSkin, boyfriend.strumSkinLib);
+				strumCover = new StrumCover(babyArrow, boyfriend.strumSkin, boyfriend.strumSkinLib);
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 					if (boyfriend.disableNoteRGB) {
 						babyArrow.disableRGB = true;
+						strumCover.rgbShader.enabled = false;
 					} else {
 						switch (i) {
 							case 0:
@@ -1939,7 +1940,7 @@ class PlayState extends MusicBeatState
 			} else {
 				babyArrow.pixelNote = dad.usesPixelNotesSpecifically;
 				babyArrow.reloadNote();
-				strumCover.reloadCover(dad.strumSkin, dad.strumSkinLib);
+				strumCover = new StrumCover(babyArrow, dad.strumSkin, dad.strumSkinLib);
 				if(ClientPrefs.data.middleScroll)
 				{
 					babyArrow.x += 310;
@@ -1950,6 +1951,7 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 					if (dad.disableNoteRGB) {
 						babyArrow.disableRGB = true;
+						strumCover.rgbShader.enabled = false;
 					} else {
 						switch (i) {
 							case 0:
@@ -1978,7 +1980,7 @@ class PlayState extends MusicBeatState
 			}
 
 			strumLineNotes.add(babyArrow);
-			strumLineCovers.add(strumCover);
+			if (strumCover != null) strumLineCovers.add(strumCover);
 			babyArrow.playerPosition();
 			if (player == 1) defaultStrumPosition.insert(i + 4, [babyArrow.x, babyArrow.y]);
 			else defaultStrumPosition.insert(i, [babyArrow.x, babyArrow.y]);

@@ -51,8 +51,6 @@ class Philly extends BaseStage
 
 		phillyStreet = new BGSprite('philly/street', -320, 150);
 		add(phillyStreet);
-
-		
 	}
 	override function createPost() {
 		super.createPost();
