@@ -309,8 +309,11 @@ class BaseStage extends FlxBasic {
 			reflected.alpha = alpha;
 			if (reflected.customSpeaker != null) {
 				var speakerMembers:FlxSpriteGroup = reflected.customSpeaker;
-				if (Reflect.hasField(speakerMembers, "eyeBg")) Reflect.setField(Reflect.field(speakerMembers, "eyeBg"), "alpha", 0);
 				for (object in speakerMembers) {
+					if (Std.isOfType(reflected.customSpeaker, ABotSpeaker)) {
+						var ba:ABotSpeaker = reflected.customSpeaker;
+						ba.eyeBg.visible = false;
+					}
 					object.y = object.y + (object.frameHeight*object.scale.y) - object.offset.y;
 					object.flipY = true;
 				}
@@ -318,6 +321,7 @@ class BaseStage extends FlxBasic {
 				object.y = object.y + (object.frameHeight*object.scale.y) - object.offset.y;
 				object.flipY = true;
 			}
+			reflected.y += reflected.reflectionOffset(speaker.speaker);
 			//reflected.y += reflected.height;
 			addBehindSpeaker(reflected);
 		}
