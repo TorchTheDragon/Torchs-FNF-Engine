@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="menu_torch.png">
-	<!-- Created with Adobe Animate version 22.0.3.179 -->
+	<!-- Created with Adobe Animate version 24.0.5.40 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="torch idle0000" x="0" y="0" width="992" height="239" pivotX="428.9" pivotY="306.45" frameX="-5" frameY="-3" frameWidth="1008" frameHeight="244"/>
-	<SubTexture name="torch idle0001" x="992" y="0" width="1004" height="234" frameX="-4" frameY="-10" frameWidth="1008" frameHeight="244"/>
-	<SubTexture name="torch idle0002" x="0" y="239" width="993" height="231" frameX="0" frameY="0" frameWidth="1008" frameHeight="244"/>
-	<SubTexture name="torch selected0000" x="993" y="239" width="850" height="168" pivotX="407.4" pivotY="197.6" frameX="0" frameY="-2" frameWidth="851" frameHeight="170"/>
-	<SubTexture name="torch selected0001" x="993" y="239" width="850" height="168" frameX="0" frameY="-2" frameWidth="851" frameHeight="170"/>
-	<SubTexture name="torch selected0002" x="0" y="470" width="846" height="169" frameX="-5" frameY="0" frameWidth="851" frameHeight="170"/>
-	<SubTexture name="torch selected0003" x="0" y="470" width="846" height="169" frameX="-5" frameY="0" frameWidth="851" frameHeight="170"/>
-	<SubTexture name="torch selected0004" x="846" y="470" width="846" height="168" frameX="-4" frameY="0" frameWidth="851" frameHeight="170"/>
-	<SubTexture name="torch selected0005" x="846" y="470" width="846" height="168" frameX="-4" frameY="0" frameWidth="851" frameHeight="170"/>
+	<SubTexture name="torch idle0000" x="5" y="5" width="855" height="207"/>
+	<SubTexture name="torch idle0001" x="5" y="217" width="855" height="207"/>
+	<SubTexture name="torch idle0002" x="5" y="429" width="855" height="207"/>
+	<SubTexture name="torch selected0000" x="5" y="641" width="850" height="170"/>
+	<SubTexture name="torch selected0001" x="5" y="641" width="850" height="170"/>
+	<SubTexture name="torch selected0002" x="5" y="816" width="850" height="170"/>
+	<SubTexture name="torch selected0003" x="5" y="816" width="850" height="170"/>
+	<SubTexture name="torch selected0004" x="5" y="991" width="850" height="170"/>
+	<SubTexture name="torch selected0005" x="5" y="991" width="850" height="170"/>
 </TextureAtlas>

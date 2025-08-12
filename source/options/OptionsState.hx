@@ -21,9 +21,9 @@ class OptionsState extends MusicBeatState
         switch(label)
         {
             case 'psych':
-                MusicBeatState.switchState(new options.PsychEngineSettingsState());
-            case 'torch':
                 openSubState(new options.TorchsEngineSettingsState());
+            case 'torch':
+                MusicBeatState.switchState(new options.PsychEngineSettingsState());
         }
     }
 
