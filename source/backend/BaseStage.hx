@@ -88,6 +88,7 @@ class BaseStage extends FlxBasic {
 	public function create() {}
 	public function createPost() {
 		if (speaker != null) speaker.createPost(gf);
+		if (reflected != null) reflected.createPost(gf);
 	}
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
@@ -301,32 +302,26 @@ class BaseStage extends FlxBasic {
 		}
 	}
 
-	/*
-	// Broken concept, couldn't get to work
+	// Copied from ReflectedChar object
 	function addReflectedSpeaker(?alpha:Float = 0.35) {
 		if (speaker != null) {
 			reflected = new SpeakerSkin(speaker.x, speaker.y, speaker.speaker);
-			//if (reflected.customSpeaker != null) {
-			//	var speakerMembers:FlxSpriteGroup = reflected.customSpeaker;
-			//	if (speakerMembers != null) {
-			//		for (object in speakerMembers.members) {
-			//			object.flipY = true;
-			//		}
-			//	}
-			//} else for (object in reflected.members) {
-			//	object.flipY = true;
-			//}
-			//reflected.y += reflected.height;
-			//for (obj in reflected.members) obj.scale.y *= -1;
-			reflected.scale.x *= -1;
-			reflected.angle = 180;
-			//reflected.setScale(1, -1);
-			reflected.y += 250;
 			reflected.alpha = alpha;
-			insert(members.indexOf(speaker), reflected);
+			if (reflected.customSpeaker != null) {
+				var speakerMembers:FlxSpriteGroup = reflected.customSpeaker;
+				if (Reflect.hasField(speakerMembers, "eyeBg")) Reflect.setField(Reflect.field(speakerMembers, "eyeBg"), "alpha", 0);
+				for (object in speakerMembers) {
+					object.y = object.y + (object.frameHeight*object.scale.y) - object.offset.y;
+					object.flipY = true;
+				}
+			} else for (object in reflected.members) {
+				object.y = object.y + (object.frameHeight*object.scale.y) - object.offset.y;
+				object.flipY = true;
+			}
+			//reflected.y += reflected.height;
+			addBehindSpeaker(reflected);
 		}
 	}
-	*/
 }
 
 enum CameraMode {

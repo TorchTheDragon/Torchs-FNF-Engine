@@ -78,6 +78,9 @@ class School extends BaseStage
 			add(bgGirls);
 		}
 		setDefaultGF('gf-pixel');
+		defaultSpeaker = 'nene-pixel';
+		addSpeaker(gfGroup.x, gfGroup.y);
+		addReflectedSpeaker();
 
 		switch (songName)
 		{

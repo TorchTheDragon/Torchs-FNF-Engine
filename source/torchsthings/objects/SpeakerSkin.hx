@@ -253,7 +253,7 @@ class SpeakerSkin extends FlxSpriteGroup {
 		}
     }
     public function beatHit() {
-        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot)) {
+        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot) && gf != null) {
             switch(currentNeneState) {
                 case STATE_READY:
                     if (blinkCountdown == 0) {
@@ -267,7 +267,7 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
     }
     public function songStart() {
-        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot)) {
+        if (usingCustom && (customSpeaker is ABotSpeaker || customSpeaker is PixelABot) && gf != null) {
             gf.animation.finishCallback = onNeneAnimationFinished;
         }
     }
