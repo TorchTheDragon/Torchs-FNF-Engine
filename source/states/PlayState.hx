@@ -2464,21 +2464,28 @@ class PlayState extends MusicBeatState
 				if (!controls.pressed(keysArray[i]) && i == c.strumNote.noteData && c.animation.curAnim.name == 'hold' && !cpuControlled && c.visible != false) c.end();
 			}
 
+			/*
 			for (thing in playerStrums.members) {
-				if (thing.noteData == c.strumNote.noteData && thing.animation.curAnim.name != 'confirm' && !c.endAnimAlreadyPlayed) c.end();
+				if (c.strumNote != null && thing.noteData == c.strumNote.noteData && thing.animation.curAnim.name != 'confirm' && !c.endAnimAlreadyPlayed && animatePlayerCover) c.end();
 			}
+			*/
 		});
 
 		opponentCovers.forEach(function(c:StrumCover) {
 			if (c.animation.curAnim.name == 'hold' && !enemyCoverSplashes) c.end();
 			
+			/*
 			for (thing in opponentStrums.members) {
-				if (thing.noteData == c.strumNote.noteData && thing.animation.curAnim.name != 'confirm' && !c.endAnimAlreadyPlayed) c.end(); 
+				if (c.strumNote != null && thing.noteData == c.strumNote.noteData && thing.animation.curAnim.name != 'confirm' && !c.endAnimAlreadyPlayed && animateOppCover) c.end(); 
 			}
+			*/
 		});
 
 		if (maxCombo < combo) maxCombo = combo;
 	}
+
+	var animatePlayerCover:Bool = true;
+	var animateOppCover:Bool = true;
 
 	// Health icon updaters
 	public dynamic function updateIconsScale(elapsed:Float)
@@ -3023,6 +3030,107 @@ class PlayState extends MusicBeatState
 							boyfriend = boyfriendMap.get(value2);
 							boyfriend.alpha = lastAlpha;
 							iconP1.changeIcon(boyfriend.healthIcon);
+							animatePlayerCover = false;
+							for (strumNote in playerStrums) {
+								playerCovers.members[strumNote.noteData].strumNote = strumNote;
+								if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+									strumNote.library = boyfriend.noteSkinLib;
+									strumNote.texture = boyfriend.noteSkin;
+									if (boyfriend.disableNoteRGB) {
+										strumNote.disableRGB = true;
+									} else {
+										switch (strumNote.noteData) {
+											case 0:
+												strumNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+											case 1:
+												strumNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+											case 2:
+												strumNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+											case 3:
+												strumNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+										}
+									}
+									strumNote.rgbShader.enabled = false;
+								} else {
+									strumNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[strumNote.noteData] : ClientPrefs.data.arrowRGB[strumNote.noteData]);
+									strumNote.rgbShader.enabled = false;
+								}
+							}
+							for (cover in playerCovers) {
+								cover.reloadCover(boyfriend.strumSkin, boyfriend.strumSkinLib);
+								var tempData:Int = cover.strumNote.noteData;
+								//cover.strumNote = null;
+								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									if (boyfriend.disableNoteRGB) {
+										cover.rgbShader.enabled = false;
+									} else {
+										switch (tempData) {
+											case 0:
+												cover.rgbShader.changeRGB(boyfriend.noteColors.left);
+											case 1:
+												cover.rgbShader.changeRGB(boyfriend.noteColors.down);
+											case 2:
+												cover.rgbShader.changeRGB(boyfriend.noteColors.up);
+											case 3:
+												cover.rgbShader.changeRGB(boyfriend.noteColors.right);
+										}
+									}
+								} else {
+									cover.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[tempData] : ClientPrefs.data.arrowRGB[tempData]);
+								}
+							}
+							// I hate this... but I need to double this for spawned notes and unspawned notes... UNLESS
+							var tempNotes:Array<Note> = [];
+							for (nute in notes) {
+								tempNotes.push(nute);
+							}
+							for (nite in unspawnNotes) {
+								tempNotes.push(nite);
+							}
+							for (daNote in tempNotes) {
+								if (daNote.mustPress == true) {
+									if (boyfriend.useNoteSkin && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(daNote.noteType)) {
+										daNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);	
+									}
+									if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+										switch (daNote.noteData) {
+											case 0:
+												if (boyfriend.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+													if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && boyfriend.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.altNoteColors.left);
+													else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.noteColors.left);
+												} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
+													daNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[0] : ClientPrefs.data.arrowRGB[0]);
+												}
+											case 1:
+												if (boyfriend.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+													if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && boyfriend.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.altNoteColors.down);
+													else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.noteColors.down);
+												} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
+													daNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[1] : ClientPrefs.data.arrowRGB[1]);
+												}
+											case 2:
+												if (boyfriend.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+													if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && boyfriend.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.altNoteColors.up);
+													else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.noteColors.up);
+												} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
+													daNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[2] : ClientPrefs.data.arrowRGB[2]);
+												}
+											case 3:
+												if (boyfriend.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+													if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && boyfriend.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.altNoteColors.right);
+													else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+												} else if (ClientPrefs.data.characterNoteColors == 'Opponent\nOnly') {
+													daNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[3] : ClientPrefs.data.arrowRGB[3]);
+												}
+											}
+										}
+								}
+							}
+							animatePlayerCover = true;
 						}
 						setOnScripts('boyfriendName', boyfriend.curCharacter);
 
@@ -3045,6 +3153,91 @@ class PlayState extends MusicBeatState
 							}
 							dad.alpha = lastAlpha;
 							iconP2.changeIcon(dad.healthIcon);
+							animateOppCover = false;
+							for (strumNote in opponentStrums) {
+								opponentCovers.members[strumNote.noteData].strumNote = strumNote;
+								if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+									strumNote.library = dad.noteSkinLib;
+									strumNote.texture = dad.noteSkin;
+									if (dad.disableNoteRGB) {
+										strumNote.disableRGB = true;
+									} else {
+										switch (strumNote.noteData) {
+											case 0:
+												strumNote.rgbShader.changeRGB(dad.noteColors.left);
+											case 1:
+												strumNote.rgbShader.changeRGB(dad.noteColors.down);
+											case 2:
+												strumNote.rgbShader.changeRGB(dad.noteColors.up);
+											case 3:
+												strumNote.rgbShader.changeRGB(dad.noteColors.right);
+										}
+									}
+									strumNote.rgbShader.enabled = false;
+								} else {
+									strumNote.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[strumNote.noteData] : ClientPrefs.data.arrowRGB[strumNote.noteData]);
+									strumNote.rgbShader.enabled = false;
+								}
+							}
+							for (cover in opponentCovers) {
+								cover.reloadCover(dad.strumSkin, dad.strumSkinLib);
+								var tempData:Int = cover.strumNote.noteData;
+								//cover.strumNote = null;
+								if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+									if (dad.disableNoteRGB) {
+										cover.rgbShader.enabled = false;
+									} else {
+										switch (tempData) {
+											case 0:
+												cover.rgbShader.changeRGB(dad.noteColors.left);
+											case 1:
+												cover.rgbShader.changeRGB(dad.noteColors.down);
+											case 2:
+												cover.rgbShader.changeRGB(dad.noteColors.up);
+											case 3:
+												cover.rgbShader.changeRGB(dad.noteColors.right);
+										}
+									}
+								} else {
+									cover.rgbShader.changeRGB(isPixelStage ? ClientPrefs.data.arrowRGBPixel[tempData] : ClientPrefs.data.arrowRGB[tempData]);
+								}
+							}
+							// I hate this... but I need to double this for spawned notes and unspawned notes... UNLESS
+							var tempNotes:Array<Note> = [];
+							for (nute in notes) {
+								tempNotes.push(nute);
+							}
+							for (nite in unspawnNotes) {
+								tempNotes.push(nite);
+							}
+							for (daNote in tempNotes) {
+								if (daNote.mustPress == false) {	
+									if (dad.useNoteSkin && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(daNote.noteType)) {
+										daNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
+									}
+									if (ClientPrefs.data.characterNoteColors != 'Disabled') {
+										switch (daNote.noteData) {
+											case 0:
+												if (dad.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && dad.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(dad.altNoteColors.left);
+												else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(dad.noteColors.left);
+											case 1:
+												if (dad.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && dad.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(dad.altNoteColors.down);
+												else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(dad.noteColors.down);
+											case 2:
+												if (dad.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && dad.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(dad.altNoteColors.up);
+												else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(dad.noteColors.up);
+											case 3:
+												if (dad.disableNoteRGB) daNote.rgbShader.enabled = false;
+												else if ((daNote.noteType == 'Alt Animation' || daNote.animSuffix == '-alt') && dad.hasAltColors && !daNote.noCharShader) daNote.rgbShader.changeRGB(dad.altNoteColors.right);
+												else if (!daNote.noCharShader) daNote.rgbShader.changeRGB(dad.noteColors.right);
+											}
+										}
+								}
+							}
+							animateOppCover = true;
 						}
 						setOnScripts('dadName', dad.curCharacter);
 

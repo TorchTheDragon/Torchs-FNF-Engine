@@ -12,6 +12,10 @@ import haxe.Json;
 import backend.Song;
 import states.stages.objects.TankmenBG;
 
+import objects.Note;
+import objects.NoteSplash;
+import torchsthings.objects.StrumCover;
+
 typedef CharacterFile = {
 	var animations:Array<AnimArray>;
 	var image:String;
@@ -305,11 +309,11 @@ class Character extends FlxSprite
 		#end
 		//trace('Loaded file to character ' + curCharacter);
 
-		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin;
+		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin; else noteSkin = Note.defaultNoteSkin + Note.getNoteSkinPostfix();
 		if (json.noteSkinLib != null && json.noteSkinLib != '') noteSkinLib = json.noteSkinLib; else noteSkinLib = 'shared';
-		if (json.splashSkin != null && json.splashSkin != '') splashSkin = json.splashSkin;
+		if (json.splashSkin != null && json.splashSkin != '') splashSkin = json.splashSkin; else splashSkin = NoteSplash.defaultNoteSplash + NoteSplash.getSplashSkinPostfix();
 		if (json.splashSkinLib != null && json.splashSkinLib != '') splashSkinLib = json.splashSkinLib; else splashSkinLib = 'shared';
-		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
+		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin; else strumSkin = StrumCover.defaultCoverSkin + StrumCover.getStrumSkinPostfix();
 		if (json.strumSkinLib != null && json.strumSkinLib != '') strumSkinLib = json.strumSkinLib; else strumSkinLib = 'shared';
 		if (json.noteColors != null) noteColors = json.noteColors;
 		if (json.healthBar != null && json.healthBar != '') healthBar = json.healthBar;

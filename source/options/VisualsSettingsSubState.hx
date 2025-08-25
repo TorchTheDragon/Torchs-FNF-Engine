@@ -341,7 +341,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		if(Paths.fileExists('images/$customSkin.png', IMAGE)) skin = customSkin;
 
 		note.texture = skin; //Load texture and anims
-		note.reloadNote();
+		//note.reloadNote();
 		note.playAnim('static');
 	}
 

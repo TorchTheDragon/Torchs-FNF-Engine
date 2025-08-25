@@ -82,6 +82,9 @@ class StrumNote extends FlxSprite
 			library = 'shared';
 		}
 
+		if (texture == null || texture == '') texture = Note.defaultNoteSkin;
+		if (library == null || library == '') library = 'shared';
+
 		if(PlayState.isPixelStage || pixelNote)
 		{
 			pixelNote = true;
