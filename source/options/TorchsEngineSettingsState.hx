@@ -69,7 +69,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 				STRING,
 				strumSkins);
 			addOption(option);
-			option.onChange = playStrumCovers;
+			   option.onChange = function() { playStrumCovers(); ClientPrefs.saveSettings(); };
 		}
 
 		var option:Option = new Option('Character Based Notes:',
@@ -78,6 +78,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			STRING,
 			['Enabled', 'Opponent\nOnly', 'Disabled']);
 		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
 
 		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
 		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin)) {
@@ -95,7 +96,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			STRING,
 			healthSkins);
 		addOption(option);
-		option.onChange = reloadHealthBar;
+		option.onChange = function() { reloadHealthBar(); ClientPrefs.saveSettings(); };
 
 		var option:Option = new Option('Speaker Skin:',
 			"What speaker skin do you want to use?",
@@ -103,12 +104,14 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			STRING,
 			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
 		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
 
 		var option:Option = new Option('Show Credits',
 			'Uncheck this if you dont want to see the credits on song start',
 			'showSongCredits',
 			'bool');
 		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
 
 		var option:Option = new Option('Dynamic Cam. Move Amount',
 			'The camera move depending on the note pressed using this value \nif the value is zero, it is disabled',
@@ -120,6 +123,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 		option.changeValue = 1;
 		option.decimals = 1;
 		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
 
 		var option:Option = new Option('Icons Dance:',
 			"Combine up to 2 icon animations!",
@@ -149,6 +153,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 			2 
 		);
 		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
 
 		super();
 		add(notes);
@@ -162,7 +167,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 	override function changeSelection(change:Int = 0)
 	{
 		super.changeSelection(change);
-		
+
 		switch(curOption.variable)
 		{
 			case 'noteSkin', 'splashSkin', 'splashAlpha', 'strumSkin':
@@ -221,6 +226,8 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 				}
 				barShown = false;
 		}
+		// I forgot to add this because it doesn't save the custom settings.
+		ClientPrefs.saveSettings();
 	}
 
 	var changedMusic:Bool = false;
@@ -343,6 +350,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
 		if (strumTime != null) strumTime.cancel();
 		Note.globalRgbShaders = [];
+		ClientPrefs.loadPrefs();
 		super.destroy();
 	}
 
@@ -356,6 +364,7 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 
 	override function closeSubState() {
 		super.closeSubState();
+		ClientPrefs.saveSettings();
 		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Torchs Engine Settings");
 	}
 }
