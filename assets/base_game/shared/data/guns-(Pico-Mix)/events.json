@@ -1,0 +1,319 @@
+{
+	"events": [
+		[
+			9729.72972972973,
+			[
+				["Play Animation", "burp1", "bf"],
+				["Screen Shake", "0.3,0.01", ""]
+			]
+		],
+		[
+			11027.027027027,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			12324.3243243243,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			13621.6216216216,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			14918.9189189189,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			16216.2162162162,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			17513.5135135135,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			18810.8108108108,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			20108.1081081081,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			20432.4324324324,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			20756.7567567568,
+			[
+				["Updated Camera Zoom", "Main", "0.8,1.2,expoOut"]
+			]
+		],
+		[
+			21729.7297297297,
+			[
+				["Screen Shake", "0.2,0.003", ""]
+			]
+		],
+		[
+			22378.3783783784,
+			[
+				["Screen Shake", "1,0.003", ""]
+			]
+		],
+		[
+			23351.3513513513,
+			[
+				["Screen Shake", "0.2,0.003", ""]
+			]
+		],
+		[
+			23837.8378378378,
+			[
+				["Screen Shake", "0.2,0.003", ""]
+			]
+		],
+		[
+			24324.3243243243,
+			[
+				["Screen Shake", "0.2,0.003", ""]
+			]
+		],
+		[
+			25297.2972972973,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			25702.7027027027,
+			[
+				["Updated Camera Zoom", "Main", "0.65,0.76,expoIn"]
+			]
+		],
+		[
+			26594.5945945946,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			27891.8918918919,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			29189.1891891892,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			30486.4864864865,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			31135.1351351351,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1,expoOut"]
+			]
+		],
+		[
+			31783.7837837838,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			32432.4324324324,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1,expoOut"]
+			]
+		],
+		[
+			33081.0810810811,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			33729.7297297297,
+			[
+				["Updated Camera Zoom", "Main", "0.8,1,expoOut"]
+			]
+		],
+		[
+			34378.3783783784,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			35027.027027027,
+			[
+				["Updated Camera Zoom", "Main", "0.85,1,expoOut"]
+			]
+		],
+		[
+			35675.6756756757,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			36324.3243243243,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1,expoOut"]
+			]
+		],
+		[
+			36972.972972973,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			38270.2702702703,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			39567.5675675676,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			40216.2162162162,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1,expoOut"]
+			]
+		],
+		[
+			41513.5135135135,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1,expoOut"]
+			]
+		],
+		[
+			42162.1621621622,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			42810.8108108108,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1,expoOut"]
+			]
+		],
+		[
+			43459.4594594595,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			44108.1081081081,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1,expoOut"]
+			]
+		],
+		[
+			44756.7567567568,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			45405.4054054054,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1,expoOut"]
+			]
+		],
+		[
+			46054.0540540541,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			46702.7027027027,
+			[
+				["Updated Camera Zoom", "Main", "0.65,1,expoOut"]
+			]
+		],
+		[
+			47351.3513513514,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			48648.6486486487,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			49297.2972972973,
+			[
+				["Updated Camera Zoom", "Main", "0.7,1,expoOut"]
+			]
+		],
+		[
+			49945.945945946,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			50594.5945945946,
+			[
+				["Updated Camera Zoom", "Main", "0.75,1,expoOut"]
+			]
+		],
+		[
+			51567.5675675676,
+			[
+				["Updated Camera Zoom", "Main", "0.6,0.75,expoInOut"]
+			]
+		],
+		[
+			51891.8918918919,
+			[
+				["Cinematic Bars", "1.5,7", "30"],
+				["Camera Follow Pos", "750", "500"]
+			]
+		],
+		[
+			57081.0810810811,
+			[
+				["Updated Camera Zoom", "Main", "0.65,5,linear"]
+			]
+		]
+	],
+	"format": "torch_v1_events"
+}
